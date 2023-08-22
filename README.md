@@ -1,7 +1,7 @@
 ## VSCode setup
 
 1. Install prettier.
-2. `ctrl+shift+p`, "User Settings (JSON).
+2. `ctrl + shift + p`, "User Settings (JSON).
 3. Replace everything in `settings.json` with:
 
 ```json
