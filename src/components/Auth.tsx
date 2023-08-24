@@ -5,20 +5,31 @@ import {
     signInWithPopup,
     signOut,
 } from "firebase/auth";
+import { error } from "console";
 
 export const Auth = () => {
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
-    const signUp = async () => {};
+    const [signInEmail, setSignInEmail] = useState("");
+    const [signInPassword, setSignInPassword] = useState("");
+    const [signUpEmail, setSignUpEmail] = useState("");
+    const [signUpPassword, setSignUpPassword] = useState("");
+    const signUp = async () => {
+        try {
+            const user = await createUserWithEmailAndPassword(
+                auth,
+                signUpEmail,
+                signUpPassword
+            );
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     const signIn = async () => {
         try {
             await createUserWithEmailAndPassword(
                 auth,
-                loginEmail,
-                loginPassword
+                signInEmail,
+                signInPassword
             );
         } catch (err) {
             console.error(err);
@@ -43,17 +54,32 @@ export const Auth = () => {
 
     return (
         <div>
+            <button onClick={signUp}>Sign up</button>
             <input
-                placeholder="email"
-                onChange={(e) => setLoginEmail(e.target.value)}
+                placeholder="Email"
+                onChange={(e) => setSignUpEmail(e.target.value)}
             />
             <input
-                placeholder="password"
-                onChange={(e) => setLoginPassword(e.target.value)}
+                placeholder="Passowrd"
+                type="Password"
+                onChange={(e) => setSignUpPassword(e.target.value)}
             />
-            <button onClick={signIn}>Sign In</button>
-            <button onClick={signInWithGoogle}>Sign In With Google</button>
-            <button onClick={logout}>Log Out</button>
+
+            <center>
+                <input
+                    placeholder="Email"
+                    onChange={(e) => setSignInEmail(e.target.value)}
+                />
+                <input
+                    placeholder="Passowrd"
+                    type="Password"
+                    onChange={(e) => setSignInPassword(e.target.value)}
+                />
+                <button onClick={signIn}>Sign In</button>
+                <br></br>
+                <br></br>
+                <button onClick={signInWithGoogle}>Sign In with Google</button>
+            </center>
         </div>
     );
 };
