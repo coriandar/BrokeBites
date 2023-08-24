@@ -1,24 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { db } from "../config/firebase"; // Make sure firebase is imported correctly
+import { db } from "../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
 
 const libraries = ["places"];
 
-const InitMap = () => {
-    const mapContainerStyle = {
-        width: "100vw",
-        height: "100vh",
-    };
+// Set Map size
+const mapContainerStyle = {
+    width: "100vw",
+    height: "100vh",
+};
 
+//Set Map Styles (specifically, turn off points of interest)
+const mapStyles = [
+    {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }],
+    },
+];
+
+//Function for rendering map
+const InitMap = () => {
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: "AIzaSyBxCg3NYRGP49TAfURnknBeGHqBI9GKDT4", // Replace with your API key
+        googleMapsApiKey: "AIzaSyBxCg3NYRGP49TAfURnknBeGHqBI9GKDT4", //NEEDS REPLACED WITH HIDDEN API KEY
         libraries: libraries as any,
     });
 
+    //create setRestaurantList method
     const [restaurantList, setRestaurantList] = useState<any>([]);
 
+    //create getRestaurantList method
     const getRestaurantList = async () => {
+        //Try to connect to the DB then brng the data over to the app
         try {
             const restaurantCollectionRef = collection(db, "restaurantDB");
             const data = await getDocs(restaurantCollectionRef);
@@ -34,18 +48,22 @@ const InitMap = () => {
         }
     };
 
+    // use getRestaurantList method when the map first renders
     useEffect(() => {
         getRestaurantList();
-    }, []); // This runs the function once when the component mounts
+    }, []);
 
+    //displays loading or loading error for map
     if (loadError) return <div>Error loading maps</div>;
     if (!isLoaded) return <div>Loading...</div>;
 
+    //Returns GoogleMap centered on AUT with restaurants highlighted by a marker
     return (
         <GoogleMap
-            zoom={15}
-            center={{ lat: -36.85, lng: 174.76 }}
+            zoom={17}
+            center={{ lat: -36.8537761039407, lng: 174.7658246985396 }}
             mapContainerStyle={mapContainerStyle}
+            options={{ styles: mapStyles }}
         >
             {restaurantList.map(
                 (restaurant: {

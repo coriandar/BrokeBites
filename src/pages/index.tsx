@@ -9,6 +9,7 @@ export default function Home() {
     return (
         <main>
             <div>
+                <Auth />
                 <InitMap />
             </div>
         </main>
