@@ -4,6 +4,7 @@ import { db } from "../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
 
 const libraries = ["places"];
+const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
 
 // Set Map size
 const mapContainerStyle = {
@@ -23,7 +24,7 @@ const mapStyles = [
 //Function for rendering map
 const InitMap = () => {
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: "AIzaSyBxCg3NYRGP49TAfURnknBeGHqBI9GKDT4", //NEEDS REPLACED WITH HIDDEN API KEY
+        googleMapsApiKey: mapApiKey,
         libraries: libraries as any,
     });
 
