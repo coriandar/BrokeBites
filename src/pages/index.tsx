@@ -10,8 +10,6 @@ export default function Home() {
         <main>
             <div>
                 <Auth></Auth>
-                <br></br>
-                <InitMap />
             </div>
         </main>
     );
