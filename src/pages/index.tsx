@@ -4,12 +4,12 @@ import InitMap from "../components/Map";
 import { Auth } from "../components/Auth";
 
 const inter = Inter({ subsets: ["latin"] });
+//<InitMap />
 
 export default function Home() {
     return (
         <main>
             <div>
-                <Auth />
                 <InitMap />
             </div>
         </main>
