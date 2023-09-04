@@ -1,12 +1,10 @@
 import React from "react";
 
-const Details = ({ selectedMarker }) => {
+export default function Details(restaurant) {
     return (
-        <div id="SelectedMarkerDetails">
-            <h3>{selectedMarker.name}</h3>
-            <p>{selectedMarker.website}</p>
+        <div id="SelectedrestaurantDetails">
+            <h3>{restaurant.name}</h3>
+            <p>{restaurant.website}</p>
         </div>
     );
-};
-
-export default Details;
+}
