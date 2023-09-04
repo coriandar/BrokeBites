@@ -1,10 +1,20 @@
 import React from "react";
 
-export default function Details(restaurant) {
+interface MarkerDetailsProps {
+    selected: any;
+}
+
+function MarkerDetails({ selected }: MarkerDetailsProps) {
+    if (!selected) {
+        return console.log("Error loading restaurant");
+    }
+
     return (
-        <div id="SelectedrestaurantDetails">
-            <h3>{restaurant.name}</h3>
-            <p>{restaurant.website}</p>
+        <div id="SelectedMarkerDetails">
+            <h3>{selected.name}</h3>
+            <p>{selected.website}</p>
         </div>
     );
 }
+
+export default MarkerDetails;
