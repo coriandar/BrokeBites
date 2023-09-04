@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { db } from "../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
+import Details from "./MarkerDetails";
 
 const libraries = ["places"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
@@ -30,6 +31,11 @@ const InitMap = () => {
 
     //create setRestaurantList method
     const [restaurantList, setRestaurantList] = useState<any>([]);
+
+    const handleMarkerClick = (restaurant) => {
+        console.log(restaurant);
+        Details(restaurant);
+    };
 
     //create getRestaurantList method
     const getRestaurantList = async () => {
@@ -69,14 +75,19 @@ const InitMap = () => {
             {restaurantList.map(
                 (restaurant: {
                     id: React.Key | null | undefined;
-                    lat: any;
-                    lng: any;
+                    latitude: any;
+                    longitude: any;
                     name: string | undefined;
+                    website: string | undefined;
                 }) => (
                     <Marker
                         key={restaurant.id}
-                        position={{ lat: restaurant.lat, lng: restaurant.lng }}
+                        position={{
+                            lat: restaurant.latitude,
+                            lng: restaurant.longitude,
+                        }}
                         title={restaurant.name} // Display the restaurant name on marker hover
+                        onClick={() => handleMarkerClick(restaurant)}
                     />
                 )
             )}
