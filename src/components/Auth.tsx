@@ -13,12 +13,15 @@ import {
     AuthCredential,
 } from "firebase/auth";
 import { error } from "console";
+import { useRouter } from "next/router";
 
-export const Auth = () => {
+export function Auth() {
     const [signInEmail, setSignInEmail] = useState("");
     const [signInPassword, setSignInPassword] = useState("");
     const [signUpEmail, setSignUpEmail] = useState("");
     const [signUpPassword, setSignUpPassword] = useState("");
+
+    const router = useRouter();
 
     const signUp = async () => {
         try {
@@ -107,34 +110,15 @@ export const Auth = () => {
         return credential;
     }
 
-    return (
-        <div>
-            <button onClick={signUp}>Sign up</button>
-            <input
-                placeholder="Email"
-                onChange={(e) => setSignUpEmail(e.target.value)}
-            />
-            <input
-                placeholder="Passowrd"
-                type="Password"
-                onChange={(e) => setSignUpPassword(e.target.value)}
-            />
-
-            <center>
-                <input
-                    placeholder="Email"
-                    onChange={(e) => setSignInEmail(e.target.value)}
-                />
-                <input
-                    placeholder="Passowrd"
-                    type="Password"
-                    onChange={(e) => setSignInPassword(e.target.value)}
-                />
-                <button onClick={signIn}>Sign In</button>
-                <br></br>
-                <br></br>
-                <button onClick={signInWithGoogle}>Sign In with Google</button>
-            </center>
-        </div>
-    );
-};
+    return {
+        signUpEmail,
+        setSignUpEmail,
+        signUpPassword,
+        setSignUpPassword,
+        signInEmail,
+        setSignInEmail,
+        signInPassword,
+        setSignInPassword,
+        signInWithGoogle,
+    };
+}
