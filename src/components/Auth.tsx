@@ -24,13 +24,14 @@ export function Auth() {
     const [signUpEmail, setSignUpEmail] = useState("");
     const [signUpPassword, setSignUpPassword] = useState("");
     const [displayName, setDisplayName] = useState("");
+    const [newEmailAddress, setNewEmailAddress] = useState("");
 
     const router = useRouter();
 
     const auth = getAuth();
     const currentUser = auth.currentUser;
 
-    const signUp = async () => {
+    const signUp = async (): Promise<any> => {
         try {
             const user = await createUserWithEmailAndPassword(
                 auth,
@@ -38,12 +39,16 @@ export function Auth() {
                 signUpPassword
             );
 
-            //await sendEmailVerification(currentUser?).catch((error) => console.log(error));
+            /*await sendEmailVerification(currentUser!).catch((error) =>
+                console.log(error)
+            );*/
 
-            //await updateProfile(currentUser?, {displayName: displayName});
+            await updateProfile(auth.currentUser!, {
+                displayName: displayName,
+            }).catch((error) => console.log(error));
 
             console.log(user);
-            router.push("../");
+            router.push("../Account");
 
             return user;
         } catch (error: any) {
@@ -63,7 +68,7 @@ export function Auth() {
             );
 
             console.log(user);
-            router.push("../");
+            router.push("../Account");
         } catch (error: any) {
             if (error instanceof FirebaseError) {
                 const errorCode = error.code;
@@ -103,12 +108,13 @@ export function Auth() {
             const auth = getAuth();
             const user = auth.currentUser;
 
-            // Promp user to enter new email address. Possibily another function that returns string?
-            let newEmailAddress: string;
-
-            verifyBeforeUpdateEmail(user!, newEmailAddress!).then(() => {
+            /*verifyBeforeUpdateEmail(user!, newEmailAddress!).then(() => {
                 // Confirmation after the email address update
-            });
+            });*/
+
+            await updateEmail(user!, newEmailAddress).catch((error) =>
+                console.log(error)
+            );
         } catch (error: any) {
             if (error instanceof FirebaseError) {
                 const errorCode = error.code;
@@ -171,5 +177,6 @@ export function Auth() {
         updateEmailAddress,
         changePassword,
         setDisplayName,
+        setNewEmailAddress,
     };
 }
