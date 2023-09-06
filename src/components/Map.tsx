@@ -73,6 +73,7 @@ const InitMap = () => {
         <div id="map">
             <GoogleMap
                 zoom={17}
+                // need set this to change, update based on selection
                 center={{ lat: -36.8537761039407, lng: 174.7658246985396 }}
                 mapContainerStyle={mapContainerStyle}
                 options={{ styles: mapStyles }}
