@@ -2,8 +2,7 @@ import { Auth } from "../components/Auth";
 import { useRouter } from "next/router";
 
 export default function SignIn() {
-    const { setSignUpEmail, setSignUpPassword, signUp, setDisplayName } =
-        Auth();
+    const { setSignUpEmail, setPassword, signUp, setDisplayName } = Auth();
 
     const router = useRouter();
 
@@ -18,7 +17,7 @@ export default function SignIn() {
                 <input
                     placeholder="Passowrd"
                     type="Password"
-                    onChange={(e) => setSignUpPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <br></br>
                 <input

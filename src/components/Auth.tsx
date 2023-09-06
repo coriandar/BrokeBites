@@ -14,31 +14,28 @@ import {
     sendEmailVerification,
     ActionCodeOperation,
     updateProfile,
+    EmailAuthProvider,
+    sendPasswordResetEmail,
 } from "firebase/auth";
 import { useRouter } from "next/router";
 import { FirebaseError } from "firebase/app";
-import { error } from "console";
 
 export function Auth() {
     const [signInEmail, setSignInEmail] = useState("");
-    const [signInPassword, setSignInPassword] = useState("");
     const [signUpEmail, setSignUpEmail] = useState("");
-    const [signUpPassword, setSignUpPassword] = useState("");
+    const [password, setPassword] = useState("");
     const [displayName, setDisplayName] = useState("");
     const [newEmailAddress, setNewEmailAddress] = useState("");
     const [newPassword, setNewPassword] = useState("");
 
     const router = useRouter();
 
-    const auth = getAuth();
-    const currentUser = auth.currentUser;
-
     const signUp = async (): Promise<any> => {
         try {
             const user = await createUserWithEmailAndPassword(
                 auth,
                 signUpEmail,
-                signUpPassword
+                password
             );
 
             /*await sendEmailVerification(currentUser!).catch((error) =>
@@ -66,7 +63,7 @@ export function Auth() {
             const user = await signInWithEmailAndPassword(
                 auth,
                 signInEmail,
-                signInPassword
+                password
             );
 
             console.log(user);
@@ -108,13 +105,13 @@ export function Auth() {
     const updateEmailAddress = async () => {
         try {
             const auth = getAuth();
-            const user = auth.currentUser;
+            const currentUser = auth.currentUser;
 
             /*verifyBeforeUpdateEmail(user!, newEmailAddress!).then(() => {
                 // Confirmation after the email address update
             });*/
 
-            await updateEmail(user!, newEmailAddress).catch((error) =>
+            await updateEmail(currentUser!, newEmailAddress).catch((error) =>
                 console.log(error)
             );
         } catch (error: any) {
@@ -128,9 +125,9 @@ export function Auth() {
     const changePassword = async () => {
         try {
             const auth = getAuth();
-            const user = auth.currentUser;
+            const currentUser = auth.currentUser;
 
-            await updatePassword(user!, newPassword).catch((error) =>
+            await updatePassword(currentUser!, newPassword).catch((error) =>
                 console.log(error)
             );
         } catch (error: any) {
@@ -141,34 +138,39 @@ export function Auth() {
         }
     };
 
-    // TO DO: Need to figure out how to use this, what 'credential' contains
+    // TO DO: Implement this method for changing password when user is logged in
     const reauthentication = async () => {
         const auth = getAuth();
-        const user = auth.currentUser;
+        const currentUser = auth.currentUser;
 
-        const credential = promptForCredentials();
+        const credential = currentUser?.email
+            ? EmailAuthProvider.credential(currentUser.email, password)
+            : null;
 
-        reauthenticateWithCredential(user!, credential!)
+        await reauthenticateWithCredential(currentUser!, credential!)
+            .catch((error) => console.log(error))
             .then(() => {
-                // User reauthenticated, redirect page
-            })
-            .catch((err) => {
-                console.log(err);
+                changePassword;
             });
     };
 
-    // TODO: prompt the user to re-provide their sign in credentials.
-    function promptForCredentials(): AuthCredential {
-        let credential!: AuthCredential;
+    // TO DO: Implement this method for resetting password when user does not remember their password.
+    const passwordReset = async () => {
+        const auth = getAuth();
+        const currentUser = auth.currentUser;
 
-        return credential;
-    }
+        if (currentUser!.email) {
+            await sendPasswordResetEmail(auth, currentUser!.email).catch(
+                (error) => console.log(error)
+            );
+            console.log("Password reset email sent");
+        }
+    };
 
     return {
         setSignUpEmail,
-        setSignUpPassword,
         setSignInEmail,
-        setSignInPassword,
+        setPassword,
         setNewEmailAddress,
         setDisplayName,
         setNewPassword,
@@ -178,5 +180,7 @@ export function Auth() {
         logout,
         updateEmailAddress,
         changePassword,
+        reauthentication,
+        passwordReset,
     };
 }
