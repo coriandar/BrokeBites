@@ -11,17 +11,24 @@ import {
     reauthenticateWithCredential,
     verifyBeforeUpdateEmail,
     AuthCredential,
+    sendEmailVerification,
+    ActionCodeOperation,
+    updateProfile,
 } from "firebase/auth";
-import { error } from "console";
 import { useRouter } from "next/router";
+import { FirebaseError } from "firebase/app";
 
 export function Auth() {
     const [signInEmail, setSignInEmail] = useState("");
     const [signInPassword, setSignInPassword] = useState("");
     const [signUpEmail, setSignUpEmail] = useState("");
     const [signUpPassword, setSignUpPassword] = useState("");
+    const [displayName, setDisplayName] = useState("");
 
     const router = useRouter();
+
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
 
     const signUp = async () => {
         try {
@@ -30,24 +37,51 @@ export function Auth() {
                 signUpEmail,
                 signUpPassword
             );
-        } catch (err) {
-            console.error(err);
+
+            //await sendEmailVerification(currentUser?).catch((error) => console.log(error));
+
+            //await updateProfile(currentUser?, {displayName: displayName});
+
+            console.log(user);
+            router.push("../");
+
+            return user;
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
     const signIn = async () => {
         try {
-            await signInWithEmailAndPassword(auth, signInEmail, signInPassword);
-        } catch (err) {
-            console.error(err);
+            const user = await signInWithEmailAndPassword(
+                auth,
+                signInEmail,
+                signInPassword
+            );
+
+            console.log(user);
+            router.push("../");
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
     const signInWithGoogle = async () => {
         try {
-            await signInWithPopup(auth, googleProvider);
-        } catch (err) {
-            console.error(err);
+            const user = await signInWithPopup(auth, googleProvider);
+
+            console.log(user);
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
@@ -56,8 +90,11 @@ export function Auth() {
             await signOut(auth);
 
             // Page after sign out
-        } catch (err) {
-            console.error(err);
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
@@ -72,22 +109,30 @@ export function Auth() {
             verifyBeforeUpdateEmail(user!, newEmailAddress!).then(() => {
                 // Confirmation after the email address update
             });
-        } catch (err) {
-            console.error(err);
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
+    // TO DO: Need to figure out the algorithm
     const changePassword = async () => {
         try {
             const auth = getAuth();
             const user = auth.currentUser;
 
             const credential = promptForCredentials();
-        } catch (err) {
-            console.error(err);
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
+    // TO DO: Need to figure out how to use this, what 'credential' contains
     const reauthentication = async () => {
         const auth = getAuth();
         const user = auth.currentUser;
@@ -120,5 +165,11 @@ export function Auth() {
         signInPassword,
         setSignInPassword,
         signInWithGoogle,
+        signUp,
+        signIn,
+        logout,
+        updateEmailAddress,
+        changePassword,
+        setDisplayName,
     };
 }

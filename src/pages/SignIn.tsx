@@ -2,7 +2,8 @@ import { Auth } from "../components/Auth";
 import { useRouter } from "next/router";
 
 export default function SignIn() {
-    const { setSignInEmail, setSignInPassword, signInWithGoogle } = Auth();
+    const { setSignInEmail, setSignInPassword, signInWithGoogle, signIn } =
+        Auth();
     const router = useRouter();
 
     return (
@@ -20,17 +21,18 @@ export default function SignIn() {
 
                 <br></br>
                 <br></br>
-                <button onClick={() => router.push("../index.tsx")}>
-                    Sign In
-                </button>
+
+                <button onClick={signIn}>Sign In</button>
 
                 <br></br>
                 <br></br>
+
                 <button onClick={signInWithGoogle}>Sign in with Google</button>
 
                 <br></br>
                 <br></br>
-                <button onClick={() => router.push("../SignUp.tsx")}>
+
+                <button onClick={() => router.push("../SignUp")}>
                     Sign Up
                 </button>
             </center>
