@@ -17,6 +17,7 @@ import {
 } from "firebase/auth";
 import { useRouter } from "next/router";
 import { FirebaseError } from "firebase/app";
+import { error } from "console";
 
 export function Auth() {
     const [signInEmail, setSignInEmail] = useState("");
@@ -25,6 +26,7 @@ export function Auth() {
     const [signUpPassword, setSignUpPassword] = useState("");
     const [displayName, setDisplayName] = useState("");
     const [newEmailAddress, setNewEmailAddress] = useState("");
+    const [newPassword, setNewPassword] = useState("");
 
     const router = useRouter();
 
@@ -123,13 +125,14 @@ export function Auth() {
         }
     };
 
-    // TO DO: Need to figure out the algorithm
     const changePassword = async () => {
         try {
             const auth = getAuth();
             const user = auth.currentUser;
 
-            const credential = promptForCredentials();
+            await updatePassword(user!, newPassword).catch((error) =>
+                console.log(error)
+            );
         } catch (error: any) {
             if (error instanceof FirebaseError) {
                 const errorCode = error.code;
@@ -162,21 +165,18 @@ export function Auth() {
     }
 
     return {
-        signUpEmail,
         setSignUpEmail,
-        signUpPassword,
         setSignUpPassword,
-        signInEmail,
         setSignInEmail,
-        signInPassword,
         setSignInPassword,
+        setNewEmailAddress,
+        setDisplayName,
+        setNewPassword,
         signInWithGoogle,
         signUp,
         signIn,
         logout,
         updateEmailAddress,
         changePassword,
-        setDisplayName,
-        setNewEmailAddress,
     };
 }
