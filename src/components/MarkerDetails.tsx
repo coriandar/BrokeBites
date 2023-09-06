@@ -6,7 +6,11 @@ interface MarkerDetailsProps {
 
 function MarkerDetails({ selected }: MarkerDetailsProps) {
     if (!selected) {
-        return console.log("Error loading restaurant");
+        return (
+            <div id="SelectedMarkerDetails">
+                <h3>Nothing selected</h3>
+            </div>
+        );
     }
 
     return (

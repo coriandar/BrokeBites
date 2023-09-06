@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import InitMap from "../components/Map";
 import { useRouter } from "next/router";
+import InitList from "../components/RestaurantList";
+import { Inter } from "next/font/google";
+import { Auth } from "../components/Auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +26,7 @@ export default function index() {
                 <br></br>
 
                 <InitMap />
+                <InitList />
             </div>
         </main>
     );
