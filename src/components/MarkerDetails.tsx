@@ -1,12 +1,18 @@
 import React from "react";
 
 interface MarkerDetailsProps {
-    selected: any;
+    selected: {
+        // probably need add more types as we get more info
+        // fixes the red dot error
+        name: string;
+        website: string;
+    } | null;
 }
 
 function MarkerDetails({ selected }: MarkerDetailsProps) {
     if (!selected) {
-        return console.log("Error loading restaurant");
+        console.log("Error loading restaurant");
+        return null;
     }
 
     return (
