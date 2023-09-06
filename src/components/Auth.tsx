@@ -60,7 +60,7 @@ export const Auth = () => {
                 onChange={(e) => setSignUpEmail(e.target.value)}
             />
             <input
-                placeholder="Passowrd"
+                placeholder="Password"
                 type="Password"
                 onChange={(e) => setSignUpPassword(e.target.value)}
             />
@@ -71,7 +71,7 @@ export const Auth = () => {
                     onChange={(e) => setSignInEmail(e.target.value)}
                 />
                 <input
-                    placeholder="Passowrd"
+                    placeholder="Password"
                     type="Password"
                     onChange={(e) => setSignInPassword(e.target.value)}
                 />
