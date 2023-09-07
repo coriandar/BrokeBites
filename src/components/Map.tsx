@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { db } from "../config/Firebase.config";
+import { db } from "./firebase/FirebaseApp";
 import { getDocs, collection } from "firebase/firestore";
 import MarkerDetails from "./MarkerDetails";
 
