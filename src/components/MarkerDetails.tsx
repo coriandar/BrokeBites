@@ -16,11 +16,7 @@ function MarkerDetails({ selected }: MarkerDetailsProps) {
     return (
         <div id="SelectedMarkerDetails">
             <h3>{selected.name}</h3>
-            {selected.website === "NULL" ? (
-                <p>{selected.website}</p>
-            ) : (
-                <p>No Website</p>
-            )}
+            {selected.website ? <p>{selected.website}</p> : <p>No Website</p>}
         </div>
     );
 }
