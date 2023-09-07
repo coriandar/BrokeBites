@@ -12,18 +12,6 @@ export default function index() {
     return (
         <main>
             <div>
-                <center>
-                    <button onClick={() => router.push("../SignIn")}>
-                        Sign In
-                    </button>
-
-                    <button onClick={() => router.push("../SignUp")}>
-                        Sign Up
-                    </button>
-                </center>
-                <br></br>
-                <br></br>
-
                 <InitMap />
                 <InitList />
             </div>
