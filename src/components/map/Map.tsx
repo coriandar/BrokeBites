@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { getAllRestaurants } from "../config/firebase";
+import { getAllRestaurants } from "../../config/firebase";
+import { db } from "../../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
 import MarkerDetails from "./MarkerDetails";
 
@@ -62,6 +63,7 @@ const InitMap = () => {
         <div id="map">
             <GoogleMap
                 zoom={17}
+                // need set this to change, update based on selection
                 center={{ lat: -36.8537761039407, lng: 174.7658246985396 }}
                 mapContainerStyle={mapContainerStyle}
                 options={{ styles: mapStyles }}
