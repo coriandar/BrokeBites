@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { getAllRestaurants } from "../config/firebase";
 import { db } from "./firebase/FirebaseApp";
 import { getDocs, collection } from "firebase/firestore";
 import MarkerDetails from "./MarkerDetails";
@@ -42,26 +43,15 @@ const InitMap = () => {
     };
 
     //create getRestaurantList method
-    const getRestaurantList = async () => {
-        //Try to connect to the DB then brng the data over to the app
-        try {
-            const restaurantCollectionRef = collection(db, "restaurantDB");
-            const data = await getDocs(restaurantCollectionRef);
-            const filteredData = data.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-
-            console.log(filteredData);
-            setRestaurantList(filteredData);
-        } catch (err) {
-            console.error(err);
-        }
-    };
 
     // use getRestaurantList method when the map first renders
     useEffect(() => {
-        getRestaurantList();
+        const fetchData = async () => {
+            const restaurants = await getAllRestaurants();
+            setRestaurantList(restaurants);
+        };
+
+        fetchData();
     }, []);
 
     //displays loading or loading error for map
