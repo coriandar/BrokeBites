@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import InitMap from "../components/Map";
 import { useRouter } from "next/router";
-
+import Login from "@/components/Login";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function index() {
@@ -11,18 +11,7 @@ export default function index() {
     return (
         <main>
             <div>
-                <center>
-                    <button onClick={() => router.push("../SignIn")}>
-                        Sign In
-                    </button>
-
-                    <button onClick={() => router.push("../SignUp")}>
-                        Sign Up
-                    </button>
-                </center>
-                <br></br>
-                <br></br>
-
+                <Login />
                 <InitMap />
             </div>
         </main>
