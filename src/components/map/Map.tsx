@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { getAllRestaurants } from "../../config/firebase";
-import { db } from "../../config/firebase";
+import { getAllRestaurants } from "../firebase/FirebaseApp";
+import { db } from "../firebase/FirebaseApp";
 import { getDocs, collection } from "firebase/firestore";
 import MarkerDetails from "./MarkerDetails";
 
