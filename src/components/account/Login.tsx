@@ -2,30 +2,12 @@ import React, { useEffect, useState } from "react";
 import StyledFirebaseAuth from "./StyledFirebaseAuth";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import { firebaseConfig } from "@/config/firebaseApp";
+import { firebaseConfig } from "@/config/Firebase.config";
+import { uiConfig } from "@/config/FirebaseAuthUI.config";
 
 firebase.initializeApp(firebaseConfig);
 
-const uiConfig = {
-    signInFlow: "popup",
-    signInSuccessUrl: "/",
-    signInOptions: [
-        {
-            provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            fullLabel: "Login with Google",
-            customParameters: {
-                prompt: "select_account",
-            },
-        },
-        // make custom login after
-        // make custom signup after
-        {
-            provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            fullLabel: "Login with Email",
-            requireDisplayName: true,
-        },
-    ],
-};
+const styledConfig = uiConfig(firebase);
 
 function Login() {
     const [isSignedIn, setIsSignedIn] = useState(false);
@@ -44,7 +26,7 @@ function Login() {
             <div>
                 <p>Sign In options</p>
                 <StyledFirebaseAuth
-                    uiConfig={uiConfig}
+                    uiConfig={styledConfig}
                     firebaseAuth={firebase.auth()}
                 />
             </div>
