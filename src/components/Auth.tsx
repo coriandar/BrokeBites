@@ -2,84 +2,185 @@ import { useState } from "react";
 import { auth, googleProvider } from "../config/firebase";
 import {
     createUserWithEmailAndPassword,
+    getAuth,
+    signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
+    updateEmail,
+    updatePassword,
+    reauthenticateWithCredential,
+    verifyBeforeUpdateEmail,
+    AuthCredential,
+    sendEmailVerification,
+    ActionCodeOperation,
+    updateProfile,
+    EmailAuthProvider,
+    sendPasswordResetEmail,
 } from "firebase/auth";
-import { error } from "console";
+import { useRouter } from "next/router";
+import { FirebaseError } from "firebase/app";
 
-export const Auth = () => {
+export function Auth() {
     const [signInEmail, setSignInEmail] = useState("");
-    const [signInPassword, setSignInPassword] = useState("");
     const [signUpEmail, setSignUpEmail] = useState("");
-    const [signUpPassword, setSignUpPassword] = useState("");
-    const signUp = async () => {
+    const [password, setPassword] = useState("");
+    const [displayName, setDisplayName] = useState("");
+    const [newEmailAddress, setNewEmailAddress] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+
+    const router = useRouter();
+
+    const signUp = async (): Promise<any> => {
         try {
             const user = await createUserWithEmailAndPassword(
                 auth,
                 signUpEmail,
-                signUpPassword
+                password
             );
-        } catch (err) {
-            console.error(err);
+
+            /*await sendEmailVerification(currentUser!).catch((error) =>
+                console.log(error)
+            );*/
+
+            await updateProfile(auth.currentUser!, {
+                displayName: displayName,
+            }).catch((error) => console.log(error));
+
+            console.log(user);
+            router.push("../Account");
+
+            return user;
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
     const signIn = async () => {
         try {
-            await createUserWithEmailAndPassword(
+            const user = await signInWithEmailAndPassword(
                 auth,
                 signInEmail,
-                signInPassword
+                password
             );
-        } catch (err) {
-            console.error(err);
+
+            console.log(user);
+            router.push("../Account");
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
     const signInWithGoogle = async () => {
         try {
-            await signInWithPopup(auth, googleProvider);
-        } catch (err) {
-            console.error(err);
+            const user = await signInWithPopup(auth, googleProvider);
+
+            console.log(user);
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
     const logout = async () => {
         try {
             await signOut(auth);
-        } catch (err) {
-            console.error(err);
+
+            // Page after sign out
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
         }
     };
 
-    return (
-        <div>
-            <button onClick={signUp}>Sign up</button>
-            <input
-                placeholder="Email"
-                onChange={(e) => setSignUpEmail(e.target.value)}
-            />
-            <input
-                placeholder="Passowrd"
-                type="Password"
-                onChange={(e) => setSignUpPassword(e.target.value)}
-            />
+    const updateEmailAddress = async () => {
+        try {
+            const auth = getAuth();
+            const currentUser = auth.currentUser;
 
-            <center>
-                <input
-                    placeholder="Email"
-                    onChange={(e) => setSignInEmail(e.target.value)}
-                />
-                <input
-                    placeholder="Passowrd"
-                    type="Password"
-                    onChange={(e) => setSignInPassword(e.target.value)}
-                />
-                <button onClick={signIn}>Sign In</button>
-                <br></br>
-                <br></br>
-                <button onClick={signInWithGoogle}>Sign In with Google</button>
-            </center>
-        </div>
-    );
-};
+            /*verifyBeforeUpdateEmail(user!, newEmailAddress!).then(() => {
+                // Confirmation after the email address update
+            });*/
+
+            await updateEmail(currentUser!, newEmailAddress).catch((error) =>
+                console.log(error)
+            );
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
+        }
+    };
+
+    const changePassword = async () => {
+        try {
+            const auth = getAuth();
+            const currentUser = auth.currentUser;
+
+            await updatePassword(currentUser!, newPassword).catch((error) =>
+                console.log(error)
+            );
+        } catch (error: any) {
+            if (error instanceof FirebaseError) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            }
+        }
+    };
+
+    // TO DO: Implement this method for changing password when user is logged in
+    const reauthentication = async () => {
+        const auth = getAuth();
+        const currentUser = auth.currentUser;
+
+        const credential = currentUser?.email
+            ? EmailAuthProvider.credential(currentUser.email, password)
+            : null;
+
+        await reauthenticateWithCredential(currentUser!, credential!)
+            .catch((error) => console.log(error))
+            .then(() => {
+                changePassword;
+            });
+    };
+
+    // TO DO: Implement this method for resetting password when user does not remember their password.
+    const passwordReset = async () => {
+        const auth = getAuth();
+        const currentUser = auth.currentUser;
+
+        if (currentUser!.email) {
+            await sendPasswordResetEmail(auth, currentUser!.email).catch(
+                (error) => console.log(error)
+            );
+            console.log("Password reset email sent");
+        }
+    };
+
+    return {
+        setSignUpEmail,
+        setSignInEmail,
+        setPassword,
+        setNewEmailAddress,
+        setDisplayName,
+        setNewPassword,
+        signInWithGoogle,
+        signUp,
+        signIn,
+        logout,
+        updateEmailAddress,
+        changePassword,
+        reauthentication,
+        passwordReset,
+    };
+}
