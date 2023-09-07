@@ -13,6 +13,8 @@ function MarkerDetails({ selected }: MarkerDetailsProps) {
         );
     }
 
+    console.log("In Marker Details");
+
     return (
         <div id="SelectedMarkerDetails">
             <h3>{selected.name}</h3>

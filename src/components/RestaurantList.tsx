@@ -3,8 +3,19 @@ import { getAllRestaurants } from "../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
 import MarkerDetails from "./MarkerDetails";
 
-const InitList = () => {
+const InitList = ({
+    setRestaurantSelected,
+}: {
+    setRestaurantSelected: Function;
+}) => {
     const [restaurantList, setRestaurantList] = useState<any>([]);
+
+    const [isListItemClicked, setIsListItemClicked] = useState(false);
+
+    const handleListItemClick = (restaurant: any) => {
+        console.log(restaurant);
+        setRestaurantSelected(restaurant);
+    };
 
     // use getRestaurantList method when the List first renders
     useEffect(() => {
@@ -17,19 +28,23 @@ const InitList = () => {
     }, []);
 
     return (
-        <ul id="restaurantList">
-            {restaurantList.map(
-                (restaurant: {
-                    id: React.Key | null | undefined;
-                    latitude: any;
-                    longitude: any;
-                    name: string | undefined;
-                    website: string | undefined;
-                }) => (
-                    <li>{restaurant.name}</li>
-                )
-            )}
-        </ul>
+        <div>
+            <ul id="restaurantList">
+                {restaurantList.map(
+                    (restaurant: {
+                        id: React.Key | null | undefined;
+                        latitude: any;
+                        longitude: any;
+                        name: string | undefined;
+                        website: string | undefined;
+                    }) => (
+                        <li onClick={() => handleListItemClick(restaurant)}>
+                            {restaurant.name}
+                        </li>
+                    )
+                )}
+            </ul>
+        </div>
     );
 };
 

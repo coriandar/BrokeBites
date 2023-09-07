@@ -23,7 +23,11 @@ const mapStyles = [
 ];
 
 //Function for rendering map
-const InitMap = () => {
+const InitMap = ({
+    setRestaurantSelected,
+}: {
+    setRestaurantSelected: Function;
+}) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
         libraries: libraries as any,
@@ -32,12 +36,10 @@ const InitMap = () => {
     //create setRestaurantList method
     const [restaurantList, setRestaurantList] = useState<any>([]);
 
-    const [restaurantSelected, setRestaurantSelected] = useState<any>([]);
     const [isMarkerClicked, setIsMarkerClicked] = useState(false);
 
     const handleMarkerClick = (restaurant: any) => {
         console.log(restaurant);
-        setIsMarkerClicked(true);
         setRestaurantSelected(restaurant);
     };
 
@@ -86,7 +88,6 @@ const InitMap = () => {
                     )
                 )}
             </GoogleMap>
-            {isMarkerClicked && <MarkerDetails selected={restaurantSelected} />}
         </div>
     );
 };
