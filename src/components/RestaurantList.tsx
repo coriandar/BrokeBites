@@ -38,7 +38,10 @@ const InitList = ({
                         name: string | undefined;
                         website: string | undefined;
                     }) => (
-                        <li onClick={() => handleListItemClick(restaurant)}>
+                        <li
+                            key={restaurant.id}
+                            onClick={() => handleListItemClick(restaurant)}
+                        >
                             {restaurant.name}
                         </li>
                     )
