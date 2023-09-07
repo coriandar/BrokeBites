@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllRestaurants } from "../config/firebase";
+import { getAllRestaurants } from "./firebase/FirebaseApp";
 import { getDocs, collection } from "firebase/firestore";
 import MarkerDetails from "./MarkerDetails";
 
