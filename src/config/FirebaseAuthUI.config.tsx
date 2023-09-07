@@ -1,5 +1,3 @@
-import { googleProvider } from "./Firebase.config";
-
 export const uiConfig = (firebase: any) => {
     return {
         signInFlow: "popup",
