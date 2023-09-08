@@ -25,9 +25,7 @@ export default function index() {
         <main
             className={`flex max-h-screen h-screen w-screen flex-col ${inter.className}`}
         >
-            <div className="h-20 flex-shrink-0">
-                <Navbar />
-            </div>
+            <Navbar />
             <div className="flex-1 h-10">
                 <Dashboard />
             </div>
