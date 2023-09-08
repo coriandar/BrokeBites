@@ -20,7 +20,12 @@ function Login() {
 
     if (!isSignedIn) {
         return (
-            <StyledFirebaseAuth uiConfig={styleConfig} firebaseAuth={fbAuth} />
+            <div>
+                <StyledFirebaseAuth
+                    uiConfig={styleConfig}
+                    firebaseAuth={fbAuth}
+                />
+            </div>
         );
     } else {
         return (
