@@ -23,30 +23,30 @@ function Navbar() {
         return () => unregisterAuthObserver();
     }, []);
 
-    if (!isSignedIn) {
-        return (
-            <nav className="flex items-center justify-center h-20">
-                <button
-                    className="bg-slate-200 px-5 py-2 rounded-md justify-end"
-                    onClick={handleLogin}
-                >
-                    Login
-                </button>
-            </nav>
-        );
-    } else {
-        return (
-            <nav className="flex items-center justify-center h-20">
-                <p>Welcome {fbAuth.currentUser?.displayName}</p>
-                <button
-                    className="bg-slate-200 px-5 py-2 rounded-md justify-end"
-                    onClick={handleLogout}
-                >
-                    Logout
-                </button>
-            </nav>
-        );
-    }
+    const authContent = !isSignedIn ? (
+        <button
+            className="bg-slate-200 px-5 py-2 rounded-md justify-end"
+            onClick={handleLogin}
+        >
+            Login
+        </button>
+    ) : (
+        <div>
+            <p>Welcome {fbAuth.currentUser?.displayName}</p>
+            <button
+                className="bg-slate-200 px-5 py-2 rounded-md justify-end"
+                onClick={handleLogout}
+            >
+                Logout
+            </button>
+        </div>
+    );
+
+    return (
+        <nav className="flex items-center justify-center h-20">
+            {authContent}
+        </nav>
+    );
 }
 
 export default Navbar;
