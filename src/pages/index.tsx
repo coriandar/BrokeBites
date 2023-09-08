@@ -1,13 +1,10 @@
 import Dashboard from "../components/Dashboard";
 import { useRouter } from "next/router";
 import { Inter } from "next/font/google";
-
-import Login from "@/components/account/Login";
-import InitMap from "@/components/map/Map";
 const inter = Inter({ subsets: ["latin"] });
-
 import React, { useState, useEffect } from "react";
 import { getAllRestaurants } from "@/components/firebase/FirebaseApp";
+import Navbar from "@/components/Navbar";
 
 export default function index() {
     const router = useRouter();
@@ -28,7 +25,9 @@ export default function index() {
         <main
             className={`flex max-h-screen h-screen w-screen flex-col ${inter.className}`}
         >
-            <div className="h-20 flex-shrink-0"></div>
+            <div className="h-20 flex-shrink-0">
+                <Navbar />
+            </div>
             <div className="flex-1 h-10">
                 <Dashboard />
             </div>
