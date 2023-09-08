@@ -3,6 +3,7 @@
 1. Install prettier.
 2. `ctrl + shift + p`, "User Settings (JSON).
 3. Replace everything in `settings.json` with:
+4. `git config --global pull.rebase false`
 
 ```json
 {
