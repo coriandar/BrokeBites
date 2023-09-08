@@ -25,11 +25,15 @@ export default function index() {
     }, []);
 
     return (
-        <main>
-            <div>
-                {/* <Login /> */}
-                <Dashboard />
+        <main className={`flex min-h-screen flex-col ${inter.className}`}>
+            {/* <div className="bg-slate-200">
+                <Login />
             </div>
+            <div className="bg-slate-500">
+                <Dashboard />
+            </div> */}
+            {/* <Login /> */}
+            <Dashboard />
         </main>
     );
 }
