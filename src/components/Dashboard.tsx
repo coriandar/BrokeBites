@@ -23,12 +23,11 @@ export default function Dashboard() {
                 restaurantList={restaurantList}
                 setRestaurantSelected={setRestaurantSelected}
             />
+            <MarkerDetails selected={restaurantSelected} />
             <InitList
                 restaurantList={restaurantList}
                 setRestaurantSelected={setRestaurantSelected}
             />
-
-            <MarkerDetails selected={restaurantSelected} />
         </div>
     );
 }
