@@ -28,3 +28,18 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
+
+@layer utilities {
+    @variants responsive {
+        /* Hide scrollbar for Chrome, Safari, Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            /* Hide scrollbar for IE, Edge, Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    }
+}
