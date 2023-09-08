@@ -18,8 +18,8 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <div className="flex w-screen h-screen">
-            <div className="h-full overflow-y-auto no-scrollbar flex justify-center w-1/3">
+        <div className="flex h-full w-full">
+            <div className="bg-slate-100 h-full overflow-y-auto no-scrollbar flex justify-center w-1/3">
                 <InitList
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}

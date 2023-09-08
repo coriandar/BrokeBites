@@ -13,7 +13,7 @@ const InitList = ({
     };
 
     return (
-        <div className="p-5">
+        <div>
             <ul id="restaurantList">
                 {restaurantList.map((restaurant) => (
                     <li

@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { getAllRestaurants } from "../firebase/FirebaseApp";
-import { db } from "../firebase/FirebaseApp";
-import { getDocs, collection } from "firebase/firestore";
-import MarkerDetails from "./MarkerDetails";
 
 const libraries = ["places"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
 
 // Set Map size
 const mapContainerStyle = {
-    height: "100vh",
-    width: "100vw",
+    height: "100%",
+    width: "100%",
 };
 
 // Set default location
