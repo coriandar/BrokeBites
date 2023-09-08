@@ -1,35 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { getAllRestaurants } from "./firebase/FirebaseApp";
-import { getDocs, collection } from "firebase/firestore";
-import MarkerDetails from "./MarkerDetails";
+import React from "react";
 
-const InitList = () => {
-    const [restaurantList, setRestaurantList] = useState<any>([]);
-
-    // use getRestaurantList method when the List first renders
-    useEffect(() => {
-        const fetchData = async () => {
-            const restaurants = await getAllRestaurants();
-            setRestaurantList(restaurants);
-        };
-
-        fetchData();
-    }, []);
+const InitList = ({
+    restaurantList,
+    setRestaurantSelected,
+}: {
+    restaurantList: any[];
+    setRestaurantSelected: Function;
+}) => {
+    const handleListItemClick = (restaurant: any) => {
+        console.log(restaurant);
+        setRestaurantSelected(restaurant);
+    };
 
     return (
-        <ul id="restaurantList">
-            {restaurantList.map(
-                (restaurant: {
-                    id: React.Key | null | undefined;
-                    latitude: any;
-                    longitude: any;
-                    name: string | undefined;
-                    website: string | undefined;
-                }) => (
-                    <li>{restaurant.name}</li>
-                )
-            )}
-        </ul>
+        <div>
+            <ul id="restaurantList">
+                {restaurantList.map((restaurant) => (
+                    <li
+                        key={restaurant.id}
+                        onClick={() => handleListItemClick(restaurant)}
+                    >
+                        {restaurant.name}
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 };
 

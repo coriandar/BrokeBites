@@ -14,7 +14,7 @@ const mapContainerStyle = {
     height: "80vh",
 };
 
-//Set Map Styles (specifically, turn off points of interest)
+// Set Map Styles (specifically, turn off points of interest)
 const mapStyles = [
     {
         featureType: "poi",
@@ -23,42 +23,36 @@ const mapStyles = [
     },
 ];
 
-//Function for rendering map
-const InitMap = () => {
+const InitMap = ({
+    restaurantList,
+    setRestaurantSelected,
+}: {
+    restaurantList: any[];
+    setRestaurantSelected: Function;
+}) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
         libraries: libraries as any,
     });
 
-    //create setRestaurantList method
-    const [restaurantList, setRestaurantList] = useState<any>([]);
+    const [map, setMap] = useState(null);
 
-    const [restaurantSelected, setRestaurantSelected] = useState<any>([]);
+    const handleMapLoad = (map: any) => {
+        setMap(map);
+    };
+
     const [isMarkerClicked, setIsMarkerClicked] = useState(false);
 
     const handleMarkerClick = (restaurant: any) => {
         console.log(restaurant);
-        setIsMarkerClicked(true);
         setRestaurantSelected(restaurant);
     };
 
-    //create getRestaurantList method
-
-    // use getRestaurantList method when the map first renders
-    useEffect(() => {
-        const fetchData = async () => {
-            const restaurants = await getAllRestaurants();
-            setRestaurantList(restaurants);
-        };
-
-        fetchData();
-    }, []);
-
-    //displays loading or loading error for map
+    // displays loading or loading error for map
     if (loadError) return <div>Error loading maps</div>;
     if (!isLoaded) return <div>Loading...</div>;
 
-    //Returns GoogleMap centered on AUT with restaurants highlighted by a marker
+    // Returns GoogleMap centered on AUT with restaurants highlighted by a marker
     return (
         <div id="map">
             <GoogleMap
@@ -88,7 +82,6 @@ const InitMap = () => {
                     )
                 )}
             </GoogleMap>
-            {isMarkerClicked && <MarkerDetails selected={restaurantSelected} />}
         </div>
     );
 };
