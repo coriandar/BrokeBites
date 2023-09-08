@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getAllRestaurants } from "../config/firebase";
-import InitMap from "../components/Map";
-import InitList from "../components/RestaurantList";
-import MarkerDetails from "../components/MarkerDetails";
+import { getAllRestaurants } from "./firebase/FirebaseApp";
+import InitMap from "./map/Map";
+import InitList from "./RestaurantList";
+import MarkerDetails from "./map/MarkerDetails";
 
 export default function Dashboard() {
     const [restaurantList, setRestaurantList] = useState<any>([]);
