@@ -10,8 +10,14 @@ const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
 
 // Set Map size
 const mapContainerStyle = {
-    width: "80vw",
-    height: "80vh",
+    height: "100vh",
+    width: "100vw",
+};
+
+// Set default location
+const center = {
+    lat: -36.8537761039407,
+    lng: 174.7658246985396,
 };
 
 // Set Map Styles (specifically, turn off points of interest)
@@ -54,35 +60,32 @@ const InitMap = ({
 
     // Returns GoogleMap centered on AUT with restaurants highlighted by a marker
     return (
-        <div id="map">
-            <GoogleMap
-                zoom={17}
-                // need set this to change, update based on selection
-                center={{ lat: -36.8537761039407, lng: 174.7658246985396 }}
-                mapContainerStyle={mapContainerStyle}
-                options={{ styles: mapStyles }}
-            >
-                {restaurantList.map(
-                    (restaurant: {
-                        id: React.Key | null | undefined;
-                        latitude: any;
-                        longitude: any;
-                        name: string | undefined;
-                        website: string | undefined;
-                    }) => (
-                        <Marker
-                            key={restaurant.id}
-                            position={{
-                                lat: restaurant.latitude,
-                                lng: restaurant.longitude,
-                            }}
-                            title={restaurant.name} // Display the restaurant name on marker hover
-                            onClick={() => handleMarkerClick(restaurant)}
-                        />
-                    )
-                )}
-            </GoogleMap>
-        </div>
+        <GoogleMap
+            zoom={17}
+            center={center} // need set this to change, update based on selection
+            mapContainerStyle={mapContainerStyle}
+            options={{ styles: mapStyles }}
+        >
+            {restaurantList.map(
+                (restaurant: {
+                    id: React.Key | null | undefined;
+                    latitude: any;
+                    longitude: any;
+                    name: string | undefined;
+                    website: string | undefined;
+                }) => (
+                    <Marker
+                        key={restaurant.id}
+                        position={{
+                            lat: restaurant.latitude,
+                            lng: restaurant.longitude,
+                        }}
+                        title={restaurant.name} // Display the restaurant name on marker hover
+                        onClick={() => handleMarkerClick(restaurant)}
+                    />
+                )
+            )}
+        </GoogleMap>
     );
 };
 
