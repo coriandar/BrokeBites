@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllRestaurants } from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
-import InitList from "./RestaurantList";
+import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 
 export default function Dashboard() {
