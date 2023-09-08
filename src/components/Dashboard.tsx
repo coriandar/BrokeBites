@@ -27,6 +27,7 @@ export default function Dashboard() {
                 restaurantList={restaurantList}
                 setRestaurantSelected={setRestaurantSelected}
             />
+
             <MarkerDetails selected={restaurantSelected} />
         </div>
     );
