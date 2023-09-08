@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllRestaurants } from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
-import InitList from "./RestaurantList";
+import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 
 export default function Dashboard() {
@@ -18,16 +18,22 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <div>
-            <InitMap
-                restaurantList={restaurantList}
-                setRestaurantSelected={setRestaurantSelected}
-            />
-            <MarkerDetails selected={restaurantSelected} />
-            <InitList
-                restaurantList={restaurantList}
-                setRestaurantSelected={setRestaurantSelected}
-            />
+        <div className="flex h-full w-full">
+            <div className="bg-slate-100 h-full overflow-y-auto no-scrollbar flex justify-center w-1/3">
+                <InitList
+                    restaurantList={restaurantList}
+                    setRestaurantSelected={setRestaurantSelected}
+                />
+            </div>
+            <div className="bg-slate-300 flex w-2/3 relative">
+                <InitMap
+                    restaurantList={restaurantList}
+                    setRestaurantSelected={setRestaurantSelected}
+                />
+                <div className="bg-slate-300 w-2/3 bg-opacity-90 absolute bottom-0 left-0">
+                    <MarkerDetails selected={restaurantSelected} />
+                </div>
+            </div>
         </div>
     );
 }
