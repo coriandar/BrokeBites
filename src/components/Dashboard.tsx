@@ -18,19 +18,21 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <div className="flex mx-auto w-screen h-screen">
-            <div className="h-screen overflow-y-auto no-scrollbar flex justify-center w-1/3">
+        <div className="flex w-screen h-screen">
+            <div className="h-full overflow-y-auto no-scrollbar flex justify-center w-1/3">
                 <InitList
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
                 />
             </div>
-            <div className="bg-slate-300 flex w-2/3 h-screen">
+            <div className="bg-slate-300 flex w-2/3 relative">
                 <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
                 />
-                <MarkerDetails selected={restaurantSelected} />
+                <div className="bg-slate-300 w-2/3 bg-opacity-90 absolute bottom-0 left-0">
+                    <MarkerDetails selected={restaurantSelected} />
+                </div>
             </div>
         </div>
     );
