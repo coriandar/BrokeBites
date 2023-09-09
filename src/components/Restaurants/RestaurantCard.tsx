@@ -25,7 +25,6 @@ interface RestaurantCardProps {
 //visual component
 const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => (
     <div className="restaurant-card">
-        <h3>{restaurant.id}</h3>
         <h3>{restaurant.name}</h3>
         <h3>{restaurant.fillingFactor}</h3>
         <p>
