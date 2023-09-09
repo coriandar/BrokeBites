@@ -1,3 +1,4 @@
+"user client";
 import React, { PropsWithChildren } from "react";
 import Nav from "./Nav";
 import Navbar from "./Navbar";
