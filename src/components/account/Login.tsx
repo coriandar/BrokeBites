@@ -4,15 +4,15 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { uiConfig } from "@/config/FirebaseAuthUI.config";
 import { auth } from "../firebase/FirebaseApp";
-
-const fbAuth = auth;
-const styleConfig = uiConfig(firebase);
+import { useRouter } from "next/router";
 
 function Login() {
+    const styleConfig = uiConfig(firebase);
+    const router = useRouter();
     const [isSignedIn, setIsSignedIn] = useState(false);
 
     useEffect(() => {
-        const unregisterAuthObserver = fbAuth.onAuthStateChanged((user) => {
+        const unregisterAuthObserver = auth.onAuthStateChanged((user) => {
             setIsSignedIn(!!user);
         });
         return () => unregisterAuthObserver();
@@ -23,18 +23,12 @@ function Login() {
             <div>
                 <StyledFirebaseAuth
                     uiConfig={styleConfig}
-                    firebaseAuth={fbAuth}
+                    firebaseAuth={auth}
                 />
             </div>
         );
     } else {
-        return (
-            // route to profile
-            <div>
-                <p>Welcome {fbAuth.currentUser?.displayName}</p>
-                <a onClick={() => fbAuth.signOut()}>Sign Out</a>
-            </div>
-        );
+        router.push("/profile");
     }
 }
 
