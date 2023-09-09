@@ -1,7 +1,6 @@
 "user client";
 import React, { PropsWithChildren } from "react";
 import Nav from "./Nav";
-import Navbar from "./Navbar";
 import Head from "next/head";
 
 const Layout = ({ children }: PropsWithChildren) => {

@@ -13,32 +13,19 @@ type Props = {
 
 type authContextType = {
     user: boolean | null;
-    // login: () => void;
-    // logout: () => void;
 };
 
 const authContextDefault: authContextType = {
     user: null,
-    // login: () => {},
-    // logout: () => {},
 };
 
 const AuthContext = createContext<authContextType>(authContextDefault);
-const fbAuth = auth;
 
 export function AuthContextProvider({ children }: Props) {
     const [user, setUser] = useState<boolean | null>(null); // default as null
 
-    // const login = () => {
-    //     setUser(true);
-    // };
-
-    // const logout = () => {
-    //     fbAuth.signOut();
-    // };
-
     useEffect(() => {
-        const unregisterAuthObserver = fbAuth.onAuthStateChanged((user) => {
+        const unregisterAuthObserver = auth.onAuthStateChanged((user) => {
             setUser(!!user);
         });
         return () => unregisterAuthObserver();
