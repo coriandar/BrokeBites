@@ -15,6 +15,7 @@ interface Restaurant {
     latitude: number;
     longitude: number;
     name: string;
+    priceRating: number;
     website: string;
 }
 

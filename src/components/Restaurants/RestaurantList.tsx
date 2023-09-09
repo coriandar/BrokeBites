@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAllRestaurants } from "../firebase/FirebaseApp";
 import RestaurantCard from "./RestaurantCard";
 
+//get search results
 const getFilteredRestaurants = (items, query) => {
     if (!query) {
         return items;
@@ -13,10 +14,11 @@ const getFilteredRestaurants = (items, query) => {
     );
 };
 
-export default function RestaurantSearch() {
+export default function RestaurantList() {
     const [query, setQuery] = useState("");
     const [restaurantList, setRestaurantList] = useState([]);
 
+    //get restaurants from firebase
     useEffect(() => {
         // Fetch the restaurants and set the state when the component mounts
         const fetchRestaurants = async () => {
@@ -32,8 +34,10 @@ export default function RestaurantSearch() {
         fetchRestaurants();
     }, []); // The empty dependency array ensures this effect runs only once
 
+    //get filtered restaurants
     const filteredRestaurants = getFilteredRestaurants(restaurantList, query);
 
+    //return restaurant list
     return (
         <div>
             <label>Search</label>
