@@ -29,6 +29,7 @@ function Login() {
         );
     } else {
         return (
+            // route to profile
             <div>
                 <p>Welcome {fbAuth.currentUser?.displayName}</p>
                 <a onClick={() => fbAuth.signOut()}>Sign Out</a>
