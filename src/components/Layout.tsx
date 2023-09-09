@@ -1,4 +1,4 @@
-"user client";
+// "user client";
 import React, { PropsWithChildren } from "react";
 import Nav from "./Nav";
 import Head from "next/head";

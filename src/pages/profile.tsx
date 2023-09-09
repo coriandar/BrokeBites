@@ -1,5 +1,10 @@
 import React from "react";
+import Profile from "@/components/account/Profile";
 
 export default function profilePage() {
-    return <main className="p-4">Profile Page</main>;
+    return (
+        <main>
+            <Profile />
+        </main>
+    );
 }

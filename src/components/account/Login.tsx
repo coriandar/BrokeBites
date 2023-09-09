@@ -5,20 +5,21 @@ import "firebase/compat/auth";
 import { uiConfig } from "@/config/FirebaseAuthUI.config";
 import { auth } from "../firebase/FirebaseApp";
 import { useRouter } from "next/router";
+import { UserAuthConsumer } from "@/context/AuthContextProvider";
 
 function Login() {
     const styleConfig = uiConfig(firebase);
+    const { user } = UserAuthConsumer();
     const router = useRouter();
-    const [isSignedIn, setIsSignedIn] = useState(false);
 
     useEffect(() => {
-        const unregisterAuthObserver = auth.onAuthStateChanged((user) => {
-            setIsSignedIn(!!user);
-        });
-        return () => unregisterAuthObserver();
-    }, []);
+        if (!!user === true) {
+            router.replace("/profile"); // replace so doesn't go into history
+            return;
+        }
+    }, [user]);
 
-    if (!isSignedIn) {
+    if (!!user === false) {
         return (
             <div>
                 <StyledFirebaseAuth
@@ -27,8 +28,6 @@ function Login() {
                 />
             </div>
         );
-    } else {
-        router.push("/profile");
     }
 }
 

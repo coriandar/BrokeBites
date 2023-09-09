@@ -40,6 +40,6 @@ export function AuthContextProvider({ children }: Props) {
     );
 }
 
-export const UserAuthContext = () => {
+export const UserAuthConsumer = () => {
     return useContext(AuthContext);
 };

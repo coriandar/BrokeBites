@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { UserAuthContext } from "@/context/AuthContextProvider";
+import { UserAuthConsumer } from "@/context/AuthContextProvider";
 import { auth } from "../components/firebase/FirebaseApp";
 
 function Nav() {
-    const { user } = UserAuthContext();
+    const { user } = UserAuthConsumer();
 
     function logoutHandler() {
         auth.signOut();
