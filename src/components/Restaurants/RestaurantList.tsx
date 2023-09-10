@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAllRestaurants } from "../firebase/FirebaseApp";
 import RestaurantCard from "./RestaurantCard";
 import Slider from "react-slider";
+import "./RestaurantList.module.css";
 
 const MIN = 1;
 const MAX = 5;

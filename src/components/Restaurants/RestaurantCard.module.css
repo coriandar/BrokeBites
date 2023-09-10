@@ -1,17 +1,12 @@
 .restaurant-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-}
-
-.restaurant-card h3 {
-    margin: 0;
-    font-size: 1.2rem;
-}
-
-.restaurant-card p {
-    margin: 0;
-    font-size: 1rem;
+    background-color: rgba(
+        18,
+        116,
+        214,
+        0.5
+    ); /* Adjust the alpha value (0.7) to control transparency */
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
 }
