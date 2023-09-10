@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import StyledFirebaseAuth from "../firebase/StyledFirebaseAuth";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import { uiConfig } from "@/config/FirebaseAuthUI.config";
+// import firebase from "firebase/compat/app";
+// import "firebase/compat/auth";
+import { uiConfigSignIn } from "@/config/FirebaseAuthUI.config";
 import { auth } from "../firebase/FirebaseApp";
 import { useRouter } from "next/router";
 import { UserAuthConsumer } from "@/context/AuthContextProvider";
 import Image from "../../../node_modules/next/image";
 
 function Login() {
-    const styleConfig = uiConfig(firebase);
+    const styleConfig = uiConfigSignIn();
     const { user } = UserAuthConsumer();
     const router = useRouter();
 

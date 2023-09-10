@@ -1,11 +1,14 @@
-export const uiConfig = (firebase: any) => {
+import { GoogleAuthProvider, EmailAuthProvider } from "firebase/auth";
+
+export const uiConfigSignUp = () => {
     return {
         signInFlow: "popup",
         signInSuccessUrl: "/",
         signInOptions: [
+            // make custom signup after
             {
-                provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                fullLabel: "Login with Email",
+                provider: EmailAuthProvider.PROVIDER_ID,
+                fullLabel: "Signup with Email",
                 requireDisplayName: true,
             },
         ],
