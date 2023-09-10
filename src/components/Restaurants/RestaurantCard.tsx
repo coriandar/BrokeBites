@@ -28,6 +28,7 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => (
     <div className="restaurant-card">
         <h3>{restaurant.name}</h3>
         <h3>{restaurant.fillingFactor}</h3>
+        <h3>Price rating: {restaurant.priceRating}</h3>
         <p>
             Website:{" "}
             <a
