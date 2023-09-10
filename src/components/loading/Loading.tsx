@@ -1,14 +1,21 @@
 import React from "react";
+import axios from "axios";
 import Image from "next/image";
-import loader from "./spinner.gif";
 
-const Loading = () => {
+function Loading() {
     return (
-        <div className="w-full h-screen flex items-center justify-center">
-            {/* <p>Loading...</p> */}
-            <Image src={loader} alt="Loading..." />
+        <div className="bg-slate-50 flex flex-col justify-center items-center h-full font-medium text-lg">
+            <Image
+                className="m-8"
+                src="/logoCut.png"
+                alt="App Logo"
+                width={200}
+                height={200}
+                priority
+            />
+            {/* {this.state.joke}... */}
         </div>
     );
-};
+}
 
 export default Loading;

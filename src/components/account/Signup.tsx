@@ -25,7 +25,7 @@ function Signup() {
             <div className="flex flex-col items-center h-full">
                 <Image
                     className="m-8"
-                    src="/logo.jpg"
+                    src="/logoCut.png"
                     alt="App Logo"
                     width={200}
                     height={200}
