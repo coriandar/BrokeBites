@@ -19,20 +19,20 @@ export default function Dashboard() {
 
     return (
         <div className="flex h-full">
-            <div className="bg-slate-100 h-full overflow-y-auto no-scrollbar justify-center w-1/3">
-                {/* <InitList
+            <div className="bg-slate-100 m-4 flex justify-center overflow-y-auto no-scrollbar w-1/3">
+                <InitList
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
-                /> */}
+                />
             </div>
             <div className="bg-slate-300 w-2/3 relative">
-                {/* <InitMap
+                <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
                 />
                 <div className="bg-slate-300 w-2/3 bg-opacity-90 absolute bottom-0 left-0">
                     <MarkerDetails selected={restaurantSelected} />
-                </div> */}
+                </div>
             </div>
         </div>
     );

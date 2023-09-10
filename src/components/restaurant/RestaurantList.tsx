@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const InitList = ({
     restaurantList,
@@ -7,16 +7,20 @@ const InitList = ({
     restaurantList: any[];
     setRestaurantSelected: Function;
 }) => {
+    const [active, setActive] = useState(null);
+
     const handleListItemClick = (restaurant: any) => {
         console.log(restaurant);
         setRestaurantSelected(restaurant);
+        setActive(restaurant.id);
     };
 
     return (
-        // <div className="h-full">
         <ul id="restaurantList">
             {restaurantList.map((restaurant) => (
                 <li
+                    className={`${active === restaurant.id  ? "bg-slate-300" : ""} 
+                        hover:bg-slate-200`}
                     key={restaurant.id}
                     onClick={() => handleListItemClick(restaurant)}
                 >
@@ -24,7 +28,6 @@ const InitList = ({
                 </li>
             ))}
         </ul>
-        // </div>
     );
 };
 

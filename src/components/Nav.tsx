@@ -25,7 +25,7 @@ function Nav() {
                 <ul className="flex items-center">
                     <li className="p-2 cursor-pointer">
                         <Link href="/login">
-                            <button className="bg-slate-200 px-5 py-2 rounded-md justify-end">
+                            <button className="bg-slate-200 px-4 py-1 rounded-md justify-end">
                                 Login
                             </button>
                         </Link>
@@ -47,7 +47,7 @@ function Nav() {
                         </li>
                         <li className="p-2 cursor-pointer">
                             <button
-                                className="bg-slate-200 px-5 py-2 rounded-md justify-end"
+                                className="bg-slate-200 px-4 py-1 rounded-md justify-end"
                                 onClick={logoutHandler}
                             >
                                 Logout

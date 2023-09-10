@@ -11,10 +11,12 @@ const Layout = ({ children }: PropsWithChildren) => {
                 <title>BrokeBites</title>
             </Head>
             <div className="h-screen w-screen flex flex-col">
-                <header className="h-20">
+                <header className="bg-slate-300 h-5%">
                     <Nav />
                 </header>
-                <main className="h-full bg-slate-500">{children}</main>
+                <main className="bg-slate-100 h-95%">
+                    {children}
+                </main>
             </div>
         </>
     );
