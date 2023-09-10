@@ -1,6 +1,7 @@
 // "user client";
 import React, { PropsWithChildren } from "react";
 import Nav from "./Nav";
+import Dashboard from "../components/Dashboard";
 import Head from "next/head";
 
 const Layout = ({ children }: PropsWithChildren) => {
@@ -9,11 +10,11 @@ const Layout = ({ children }: PropsWithChildren) => {
             <Head>
                 <title>BrokeBites</title>
             </Head>
-            <div className="h-screen flex flex-col">
-                <header>
+            <div className="h-screen w-screen flex flex-col">
+                <header className="h-20">
                     <Nav />
                 </header>
-                {children}
+                <main className="h-full bg-slate-500">{children}</main>
             </div>
         </>
     );

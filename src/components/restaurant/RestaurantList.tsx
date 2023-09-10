@@ -13,18 +13,18 @@ const InitList = ({
     };
 
     return (
-        <div>
-            <ul id="restaurantList">
-                {restaurantList.map((restaurant) => (
-                    <li
-                        key={restaurant.id}
-                        onClick={() => handleListItemClick(restaurant)}
-                    >
-                        {restaurant.name}
-                    </li>
-                ))}
-            </ul>
-        </div>
+        // <div className="h-full">
+        <ul id="restaurantList">
+            {restaurantList.map((restaurant) => (
+                <li
+                    key={restaurant.id}
+                    onClick={() => handleListItemClick(restaurant)}
+                >
+                    {restaurant.name}
+                </li>
+            ))}
+        </ul>
+        // </div>
     );
 };
 

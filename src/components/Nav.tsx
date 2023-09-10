@@ -11,7 +11,7 @@ function Nav() {
     }
 
     return (
-        <nav className="bg-slate-300 flex justify-between h-20 w-full p-2 border-b-2">
+        <nav className="bg-slate-300 flex justify-between w-full h-full p-2 border-b-2">
             <ul className="flex items-center">
                 <li className="p-2 cursor-pointer">
                     <Link href="/">BrokeBites</Link>

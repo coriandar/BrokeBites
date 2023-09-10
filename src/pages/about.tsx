@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function aboutPage() {
-    return <div className="p-4">About Page</div>;
+    return <div className="bg-slate-500 p-4 h-full">About Page</div>;
 }
