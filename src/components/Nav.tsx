@@ -30,6 +30,13 @@ function Nav() {
                             </button>
                         </Link>
                     </li>
+                    <li className="p-2 cursor-pointer">
+                        <Link href="/signup">
+                            <button className="bg-slate-200 px-4 py-1 rounded-md justify-end">
+                                Signup
+                            </button>
+                        </Link>
+                    </li>
                 </ul>
             ) : (
                 <>
@@ -37,7 +44,7 @@ function Nav() {
                         <li className="p-2 cursor-pointer">
                             Welcome!{" "}
                             <span className="font-bold">
-                                {auth.currentUser?.displayName}{" "}
+                                {auth.currentUser?.displayName}
                             </span>
                         </li>
                     </ul>

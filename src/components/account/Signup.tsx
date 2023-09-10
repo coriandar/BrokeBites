@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import StyledFirebaseAuth from "../firebase/StyledFirebaseAuth";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import { uiConfig } from "@/config/FirebaseAuthUI.config";
+import { uiConfig } from "@/config/FirebaseAuthUISignup.config";
 import { auth } from "../firebase/FirebaseApp";
 import { useRouter } from "next/router";
 import { UserAuthConsumer } from "@/context/AuthContextProvider";
 import Image from "../../../node_modules/next/image";
 
-function Login() {
+function Signup() {
     const styleConfig = uiConfig(firebase);
     const { user } = UserAuthConsumer();
     const router = useRouter();
@@ -31,10 +31,18 @@ function Login() {
                     height={200}
                     priority
                 />
-                <StyledFirebaseAuth
-                    uiConfig={styleConfig}
-                    firebaseAuth={auth}
-                />
+
+                <div className="bg-white w-80 relative">
+                        <StyledFirebaseAuth
+                            uiConfig={styleConfig}
+                            firebaseAuth={auth}
+                        />
+                    <div className="h-23% w-full absolute top-0 left-0 z-50 bg-white">
+                       <h1 className="m-8 flex justify-center font-medium text-xl">
+                            Signup with Email
+                        </h1> 
+                    </div>
+                </div>
             </div>
         );
     }
@@ -43,4 +51,4 @@ function Login() {
     }
 }
 
-export default Login;
+export default Signup;
