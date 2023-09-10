@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { UserAuthConsumer } from "@/context/AuthContextProvider";
 import { auth } from "../components/firebase/FirebaseApp";
+import Image from "next/image";
 
 function Nav() {
     const { user } = UserAuthConsumer();
@@ -13,6 +14,18 @@ function Nav() {
     return (
         <nav className="bg-slate-300 flex justify-between w-full h-full p-2 border-b-2">
             <ul className="flex items-center">
+                <li className="p-2 cursor-pointer">
+                    <Link href="/">
+                        <Image
+                            className="m-8"
+                            src="/logoCut.png"
+                            alt="App Logo"
+                            width={50}
+                            height={50}
+                            priority
+                        />
+                    </Link>
+                </li>
                 <li className="p-2 cursor-pointer">
                     <Link href="/">BrokeBites</Link>
                 </li>
