@@ -9,7 +9,6 @@ import Image from "../../../node_modules/next/image";
 import { UserAuthConsumer } from "@/context/AuthContextProvider";
 
 function Signup() {
-    const styleConfig = uiConfigSignUp();
     const { user } = UserAuthConsumer();
     const router = useRouter();
 
@@ -34,7 +33,7 @@ function Signup() {
 
                 <div className="bg-white w-80 relative">
                     <StyledFirebaseAuth
-                        uiConfig={styleConfig}
+                        uiConfig={uiConfigSignUp}
                         firebaseAuth={auth}
                     />
                     <div className="h-23% w-full absolute top-0 left-0 z-50 bg-white">

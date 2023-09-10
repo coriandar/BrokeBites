@@ -10,7 +10,6 @@ import Loading from "../loading/Loading";
 export default function Login() {
     const [user, loading] = useAuthState(auth);
     const router = useRouter();
-    const styleConfig = uiConfigSignIn();
 
     if (loading) return <Loading />;
     else if (user) router.replace("/"); // if user is already logged in
@@ -26,7 +25,7 @@ export default function Login() {
                     priority
                 />
                 <StyledFirebaseAuth
-                    uiConfig={styleConfig}
+                    uiConfig={uiConfigSignIn}
                     firebaseAuth={auth}
                 />
             </div>
