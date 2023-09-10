@@ -1,5 +1,5 @@
-import { type } from "os";
 import React from "react";
+import "./RestaurantCard.module.css";
 
 //filling factor enum
 enum fillingFactor {
