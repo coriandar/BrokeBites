@@ -24,7 +24,7 @@ function Login() {
         return (
             <div className="flex flex-col items-center h-full">
                 <Image
-                className="m-8"
+                    className="m-8"
                     src="/logo.jpg"
                     alt="App Logo"
                     width={200}
@@ -37,9 +37,8 @@ function Login() {
                 />
             </div>
         );
-    }
-    else {
-        return <></>
+    } else {
+        return <></>;
     }
 }
 

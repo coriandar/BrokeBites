@@ -19,8 +19,10 @@ const InitList = ({
         <ul id="restaurantList">
             {restaurantList.map((restaurant) => (
                 <li
-                    className={`${active === restaurant.id  ? "bg-slate-300" : ""} 
-                        hover:bg-slate-200`}
+                    className={`${
+                        active === restaurant.id ? "bg-slate-300" : ""
+                    } 
+                            hover:bg-slate-200`}
                     key={restaurant.id}
                     onClick={() => handleListItemClick(restaurant)}
                 >

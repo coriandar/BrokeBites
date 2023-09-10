@@ -24,7 +24,7 @@ function Signup() {
         return (
             <div className="flex flex-col items-center h-full">
                 <Image
-                className="m-8"
+                    className="m-8"
                     src="/logo.jpg"
                     alt="App Logo"
                     width={200}
@@ -33,21 +33,20 @@ function Signup() {
                 />
 
                 <div className="bg-white w-80 relative">
-                        <StyledFirebaseAuth
-                            uiConfig={styleConfig}
-                            firebaseAuth={auth}
-                        />
+                    <StyledFirebaseAuth
+                        uiConfig={styleConfig}
+                        firebaseAuth={auth}
+                    />
                     <div className="h-23% w-full absolute top-0 left-0 z-50 bg-white">
-                       <h1 className="m-8 flex justify-center font-medium text-xl">
+                        <h1 className="m-8 flex justify-center font-medium text-xl">
                             Signup with Email
-                        </h1> 
+                        </h1>
                     </div>
                 </div>
             </div>
         );
-    }
-    else {
-        return <></>
+    } else {
+        return <></>;
     }
 }
 
