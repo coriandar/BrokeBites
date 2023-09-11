@@ -10,10 +10,6 @@
     },
     "dependencies": {
         "@googlemaps/js-api-loader": "^1.16.2",
-        "@headlessui/react": "^1.7.17",
-        "@headlessui/vue": "^1.7.16",
-        "@heroicons/react": "^2.0.18",
-        "@heroicons/vue": "^2.0.18",
         "@react-google-maps/api": "^2.19.2",
         "autoprefixer": "10.4.15",
         "eslint": "8.47.0",
