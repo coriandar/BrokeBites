@@ -2,29 +2,14 @@ import React from "react";
 import styles from "./RestaurantCard.module.css";
 
 //filling factor enum
-enum fillingFactor {
-    Light = 1,
-    Dessert = 2,
-    Filling = 3,
-}
-
-//restaurant interface
-interface Restaurant {
-    id: string;
-    fillingFactor: fillingFactor;
-    latitude: number;
-    longitude: number;
-    name: string;
-    priceRating: number;
-    website: string;
-}
-
-interface RestaurantCardProps {
-    restaurant: Restaurant;
-}
+const fillingFactor = {
+    Light: 1,
+    Dessert: 2,
+    Filling: 3,
+};
 
 //visual component
-const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => (
+const RestaurantCard = ({ restaurant }) => (
     <div className={styles["restaurant-card"]}>
         <h3>{restaurant.name}</h3>
         <h3>{restaurant.fillingFactor}</h3>

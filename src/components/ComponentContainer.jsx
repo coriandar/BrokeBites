@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import InitMap from "./map/Map";
 import { Auth } from "./Auth";
 import Login from "@/components/account/Login";
-const inter = Inter({ subsets: ["latin"] });
 import styles from "./ComponentContainer.module.css";
 
 // Export the Components component

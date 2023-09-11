@@ -1,4 +1,4 @@
-export const uiConfig = (firebase: any) => {
+export const uiConfig = (firebase) => {
     return {
         signInFlow: "popup",
         signInSuccessUrl: "/",
