@@ -1,9 +1,8 @@
-import React, { PropsWithChildren } from "react";
-import Nav from "./Nav";
-import Dashboard from "../components/Dashboard";
+import React from "react";
 import Head from "next/head";
+import Nav from "./Nav";
 
-const Layout = ({ children }: PropsWithChildren) => {
+const Layout = ({ children }) => {
     return (
         <>
             <Head>

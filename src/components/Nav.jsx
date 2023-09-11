@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import Link from "next/link";
-import { auth } from "../components/firebase/FirebaseApp";
+import { auth } from "./firebase/FirebaseApp";
 import Image from "next/image";
 
 function Nav() {
