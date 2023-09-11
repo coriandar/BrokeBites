@@ -1,18 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import Link from "next/link";
-import { UserAuthConsumer } from "@/context/AuthContextProvider";
 import { auth } from "../components/firebase/FirebaseApp";
+import Image from "next/image";
 
 function Nav() {
-    const { user } = UserAuthConsumer();
+    const [user, loading] = useAuthState(auth);
+    const [signOut] = useSignOut(auth);
 
-    function logoutHandler() {
-        auth.signOut();
+    if (loading) {
+        return <div className="bg-slate-300"></div>;
+    }
+
+    async function signoutHandler() {
+        const success = await signOut();
+        if (success) alert("Signed out");
     }
 
     return (
         <nav className="bg-slate-300 flex justify-between w-full h-full p-2 border-b-2">
             <ul className="flex items-center">
+                <li className="p-2 cursor-pointer">
+                    <Link href="/">
+                        <Image
+                            className="m-8"
+                            src="/logoCut.png"
+                            alt="App Logo"
+                            width={50}
+                            height={50}
+                            priority
+                        />
+                    </Link>
+                </li>
                 <li className="p-2 cursor-pointer">
                     <Link href="/">BrokeBites</Link>
                 </li>
@@ -44,7 +63,7 @@ function Nav() {
                         <li className="p-2 cursor-pointer">
                             Welcome!{" "}
                             <span className="font-bold">
-                                {auth.currentUser?.displayName}
+                                {user.displayName}
                             </span>
                         </li>
                     </ul>
@@ -55,7 +74,7 @@ function Nav() {
                         <li className="p-2 cursor-pointer">
                             <button
                                 className="bg-slate-200 px-4 py-1 rounded-md justify-end"
-                                onClick={logoutHandler}
+                                onClick={signoutHandler}
                             >
                                 Logout
                             </button>

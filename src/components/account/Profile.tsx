@@ -1,20 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/FirebaseApp";
 import { useRouter } from "next/router";
-import { UserAuthConsumer } from "@/context/AuthContextProvider";
+import Image from "next/image";
+import Loading from "../loading/Loading";
 
 function Profile() {
-    const { user } = UserAuthConsumer();
+    const [user, loading] = useAuthState(auth);
     const router = useRouter();
 
-    useEffect(() => {
-        if (!!user === false) {
-            // !! convert user to true or false value
-            router.replace("/login"); // replace so doesn't go into history
-            return;
-        }
-    }, [user]);
-
-    if (!!user === true) {
+    if (loading) return <Loading />;
+    else if (!user) {
+        router.replace("/login");
+        return null;
+    } else if (user) {
         return <div className="p-4">Profile Page</div>;
     }
 }
