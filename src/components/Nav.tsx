@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import Link from "next/link";
 import { auth } from "../components/firebase/FirebaseApp";
 import Image from "next/image";
 
 function Nav() {
-    function logoutHandler() {
-        auth.signOut();
+    const [user, loading] = useAuthState(auth);
+    const [signOut] = useSignOut(auth);
+
+    if (loading) {
+        return <div className="bg-slate-300"></div>;
+    }
+
+    async function signoutHandler() {
+        const success = await signOut();
+        if (success) alert("Signed out");
     }
 
     return (
@@ -31,7 +40,7 @@ function Nav() {
                 </li>
             </ul>
 
-            {/* {!user ? (
+            {!user ? (
                 <ul className="flex items-center">
                     <li className="p-2 cursor-pointer">
                         <Link href="/login">
@@ -54,7 +63,7 @@ function Nav() {
                         <li className="p-2 cursor-pointer">
                             Welcome!{" "}
                             <span className="font-bold">
-                                {auth.currentUser?.displayName}
+                                {user.displayName}
                             </span>
                         </li>
                     </ul>
@@ -65,14 +74,14 @@ function Nav() {
                         <li className="p-2 cursor-pointer">
                             <button
                                 className="bg-slate-200 px-4 py-1 rounded-md justify-end"
-                                onClick={logoutHandler}
+                                onClick={signoutHandler}
                             >
                                 Logout
                             </button>
                         </li>
                     </ul>
                 </>
-            )} */}
+            )}
         </nav>
     );
 }

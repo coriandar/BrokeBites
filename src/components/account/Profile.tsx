@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useRouter } from "next/router";
 import { auth } from "../firebase/FirebaseApp";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Loading from "../loading/Loading";
 
