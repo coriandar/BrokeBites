@@ -4,7 +4,7 @@ import setSelectedCuisine from "./CuisineFilter";
 import { getAllRestaurants } from "./firebase/FirebaseApp";
 import firebase from "firebase/compat/app";
 
-const RestaurantList = ({ restaurants }) => {
+const Restaurant = ({ restaurants }) => {
     const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
     const [selectedCuisine, setSelectedCuisine] = useState(null);
 
@@ -68,4 +68,4 @@ function App() {
     );
 }
 
-export default RestaurantList;
+export default Restaurant;
