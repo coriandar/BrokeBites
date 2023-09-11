@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CuisineFilter from "./CuisineFilter";
 import setSelectedCuisine from "./CuisineFilter";
-import { getAllRestaurants } from "./firebase/FirebaseApp";
+import { getAllRestaurants } from "../../firebase/FirebaseApp";
 import firebase from "firebase/compat/app";
 
 const Restaurant = ({ restaurants }) => {
