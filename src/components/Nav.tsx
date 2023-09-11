@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { UserAuthConsumer } from "@/context/AuthContextProvider";
 import { auth } from "../components/firebase/FirebaseApp";
 import Image from "next/image";
 
 function Nav() {
-    const { user } = UserAuthConsumer();
-
     function logoutHandler() {
         auth.signOut();
     }
@@ -34,7 +31,7 @@ function Nav() {
                 </li>
             </ul>
 
-            {!user ? (
+            {/* {!user ? (
                 <ul className="flex items-center">
                     <li className="p-2 cursor-pointer">
                         <Link href="/login">
@@ -75,7 +72,7 @@ function Nav() {
                         </li>
                     </ul>
                 </>
-            )}
+            )} */}
         </nav>
     );
 }
