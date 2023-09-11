@@ -1,14 +1,7 @@
 .restaurant-list {
     max-width: 320px;
     margin: 0 -10px;
-    background-color: rgba(154, 191, 243, 0.5);
     color: rgba(0, 0, 0, 0.5);
-}
-
-.search-box {
-    width: 100%;
-    max-width: 320px;
-    background-color: rgb(154, 191, 243);
 }
 
 .search-bar {
@@ -16,9 +9,8 @@
     width: 100%;
     height: 40px;
     padding: 10px 32px;
-    border-radius: 10px;
     border: 1px solid #e0e0e0;
-    background-color: rgb(154, 191, 243);
+    background-color: rgb(154, 191, 243, 0.7);
     font-size: 14px;
     color: #3f4656;
     outline: none;
@@ -28,7 +20,7 @@
     width: 100%;
     max-width: 320px;
     padding: 20px 32px;
-    background: rgb(154, 191, 243);
+    background: rgb(154, 191, 243, 0.7);
     box-shadow: 0 1px 4px rgba(18, 22, 33, 0.12);
 }
 

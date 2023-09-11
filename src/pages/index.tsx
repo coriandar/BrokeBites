@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import App from "@/components/App";
+import ComponentContainer from "@/components/ComponentContainer";
 
 export default function index() {
     const router = useRouter();
@@ -7,7 +7,7 @@ export default function index() {
     return (
         <main>
             <div>
-                <App />
+                <ComponentContainer />
             </div>
         </main>
     );

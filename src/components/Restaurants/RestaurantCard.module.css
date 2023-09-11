@@ -1,10 +1,5 @@
 .restaurant-card {
-    background-color: rgba(
-        64,
-        152,
-        240,
-        0.5
-    ); /* Adjust the alpha value (0.7) to control transparency */
+    background-color: rgb(154, 191, 243, 0.7);
     color: white;
     font-size: 10px;
     padding: 20px;
