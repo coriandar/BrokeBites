@@ -1,9 +1,10 @@
 ## VSCode setup
 
-1. Install prettier.
-2. `ctrl + shift + p`, "User Settings (JSON).
-3. Replace everything in `settings.json` with:
-4. `git config --global pull.rebase false`
+1. Install `Prettier`.
+2. Install `Tailwind CSS IntelliSense`.
+3. `ctrl + shift + p`, "User Settings (JSON).
+4. Replace everything in `settings.json` with:
+5. `git config --global pull.rebase false`
 
 ```json
 {
@@ -11,7 +12,10 @@
     "workbench.startupEditor": "none",
     "prettier.tabWidth": 4,
     "editor.formatOnSave": true,
-    "[typescriptreact]": {
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }
@@ -28,9 +32,9 @@
 5. `npm run dev` run the development server
 6. Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
@@ -54,5 +58,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
----
