@@ -4,22 +4,18 @@ import { useRouter } from "next/router";
 import { uiConfigSignUp } from "@/config/FirebaseAuthUISignup.config";
 import StyledFirebaseAuth from "../firebase/StyledFirebaseAuth";
 import { auth } from "../firebase/FirebaseApp";
-import Image from "../../../node_modules/next/image";
+import Image from "next/image";
+import Loading from "../loading/Loading";
 
-import { UserAuthConsumer } from "@/context/AuthContextProvider";
-
-function Signup() {
-    const { user } = UserAuthConsumer();
+export default function Signup() {
+    const [user, loading] = useAuthState(auth);
     const router = useRouter();
 
-    useEffect(() => {
-        if (!!user === true) {
-            router.replace("/profile"); // replace so doesn't go into history
-            return;
-        }
-    }, [user]);
-
-    if (!!user === false) {
+    if (loading) return <Loading />;
+    else if (user) {
+        router.replace("/"); // if user is already logged in
+        return null;
+    } else if (!user) {
         return (
             <div className="flex flex-col items-center h-full">
                 <Image
@@ -44,9 +40,5 @@ function Signup() {
                 </div>
             </div>
         );
-    } else {
-        return <></>;
     }
 }
-
-export default Signup;

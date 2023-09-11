@@ -12,8 +12,10 @@ export default function Login() {
     const router = useRouter();
 
     if (loading) return <Loading />;
-    else if (user) router.replace("/"); // if user is already logged in
-    else if (!user) {
+    else if (user) {
+        router.replace("/"); // if user is already logged in
+        return null;
+    } else if (!user) {
         return (
             <div className="flex flex-col items-center h-full">
                 <Image
