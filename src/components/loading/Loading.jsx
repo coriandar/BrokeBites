@@ -3,18 +3,13 @@ import Image from "next/image";
 import jokes from "./jokes.json";
 import spinner from "./spinner.gif";
 
-interface Joke {
-    id: number;
-    joke: string;
-}
-
-function getRandomItem(array: Joke[]): Joke | null {
+function getRandomItem(array) {
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex] || null;
 }
 
 export default function Loading() {
-    const [joke, setJoke] = useState<Joke | null>(null);
+    const [joke, setJoke] = useState(null);
 
     useEffect(() => {
         const randJoke = getRandomItem(jokes);

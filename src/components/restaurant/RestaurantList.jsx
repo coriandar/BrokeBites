@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 
-const InitList = ({
-    restaurantList,
-    setRestaurantSelected,
-}: {
-    restaurantList: any[];
-    setRestaurantSelected: Function;
-}) => {
+const InitList = ({ restaurantList, setRestaurantSelected }) => {
     const [active, setActive] = useState(null);
 
-    const handleListItemClick = (restaurant: any) => {
+    const handleListItemClick = (restaurant) => {
         console.log(restaurant);
         setRestaurantSelected(restaurant);
         setActive(restaurant.id);

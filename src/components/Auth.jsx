@@ -30,7 +30,7 @@ export function Auth() {
 
     const router = useRouter();
 
-    const signUp = async (): Promise<any> => {
+    const signUp = async () => {
         try {
             const user = await createUserWithEmailAndPassword(
                 auth,
@@ -42,7 +42,7 @@ export function Auth() {
                 console.log(error)
             );*/
 
-            await updateProfile(auth.currentUser!, {
+            await updateProfile(auth.currentUser, {
                 displayName: displayName,
             }).catch((error) => console.log(error));
 
@@ -50,7 +50,7 @@ export function Auth() {
             router.push("../Account");
 
             return user;
-        } catch (error: any) {
+        } catch (error) {
             if (error instanceof FirebaseError) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -68,7 +68,7 @@ export function Auth() {
 
             console.log(user);
             router.push("../Account");
-        } catch (error: any) {
+        } catch (error) {
             if (error instanceof FirebaseError) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -81,7 +81,7 @@ export function Auth() {
             const user = await signInWithPopup(auth, googleProvider);
 
             console.log(user);
-        } catch (error: any) {
+        } catch (error) {
             if (error instanceof FirebaseError) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -94,7 +94,7 @@ export function Auth() {
             await signOut(auth);
 
             // Page after sign out
-        } catch (error: any) {
+        } catch (error) {
             if (error instanceof FirebaseError) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -111,10 +111,10 @@ export function Auth() {
                 // Confirmation after the email address update
             });*/
 
-            await updateEmail(currentUser!, newEmailAddress).catch((error) =>
+            await updateEmail(currentUser, newEmailAddress).catch((error) =>
                 console.log(error)
             );
-        } catch (error: any) {
+        } catch (error) {
             if (error instanceof FirebaseError) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -127,10 +127,10 @@ export function Auth() {
             const auth = getAuth();
             const currentUser = auth.currentUser;
 
-            await updatePassword(currentUser!, newPassword).catch((error) =>
+            await updatePassword(currentUser, newPassword).catch((error) =>
                 console.log(error)
             );
-        } catch (error: any) {
+        } catch (error) {
             if (error instanceof FirebaseError) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -147,7 +147,7 @@ export function Auth() {
             ? EmailAuthProvider.credential(currentUser.email, password)
             : null;
 
-        await reauthenticateWithCredential(currentUser!, credential!)
+        await reauthenticateWithCredential(currentUser, credential)
             .catch((error) => console.log(error))
             .then(() => {
                 changePassword;
@@ -159,8 +159,8 @@ export function Auth() {
         const auth = getAuth();
         const currentUser = auth.currentUser;
 
-        if (currentUser!.email) {
-            await sendPasswordResetEmail(auth, currentUser!.email).catch(
+        if (currentUser.email) {
+            await sendPasswordResetEmail(auth, currentUser.email).catch(
                 (error) => console.log(error)
             );
             console.log("Password reset email sent");

@@ -5,8 +5,8 @@ import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 
 export default function Dashboard() {
-    const [restaurantList, setRestaurantList] = useState<any>([]);
-    const [restaurantSelected, setRestaurantSelected] = useState<any>(null);
+    const [restaurantList, setRestaurantList] = useState([]);
+    const [restaurantSelected, setRestaurantSelected] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
