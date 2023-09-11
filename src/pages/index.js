@@ -1,5 +1,9 @@
-import SearchContainer from "@/components/search/SearchContainer";
+import Dashboard from "../components/Dashboard";
 
 export default function index() {
-    return <></>;
+    return (
+        <>
+            <Dashboard />
+        </>
+    );
 }

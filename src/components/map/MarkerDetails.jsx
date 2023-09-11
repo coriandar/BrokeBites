@@ -12,7 +12,7 @@ function MarkerDetails({ selected }) {
     return (
         <div id="SelectedMarkerDetails">
             <h3>{selected.name}</h3>
-            <p>{selected.website}</p>
+            {selected.website ? <p>{selected.website}</p> : <p>No Website</p>}
         </div>
     );
 }

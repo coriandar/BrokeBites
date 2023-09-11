@@ -1,0 +1,390 @@
+[
+    {
+        "id": 1,
+        "joke": "Did you hear about the restaurant on the moon? Great food, no atmosphere."
+    },
+    {
+        "id": 2,
+        "joke": "What do you call a fake noodle? An impasta."
+    },
+    {
+        "id": 3,
+        "joke": "How many apples grow on a tree? All of them."
+    },
+    {
+        "id": 4,
+        "joke": "Want to hear a joke about paper? Nevermind, it's tearable."
+    },
+    {
+        "id": 5,
+        "joke": "I just watched a documentary about beavers. It was the best dam show I've ever seen."
+    },
+    {
+        "id": 6,
+        "joke": "Why did the coffee file a police report? It got mugged."
+    },
+    {
+        "id": 7,
+        "joke": "How does a penguin build its house? Igloos it together."
+    },
+    {
+        "id": 8,
+        "joke": "Dad, did you get a haircut? No, I got them all cut."
+    },
+    {
+        "id": 9,
+        "joke": "What do you call a Mexican who has lost his car? Carlos."
+    },
+    {
+        "id": 10,
+        "joke": "Dad, can you put my shoes on? No, I don't think they'll fit me."
+    },
+    {
+        "id": 11,
+        "joke": "Why did the scarecrow win an award? Because he was outstanding in his field."
+    },
+    {
+        "id": 12,
+        "joke": "Why don't skeletons ever go trick or treating? Because they have no body to go with."
+    },
+    {
+        "id": 13,
+        "joke": "I'll call you later. Don't call me later, call me Dad."
+    },
+    {
+        "id": 14,
+        "joke": "What do you call an elephant that doesn't matter? An irrelephant."
+    },
+    {
+        "id": 15,
+        "joke": "Want to hear a joke about construction? I'm still working on it."
+    },
+    {
+        "id": 16,
+        "joke": "What do you call cheese that isn't yours? Nacho cheese."
+    },
+    {
+        "id": 17,
+        "joke": "Why couldn't the bicycle stand up by itself? It was two tired."
+    },
+    {
+        "id": 18,
+        "joke": "What did the grape do when he got stepped on? He let out a little wine."
+    },
+    {
+        "id": 19,
+        "joke": "I wouldn't buy anything with velcro. It's a total rip-off."
+    },
+    {
+        "id": 20,
+        "joke": "The shovel was a ground-breaking invention."
+    },
+    {
+        "id": 21,
+        "joke": "\"Dad, can you put the cat out?\" \"I didn't know it was on fire.\""
+    },
+    {
+        "id": 22,
+        "joke": "This graveyard looks overcrowded. People must be dying to get in there."
+    },
+    {
+        "id": 23,
+        "joke": "Cashier: \"Would you like me to put the milk in a bag, sir?\" Dad: \"No, just leave it in the carton!\""
+    },
+    {
+        "id": 24,
+        "joke": "5/4 of people admit that they're bad with fractions."
+    },
+    {
+        "id": 25,
+        "joke": "Two goldfish are in a tank. One says to the other, \"do you know how to drive this thing?\""
+    },
+    {
+        "id": 26,
+        "joke": "What do you call a man with a rubber toe? Roberto."
+    },
+    {
+        "id": 27,
+        "joke": "What do you call a fat psychic? A four-chin teller."
+    },
+    {
+        "id": 28,
+        "joke": "I would avoid the sushi if I was you. It's a little fishy."
+    },
+    {
+        "id": 29,
+        "joke": "To the man in the wheelchair that stole my camouflage jacket... You can hide but you can't run."
+    },
+    {
+        "id": 30,
+        "joke": "The rotation of earth really makes my day."
+    },
+    {
+        "id": 31,
+        "joke": "I thought about going on an all-almond diet. But that's just nuts."
+    },
+    {
+        "id": 32,
+        "joke": "What's brown and sticky? A stick."
+    },
+    {
+        "id": 33,
+        "joke": "I've never gone to a gun range before. I decided to give it a shot!"
+    },
+    {
+        "id": 34,
+        "joke": "Why do you never see elephants hiding in trees? Because they're so good at it."
+    },
+    {
+        "id": 35,
+        "joke": "Did you hear about the kidnapping at school? It's fine, he woke up."
+    },
+    {
+        "id": 36,
+        "joke": "A furniture store keeps calling me. All I wanted was one night stand."
+    },
+    {
+        "id": 37,
+        "joke": "I used to work in a shoe recycling shop. It was sole destroying."
+    },
+    {
+        "id": 38,
+        "joke": "Did I tell you the time I fell in love during a backflip? I was heels over head."
+    },
+    {
+        "id": 39,
+        "joke": "I don't play soccer because I enjoy the sport. I'm just doing it for kicks."
+    },
+    {
+        "id": 40,
+        "joke": "People don't like having to bend over to get their drinks. We really need to raise the bar."
+    },
+    {
+        "id": 41,
+        "joke": "What time did the man go to the dentist? Tooth hurt-y."
+    },
+    {
+        "id": 42,
+        "joke": "I'm reading a book about anti-gravity. It's impossible to put down!"
+    },
+    {
+        "id": 43,
+        "joke": "Did you know the first French fries weren't actually cooked in France? They were cooked in grease."
+    },
+    {
+        "id": 44,
+        "joke": "If you see a robbery at an Apple Store does that make you an iWitness?"
+    },
+    {
+        "id": 45,
+        "joke": "Spring is here! I got so excited I wet my plants!"
+    },
+    {
+        "id": 46,
+        "joke": "A ham sandwich walks into a bar and orders a beer. The bartender says, \"Sorry we don't serve food here.\""
+    },
+    {
+        "id": 47,
+        "joke": "What's Forrest Gump's password? 1forrest1"
+    },
+    {
+        "id": 48,
+        "joke": "Why did the Clydesdale give the pony a glass of water? Because he was a little horse!"
+    },
+    {
+        "id": 49,
+        "joke": "I bought some shoes from a drug dealer. I don't know what he laced them with, but I was tripping all day!"
+    },
+    {
+        "id": 50,
+        "joke": "Why do chicken coops only have two doors? Because if they had four, they would be chicken sedans!"
+    },
+    {
+        "id": 51,
+        "joke": "What do you call a factory that sells passable products? A satisfactory."
+    },
+    {
+        "id": 52,
+        "joke": "How do you make a tissue dance? Put a little boogie in it!"
+    },
+    {
+        "id": 53,
+        "joke": "A termite walks into a bar and asks, \"Is the bar tender here?\""
+    },
+    {
+        "id": 54,
+        "joke": "Two peanuts were walking down the street. One was salted."
+    },
+    {
+        "id": 55,
+        "joke": "Why did the invisible man turn down the job offer? He couldn't see himself doing it."
+    },
+    {
+        "id": 56,
+        "joke": "I used to have a job at a calendar factory but I got the sack because I took a couple of days off."
+    },
+    {
+        "id": 57,
+        "joke": "A woman is on trial for beating her husband to death with his guitar collection. Judge says, \"First offender?\" She says, \"No, first a Gibson! Then a Fender!\""
+    },
+    {
+        "id": 58,
+        "joke": "I had a dream that I was a muffler last night. I woke up exhausted!"
+    },
+    {
+        "id": 59,
+        "joke": "Mom: \"How do I look?\" Dad: \"With your eyes\""
+    },
+    {
+        "id": 60,
+        "joke": "What is Beethoven's favorite fruit? A ba-na-na-na."
+    },
+    {
+        "id": 61,
+        "joke": "Two guys walk into a bar, the third one ducks."
+    },
+    {
+        "id": 62,
+        "joke": "Did you hear about the circus fire? It was in tents!"
+    },
+    {
+        "id": 63,
+        "joke": "Don't trust atoms. They make up everything!"
+    },
+    {
+        "id": 64,
+        "joke": "What do you call a cow with no legs? Ground beef."
+    },
+    {
+        "id": 65,
+        "joke": "What do you get when you cross an elephant with a rhino? Elephino."
+    },
+    {
+        "id": 66,
+        "joke": "How many tickles does it take to make an octopus laugh? Ten-tickles."
+    },
+    {
+        "id": 67,
+        "joke": "I'm only familiar with 25 letters in the English language. I don't know why."
+    },
+    {
+        "id": 68,
+        "joke": "When an ambulance zips past with its siren blaring: \"They won't sell much ice cream driving that fast.\""
+    },
+    {
+        "id": 69,
+        "joke": "What's the best part about living in Switzerland? I don't know, but the flag is a big plus."
+    },
+    {
+        "id": 70,
+        "joke": "What do prisoners use to call each other? Cell phones."
+    },
+    {
+        "id": 71,
+        "joke": "Why couldn't the bike standup by itself? It was two tired."
+    },
+    {
+        "id": 72,
+        "joke": "What do you call a dog that can do magic? A Labracadabrador."
+    },
+    {
+        "id": 73,
+        "joke": "Why didn't the vampire attack Taylor Swift? She had bad blood."
+    },
+    {
+        "id": 74,
+        "joke": "The fattest knight at King Arthur's round table was Sir Cumference. He acquired his size from too much pi."
+    },
+    {
+        "id": 75,
+        "joke": "Did you see they made round bails of hay illegal in Wisconsin? It's because the cows weren't getting a square meal."
+    },
+    {
+        "id": 76,
+        "joke": "Mom: \"I'm going to jump in the shower\" Dad: \"It's probably safer if you just stand\""
+    },
+    {
+        "id": 77,
+        "joke": "Kid: \"Dad, make me a sandwich!\" Dad: \"Poof, you're a sandwich!\""
+    },
+    {
+        "id": 78,
+        "joke": "What do you call a fish with two knees? A \"two-knee\" fish."
+    },
+    {
+        "id": 79,
+        "joke": "I was interrogated over the theft of a cheese toastie. Man, they really grilled me."
+    },
+    {
+        "id": 80,
+        "joke": "What do you get when you cross a snowman with a vampire? Frostbite."
+    },
+    {
+        "id": 81,
+        "joke": "What do you call a lonely cheese? Provolone."
+    },
+    {
+        "id": 82,
+        "joke": "Why can't you hear a pterodactyl go to the bathroom? Because the pee is silent."
+    },
+    {
+        "id": 83,
+        "joke": "What does a zombie vegetarian eat? \"GRRRAAAAAIIIINNNNS!\""
+    },
+    {
+        "id": 84,
+        "joke": "What does an angry pepper do? It gets jalapeño your face."
+    },
+    {
+        "id": 85,
+        "joke": "What did the buffalo say to his son when he dropped him off at school? Bison."
+    },
+    {
+        "id": 86,
+        "joke": "What do you call someone with no body and no nose? Nobody knows."
+    },
+    {
+        "id": 87,
+        "joke": "Why did the crab never share? Because he's shellfish."
+    },
+    {
+        "id": 88,
+        "joke": "What do you call a guy lying on your doorstep? Matt."
+    },
+    {
+        "id": 89,
+        "joke": "What kind of flour does the orphan use to bake."
+    },
+    {
+        "id": 90,
+        "joke": "Why did the banana go to the doctor? He was not 'peeling' well."
+    },
+    {
+        "id": 91,
+        "joke": "What is the hardest part about skydiving? The ground."
+    },
+    {
+        "id": 92,
+        "joke": "What did the calculator say to the student? You can count on me."
+    },
+    {
+        "id": 93,
+        "joke": "What has three letters and starts with gas? A Car."
+    },
+    {
+        "id": 94,
+        "joke": "Where do bees go to the bathroom? The BP station."
+    },
+    {
+        "id": 95,
+        "joke": "I couldn't figure out how the seat belt worked. Then it just clicked."
+    },
+    {
+        "id": 96,
+        "joke": "Did you hear about the chameleon who couldn't change color? They had a reptile dysfunction."
+    },
+    {
+        "id": 97,
+        "joke": "How many hands does it take to change a lightbulb? One, but many hands make light work."
+    }
+]

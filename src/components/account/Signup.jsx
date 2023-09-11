@@ -2,12 +2,12 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/FirebaseApp";
 import { useRouter } from "next/router";
-import { uiConfigSignIn } from "@/config/FirebaseAuthUI.config";
+import { uiConfigSignUp } from "@/config/FirebaseAuthUISignup.config";
 import StyledFirebaseAuth from "../firebase/StyledFirebaseAuth";
 import Image from "next/image";
 import Loading from "../loading/Loading";
 
-export default function Login() {
+export default function Signup() {
     const [user, loading] = useAuthState(auth);
     const router = useRouter();
 
@@ -26,10 +26,18 @@ export default function Login() {
                     height={200}
                     priority
                 />
-                <StyledFirebaseAuth
-                    uiConfig={uiConfigSignIn}
-                    firebaseAuth={auth}
-                />
+
+                <div className="bg-white w-80 relative">
+                    <StyledFirebaseAuth
+                        uiConfig={uiConfigSignUp}
+                        firebaseAuth={auth}
+                    />
+                    <div className="h-23% w-full absolute top-0 left-0 z-50 bg-white">
+                        <h1 className="m-8 flex justify-center font-medium text-xl">
+                            Signup with Email
+                        </h1>
+                    </div>
+                </div>
             </div>
         );
     }
