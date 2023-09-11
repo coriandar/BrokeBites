@@ -12,9 +12,6 @@
     "workbench.startupEditor": "none",
     "prettier.tabWidth": 4,
     "editor.formatOnSave": true,
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
