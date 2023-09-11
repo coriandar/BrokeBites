@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { linkWithRedirect } from "firebase/auth";
 
 const libraries = ["places"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
@@ -28,7 +29,7 @@ const mapStyles = [
 const InitMap = ({ restaurantList, setRestaurantSelected }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
-        libraries,
+        libraries: libraries,
     });
 
     const [map, setMap] = useState(null);
