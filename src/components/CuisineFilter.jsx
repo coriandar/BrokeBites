@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 
-interface CuisineFilterProps {
-    onFilterChange: (cuisine: string) => void;
-}
+const CuisineFilter = ({ onFilterChange }) => {
+    const [selectedCuisine, setSelectedCuisine] = useState(null);
 
-const CuisineFilter: React.FC<CuisineFilterProps> = ({ onFilterChange }) => {
-    const [selectedCuisine, setSelectedCuisine] = useState<string | null>(null);
-
-    const handleCuisineChange = (
-        event: React.ChangeEvent<HTMLSelectElement>
-    ) => {
+    const handleCuisineChange = (event) => {
         const cuisine = event.target.value;
         setSelectedCuisine(cuisine);
         onFilterChange(cuisine);

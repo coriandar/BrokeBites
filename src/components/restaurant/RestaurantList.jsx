@@ -1,13 +1,7 @@
 import React from "react";
 
-const InitList = ({
-    restaurantList,
-    setRestaurantSelected,
-}: {
-    restaurantList: any[];
-    setRestaurantSelected: Function;
-}) => {
-    const handleListItemClick = (restaurant: any) => {
+const InitList = ({ restaurantList, setRestaurantSelected }) => {
+    const handleListItemClick = (restaurant) => {
         console.log(restaurant);
         setRestaurantSelected(restaurant);
     };

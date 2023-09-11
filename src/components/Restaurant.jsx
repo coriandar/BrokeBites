@@ -4,22 +4,9 @@ import setSelectedCuisine from "./CuisineFilter";
 import { getAllRestaurants } from "./firebase/FirebaseApp";
 import firebase from "firebase/compat/app";
 
-interface Restaurant {
-    id: string;
-    name: string;
-    cuisine: string;
-    // Add other restaurant properties as needed (other stuff from database)
-    // Can add on things that we add to database
-}
-
-interface RestaurantListProps {
-    restaurants: Restaurant[];
-}
-
-const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
-    const [filteredRestaurants, setFilteredRestaurants] =
-        useState<Restaurant[]>(restaurants);
-    const [selectedCuisine, setSelectedCuisine] = useState<string | null>(null);
+const RestaurantList = ({ restaurants }) => {
+    const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
+    const [selectedCuisine, setSelectedCuisine] = useState(null);
 
     useEffect(() => {
         if (selectedCuisine) {
@@ -47,7 +34,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
 };
 
 function App() {
-    const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+    const [restaurants, setRestaurants] = useState([]);
 
     // Fetch data from Firebase or your preferred data source here
 
@@ -68,7 +55,7 @@ function App() {
         }
     };
 
-    const handleFilterChange = (cuisine: string) => {
+    const handleFilterChange = (cuisine) => {
         setSelectedCuisine(cuisine);
     };
 

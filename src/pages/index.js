@@ -3,23 +3,10 @@ import { useRouter } from "next/router";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 import React, { useState, useEffect } from "react";
-import { getAllRestaurants } from "@/components/firebase/FirebaseApp";
 import Navbar from "@/components/Navbar";
 
 export default function index() {
     const router = useRouter();
-
-    const [restaurantList, setRestaurantList] = useState<any>([]);
-    const [restaurantSelected, setRestaurantSelected] = useState<any>(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const restaurants = await getAllRestaurants();
-            setRestaurantList(restaurants);
-        };
-
-        fetchData();
-    }, []);
 
     return (
         <main
