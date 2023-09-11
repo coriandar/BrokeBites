@@ -1,4 +1,5 @@
 import Dashboard from "../components/Dashboard";
+<<<<<<< HEAD
 import { useRouter } from "next/router";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
@@ -17,5 +18,13 @@ export default function index() {
                 <Dashboard />
             </div>
         </main>
+=======
+
+export default function index() {
+    return (
+        <>
+            <Dashboard />
+        </>
+>>>>>>> 1108444f33c6552f103e21d442bb347992e0a168
     );
 }

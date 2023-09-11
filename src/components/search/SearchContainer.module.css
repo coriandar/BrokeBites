@@ -1,0 +1,31 @@
+.parent-container {
+    position: relative;
+}
+
+.map-and-list-overlay {
+    align-items: flex-start; /* Align children to the start of the container */
+}
+
+.map-overlay {
+    flex: auto;
+}
+
+.restaurant-list-overlay {
+    max-width: 33%;
+    margin-left: 10px;
+}
+
+.map-and-list-overlay {
+    display: flex;
+    flex-direction: row; /* Place children side by side */
+    align-items: flex-start; /* Align children to the start of the container */
+}
+
+.map-overlay {
+    flex: 1; /* Allow map to take available width */
+}
+
+.restaurant-list-overlay {
+    max-width: 320px; /* Set a maximum width for the list */
+    margin-left: 10px; /* Add spacing between map and list */
+}
