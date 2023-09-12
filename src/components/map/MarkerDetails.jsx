@@ -10,9 +10,24 @@ function MarkerDetails({ selected }) {
     }
 
     return (
-        <div id="SelectedMarkerDetails">
+        <div>
             <h3>{selected.name}</h3>
-            {selected.website ? <p>{selected.website}</p> : <p>No Website</p>}
+            <h3>Filling Factor: {selected.fillingFactor}</h3>
+            <h3>Price rating: {selected.priceRating}</h3>
+            {selected.website ? ( // Check if website is not an empty string
+                <p>
+                    Website:{" "}
+                    <a
+                        href={selected.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {selected.website}
+                    </a>
+                </p>
+            ) : (
+                "No website for this restaurant"
+            )}
         </div>
     );
 }
