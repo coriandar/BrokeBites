@@ -22,7 +22,7 @@ const RestaurantCard = ({ restaurant }) => (
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    {restaurant.website}
+                    Link
                 </a>
             </p>
         ) : (
