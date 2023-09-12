@@ -12,27 +12,23 @@ function MarkerDetails({ selected }) {
     return (
         <div id="SelectedMarkerDetails">
             <h3 className="font-bold">{selected.name}</h3>
+            <h3>Filling Factor: {selected.fillingFactor}</h3>
+            <h3>Price rating: {selected.priceRating}</h3>
 
-            {/* Website:{" "}
-            <a
-                href={selected.website}
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Link
-            </a> */}
-            {selected.website ? (
-                <a
-                    h
-                    href={selected.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <p>Link</p>
-                </a>
-            ) : (
-                <p>No Website</p>
-            )}
+            <h3>
+                Website:{" "}
+                {selected.website ? (
+                    <a
+                        href={selected.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Link
+                    </a>
+                ) : (
+                    "No website"
+                )}
+            </h3>
         </div>
     );
 }

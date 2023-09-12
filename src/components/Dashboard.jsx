@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { getAllRestaurants } from "./firebase/FirebaseApp";
+import {
+    getAllRestaurants,
+    getFilteredRestaurants,
+} from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 
 export default function Dashboard() {
+    const [restaurantMasterList, setRestaurantMasterList] = useState([]);
     const [restaurantList, setRestaurantList] = useState([]);
     const [restaurantSelected, setRestaurantSelected] = useState(null);
 
@@ -16,6 +20,7 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchData = async () => {
             const restaurants = await getAllRestaurants();
+            setRestaurantMasterList(restaurants);
             setRestaurantList(restaurants);
         };
 
@@ -29,6 +34,9 @@ export default function Dashboard() {
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
                     setCenter={setCenter}
+                    setRestaurantList={setRestaurantList}
+                    getFilteredRestaurants={getFilteredRestaurants}
+                    restaurantMasterList={restaurantMasterList}
                 />
             </div>
             <div className="bg-slate-300 w-2/3 relative">
