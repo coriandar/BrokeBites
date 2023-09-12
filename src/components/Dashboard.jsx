@@ -8,6 +8,11 @@ export default function Dashboard() {
     const [restaurantList, setRestaurantList] = useState([]);
     const [restaurantSelected, setRestaurantSelected] = useState(null);
 
+    const [center, setCenter] = useState({
+        lat: -36.8537761039407,
+        lng: 174.7658246985396,
+    });
+
     useEffect(() => {
         const fetchData = async () => {
             const restaurants = await getAllRestaurants();
@@ -29,6 +34,8 @@ export default function Dashboard() {
                 <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
+                    setCenter={setCenter}
+                    center={center}
                 />
                 <div className="bg-slate-300 w-2/3 bg-opacity-90 absolute bottom-0 left-0">
                     <MarkerDetails selected={restaurantSelected} />
