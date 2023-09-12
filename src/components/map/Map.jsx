@@ -54,7 +54,7 @@ const InitMap = ({
     // Returns GoogleMap centered on AUT with restaurants highlighted by a marker
     return (
         <GoogleMap
-            zoom={17}
+            zoom={center.zoom}
             center={center} // need set this to change, update based on selection
             mapContainerStyle={mapContainerStyle}
             options={{ styles: mapStyles }}
@@ -65,6 +65,7 @@ const InitMap = ({
                     position={{
                         lat: restaurant.latitude,
                         lng: restaurant.longitude,
+                        zoom: 20,
                     }}
                     title={restaurant.name} // Display the restaurant name on marker hover
                     onClick={() => handleMarkerClick(restaurant)}

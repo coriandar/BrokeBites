@@ -11,6 +11,7 @@ export default function Dashboard() {
     const [center, setCenter] = useState({
         lat: -36.8537761039407,
         lng: 174.7658246985396,
+        zoom: 17,
     });
 
     useEffect(() => {
@@ -28,6 +29,7 @@ export default function Dashboard() {
                 <InitList
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
+                    setCenter={setCenter}
                 />
             </div>
             <div className="bg-slate-300 w-2/3 relative">
