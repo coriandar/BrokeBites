@@ -24,6 +24,8 @@ const InitMap = ({
     setRestaurantSelected,
     setCenter,
     center,
+    zoom,
+    setZoom,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
