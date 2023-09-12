@@ -20,6 +20,17 @@ export const getAllRestaurants = async () => {
     }
 };
 
+export const getFilteredRestaurants = (items, query) => {
+    if (!query) {
+        return items;
+    }
+    const lowercaseQuery = query.toLowerCase(); // Convert the query to lowercase
+
+    return items.filter((restaurant) =>
+        restaurant.name.toLowerCase().includes(lowercaseQuery)
+    );
+};
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
