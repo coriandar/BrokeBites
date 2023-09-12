@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 
-const InitList = ({ restaurantList, setRestaurantSelected }) => {
+const InitList = ({ restaurantList, setRestaurantSelected, setCenter }) => {
     const [active, setActive] = useState(null);
 
     const handleListItemClick = (restaurant) => {
         console.log(restaurant);
         setRestaurantSelected(restaurant);
         setActive(restaurant.id);
+        setCenter({
+            lat: restaurant.latitude,
+            lng: restaurant.longitude,
+        });
     };
 
     return (
