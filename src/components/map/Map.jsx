@@ -10,12 +10,6 @@ const mapContainerStyle = {
     width: "100%",
 };
 
-// Set default location
-const center = {
-    lat: -36.8537761039407,
-    lng: 174.7658246985396,
-};
-
 // Set Map Styles (specifically, turn off points of interest)
 const mapStyles = [
     {
@@ -25,7 +19,14 @@ const mapStyles = [
     },
 ];
 
-const InitMap = ({ restaurantList, setRestaurantSelected }) => {
+const InitMap = ({
+    restaurantList,
+    setRestaurantSelected,
+    setCenter,
+    center,
+    zoom,
+    setZoom,
+}) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
         libraries,
@@ -42,6 +43,10 @@ const InitMap = ({ restaurantList, setRestaurantSelected }) => {
     const handleMarkerClick = (restaurant) => {
         console.log(restaurant);
         setRestaurantSelected(restaurant);
+        setCenter({
+            lat: restaurant.latitude,
+            lng: restaurant.longitude,
+        });
     };
 
     // displays loading or loading error for map
