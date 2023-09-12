@@ -28,6 +28,7 @@ export default function Dashboard() {
                 <InitList
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
+                    setCenter={setCenter}
                 />
             </div>
             <div className="bg-slate-300 w-2/3 relative">
