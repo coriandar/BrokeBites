@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const InitList = ({
     restaurantList,
     setRestaurantSelected,
     setCenter,
     getFilteredRestaurants,
+    setRestaurantList,
+    restaurantMasterList,
 }) => {
     const [active, setActive] = useState(null);
+    const [query, setQuery] = useState("");
+
+    useEffect(() => {
+        // Filter the restaurant list when the query or restaurantMasterList changes
+        setRestaurantList(getFilteredRestaurants(restaurantMasterList, query));
+    }, [
+        query,
+        restaurantMasterList,
+        setRestaurantList,
+        getFilteredRestaurants,
+    ]);
 
     const handleListItemClick = (restaurant) => {
         console.log(restaurant);
@@ -18,9 +31,6 @@ const InitList = ({
         });
     };
 
-    const [query, setQuery] = useState("");
-    const filteredRestaurants = getFilteredRestaurants(restaurantList, query);
-
     return (
         <div>
             <div>
@@ -28,7 +38,7 @@ const InitList = ({
                 <input type="text" onChange={(e) => setQuery(e.target.value)} />
             </div>
             <ul id="restaurantList">
-                {filteredRestaurants.map((restaurant) => (
+                {restaurantList.map((restaurant) => (
                     <li
                         className={`${
                             active === restaurant.id ? "bg-slate-300" : ""
