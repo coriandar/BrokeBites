@@ -1,4 +1,5 @@
 import React from "react";
+import FavouriteButton from "../bookmark/FavouriteButton";
 
 function MarkerDetails({ selected }) {
     if (!selected) {
@@ -11,6 +12,9 @@ function MarkerDetails({ selected }) {
 
     return (
         <div>
+            <p>
+                <FavouriteButton selected={selected} />
+            </p>
             <h3>{selected.name}</h3>
             <h3>Filling Factor: {selected.fillingFactor}</h3>
             <h3>Price rating: {selected.priceRating}</h3>

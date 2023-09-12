@@ -6,6 +6,7 @@ import { uiConfigSignUp } from "@/config/FirebaseAuthUISignup.config";
 import StyledFirebaseAuth from "../firebase/StyledFirebaseAuth";
 import Image from "next/image";
 import Loading from "../loading/Loading";
+import { CheckUserDB } from "./UserDB";
 
 export default function Signup() {
     const [user, loading] = useAuthState(auth);
@@ -38,6 +39,7 @@ export default function Signup() {
                         </h1>
                     </div>
                 </div>
+                <CheckUserDB />
             </div>
         );
     }
