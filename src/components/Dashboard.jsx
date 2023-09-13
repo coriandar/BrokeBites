@@ -18,6 +18,7 @@ export default function Dashboard() {
         lat: -36.8537761039407,
         lng: 174.7658246985396,
     });
+    const [mapZoom, setMapZoom] = useState(17);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,6 +40,7 @@ export default function Dashboard() {
                     setRestaurantList={setRestaurantList}
                     getFilteredRestaurants={getFilteredRestaurants}
                     restaurantMasterList={restaurantMasterList}
+                    setMapZoom={setMapZoom}
                 />
             </div>
             <div className="bg-slate-300 w-2/3 relative">
@@ -47,6 +49,8 @@ export default function Dashboard() {
                     setRestaurantSelected={setRestaurantSelected}
                     setCenter={setCenter}
                     center={center}
+                    mapZoom={mapZoom}
+                    setMapZoom={setMapZoom}
                 />
                 <div className="bg-slate-300 w-2/3 bg-opacity-90 absolute bottom-0 left-0">
                     <MarkerDetails selected={restaurantSelected} />

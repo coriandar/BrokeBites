@@ -26,6 +26,8 @@ const InitMap = ({
     setRestaurantSelected,
     setCenter,
     center,
+    mapZoom,
+    setMapZoom,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
@@ -47,7 +49,7 @@ const InitMap = ({
             lat: restaurant.latitude,
             lng: restaurant.longitude,
         });
-        zoomIn = 19;
+        setMapZoom(20);
     };
 
     // displays loading or loading error for map
@@ -57,7 +59,7 @@ const InitMap = ({
     // Returns GoogleMap centered on AUT with restaurants highlighted by a marker
     return (
         <GoogleMap
-            zoom={zoomIn}
+            zoom={mapZoom}
             center={center} // need set this to change, update based on selection
             mapContainerStyle={mapContainerStyle}
             options={{ styles: mapStyles }}
