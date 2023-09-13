@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import "firebaseui/dist/firebaseui.css";
+import { CheckUserDB } from "../account/UserDB";
 
 const StyledFirebaseAuth = ({
     uiConfig,
@@ -13,8 +14,6 @@ const StyledFirebaseAuth = ({
     const elementRef = useRef(null);
 
     useEffect(() => {
-        // Firebase UI only works on the Client. So we're loading the package only after
-        // the component has mounted, so that this works when doing server-side rendering.
         setFirebaseui(require("firebaseui"));
     }, []);
 
@@ -43,9 +42,14 @@ const StyledFirebaseAuth = ({
         // @ts-ignore
         firebaseUiWidget.start(elementRef.current, uiConfig);
 
-        return () => {
+        return async () => {
             unregisterAuthObserver();
-            firebaseUiWidget.reset();
+            try {
+                await CheckUserDB();
+                firebaseUiWidget.reset();
+            } catch (error) {
+                console.log("Error");
+            }
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [firebaseui, uiConfig]);

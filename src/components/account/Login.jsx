@@ -7,6 +7,7 @@ import StyledFirebaseAuth from "../firebase/StyledFirebaseAuth";
 import Image from "next/image";
 import Loading from "../loading/Loading";
 import { CheckUserDB } from "./UserDB";
+import { useEffect } from "react";
 
 export default function Login() {
     const [user, loading] = useAuthState(auth);
@@ -14,7 +15,6 @@ export default function Login() {
 
     if (loading) return <Loading />;
     else if (user) {
-        CheckUserDB();
         router.replace("/"); // if user is already logged in
         return null;
     } else if (!user) {
@@ -32,7 +32,6 @@ export default function Login() {
                     uiConfig={uiConfigSignIn}
                     firebaseAuth={auth}
                 />
-                <CheckUserDB />
             </div>
         );
     }
