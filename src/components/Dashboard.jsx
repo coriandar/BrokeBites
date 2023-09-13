@@ -51,6 +51,7 @@ export default function Dashboard() {
                     center={center}
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
+                    restaurantSelected={restaurantSelected}
                 />
                 <div className="bg-slate-300 w-2/3 bg-opacity-90 absolute bottom-0 left-0">
                     <MarkerDetails selected={restaurantSelected} />
