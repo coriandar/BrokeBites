@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
     getAllRestaurants,
     getFilteredRestaurants,
+    getFilteredPriceRating,
 } from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
+import InitPriceSlider from "./restaurant/PriceSlider";
 
 export default function Dashboard() {
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
@@ -16,6 +18,7 @@ export default function Dashboard() {
         lat: -36.8537761039407,
         lng: 174.7658246985396,
     });
+    const [mapZoom, setMapZoom] = useState(17);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,6 +40,7 @@ export default function Dashboard() {
                     setRestaurantList={setRestaurantList}
                     getFilteredRestaurants={getFilteredRestaurants}
                     restaurantMasterList={restaurantMasterList}
+                    setMapZoom={setMapZoom}
                 />
             </div>
             <div className="bg-slate-300 w-2/3 relative">
@@ -45,11 +49,19 @@ export default function Dashboard() {
                     setRestaurantSelected={setRestaurantSelected}
                     setCenter={setCenter}
                     center={center}
+                    mapZoom={mapZoom}
+                    setMapZoom={setMapZoom}
+                    restaurantSelected={restaurantSelected}
                 />
                 <div className="bg-slate-300 w-2/3 bg-opacity-90 absolute bottom-0 left-0">
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>
+            <InitPriceSlider
+                restaurantMasterList={restaurantMasterList}
+                setRestaurantList={setRestaurantList}
+                getFilteredPriceRating={getFilteredPriceRating}
+            />
         </div>
     );
 }

@@ -7,6 +7,7 @@ const InitList = ({
     getFilteredRestaurants,
     setRestaurantList,
     restaurantMasterList,
+    setMapZoom,
 }) => {
     const [active, setActive] = useState(null);
     const [query, setQuery] = useState("");
@@ -29,6 +30,7 @@ const InitList = ({
             lat: restaurant.latitude,
             lng: restaurant.longitude,
         });
+        setMapZoom(20);
     };
 
     return (
