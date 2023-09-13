@@ -21,17 +21,19 @@ const getFilteredPriceRating = (items, values) => {
 function InitPriceSlider({ setRestaurantList, restaurantMasterList }) {
     const [sliderValues, setSliderValues] = useState([MIN, MAX]); // Values for slider
 
-    setRestaurantList(
-        getFilteredPriceRating(restaurantMasterList, sliderValues)
-    );
+    useEffect(() => {
+        setRestaurantList(
+            getFilteredPriceRating(restaurantMasterList, sliderValues)
+        );
+    }, [sliderValues, restaurantMasterList, setRestaurantList]);
 
     //return restaurant list
     console.log(sliderValues);
     return (
         <div>
-            <h3 className={styles.h3}>Price Rating</h3>
-            <div className={styles.values}>1 - 5</div>
-            <small className={styles["current-range"]}>
+            <h3>Price Rating</h3>
+            <div>1 - 5</div>
+            <small>
                 Current range: {sliderValues[0]} - {sliderValues[1]}
             </small>
 
