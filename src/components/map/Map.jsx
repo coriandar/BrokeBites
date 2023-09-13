@@ -10,6 +10,8 @@ const mapContainerStyle = {
     width: "100%",
 };
 
+let zoomIn = 17;
+
 // Set Map Styles (specifically, turn off points of interest)
 const mapStyles = [
     {
@@ -24,6 +26,9 @@ const InitMap = ({
     setRestaurantSelected,
     setCenter,
     center,
+    mapZoom,
+    setMapZoom,
+    restaurantSelected,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
@@ -39,13 +44,17 @@ const InitMap = ({
     const [isMarkerClicked, setIsMarkerClicked] = useState(false);
 
     const handleMarkerClick = (restaurant) => {
-        console.log(restaurant);
+        console.log("Clicked restaurant:", restaurant); // Log the clicked restaurant
         setRestaurantSelected(restaurant);
+        console.log("restaurantSelected after click:", restaurantSelected);
         setCenter({
             lat: restaurant.latitude,
             lng: restaurant.longitude,
         });
+        setMapZoom(20);
     };
+
+    console.log("restaurantSelected:", restaurantSelected);
 
     // displays loading or loading error for map
     if (loadError) return <div>Error loading maps</div>;
@@ -54,7 +63,7 @@ const InitMap = ({
     // Returns GoogleMap centered on AUT with restaurants highlighted by a marker
     return (
         <GoogleMap
-            zoom={17}
+            zoom={mapZoom}
             center={center} // need set this to change, update based on selection
             mapContainerStyle={mapContainerStyle}
             options={{ styles: mapStyles }}
@@ -67,6 +76,12 @@ const InitMap = ({
                         lng: restaurant.longitude,
                     }}
                     title={restaurant.name} // Display the restaurant name on marker hover
+                    icon={
+                        restaurantSelected &&
+                        restaurantSelected.id === restaurant.id
+                            ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Use a different icon for the selected marker
+                            : undefined // Use the default marker icon for others
+                    }
                     onClick={() => handleMarkerClick(restaurant)}
                 />
             ))}
