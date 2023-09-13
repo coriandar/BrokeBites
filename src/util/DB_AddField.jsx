@@ -1,8 +1,8 @@
-import { db } from "../firebase/FirebaseApp.jsx";
+import { db } from "@/components/firebase/FirebaseApp";
 import { collection, getDocs, updateDoc } from "firebase/firestore";
 
-const colName = "test";
-const newField = { contactNumber: "00-000-0000" };
+const colName = "xxx";
+const newField = { cuisine: "" };
 
 const querySnapshot = await getDocs(collection(db, colName));
 querySnapshot.forEach((doc) => {
