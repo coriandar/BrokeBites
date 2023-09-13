@@ -20,6 +20,8 @@ export const getAllRestaurants = async () => {
     }
 };
 
+// TODO: Sprint 2: refactor logic, move to a feature folder
+// TODO: Sprint2: Increase performance/lower memory, store index in list, then iterate based on index.
 export const getFilteredRestaurants = (items, query) => {
     if (!query) {
         return items;
