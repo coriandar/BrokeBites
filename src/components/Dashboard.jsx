@@ -6,6 +6,7 @@ import {
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
+import InitPriceSlider from "./restaurant/PriceSlider";
 
 export default function Dashboard() {
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
@@ -50,6 +51,10 @@ export default function Dashboard() {
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>
+            <InitPriceSlider
+                restaurantMasterList={restaurantMasterList}
+                setRestaurantList={setRestaurantList}
+            />
         </div>
     );
 }

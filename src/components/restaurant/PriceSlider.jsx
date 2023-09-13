@@ -18,17 +18,12 @@ const getFilteredPriceRating = (items, values) => {
     );
 };
 
-const InitPriceSlider({
-    restaurantList,
-    setRestaurantList,
-    restaurantMasterList,}) {
-    const [restaurantList, setRestaurantList] = useState([]); //list of restaurants
+function InitPriceSlider({ setRestaurantList, restaurantMasterList }) {
     const [sliderValues, setSliderValues] = useState([MIN, MAX]); // Values for slider
 
-    setRestaurantList(getFilteredPriceRating(
-        restaurantMasterList,
-        sliderValues
-    ));
+    setRestaurantList(
+        getFilteredPriceRating(restaurantMasterList, sliderValues)
+    );
 
     //return restaurant list
     console.log(sliderValues);
@@ -50,3 +45,5 @@ const InitPriceSlider({
         </div>
     );
 }
+
+export default InitPriceSlider;
