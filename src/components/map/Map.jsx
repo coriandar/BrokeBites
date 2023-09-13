@@ -10,6 +10,8 @@ const mapContainerStyle = {
     width: "100%",
 };
 
+let zoomIn = 17;
+
 // Set Map Styles (specifically, turn off points of interest)
 const mapStyles = [
     {
@@ -45,6 +47,7 @@ const InitMap = ({
             lat: restaurant.latitude,
             lng: restaurant.longitude,
         });
+        zoomIn = 19;
     };
 
     // displays loading or loading error for map
@@ -54,7 +57,7 @@ const InitMap = ({
     // Returns GoogleMap centered on AUT with restaurants highlighted by a marker
     return (
         <GoogleMap
-            zoom={17}
+            zoom={zoomIn}
             center={center} // need set this to change, update based on selection
             mapContainerStyle={mapContainerStyle}
             options={{ styles: mapStyles }}
