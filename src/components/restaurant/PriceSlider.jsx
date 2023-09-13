@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { getAllRestaurants } from "../firebase/FirebaseApp";
 import Slider from "react-slider";
 import styles from "./RestaurantList.module.css";
 
 const MIN = 1;
 const MAX = 5;
 
-//get price rating results
-const getFilteredPriceRating = (items, values) => {
-    if (!values) {
-        return items;
-    }
-    return items.filter(
-        (restaurant) =>
-            restaurant.priceRating >= values[0] &&
-            restaurant.priceRating <= values[1]
-    );
-};
-
-function InitPriceSlider({ setRestaurantList, restaurantMasterList }) {
+function InitPriceSlider({
+    setRestaurantList,
+    restaurantMasterList,
+    getFilteredPriceRating,
+}) {
     const [sliderValues, setSliderValues] = useState([MIN, MAX]); // Values for slider
 
     useEffect(() => {

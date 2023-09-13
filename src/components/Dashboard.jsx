@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
     getAllRestaurants,
     getFilteredRestaurants,
+    getFilteredPriceRating,
 } from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
@@ -54,6 +55,7 @@ export default function Dashboard() {
             <InitPriceSlider
                 restaurantMasterList={restaurantMasterList}
                 setRestaurantList={setRestaurantList}
+                getFilteredPriceRating={getFilteredPriceRating}
             />
         </div>
     );
