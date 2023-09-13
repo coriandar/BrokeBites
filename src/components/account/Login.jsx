@@ -6,8 +6,6 @@ import { uiConfigSignIn } from "@/config/FirebaseAuthUI.config";
 import StyledFirebaseAuth from "../firebase/StyledFirebaseAuth";
 import Image from "next/image";
 import Loading from "../loading/Loading";
-import { CheckUserDB } from "./UserDB";
-import { useEffect } from "react";
 
 export default function Login() {
     const [user, loading] = useAuthState(auth);

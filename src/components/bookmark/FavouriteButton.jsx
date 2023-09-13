@@ -7,15 +7,15 @@ import {
     arrayRemove,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { getFirestore, DocumentReference } from "firebase/firestore";
-
-const firestore = getFirestore();
-const auth = getAuth();
+import { getFirestore } from "firebase/firestore";
 
 function FavouriteButton({ selectedRestaurant }) {
+    const firestore = getFirestore();
+    const auth = getAuth();
     const currentUserId = auth.currentUser?.uid;
     const [isFavorite, setIsFavorite] = useState(false);
 
+    // Update isFavorite when selectedRestaurant changes
     useEffect(() => {
         if (currentUserId && selectedRestaurant) {
             const userDocRef = doc(firestore, "userDB", currentUserId);
@@ -25,55 +25,57 @@ function FavouriteButton({ selectedRestaurant }) {
                     const data = docSnapshot.data();
                     const favorites = data?.favourite || [];
 
-                    // Check if the selectedRestaurant reference exists in the favorites array
-                    const isCurrentlyFavorite = favorites.some(
-                        (favoriteRef) =>
-                            favoriteRef instanceof DocumentReference &&
-                            favoriteRef.path === selectedRestaurant.ref.path // Compare reference paths
+                    // Check if the selectedRestaurant ID exists in the favorites array
+                    const isCurrentlyFavorite = favorites.includes(
+                        selectedRestaurant.id
                     );
 
                     setIsFavorite(isCurrentlyFavorite);
-                    console.log("Restaurant added");
                 }
             });
         }
     }, [currentUserId, selectedRestaurant]);
 
-    const toggleFavorite = () => {
-        if (!currentUserId || !selectedRestaurant) {
-            // Handle the case where the user is not signed in or selectedRestaurant is undefined
-            return;
-        }
-
+    const addFavourite = async () => {
         const userDocRef = doc(firestore, "userDB", currentUserId);
 
-        if (isFavorite) {
-            // If the restaurant reference is in favorites, remove it
-            setDoc(
+        try {
+            // Use arrayUnion to add the restaurant to the array
+            await setDoc(
                 userDocRef,
-                {
-                    favourite: arrayRemove(selectedRestaurant.ref), // Remove the reference
-                },
+                { favourite: arrayUnion(selectedRestaurant.id) },
                 { merge: true }
             );
-            setIsFavorite(false);
-            console.log("Restaurant removed");
-        } else {
-            // If the restaurant reference is not in favorites, add it
-            setDoc(
-                userDocRef,
-                {
-                    favourite: arrayUnion(selectedRestaurant.ref), // Add the reference
-                },
-                { merge: true }
-            );
+
+            console.log(selectedRestaurant, " added to favourite");
             setIsFavorite(true);
-            console.log("Restaurant added");
+        } catch (error) {
+            console.error("Error adding to favorites:", error);
+            // Handle the error as needed
+        }
+    };
+
+    const removeFavourite = async () => {
+        const userDocRef = doc(firestore, "userDB", currentUserId);
+
+        try {
+            // Use arrayUnion to add the restaurant to the array
+            await setDoc(
+                userDocRef,
+                { favourite: arrayRemove(selectedRestaurant.id) },
+                { merge: true }
+            );
+
+            console.log(selectedRestaurant, " removed from favourtie");
+            setIsFavorite(false);
+        } catch (error) {
+            console.error("Error removing from favorites:", error);
+            // Handle the error as needed
         }
     };
 
     return (
-        <button onClick={toggleFavorite}>
+        <button onClick={isFavorite ? removeFavourite : addFavourite}>
             {isFavorite ? "Remove" : "Favourite"}
         </button>
     );

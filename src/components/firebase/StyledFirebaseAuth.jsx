@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import "firebaseui/dist/firebaseui.css";
-import { CheckUserDB } from "../account/UserDB";
 
 const StyledFirebaseAuth = ({
     uiConfig,
@@ -42,14 +41,9 @@ const StyledFirebaseAuth = ({
         // @ts-ignore
         firebaseUiWidget.start(elementRef.current, uiConfig);
 
-        return async () => {
+        return () => {
             unregisterAuthObserver();
-            try {
-                await CheckUserDB();
-                firebaseUiWidget.reset();
-            } catch (error) {
-                console.log("Error");
-            }
+            firebaseUiWidget.reset();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [firebaseui, uiConfig]);

@@ -1,7 +1,10 @@
 import React from "react";
 import FavouriteButton from "../bookmark/FavouriteButton";
+import { getAuth } from "firebase/auth";
 
 function MarkerDetails({ selected }) {
+    const auth = getAuth();
+    const user = auth.currentUser;
     if (!selected) {
         return (
             <div id="SelectedMarkerDetails">
@@ -13,7 +16,7 @@ function MarkerDetails({ selected }) {
     return (
         <div>
             <p>
-                <FavouriteButton selected={selected} />
+                <FavouriteButton selectedRestaurant={selected} />
             </p>
             <h3>{selected.name}</h3>
             <h3>Filling Factor: {selected.fillingFactor}</h3>

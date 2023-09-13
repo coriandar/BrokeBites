@@ -6,6 +6,9 @@ import {
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
+import { CheckUserDB } from "./account/UserDB";
+import { auth } from "./firebase/FirebaseApp";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Dashboard() {
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
@@ -26,6 +29,8 @@ export default function Dashboard() {
 
         fetchData();
     }, []);
+
+    //const [user, loading] = useAuthState(auth);
 
     return (
         <div className="flex h-full">
@@ -50,6 +55,7 @@ export default function Dashboard() {
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>
+            {/*{user ? <CheckUserDB /> : <p>No user logged in</p>}*/}
         </div>
     );
 }
