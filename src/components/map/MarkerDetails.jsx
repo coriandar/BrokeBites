@@ -1,6 +1,10 @@
 import React from "react";
 
 function MarkerDetails({ selected }) {
+    function handleMenuOpen() {
+        console.log("Open");
+    }
+
     if (!selected) {
         return (
             <div id="SelectedMarkerDetails">
@@ -12,6 +16,11 @@ function MarkerDetails({ selected }) {
     return (
         <div id="SelectedMarkerDetails">
             <h3 className="font-bold">{selected.name}</h3>
+
+            <button className="font-light text-sm" onClick={handleMenuOpen}>
+                Menu
+            </button>
+
             <h3>Filling Factor: {selected.fillingFactor}</h3>
             <h3>Price rating: {selected.priceRating}</h3>
 
