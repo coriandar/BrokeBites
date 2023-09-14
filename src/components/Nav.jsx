@@ -33,7 +33,7 @@ function Nav() {
                     </Link>
                 </li>
                 <li className="p-2 cursor-pointer">
-                    <Link href="/">BrokeBites</Link>
+                    <Link href="/">Home</Link>
                 </li>
                 <li className="p-2 cursor-pointer">
                     <Link href="/about">About</Link>
