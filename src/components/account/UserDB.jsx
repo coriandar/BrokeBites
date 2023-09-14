@@ -22,7 +22,8 @@ export async function CheckUserDB() {
                 await setDoc(userRef, {
                     displayName: user.displayName,
                     email: user.email,
-                    favorite: [], // Initialize with an empty array
+                    favourite: [], // Initialise favourite, and toVisit with empty array
+                    toVisit: [],
                 });
                 console.log("User added to userDB successfully.");
             }

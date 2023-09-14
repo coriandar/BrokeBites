@@ -1,6 +1,7 @@
 import React from "react";
-import FavouriteButton from "../bookmark/FavouriteButton";
+import FavouriteButton from "../savedBites/FavouriteButton";
 import { getAuth } from "firebase/auth";
+import ToVisitButton from "../savedBites/ToVisitButton";
 
 function MarkerDetails({ selected }) {
     const auth = getAuth();
@@ -15,9 +16,11 @@ function MarkerDetails({ selected }) {
 
     return (
         <div>
+            {console.log(selected.id)}
             <p>
-                <FavouriteButton selectedRestaurant={selected} />
+                {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
             </p>
+            <p>{user ? <ToVisitButton selectedRestaurant={selected} /> : ""}</p>
             <h3>{selected.name}</h3>
             <h3>Filling Factor: {selected.fillingFactor}</h3>
             <h3>Price rating: {selected.priceRating}</h3>

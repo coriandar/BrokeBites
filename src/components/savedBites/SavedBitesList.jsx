@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import FavouriteMap from "./FavouriteMap";
+import BookmarkMap from "./SavedBitesMap";
 
-const FavouriteList = () => {
+const BookmarkList = ({ listType }) => {
     const firestore = getFirestore();
     const auth = getAuth();
     const currentUserId = auth.currentUser?.uid;
@@ -12,6 +12,9 @@ const FavouriteList = () => {
 
     useEffect(() => {
         if (currentUserId) {
+            const listName = listType === "Favourite" ? "favourite" : "toVisit"; // Determine which list to fetch
+            console.log(listType);
+
             // Create a reference to the user's document in Firestore
             const userDocRef = doc(firestore, "userDB", currentUserId);
 
@@ -20,10 +23,10 @@ const FavouriteList = () => {
                 .then((userDocSnapshot) => {
                     if (userDocSnapshot.exists()) {
                         const userData = userDocSnapshot.data();
-                        const favouriteRestaurantIds = userData.favourite || [];
+                        const listRestaurantIds = userData[listName] || [];
 
                         // Create an array to store restaurant data
-                        const restaurantPromises = favouriteRestaurantIds.map(
+                        const restaurantPromises = listRestaurantIds.map(
                             (restaurantId) => {
                                 // Create a reference to the restaurant document in Firestore
                                 const restaurantDocRef = doc(
@@ -69,19 +72,16 @@ const FavouriteList = () => {
                     console.error("Error fetching user data:", error);
                 });
         }
-    }, [currentUserId]);
+    }, [currentUserId, listType]);
 
     return (
         <div>
-            <h2>Your Favourites</h2>
+            <h2>Your {listType}s</h2>
             <ul>
-                {/*{restaurantData.map((restaurant, index) => (
-                    <li key={index}>{restaurant.name}</li>
-                ))}*/}
-                <FavouriteMap restaurantData={restaurantData} />
+                <BookmarkMap restaurantData={restaurantData} />
             </ul>
         </div>
     );
 };
 
-export default FavouriteList;
+export default BookmarkList;

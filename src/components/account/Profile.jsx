@@ -19,9 +19,9 @@ function Profile() {
             <div>
                 <div className="p-4">Profile Page</div>
                 <li className="p-2 cursor-pointer">
-                    <Link href="/favourites">
+                    <Link href="/savedBites">
                         <button className="bg-slate-200 px-4 py-1 rounded-md justify-end">
-                            Favourites
+                            Saved Bites
                         </button>
                     </Link>
                 </li>

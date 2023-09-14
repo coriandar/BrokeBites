@@ -7,7 +7,8 @@ import InitMap from "../map/Map";
 import InitList from "../restaurant/RestaurantList";
 import MarkerDetails from "../map/MarkerDetails";
 
-export default function FavouriteMap({ restaurantData }) {
+// Used Jamie C's Dashboard code
+export default function BookmarkMap({ restaurantData }) {
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
     const [restaurantList, setRestaurantList] = useState([]);
     const [restaurantSelected, setRestaurantSelected] = useState(null);
@@ -16,6 +17,8 @@ export default function FavouriteMap({ restaurantData }) {
         lat: -36.8537761039407,
         lng: 174.7658246985396,
     });
+
+    console.log("restaurantData in FavouriteList:", restaurantData);
 
     return (
         <div className="flex h-full">
@@ -26,11 +29,11 @@ export default function FavouriteMap({ restaurantData }) {
                     setCenter={setCenter}
                     setRestaurantList={setRestaurantList}
                     getFilteredRestaurants={getFilteredRestaurants}
-                    restaurantMasterList={restaurantMasterList}
+                    restaurantMasterList={restaurantData}
                 />
             </div>
             <div className="bg-slate-300 w-2/3 relative">
-                <div style={{ height: "500px", width: "100%" }}>
+                <div style={{ height: "700px", width: "100%" }}>
                     <InitMap
                         restaurantList={restaurantData}
                         setRestaurantSelected={setRestaurantSelected}

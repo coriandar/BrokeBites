@@ -13,27 +13,32 @@ function FavouriteButton({ selectedRestaurant }) {
     const firestore = getFirestore();
     const auth = getAuth();
     const currentUserId = auth.currentUser?.uid;
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [isFavourite, setIsFavourite] = useState(false);
 
-    // Update isFavorite when selectedRestaurant changes
+    console.log(selectedRestaurant.id);
+
+    // Update isFavourite when selectedRestaurant changes
     useEffect(() => {
         if (currentUserId && selectedRestaurant) {
+            console.log(isFavourite);
             const userDocRef = doc(firestore, "userDB", currentUserId);
 
             getDoc(userDocRef).then((docSnapshot) => {
                 if (docSnapshot.exists()) {
                     const data = docSnapshot.data();
-                    const favorites = data?.favourite || [];
+                    const favourites = data?.favourite || [];
 
-                    // Check if the selectedRestaurant ID exists in the favorites array
-                    const isCurrentlyFavorite = favorites.includes(
+                    // Check if the selectedRestaurant ID exists in the favourite array
+                    const isCurrentlyFavourite = favourites.includes(
                         selectedRestaurant.id
                     );
 
-                    setIsFavorite(isCurrentlyFavorite);
+                    setIsFavourite(isCurrentlyFavourite);
+                    console.log("isCurrentlyFavourite: ", isCurrentlyFavourite);
                 }
             });
         }
+        console.log(isFavourite);
     }, [currentUserId, selectedRestaurant]);
 
     const addFavourite = async () => {
@@ -48,7 +53,8 @@ function FavouriteButton({ selectedRestaurant }) {
             );
 
             console.log(selectedRestaurant, " added to favourite");
-            setIsFavorite(true);
+            setIsFavourite(true);
+            console.log(isFavourite);
         } catch (error) {
             console.error("Error adding to favorites:", error);
             // Handle the error as needed
@@ -67,7 +73,8 @@ function FavouriteButton({ selectedRestaurant }) {
             );
 
             console.log(selectedRestaurant, " removed from favourtie");
-            setIsFavorite(false);
+            setIsFavourite(false);
+            console.log(isFavourite);
         } catch (error) {
             console.error("Error removing from favorites:", error);
             // Handle the error as needed
@@ -75,8 +82,8 @@ function FavouriteButton({ selectedRestaurant }) {
     };
 
     return (
-        <button onClick={isFavorite ? removeFavourite : addFavourite}>
-            {isFavorite ? "Remove" : "Favourite"}
+        <button onClick={isFavourite ? removeFavourite : addFavourite}>
+            {isFavourite ? "Remove" : "Favourite"}
         </button>
     );
 }
