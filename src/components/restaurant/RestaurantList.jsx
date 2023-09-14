@@ -33,6 +33,8 @@ const InitList = ({
         setMapZoom(20);
     };
 
+    //TODO: synchronise map and list selected
+
     return (
         <div>
             <div>
