@@ -1,5 +1,5 @@
 import { getAuth } from "firebase/auth";
-import { Auth } from "../components/Auth";
+import { Auth } from "./Auth";
 
 export default function Account() {
     const auth = getAuth();
