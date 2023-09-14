@@ -19,7 +19,7 @@ export default function Signup() {
         return (
             <div className="flex flex-col items-center h-full">
                 <Image
-                    className="m-8"
+                    className="m-8 w-20%"
                     src="/logoCut.png"
                     alt="App Logo"
                     width={200}
