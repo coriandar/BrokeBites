@@ -4,6 +4,7 @@ import { auth } from "../firebase/FirebaseApp";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Loading from "../loading/Loading";
+import FavouriteList from "../bookmark/FavouriteList";
 
 function Profile() {
     const [user, loading] = useAuthState(auth);
@@ -14,7 +15,12 @@ function Profile() {
         router.replace("/login");
         return null;
     } else if (user) {
-        return <div className="p-4">Profile Page</div>;
+        return (
+            <div>
+                <div className="p-4">Profile Page</div>
+                <FavouriteList />
+            </div>
+        );
     }
 }
 
