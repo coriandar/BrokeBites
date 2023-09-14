@@ -4,7 +4,7 @@ import { auth } from "../firebase/FirebaseApp";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Loading from "../loading/Loading";
-import FavouriteList from "../bookmark/FavouriteList";
+import Link from "next/link";
 
 function Profile() {
     const [user, loading] = useAuthState(auth);
@@ -18,7 +18,13 @@ function Profile() {
         return (
             <div>
                 <div className="p-4">Profile Page</div>
-                <FavouriteList />
+                <li className="p-2 cursor-pointer">
+                    <Link href="/favourites">
+                        <button className="bg-slate-200 px-4 py-1 rounded-md justify-end">
+                            Favourites
+                        </button>
+                    </Link>
+                </li>
             </div>
         );
     }
