@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import FavouriteMap from "./FavouriteMap";
 
 const FavouriteList = () => {
     const firestore = getFirestore();
     const auth = getAuth();
     const currentUserId = auth.currentUser?.uid;
-    const [favourites, setFavourites] = useState([]);
     const [restaurantData, setRestaurantData] = useState([]);
 
     useEffect(() => {
@@ -75,9 +75,10 @@ const FavouriteList = () => {
         <div>
             <h2>Your Favourites</h2>
             <ul>
-                {restaurantData.map((restaurant, index) => (
+                {/*{restaurantData.map((restaurant, index) => (
                     <li key={index}>{restaurant.name}</li>
-                ))}
+                ))}*/}
+                <FavouriteMap restaurantData={restaurantData} />
             </ul>
         </div>
     );
