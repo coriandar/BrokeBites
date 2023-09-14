@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import BookmarkMap from "./SavedBitesMap";
 
-const BookmarkList = ({ listType }) => {
+const SavedBitesList = ({ listType }) => {
     const firestore = getFirestore();
     const auth = getAuth();
     const currentUserId = auth.currentUser?.uid;
@@ -84,4 +84,4 @@ const BookmarkList = ({ listType }) => {
     );
 };
 
-export default BookmarkList;
+export default SavedBitesList;

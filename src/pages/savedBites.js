@@ -1,6 +1,6 @@
-import ListContainer from "@/components/savedBites/ListContainer";
+import SavedBitesListContainer from "@/components/savedBites/SavedBitesListContainer";
 import React from "react";
 
 export default function savedBites() {
-    return <ListContainer />;
+    return <SavedBitesListContainer />;
 }

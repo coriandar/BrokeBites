@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import BookmarkList from "./SavedBitesList";
+import SavedBitesList from "./SavedBitesList";
 
-function ListContainer() {
+function SavedBitesListContainer() {
     const [activeTab, setActiveTab] = useState("Favourite"); // Default to "Favourite"
 
     return (
@@ -24,9 +24,9 @@ function ListContainer() {
                     To Visit
                 </li>
             </ul>
-            {<BookmarkList listType={activeTab} />}
+            {<SavedBitesList listType={activeTab} />}
         </div>
     );
 }
 
-export default ListContainer;
+export default SavedBitesListContainer;
