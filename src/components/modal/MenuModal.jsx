@@ -41,7 +41,12 @@ export default function RestaurantModal({ selectedRestaurant }) {
                 Menu
             </button>
 
-            <Modal open={open} onClose={() => setOpen(false)}>
+            <Modal
+                open={open}
+                maxW={"w-25%"}
+                maxH={"h-50%"}
+                onClose={() => setOpen(false)}
+            >
                 <div className="w-full h-full bg-slate-300 rounded-lg">
                     <h3 className="font-bold text-lg">
                         {selectedRestaurant.name} (Menu)

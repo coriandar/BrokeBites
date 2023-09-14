@@ -1,17 +1,18 @@
 import React from "react";
 
-export default function Modal({ open, onClose, children }) {
+export default function Modal({ open, onClose, children, maxW, maxH }) {
     return (
+        // background
         <div
             onClick={onClose}
-            className={`fixed w-screen inset-0 flex justify-center items-center transition-colours ${
-                open ? "visible bg-black/20" : "invisible"
+            className={`fixed w-screen h-screen inset-0 flex justify-center items-center transition-colours ${
+                open ? "visible bg-black/30" : "invisible"
             }`}
         >
             {/* modal */}
             <div
                 onClick={(e) => e.stopPropagation()}
-                className={`w-50% h-50%
+                className={`${maxW} ${maxH} 
             bg-white rounded-xl shadow p-6 transition-all
             ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}
             `}
