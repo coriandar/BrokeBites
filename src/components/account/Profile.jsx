@@ -2,7 +2,7 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/FirebaseApp";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import Avatar from "./Avatar";
 import Loading from "../loading/Loading";
 import UpdatePicture from "./UpdatePicture";
 import UpdateEmail from "./UpdateEmail";
@@ -18,16 +18,9 @@ function Profile() {
         return null;
     } else if (user) {
         return (
-            <div className="w-full h-full flex justify-center items-center">
+            <div className="w-full h-full flex justify-center items-center bg-slate-100">
                 <div className="flex flex-col bg-slate-300 items-center h-90% rounded-xl shadow-2xl">
-                    <Image
-                        className="m-8 w-90% bg-slate-700 rounded-lg"
-                        src="/logoCut.png"
-                        alt="App Logo"
-                        width={200}
-                        height={200}
-                        priority
-                    />
+                    <Avatar />
                     <UpdatePicture />
                     <UpdateEmail />
                     <UpdatePassword />
