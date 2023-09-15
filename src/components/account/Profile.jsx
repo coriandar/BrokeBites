@@ -4,7 +4,6 @@ import { auth } from "../firebase/FirebaseApp";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Loading from "../loading/Loading";
-import Link from "next/link";
 
 function Profile() {
     const [user, loading] = useAuthState(auth);
@@ -15,18 +14,7 @@ function Profile() {
         router.replace("/login");
         return null;
     } else if (user) {
-        return (
-            <div>
-                <div className="p-4">Profile Page</div>
-                <li className="p-2 cursor-pointer">
-                    <Link href="/savedBites">
-                        <button className="bg-slate-200 px-4 py-1 rounded-md justify-end">
-                            Saved Bites
-                        </button>
-                    </Link>
-                </li>
-            </div>
-        );
+        return <div className="p-4">Profile Page</div>;
     }
 }
 
