@@ -82,8 +82,11 @@ function FavouriteButton({ selectedRestaurant }) {
     };
 
     return (
-        <button onClick={isFavourite ? removeFavourite : addFavourite}>
-            {isFavourite ? "Remove" : "Favourite"}
+        <button
+            className="font-light text-sm"
+            onClick={isFavourite ? removeFavourite : addFavourite}
+        >
+            {isFavourite ? "Remove favourite" : "Favourite"}
         </button>
     );
 }

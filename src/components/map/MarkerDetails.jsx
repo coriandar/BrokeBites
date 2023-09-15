@@ -16,11 +16,13 @@ function MarkerDetails({ selected }) {
 
     return (
         <div>
-            {console.log(selected.id)}
-            <p>
+            <div>
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
-            </p>
-            <p>{user ? <ToVisitButton selectedRestaurant={selected} /> : ""}</p>
+            </div>
+            <div>
+                {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}
+            </div>
+
             <h3>{selected.name}</h3>
             <h3>Filling Factor: {selected.fillingFactor}</h3>
             <h3>Price rating: {selected.priceRating}</h3>
