@@ -1,6 +1,6 @@
-import SavedBitesListContainer from "@/components/savedBites/SavedBitesListContainer";
 import React from "react";
+import DashboardSave from "@/components/DashboardSave";
 
 export default function savedBites() {
-    return <SavedBitesListContainer />;
+    return <DashboardSave listType={"favourite"} />;
 }

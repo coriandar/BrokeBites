@@ -1,87 +1,49 @@
-import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import BookmarkMap from "./SavedBitesMap";
 
-const SavedBitesList = ({ listType }) => {
+export const fetchSavedBitesList = async (listType) => {
     const firestore = getFirestore();
     const auth = getAuth();
     const currentUserId = auth.currentUser?.uid;
-    const [restaurantData, setRestaurantData] = useState([]);
 
-    useEffect(() => {
-        if (currentUserId) {
-            const listName = listType === "Favourite" ? "favourite" : "toVisit"; // Determine which list to fetch
-            console.log(listType);
+    const listName = listType === "favourite" ? "favourite" : "toVisit"; // Determine which list to fetch
 
-            // Create a reference to the user's document in Firestore
-            const userDocRef = doc(firestore, "userDB", currentUserId);
+    if (!currentUserId) return [];
 
-            // Fetch the user's data
-            getDoc(userDocRef)
-                .then((userDocSnapshot) => {
-                    if (userDocSnapshot.exists()) {
-                        const userData = userDocSnapshot.data();
-                        const listRestaurantIds = userData[listName] || [];
+    try {
+        const userDocRef = doc(firestore, "userDB", currentUserId);
+        const userDocSnapshot = await getDoc(userDocRef);
 
-                        // Create an array to store restaurant data
-                        const restaurantPromises = listRestaurantIds.map(
-                            (restaurantId) => {
-                                // Create a reference to the restaurant document in Firestore
-                                const restaurantDocRef = doc(
-                                    firestore,
-                                    "restaurantDB",
-                                    restaurantId
-                                );
+        if (userDocSnapshot.exists()) {
+            const userData = userDocSnapshot.data();
+            const listRestaurantIds = userData[listName] || [];
 
-                                // Fetch the restaurant data
-                                return getDoc(restaurantDocRef)
-                                    .then((restaurantDocSnapshot) => {
-                                        if (restaurantDocSnapshot.exists()) {
-                                            return restaurantDocSnapshot.data();
-                                        }
-                                        return null;
-                                    })
-                                    .catch((error) => {
-                                        console.error(
-                                            "Error fetching restaurant data:",
-                                            error
-                                        );
-                                        return null;
-                                    });
-                            }
-                        );
+            const restaurantPromises = listRestaurantIds.map(
+                async (restaurantId) => {
+                    const restaurantDocRef = doc(
+                        firestore,
+                        "restaurantDB",
+                        restaurantId
+                    );
 
-                        // Wait for all restaurant data to be fetched
-                        Promise.all(restaurantPromises)
-                            .then((restaurantDataList) => {
-                                setRestaurantData(
-                                    restaurantDataList.filter(Boolean)
-                                ); // Filter out null values
-                            })
-                            .catch((error) => {
-                                console.error(
-                                    "Error fetching restaurant data:",
-                                    error
-                                );
-                            });
+                    const restaurantDocSnapshot = await getDoc(
+                        restaurantDocRef
+                    );
+
+                    if (restaurantDocSnapshot.exists()) {
+                        return restaurantDocSnapshot.data();
                     }
-                })
-                .catch((error) => {
-                    console.error("Error fetching user data:", error);
-                });
+                    return null;
+                }
+            );
+
+            const restaurantDataList = await Promise.all(restaurantPromises);
+            console.log(`Saved: ${restaurantDataList}`);
+            return restaurantDataList.filter(Boolean);
         }
-    }, [currentUserId, listType]);
-
-    return (
-        <div>
-            <h2>Your {listType}s</h2>
-            <ul>
-                <BookmarkMap restaurantData={restaurantData} />
-            </ul>
-        </div>
-    );
+    } catch (error) {
+        console.error("Error fetching restaurant data:", error);
+    }
+    return [];
 };
-
-export default SavedBitesList;

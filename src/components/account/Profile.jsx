@@ -25,6 +25,13 @@ function Profile() {
                         </button>
                     </Link>
                 </li>
+                <li className="p-2 cursor-pointer">
+                    <Link href="/toVisitBites">
+                        <button className="bg-slate-200 px-4 py-1 rounded-md justify-end">
+                            ToVisit Bites
+                        </button>
+                    </Link>
+                </li>
             </div>
         );
     }
