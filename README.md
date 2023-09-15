@@ -2,7 +2,7 @@
 
 1. Install `Prettier`.
 2. Install `Tailwind CSS IntelliSense`.
-3. `ctrl + shift + p`, "User Settings (JSON).
+3. `ctrl + shift + p`, "User Settings (JSON)".
 4. Replace everything in `settings.json` with:
 5. `git config --global pull.rebase false`
 
