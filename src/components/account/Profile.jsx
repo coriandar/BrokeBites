@@ -7,6 +7,8 @@ import Loading from "../loading/Loading";
 import UpdatePicture from "./UpdatePicture";
 import UpdateEmail from "./UpdateEmail";
 import UpdatePassword from "./UpdatePassword";
+import SubmitFeedback from "./SubmitFeedback";
+import SubmitBug from "./SubmitBug";
 
 function Profile() {
     const [user, loading] = useAuthState(auth);
@@ -24,6 +26,8 @@ function Profile() {
                     <UpdatePicture />
                     <UpdateEmail />
                     <UpdatePassword />
+                    <SubmitFeedback />
+                    <SubmitBug />
                 </div>
             </div>
         );
