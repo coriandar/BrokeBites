@@ -23,7 +23,7 @@ function Nav() {
                 <li className="p-2 cursor-pointer">
                     <Link href="/">
                         <Image
-                            className="m-8"
+                            className="m-8 w-35%"
                             src="/logoCut.png"
                             alt="App Logo"
                             width={50}

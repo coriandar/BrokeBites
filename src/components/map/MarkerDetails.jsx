@@ -2,8 +2,9 @@ import React from "react";
 import FavouriteButton from "../savedBites/FavouriteButton";
 import { getAuth } from "firebase/auth";
 import ToVisitButton from "../savedBites/ToVisitButton";
+import MenuModal from "../modal/MenuModal";
 
-function MarkerDetails({ selected }) {
+export default function MarkerDetails({ selected }) {
     const auth = getAuth();
     const user = auth.currentUser;
     if (!selected) {
@@ -15,7 +16,7 @@ function MarkerDetails({ selected }) {
     }
 
     return (
-        <div>
+        <div id="SelectedMarkerDetails">
             <div>
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
             </div>
@@ -23,25 +24,31 @@ function MarkerDetails({ selected }) {
                 {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}
             </div>
 
-            <h3>{selected.name}</h3>
+            <h3 className="font-bold">{selected.name}</h3>
+
+            <MenuModal selectedRestaurant={selected} />
+
             <h3>Filling Factor: {selected.fillingFactor}</h3>
             <h3>Price rating: {selected.priceRating}</h3>
-            {selected.website ? ( // Check if website is not an empty string
-                <p>
-                    Website:{" "}
+
+            <h3>
+                Phone: {selected.contactNumber ? selected.contactNumber : "n/a"}
+            </h3>
+
+            <h3>
+                Website:{" "}
+                {selected.website ? (
                     <a
                         href={selected.website}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        {selected.website}
+                        Link
                     </a>
-                </p>
-            ) : (
-                "No website for this restaurant"
-            )}
+                ) : (
+                    "n/a"
+                )}
+            </h3>
         </div>
     );
 }
-
-export default MarkerDetails;
