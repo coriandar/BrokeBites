@@ -32,7 +32,9 @@ export default function Dashboard() {
         fetchData();
     }, []);
 
-    //const [user, loading] = useAuthState(auth);
+    const handleDeselect = () => {
+        setRestaurantSelected(null);
+    };
 
     return (
         <div className="flex h-full">
@@ -64,6 +66,17 @@ export default function Dashboard() {
                     restaurantSelected={restaurantSelected}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
+                    {restaurantSelected && (
+                        <div className="relative">
+                            <button
+                                className="w-4 h-4 absolute right-0 top-0 text-xs"
+                                onClick={handleDeselect}
+                            >
+                                ✖
+                            </button>
+                        </div>
+                    )}
+
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>
