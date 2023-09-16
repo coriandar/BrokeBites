@@ -3,6 +3,7 @@ import { auth } from "../firebase/FirebaseApp";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import Link from "next/link";
 import DefaultBtn from "./DefaultBtn";
+import Avatar from "../account/Avatar";
 
 export default function LoggedInBtnSet() {
     const [user] = useAuthState(auth);
@@ -16,6 +17,7 @@ export default function LoggedInBtnSet() {
     return (
         <>
             <ul className="flex items-center">
+                <Avatar maxW={"w-8"} />
                 <li className="p-2 cursor-pointer">
                     <Link href="/">
                         Welcome!{" "}

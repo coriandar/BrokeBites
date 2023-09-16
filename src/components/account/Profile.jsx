@@ -1,6 +1,6 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/FirebaseApp";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 import Avatar from "./Avatar";
 import Loading from "../loading/Loading";
@@ -10,7 +10,7 @@ import UpdatePassword from "./UpdatePassword";
 import SubmitFeedback from "./SubmitFeedback";
 import SubmitBug from "./SubmitBug";
 
-function Profile() {
+export default function Profile() {
     const [user, loading] = useAuthState(auth);
     const router = useRouter();
 
@@ -22,7 +22,7 @@ function Profile() {
         return (
             <div className="w-full h-full flex justify-center items-center bg-slate-100">
                 <div className="flex flex-col bg-slate-300 items-center h-90% rounded-xl shadow-2xl">
-                    <Avatar />
+                    <Avatar maxW={"w-50%"} />
                     <UpdatePicture />
                     <UpdateEmail />
                     <UpdatePassword />
@@ -33,5 +33,3 @@ function Profile() {
         );
     }
 }
-
-export default Profile;

@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, updateProfile } from "firebase/auth";
 import { firebaseConfig } from "@/config/Firebase.config";
 import { getFirestore, getDocs, collection } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const getAllRestaurants = async () => {
     //Try to connect to the DB then brng the data over to the app
@@ -44,8 +45,25 @@ export const getFilteredPriceRating = (items, values) => {
     );
 };
 
+// storage
+// must update rules to: only allow if auth/size/path
+export async function upload(file, currentUser, setLoading, setPhotoURL) {
+    const fileRef = ref(storage, "/avatar/" + currentUser.uid + ".jpg");
+
+    setLoading(true);
+
+    const snapshot = await uploadBytes(fileRef, file); // uploads
+    const newPhotoURL = await getDownloadURL(fileRef); // get link of new photo
+    setPhotoURL(newPhotoURL);
+    updateProfile(currentUser, { photoURL: newPhotoURL }); // update the photo
+
+    setLoading(false);
+    alert("File successfully uploaded...");
+}
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
