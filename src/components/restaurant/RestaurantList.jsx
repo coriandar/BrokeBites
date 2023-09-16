@@ -33,6 +33,14 @@ const InitList = ({
         setMapZoom(20);
     };
 
+    const printPrice = (priceRating) => {
+        let price = "";
+        for (let i = 0; i < priceRating; i++) {
+            price += "$";
+        }
+        return price;
+    };
+
     //TODO: synchronise map and list selected
 
     return (
@@ -46,7 +54,13 @@ const InitList = ({
                     key={restaurant.id}
                     onClick={() => handleListItemClick(restaurant)}
                 >
-                    {restaurant.name}
+                    <div className="flex justify-between">
+                        <p>{restaurant.name}</p>
+                        <p className="font-light text-sm">
+                            {/* [{restaurant.fillingFactor}] */}
+                            {printPrice(restaurant.priceRating)}
+                        </p>
+                    </div>
                 </li>
             ))}
         </ul>
