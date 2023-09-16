@@ -18,7 +18,7 @@ function InitPriceSlider({
     }, [sliderValues, restaurantMasterList, setRestaurantList]);
 
     return (
-        <div className="w-full bg-slate-300 shadow-lg h-10% flex flex-col items-center pl-2 rounded-lg">
+        <div className="w-full bg-slate-300 shadow-lg h-24 flex flex-col items-center pl-2 rounded-lg">
             <h3>Price Rating:</h3>
             <small>
                 Current range: {sliderValues[0]} - {sliderValues[1]}

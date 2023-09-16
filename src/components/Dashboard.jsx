@@ -7,8 +7,7 @@ import {
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
-import InitPriceSlider from "./filter/PriceSlider";
-import SearchBar from "../components/filter/SearchBar";
+import FilterSelector from "./filter/FilterSelector";
 
 export default function Dashboard() {
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
@@ -39,9 +38,8 @@ export default function Dashboard() {
     return (
         <div className="flex h-full">
             <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/5">
-                <SearchBar setQuery={setQuery} />
-
-                <InitPriceSlider
+                <FilterSelector
+                    setQuery={setQuery}
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     getFilteredPriceRating={getFilteredPriceRating}

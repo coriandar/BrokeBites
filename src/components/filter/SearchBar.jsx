@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function searchBar({ setQuery }) {
+export default function SearchBar({ setQuery }) {
     return (
         <div className="w-full bg-slate-300 shadow-lg h-5% flex items-center pl-2 rounded-lg">
             <label>Search:</label>
