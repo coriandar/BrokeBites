@@ -43,7 +43,10 @@ export default function UpdatePicture() {
                 open={open}
                 maxW={"w-50%"}
                 maxH={"h-50%"}
-                onClose={() => setOpen(false)}
+                onClose={() => {
+                    setOpen(false);
+                    window.location.reload();
+                }}
             >
                 <div className="w-full h-full bg-slate-300 rounded-lg flex flex-col justify-between items-center">
                     <h3 className="font-bold text-lg">Update picture</h3>
