@@ -17,8 +17,10 @@ export default function LoggedInBtnSet() {
         <>
             <ul className="flex items-center">
                 <li className="p-2 cursor-pointer">
-                    Welcome!{" "}
-                    <span className="font-bold">{user.displayName}</span>
+                    <Link href="/">
+                        Welcome!{" "}
+                        <span className="font-bold">{user.displayName}</span>
+                    </Link>
                 </li>
             </ul>
             <ul className="flex items-center">
