@@ -29,18 +29,6 @@ export default function Profile() {
                     <UpdatePassword />
                     <SubmitFeedback />
                     <SubmitBug />
-
-                    <Link href="/savedBites">
-                        <button className="bg-slate-200 px-4 py-1 rounded-md justify-end">
-                            Saved Bites
-                        </button>
-                    </Link>
-
-                    <Link href="/toVisitBites">
-                        <button className="bg-slate-200 px-4 py-1 rounded-md justify-end">
-                            ToVisit Bites
-                        </button>
-                    </Link>
                 </div>
             </div>
         );
