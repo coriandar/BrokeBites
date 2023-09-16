@@ -15,6 +15,7 @@ export default function Dashboard() {
     const [restaurantList, setRestaurantList] = useState([]);
     const [restaurantSelected, setRestaurantSelected] = useState(null);
     const [query, setQuery] = useState("");
+    const [activeFilter, setActiveFilter] = useState("search");
 
     const [center, setCenter] = useState({
         lat: -36.8537761039407,
@@ -24,6 +25,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
+            // const restaurants = await getAllRestaurants();
             const restaurants = await fetchSavedBitesList("favourite");
             setRestaurantMasterList(restaurants);
             setRestaurantList(restaurants);
@@ -44,6 +46,8 @@ export default function Dashboard() {
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     getFilteredPriceRating={getFilteredPriceRating}
+                    activeFilter={activeFilter}
+                    setActiveFilter={setActiveFilter}
                 />
 
                 <div className="overflow-y-auto no-scrollbar h-90% m-4">
@@ -56,6 +60,7 @@ export default function Dashboard() {
                         restaurantMasterList={restaurantMasterList}
                         setMapZoom={setMapZoom}
                         query={query}
+                        activeFilter={activeFilter}
                     />
                 </div>
             </div>

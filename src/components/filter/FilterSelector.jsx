@@ -7,9 +7,9 @@ export default function FilterSelector({
     restaurantMasterList,
     setRestaurantList,
     getFilteredPriceRating,
+    activeFilter,
+    setActiveFilter,
 }) {
-    const [activeFilter, setActiveFilter] = useState("search");
-
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
     };
@@ -53,12 +53,20 @@ export default function FilterSelector({
                         Price Range
                     </button>
                     <button
-                        className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
+                        className={`text-xs px-4 py-1 ${changeColour(
                             "sortPrice"
                         )}`}
                         onClick={() => handleClick("sortPrice")}
                     >
                         Sort by Price
+                    </button>
+                    <button
+                        className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
+                            "fillingFactor"
+                        )}`}
+                        onClick={() => handleClick("fillingFactor")}
+                    >
+                        Filling Factor
                     </button>
                 </li>
             </ul>
