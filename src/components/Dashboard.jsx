@@ -8,11 +8,13 @@ import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import InitPriceSlider from "./restaurant/PriceSlider";
+import SearchBar from "./SearchBar";
 
 export default function Dashboard() {
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
     const [restaurantList, setRestaurantList] = useState([]);
     const [restaurantSelected, setRestaurantSelected] = useState(null);
+    const [query, setQuery] = useState("");
 
     const [center, setCenter] = useState({
         lat: -36.8537761039407,
@@ -34,18 +36,26 @@ export default function Dashboard() {
 
     return (
         <div className="flex h-full">
-            <div className="bg-slate-100 m-4 flex justify-center overflow-y-auto no-scrollbar w-1/3">
-                <InitList
-                    restaurantList={restaurantList}
-                    setRestaurantSelected={setRestaurantSelected}
-                    setCenter={setCenter}
-                    setRestaurantList={setRestaurantList}
-                    getFilteredRestaurants={getFilteredRestaurants}
-                    restaurantMasterList={restaurantMasterList}
-                    setMapZoom={setMapZoom}
-                />
+            <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/5">
+                <div className="w-full bg-slate-500 h-10% flex items-center pl-2">
+                    <SearchBar setQuery={setQuery} />
+                </div>
+
+                <div className="overflow-y-auto no-scrollbar h-90%">
+                    <InitList
+                        restaurantList={restaurantList}
+                        setRestaurantSelected={setRestaurantSelected}
+                        setCenter={setCenter}
+                        setRestaurantList={setRestaurantList}
+                        getFilteredRestaurants={getFilteredRestaurants}
+                        restaurantMasterList={restaurantMasterList}
+                        setMapZoom={setMapZoom}
+                        query={query}
+                    />
+                </div>
             </div>
-            <div className="bg-slate-300 w-2/3 relative">
+
+            <div className="bg-slate-300 w-4/5 relative">
                 <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
@@ -55,7 +65,7 @@ export default function Dashboard() {
                     setMapZoom={setMapZoom}
                     restaurantSelected={restaurantSelected}
                 />
-                <div className="bg-slate-300 w-2/3 bg-opacity-90 absolute bottom-0 left-0">
+                <div className="bg-slate-300 w-4/5 bg-opacity-90 absolute bottom-0 left-0">
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>
