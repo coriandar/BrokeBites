@@ -9,6 +9,7 @@ const InitList = ({
     restaurantMasterList,
     setMapZoom,
     query,
+    activeFilter,
 }) => {
     const [active, setActive] = useState(null);
 
@@ -57,8 +58,9 @@ const InitList = ({
                     <div className="flex justify-between">
                         <p>{restaurant.name}</p>
                         <p className="font-light text-sm">
-                            {/* [{restaurant.fillingFactor}] */}
-                            {printPrice(restaurant.priceRating)}
+                            {activeFilter.includes("filling")
+                                ? `[${restaurant.fillingFactor}]`
+                                : printPrice(restaurant.priceRating)}
                         </p>
                     </div>
                 </li>
