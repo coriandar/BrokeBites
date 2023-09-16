@@ -7,8 +7,8 @@ import {
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
-import InitPriceSlider from "./restaurant/PriceSlider";
-import SearchBar from "./SearchBar";
+import InitPriceSlider from "./filter/PriceSlider";
+import SearchBar from "../components/filter/SearchBar";
 
 export default function Dashboard() {
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
@@ -40,6 +40,12 @@ export default function Dashboard() {
         <div className="flex h-full">
             <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/5">
                 <SearchBar setQuery={setQuery} />
+
+                <InitPriceSlider
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    getFilteredPriceRating={getFilteredPriceRating}
+                />
 
                 <div className="overflow-y-auto no-scrollbar h-90% m-4">
                     <InitList
@@ -80,11 +86,6 @@ export default function Dashboard() {
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>
-            <InitPriceSlider
-                restaurantMasterList={restaurantMasterList}
-                setRestaurantList={setRestaurantList}
-                getFilteredPriceRating={getFilteredPriceRating}
-            />
         </div>
     );
 }

@@ -6,7 +6,7 @@ import {
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
-import InitPriceSlider from "./restaurant/PriceSlider";
+import InitPriceSlider from "./filter/PriceSlider";
 import { fetchSavedBitesList } from "./savedBites/SavedBitesList";
 
 export default function Dashboard() {
