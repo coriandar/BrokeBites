@@ -76,7 +76,7 @@ function ToVisitButton({ selectedRestaurant }) {
 
     return (
         <button
-            className="font-light text-sm"
+            className="font-light text-sm bg-slate-200 rounded-md p-1 shadow-lg m-1"
             onClick={isToVisit ? removeToVisit : addToVisit}
         >
             {isToVisit ? "Remove To-Visit" : "To-Visit"}

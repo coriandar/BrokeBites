@@ -17,7 +17,7 @@ export default function MapSelectSet() {
             <li className="p-2 cursor-pointer">
                 <Link href="/">
                     <button
-                        className={`px-4 py-1 rounded-md ${changeColour(
+                        className={`px-4 py-1 rounded-s-md ${changeColour(
                             "All"
                         )}`}
                         onClick={() => handleClick("All")}
@@ -27,9 +27,7 @@ export default function MapSelectSet() {
                 </Link>
                 <Link href="/savedBites">
                     <button
-                        className={`px-4 py-1 rounded-md ${changeColour(
-                            "Saved"
-                        )}`}
+                        className={`px-4 py-1 ${changeColour("Saved")}`}
                         onClick={() => handleClick("Saved")}
                     >
                         Saved Bites
@@ -37,7 +35,7 @@ export default function MapSelectSet() {
                 </Link>
                 <Link href="/toVisitBites">
                     <button
-                        className={`px-4 py-1 rounded-md ${changeColour(
+                        className={`px-4 py-1 rounded-e-md ${changeColour(
                             "Visit"
                         )}`}
                         onClick={() => handleClick("Visit")}

@@ -37,11 +37,9 @@ export default function Dashboard() {
     return (
         <div className="flex h-full">
             <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/5">
-                <div className="w-full bg-slate-500 h-10% flex items-center pl-2">
-                    <SearchBar setQuery={setQuery} />
-                </div>
+                <SearchBar setQuery={setQuery} />
 
-                <div className="overflow-y-auto no-scrollbar h-90%">
+                <div className="overflow-y-auto no-scrollbar h-90% m-4">
                     <InitList
                         restaurantList={restaurantList}
                         setRestaurantSelected={setRestaurantSelected}
@@ -65,7 +63,7 @@ export default function Dashboard() {
                     setMapZoom={setMapZoom}
                     restaurantSelected={restaurantSelected}
                 />
-                <div className="bg-slate-300 w-4/5 bg-opacity-90 absolute bottom-0 left-0">
+                <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>

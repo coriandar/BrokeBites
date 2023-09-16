@@ -18,16 +18,12 @@ export default function MarkerDetails({ selected }) {
 
     return (
         <div id="SelectedMarkerDetails">
-            <div>
+            <h3 className="font-bold">{selected.name}</h3>
+            <div className="flex -ml-1">
+                <MenuModal selectedRestaurant={selected} />
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
-            </div>
-            <div>
                 {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}
             </div>
-
-            <h3 className="font-bold">{selected.name}</h3>
-
-            <MenuModal selectedRestaurant={selected} />
 
             <h3>Filling Factor: {selected.fillingFactor}</h3>
             <h3>Price rating: {selected.priceRating}</h3>
