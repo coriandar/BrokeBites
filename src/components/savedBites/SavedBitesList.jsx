@@ -2,8 +2,39 @@ import { doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-export const fetchSavedBitesList = async (listType) => {
+const fetchUserSavedList = async (currentUserId, listName) => {
     const firestore = getFirestore();
+
+    // Create a reference to the user's document in Firestore
+    const userDocRef = doc(firestore, "userDB", currentUserId);
+
+    // Fetch the user's data
+    const userDocSnapshot = await getDoc(userDocRef);
+
+    if (!userDocSnapshot.exists()) {
+        throw new Error("User document doesn't exist.");
+    }
+
+    const userData = userDocSnapshot.data();
+
+    return userData[listName] || [];
+};
+
+const fetchRestaurantData = async (restaurantId) => {
+    const firestore = getFirestore();
+
+    // Create a reference to the restaurant document in Firestore
+    const restaurantDocRef = doc(firestore, "restaurantDB", restaurantId);
+
+    // Fetch the restaurant data
+    const restaurantDocSnapshot = await getDoc(restaurantDocRef);
+
+    if (!restaurantDocSnapshot.exists()) return null;
+
+    return restaurantDocSnapshot.data();
+};
+
+export const fetchSavedBitesList = async (listType) => {
     const auth = getAuth();
     const currentUserId = auth.currentUser?.uid;
 
@@ -12,47 +43,21 @@ export const fetchSavedBitesList = async (listType) => {
     if (!currentUserId) return [];
 
     try {
-        // Create a reference to the user's document in Firestore
-        const userDocRef = doc(firestore, "userDB", currentUserId);
+        const listRestaurantIds = await fetchUserSavedList(
+            currentUserId,
+            listName
+        );
 
-        // Fetch the user's data
-        const userDocSnapshot = await getDoc(userDocRef);
+        // Create an array to store restaurant data
+        const restaurantPromises = listRestaurantIds.map(fetchRestaurantData);
 
-        if (userDocSnapshot.exists()) {
-            const userData = userDocSnapshot.data();
-            const listRestaurantIds = userData[listName] || [];
+        // Wait for all restaurant data to be fetched
+        const restaurantDataList = await Promise.all(restaurantPromises);
 
-            // Create an array to store restaurant data
-            const restaurantPromises = listRestaurantIds.map(
-                async (restaurantId) => {
-                    // Create a reference to the restaurant document in Firestore
-                    const restaurantDocRef = doc(
-                        firestore,
-                        "restaurantDB",
-                        restaurantId
-                    );
-
-                    // Fetch the restaurant data
-                    const restaurantDocSnapshot = await getDoc(
-                        restaurantDocRef
-                    );
-
-                    if (restaurantDocSnapshot.exists()) {
-                        return restaurantDocSnapshot.data();
-                    }
-                    return null;
-                }
-            );
-
-            // Wait for all restaurant data to be fetched
-            const restaurantDataList = await Promise.all(restaurantPromises);
-            console.log(`Saved: ${restaurantDataList}`);
-
-            // Filter out null values
-            return restaurantDataList.filter(Boolean);
-        }
+        // Filter out null values
+        return restaurantDataList.filter(Boolean);
     } catch (error) {
         console.error("Error fetching restaurant data:", error);
+        throw error;
     }
-    return [];
 };
