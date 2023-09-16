@@ -13,8 +13,6 @@ const StyledFirebaseAuth = ({
     const elementRef = useRef(null);
 
     useEffect(() => {
-        // Firebase UI only works on the Client. So we're loading the package only after
-        // the component has mounted, so that this works when doing server-side rendering.
         setFirebaseui(require("firebaseui"));
     }, []);
 

@@ -8,6 +8,7 @@ import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import InitPriceSlider from "./restaurant/PriceSlider";
+import { fetchSavedBitesList } from "./savedBites/SavedBitesList";
 
 export default function Dashboard() {
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
@@ -22,15 +23,13 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const restaurants = await getAllRestaurants();
+            const restaurants = await fetchSavedBitesList("favourite");
             setRestaurantMasterList(restaurants);
             setRestaurantList(restaurants);
         };
 
         fetchData();
     }, []);
-
-    //const [user, loading] = useAuthState(auth);
 
     return (
         <div className="flex h-full">
@@ -41,7 +40,7 @@ export default function Dashboard() {
                     setCenter={setCenter}
                     setRestaurantList={setRestaurantList}
                     getFilteredRestaurants={getFilteredRestaurants}
-                    restaurantMasterList={restaurantMasterList}
+                    restaurantMasterList={restaurantList}
                     setMapZoom={setMapZoom}
                 />
             </div>
