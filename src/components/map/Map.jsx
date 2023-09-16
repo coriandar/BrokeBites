@@ -79,7 +79,7 @@ const InitMap = ({
                     icon={
                         restaurantSelected &&
                         restaurantSelected.id === restaurant.id
-                            ? "http://maps.google.com/mapfiles/ms/icons/pink-dot.png" // Use a different icon for the selected marker
+                            ? "/pink-dot-bite.png" // Use a different icon for the selected marker
                             : "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Use the default marker icon for others
                     }
                     onClick={() => handleMarkerClick(restaurant)}
