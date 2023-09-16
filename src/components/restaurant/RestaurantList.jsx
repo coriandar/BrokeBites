@@ -25,7 +25,7 @@ const InitList = ({
     const handleListItemClick = (restaurant) => {
         console.log(restaurant);
         setRestaurantSelected(restaurant);
-        setActive(restaurant.id);
+        // setActive(restaurant.id);
         setCenter({
             lat: restaurant.latitude,
             lng: restaurant.longitude,
