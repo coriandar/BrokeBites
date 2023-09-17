@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
     getAllRestaurants,
-    getFilteredRestaurants,
+    getFilteredSearch,
     getFilteredPriceRating,
     getFilteredStarRating,
 } from "./firebase/FirebaseApp";
@@ -41,11 +41,13 @@ export default function Dashboard() {
         <div className="flex h-full">
             <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
                 <FilterSelector
-                    setQuery={setQuery}
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     activeFilter={activeFilter}
                     setActiveFilter={setActiveFilter}
+                    query={query}
+                    setQuery={setQuery}
+                    getFilteredSearch={getFilteredSearch}
                     getFilteredPriceRating={getFilteredPriceRating}
                     getFilteredStarRating={getFilteredStarRating}
                 />
@@ -54,12 +56,9 @@ export default function Dashboard() {
                     <InitList
                         restaurantList={restaurantList}
                         setRestaurantSelected={setRestaurantSelected}
+                        restaurantSelected={restaurantSelected}
                         setCenter={setCenter}
-                        setRestaurantList={setRestaurantList}
-                        getFilteredRestaurants={getFilteredRestaurants}
-                        restaurantMasterList={restaurantMasterList}
                         setMapZoom={setMapZoom}
-                        query={query}
                         activeFilter={activeFilter}
                     />
                 </div>
@@ -69,11 +68,11 @@ export default function Dashboard() {
                 <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
+                    restaurantSelected={restaurantSelected}
                     setCenter={setCenter}
                     center={center}
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
-                    restaurantSelected={restaurantSelected}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     {restaurantSelected && (
@@ -86,7 +85,6 @@ export default function Dashboard() {
                             </button>
                         </div>
                     )}
-
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>

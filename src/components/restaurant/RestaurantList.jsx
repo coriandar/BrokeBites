@@ -1,28 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const InitList = ({
     restaurantList,
     setRestaurantSelected,
     setCenter,
-    getFilteredRestaurants,
-    setRestaurantList,
-    restaurantMasterList,
     setMapZoom,
-    query,
     activeFilter,
+    restaurantSelected,
 }) => {
-    const [active, setActive] = useState(null);
-
-    useEffect(() => {
-        // Filter the restaurant list when the query or restaurantMasterList changes
-        setRestaurantList(getFilteredRestaurants(restaurantMasterList, query));
-    }, [
-        query,
-        restaurantMasterList,
-        setRestaurantList,
-        getFilteredRestaurants,
-    ]);
-
     const handleListItemClick = (restaurant) => {
         console.log(restaurant);
         setRestaurantSelected(restaurant);
@@ -70,6 +55,12 @@ const InitList = ({
                 >
                     <div className="flex justify-between bg-white m-2 p-4 rounded-lg shadow-lg hover:bg-slate-200 active:bg-slate-400">
                         <p>{restaurant.name}</p>
+
+                        {/* {restaurantSelected &&
+                        restaurantSelected.id === restaurant.id
+                            ? "SELECTED"
+                            : ""} */}
+
                         <p className="font-light text-sm">
                             {showSymbol(restaurant)}
                         </p>
