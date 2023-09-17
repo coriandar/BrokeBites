@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
-import InitPriceSlider from "./PriceSlider";
+import FilterSlider from "./FilterSlider";
 
 export default function FilterSelector({
-    setQuery,
-    restaurantMasterList,
-    setRestaurantList,
-    getFilteredPriceRating,
     activeFilter,
     setActiveFilter,
+    restaurantMasterList, // master list
+    setRestaurantList, // setRestaurant function
+    query,
+    setQuery,
+    getFilteredSearch,
+    getFilteredPriceRating,
+    getFilteredStarRating,
 }) {
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
@@ -20,18 +23,35 @@ export default function FilterSelector({
 
     const changeFilter = (activeFilter) => {
         if (activeFilter === "search") {
-            return <SearchBar setQuery={setQuery} />;
-        } else if (activeFilter === "priceRange") {
             return (
-                <InitPriceSlider
+                <SearchBar
+                    query={query}
+                    setQuery={setQuery}
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredPriceRating={getFilteredPriceRating}
+                    getFilteredList={getFilteredSearch} // search function
+                />
+            );
+        } else if (activeFilter === "priceRange") {
+            return (
+                <FilterSlider
+                    sliderLabel="Price Range:"
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    getFilteredList={getFilteredPriceRating} // price filter function
                 />
             );
         } else if (activeFilter === "sortPrice") {
         } else if (activeFilter === "fillingFactor") {
-        } else if (activeFilter === "review") {
+        } else if (activeFilter === "starRating") {
+            return (
+                <FilterSlider
+                    sliderLabel="Star Range:"
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    getFilteredList={getFilteredStarRating} // star filter function
+                />
+            );
         }
     };
 
@@ -73,11 +93,11 @@ export default function FilterSelector({
                     </button>
                     <button
                         className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
-                            "review"
+                            "starRating"
                         )}`}
-                        onClick={() => handleClick("review")}
+                        onClick={() => handleClick("starRating")}
                     >
-                        Review
+                        Stars
                     </button>
                 </li>
             </ul>
