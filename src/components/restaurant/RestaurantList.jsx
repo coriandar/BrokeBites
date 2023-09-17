@@ -53,14 +53,14 @@ const InitList = ({
                     key={restaurant.id}
                     onClick={() => handleListItemClick(restaurant)}
                 >
-                    <div className="flex justify-between bg-white m-2 p-4 rounded-lg shadow-lg hover:bg-slate-200 active:bg-slate-400">
+                    <div
+                        className={`flex justify-between m-2 p-4 rounded-lg shadow-lg hover:bg-slate-200 ${
+                            restaurantSelected?.id === restaurant.id
+                                ? "bg-slate-300 font-bold"
+                                : "bg-white"
+                        }`}
+                    >
                         <p>{restaurant.name}</p>
-
-                        {/* {restaurantSelected &&
-                        restaurantSelected.id === restaurant.id
-                            ? "SELECTED"
-                            : ""} */}
-
                         <p className="font-light text-sm">
                             {showSymbol(restaurant)}
                         </p>
