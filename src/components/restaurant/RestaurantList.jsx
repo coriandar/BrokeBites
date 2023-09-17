@@ -39,6 +39,8 @@ const InitList = ({
             return restaurant.fillingFactor;
         } else if (activeFilter.includes("star")) {
             return printStar(restaurant.starRating);
+        } else if (activeFilter.includes("cuisine")) {
+            return restaurant?.cuisine;
         } else {
             return printPrice(restaurant.priceRating);
         }

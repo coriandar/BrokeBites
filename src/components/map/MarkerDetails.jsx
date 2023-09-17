@@ -30,6 +30,7 @@ export default function MarkerDetails({ selected }) {
             <h3>Filling Factor: {selected.fillingFactor}</h3>
             <h3>Price rating: {selected.priceRating}</h3>
             <h3>Star rating: {selected.starRating}</h3>
+            <h3>Cusine: {selected.cuisine}</h3>
 
             <h3>
                 Phone: {selected.contactNumber ? selected.contactNumber : "n/a"}
