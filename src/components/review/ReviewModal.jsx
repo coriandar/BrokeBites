@@ -33,7 +33,6 @@ export default function ReviewModal({ selectedRestaurant }) {
                     return {
                         ...data,
                         id: doc.id,
-                        userName: userData.displayName,
                     };
                 })
             );
@@ -51,12 +50,21 @@ export default function ReviewModal({ selectedRestaurant }) {
 
     const formatTimestamp = (timestamp) => {
         const date = timestamp.toDate();
-        return date.toLocaleString();
+        const options = {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false, // sets 24hr
+        };
+        return date.toLocaleString(undefined, options);
     };
 
     const handleReviewSubmit = async (reviewText) => {
         const auth = getAuth();
         const currentUserId = auth.currentUser.uid;
+        const currentDisplayName = auth.currentUser.displayName;
 
         try {
             const reviewsCollectionRef = collection(
@@ -68,6 +76,7 @@ export default function ReviewModal({ selectedRestaurant }) {
 
             await addDoc(reviewsCollectionRef, {
                 userID: currentUserId,
+                userName: currentDisplayName,
                 review: reviewText,
                 timestamp: serverTimestamp(),
             });
@@ -75,6 +84,7 @@ export default function ReviewModal({ selectedRestaurant }) {
             console.log("Review added to db");
             reviewInputRef.current.value = ""; // Clear the input field
             loadReview();
+            alert("Review submitted");
         } catch (error) {
             console.error("Error adding review:", error);
         }
@@ -95,57 +105,62 @@ export default function ReviewModal({ selectedRestaurant }) {
                 maxH={"h-60%"}
                 onClose={() => setOpen(false)}
             >
-                <div
-                    className="w-full h-full bg-slate-300 rounded-lg"
-                    style={{ padding: "10px 10px" }}
-                >
+                <div className="w-full h-full bg-slate-300 rounded-lg flex flex-col p-2">
                     <h3 className="font-bold text-lg">
                         {selectedRestaurant.name}'s Reviews
                     </h3>
-                    {reviewsData.length > 0 ? (
-                        <div id="review">
-                            {reviewsData.map((review) => (
-                                <ul
-                                    className="flex justify-between"
-                                    key={review.id}
-                                >
-                                    <li>
-                                        <p>
-                                            {review.userName}{" "}
-                                            {formatTimestamp(review.timestamp)}
-                                        </p>
-                                        <p>{review.review}</p>
-                                    </li>
-                                </ul>
-                            ))}
-                        </div>
-                    ) : (
-                        <div>No reviews</div>
-                    )}
-                    <br />
-                    <p>Write a Review</p>
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            const reviewText = reviewInputRef.current.value;
-                            if (reviewText) {
-                                handleReviewSubmit(reviewText);
-                            }
-                        }}
-                    >
-                        <textarea
-                            rows="5"
-                            ref={reviewInputRef}
-                            style={{
-                                width: "90%",
-                                fontSize: "16px",
-                            }}
-                        />
+                    <div className="flex h-75% w-full mt-2 mb-2 overflow-y-auto no-scrollbar">
+                        {reviewsData.length > 0 ? (
+                            <div id="review">
+                                {reviewsData.map((review) => (
+                                    <ul key={review.id}>
+                                        <li className="m-4 bg-slate-50 w-96 p-4 rounded-lg shadow-lg">
+                                            <div className="flex justify-between items-center">
+                                                <h4 className="font-bold">
+                                                    {review.userName ||
+                                                        "Anonymous"}
+                                                </h4>
+                                                <p className="font-light text-xs">
+                                                    {formatTimestamp(
+                                                        review.timestamp
+                                                    )}
+                                                </p>
+                                            </div>
+                                            <p>{review.review}</p>
+                                        </li>
+                                    </ul>
+                                ))}
+                            </div>
+                        ) : (
+                            <div>No reviews</div>
+                        )}
+                    </div>
 
-                        <button className="font-light text-sm bg-slate-200 rounded-md p-1 shadow-lg m-1">
-                            Submit Review
-                        </button>
-                    </form>
+                    <div className="flex h-25% w-full mt-2 pl-4 pr-4">
+                        <form
+                            className="w-full"
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                const reviewText = reviewInputRef.current.value;
+                                if (reviewText) {
+                                    handleReviewSubmit(reviewText);
+                                }
+                            }}
+                        >
+                            <textarea
+                                className="w-full h-24 rounded-lg p-2 shadow-lg bg-slate-100"
+                                ref={reviewInputRef}
+                                style={{ resize: "none" }}
+                                placeholder="Write review..."
+                            />
+
+                            <div className="flex justify-end">
+                                <button className="bg-slate-400 rounded-md p-1 shadow-lg m-1">
+                                    Submit Review
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </Modal>
         </div>
