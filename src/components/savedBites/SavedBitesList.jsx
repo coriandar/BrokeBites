@@ -12,7 +12,9 @@ const fetchUserSavedList = async (currentUserId, listName) => {
     const userDocSnapshot = await getDoc(userDocRef);
 
     if (!userDocSnapshot.exists()) {
-        throw new Error("User document doesn't exist.");
+        // throw new Error("User document doesn't exist.");
+        console.error("No document");
+        return [];
     }
 
     const userData = userDocSnapshot.data();
