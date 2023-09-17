@@ -19,7 +19,7 @@ export default function UpdateEmail() {
                 maxH={"h-50%"}
                 onClose={() => setOpen(false)}
             >
-                <div className="w-full h-full bg-slate-300 rounded-lg">
+                <div className="w-full h-full bg-slate-300 rounded-lg flex flex-col justify-between items-center">
                     <h3 className="font-bold text-lg">Update email</h3>
                 </div>
             </Modal>
