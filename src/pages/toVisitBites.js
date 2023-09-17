@@ -1,6 +1,9 @@
-import React from "react";
-import DashboardVisit from "@/components/DashboardVisit";
+import DashboardLoader from "@/components/DashboardLoader";
 
 export default function toVisit() {
-    return <DashboardVisit />;
+    return (
+        <>
+            <DashboardLoader dashboardType={"toVisit"} />
+        </>
+    );
 }

@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { getFilteredSearch } from "../firebase/FirebaseApp";
 
-export default function SearchBar({
-    query,
-    setQuery,
-    setRestaurantList,
-    restaurantMasterList,
-    getFilteredList,
-}) {
+export default function SearchBar({ setRestaurantList, restaurantMasterList }) {
+    const [query, setQuery] = useState("");
+
     useEffect(() => {
         // Filter the restaurant list when the query or restaurantMasterList changes
-        setRestaurantList(getFilteredList(restaurantMasterList, query));
+        setRestaurantList(getFilteredSearch(restaurantMasterList, query));
     }, [query]);
 
     return (

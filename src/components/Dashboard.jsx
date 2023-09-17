@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-    getAllRestaurants,
     getFilteredSearch,
     getFilteredPriceRating,
     getFilteredStarRating,
@@ -10,11 +9,12 @@ import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import FilterSelector from "./filter/FilterSelector";
 
-export default function Dashboard() {
-    const [restaurantMasterList, setRestaurantMasterList] = useState([]);
-    const [restaurantList, setRestaurantList] = useState([]);
+export default function Dashboard({
+    restaurantList,
+    setRestaurantList,
+    restaurantMasterList,
+}) {
     const [restaurantSelected, setRestaurantSelected] = useState(null);
-    const [query, setQuery] = useState("");
     const [activeFilter, setActiveFilter] = useState("search");
 
     const [center, setCenter] = useState({
@@ -22,16 +22,6 @@ export default function Dashboard() {
         lng: 174.7658246985396,
     });
     const [mapZoom, setMapZoom] = useState(17);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const restaurants = await getAllRestaurants();
-            setRestaurantMasterList(restaurants);
-            setRestaurantList(restaurants);
-        };
-
-        fetchData();
-    }, []);
 
     const handleDeselect = () => {
         setRestaurantSelected(null);
@@ -45,11 +35,6 @@ export default function Dashboard() {
                     setRestaurantList={setRestaurantList}
                     activeFilter={activeFilter}
                     setActiveFilter={setActiveFilter}
-                    query={query}
-                    setQuery={setQuery}
-                    getFilteredSearch={getFilteredSearch}
-                    getFilteredPriceRating={getFilteredPriceRating}
-                    getFilteredStarRating={getFilteredStarRating}
                 />
 
                 <div className="overflow-y-auto no-scrollbar h-90% m-4">
