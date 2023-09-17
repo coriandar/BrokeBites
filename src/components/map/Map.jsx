@@ -21,7 +21,7 @@ const mapStyles = [
     },
 ];
 
-const InitMap = ({
+export const InitMap = ({
     restaurantList,
     setRestaurantSelected,
     setCenter,
@@ -29,6 +29,7 @@ const InitMap = ({
     mapZoom,
     setMapZoom,
     restaurantSelected,
+    activeDashboard,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
@@ -77,10 +78,13 @@ const InitMap = ({
                     }}
                     title={restaurant.name} // Display the restaurant name on marker hover
                     icon={
-                        restaurantSelected &&
-                        restaurantSelected.id === restaurant.id
+                        restaurantSelected?.id === restaurant.id
                             ? "/pink-dot-bite.png" // Use a different icon for the selected marker
-                            : "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Use the default marker icon for others
+                            : activeDashboard === "all"
+                            ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Use the default marker icon for others
+                            : activeDashboard === "favourite"
+                            ? "http://maps.google.com/mapfiles/ms/icons/purple-dot.png" // icon for favorites
+                            : "http://maps.google.com/mapfiles/ms/icons/green-dot.png" // icon for toVisit
                     }
                     onClick={() => handleMarkerClick(restaurant)}
                 />

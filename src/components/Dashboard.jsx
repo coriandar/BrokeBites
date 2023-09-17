@@ -13,6 +13,7 @@ export default function Dashboard({
     restaurantList,
     setRestaurantList,
     restaurantMasterList,
+    activeDashboard,
 }) {
     const [restaurantSelected, setRestaurantSelected] = useState(null);
     const [activeFilter, setActiveFilter] = useState("search");
@@ -58,6 +59,7 @@ export default function Dashboard({
                     center={center}
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
+                    activeDashboard={activeDashboard}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     {restaurantSelected && (

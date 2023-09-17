@@ -101,21 +101,24 @@ export default function ReviewModal({ selectedRestaurant }) {
 
             <Modal
                 open={open}
-                maxW={"w-60%"}
-                maxH={"h-60%"}
+                maxW={"w-1/3"}
+                maxH={"h-70%"}
                 onClose={() => setOpen(false)}
             >
                 <div className="w-full h-full bg-slate-300 rounded-lg flex flex-col p-2">
                     <h3 className="font-bold text-lg">
                         {selectedRestaurant.name}'s Reviews
                     </h3>
-                    <div className="flex h-75% w-full mt-2 mb-2 overflow-y-auto no-scrollbar">
+                    <div className="flex h-75% mt-2 mb-2 overflow-y-auto no-scrollbar">
                         {reviewsData.length > 0 ? (
-                            <div id="review">
+                            <div
+                                id="review"
+                                className="w-full flex flex-col justify-center items-center"
+                            >
                                 {reviewsData.map((review) => (
-                                    <ul key={review.id}>
-                                        <li className="m-4 bg-slate-50 w-96 p-4 rounded-lg shadow-lg">
-                                            <div className="flex justify-between items-center">
+                                    <ul key={review.id} className="w-full">
+                                        <li className="m-4 bg-slate-50 p-4 rounded-lg shadow-lg w-95%">
+                                            <div className="flex justify-between items-center w-full h-8">
                                                 <h4 className="font-bold">
                                                     {review.userName ||
                                                         "Anonymous"}

@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 export default function DashboardLoader({ dashboardType }) {
     const [restaurantList, setRestaurantList] = useState([]);
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
+    const [activeDashboard, setActiveDashboard] = useState(null);
 
     let restaurants = null;
 
@@ -13,10 +14,13 @@ export default function DashboardLoader({ dashboardType }) {
         const fetchData = async () => {
             if (dashboardType === "all") {
                 restaurants = await getAllRestaurants();
+                setActiveDashboard("all");
             } else if (dashboardType === "favourite") {
                 restaurants = await fetchSavedBitesList("favourite");
+                setActiveDashboard("favourite");
             } else if (dashboardType === "toVisit") {
                 restaurants = await fetchSavedBitesList("toVisit");
+                setActiveDashboard("toVisit");
             }
             setRestaurantMasterList(restaurants);
             setRestaurantList(restaurants);
@@ -31,6 +35,7 @@ export default function DashboardLoader({ dashboardType }) {
             setRestaurantList={setRestaurantList}
             restaurantMasterList={restaurantMasterList}
             setRestaurantMasterList={setRestaurantList}
+            activeDashboard={activeDashboard}
         />
     );
 }
