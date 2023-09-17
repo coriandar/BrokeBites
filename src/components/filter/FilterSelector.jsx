@@ -29,6 +29,9 @@ export default function FilterSelector({
                     getFilteredPriceRating={getFilteredPriceRating}
                 />
             );
+        } else if (activeFilter === "sortPrice") {
+        } else if (activeFilter === "fillingFactor") {
+        } else if (activeFilter === "review") {
         }
     };
 
@@ -61,12 +64,20 @@ export default function FilterSelector({
                         Sort by Price
                     </button>
                     <button
-                        className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
+                        className={`text-xs px-4 py-1 ${changeColour(
                             "fillingFactor"
                         )}`}
                         onClick={() => handleClick("fillingFactor")}
                     >
                         Filling Factor
+                    </button>
+                    <button
+                        className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
+                            "review"
+                        )}`}
+                        onClick={() => handleClick("review")}
+                    >
+                        Review
                     </button>
                 </li>
             </ul>

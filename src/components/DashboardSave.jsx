@@ -40,7 +40,7 @@ export default function Dashboard() {
 
     return (
         <div className="flex h-full">
-            <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/5">
+            <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
                 <FilterSelector
                     setQuery={setQuery}
                     restaurantMasterList={restaurantMasterList}
@@ -65,7 +65,7 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            <div className="bg-slate-300 w-4/5 relative">
+            <div className="bg-slate-300 w-3/4 relative">
                 <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
