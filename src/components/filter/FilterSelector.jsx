@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
-import { getFilteredPriceRating, getFilteredStarRating } from "./FilterLogic";
+import {
+    getFilteredPriceRating,
+    getFilteredStarRating,
+    getFilteredCusine,
+    optCuisine,
+} from "./FilterLogic";
 import FilterSlider from "./FilterSlider";
+import FilterType from "./FilterType";
 
 export default function FilterSelector({
     activeFilter,
@@ -36,6 +42,15 @@ export default function FilterSelector({
             );
         } else if (activeFilter === "sortPrice") {
         } else if (activeFilter === "fillingFactor") {
+        } else if (activeFilter === "cuisine") {
+            return (
+                <FilterType
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    options={optCuisine}
+                    getFilteredList={getFilteredCusine} // star filter function
+                />
+            );
         } else if (activeFilter === "starRating") {
             return (
                 <FilterSlider
@@ -83,6 +98,14 @@ export default function FilterSelector({
                         onClick={() => handleClick("fillingFactor")}
                     >
                         Filling Factor
+                    </button>
+                    <button
+                        className={`text-xs px-4 py-1 ${changeColour(
+                            "cuisine"
+                        )}`}
+                        onClick={() => handleClick("cuisine")}
+                    >
+                        Cuisine
                     </button>
                     <button
                         className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
