@@ -1,9 +1,9 @@
-import Dashboard from "../components/Dashboard";
+import DashboardLoader from "@/components/DashboardLoader";
 
 export default function index() {
     return (
         <>
-            <Dashboard />
+            <DashboardLoader dashboardType={"all"} />
         </>
     );
 }

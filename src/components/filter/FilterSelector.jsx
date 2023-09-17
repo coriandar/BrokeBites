@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
+import { getFilteredPriceRating, getFilteredStarRating } from "./FilterLogic";
 import FilterSlider from "./FilterSlider";
 
 export default function FilterSelector({
@@ -7,11 +8,6 @@ export default function FilterSelector({
     setActiveFilter,
     restaurantMasterList, // master list
     setRestaurantList, // setRestaurant function
-    query,
-    setQuery,
-    getFilteredSearch,
-    getFilteredPriceRating,
-    getFilteredStarRating,
 }) {
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
@@ -25,11 +21,8 @@ export default function FilterSelector({
         if (activeFilter === "search") {
             return (
                 <SearchBar
-                    query={query}
-                    setQuery={setQuery}
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredList={getFilteredSearch} // search function
                 />
             );
         } else if (activeFilter === "priceRange") {
