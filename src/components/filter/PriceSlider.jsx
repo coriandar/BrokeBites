@@ -8,6 +8,7 @@ function InitPriceSlider({
     setRestaurantList,
     restaurantMasterList,
     getFilteredPriceRating,
+    sliderLabel,
 }) {
     const [sliderValues, setSliderValues] = useState([MIN, MAX]); // Values for slider
 
@@ -19,7 +20,7 @@ function InitPriceSlider({
 
     return (
         <div className="w-full bg-slate-300 shadow-lg h-24 flex flex-col items-center pl-2 rounded-lg">
-            <h3>Price Rating:</h3>
+            <h3>{sliderLabel}</h3>
             <small>
                 Current range: {sliderValues[0]} - {sliderValues[1]}
             </small>

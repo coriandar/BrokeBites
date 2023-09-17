@@ -7,6 +7,7 @@ export default function FilterSelector({
     restaurantMasterList,
     setRestaurantList,
     getFilteredPriceRating,
+    getFilteredStarRating,
     activeFilter,
     setActiveFilter,
 }) {
@@ -24,6 +25,7 @@ export default function FilterSelector({
         } else if (activeFilter === "priceRange") {
             return (
                 <InitPriceSlider
+                    sliderLabel="Price Range:"
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     getFilteredPriceRating={getFilteredPriceRating}
@@ -32,6 +34,14 @@ export default function FilterSelector({
         } else if (activeFilter === "sortPrice") {
         } else if (activeFilter === "fillingFactor") {
         } else if (activeFilter === "starRating") {
+            return (
+                <InitPriceSlider
+                    sliderLabel="Star Range:"
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    getFilteredPriceRating={getFilteredStarRating}
+                />
+            );
         }
     };
 
@@ -77,7 +87,7 @@ export default function FilterSelector({
                         )}`}
                         onClick={() => handleClick("starRating")}
                     >
-                        Review
+                        Stars
                     </button>
                 </li>
             </ul>

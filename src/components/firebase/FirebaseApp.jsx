@@ -45,6 +45,17 @@ export const getFilteredPriceRating = (items, values) => {
     );
 };
 
+export const getFilteredStarRating = (items, values) => {
+    if (!values) {
+        return items;
+    }
+    return items.filter(
+        (restaurant) =>
+            restaurant.starRating >= values[0] &&
+            restaurant.starRating <= values[1]
+    );
+};
+
 // storage
 // must update rules to: only allow if auth/size/path
 export async function upload(file, currentUser, setLoading, setPhotoURL) {

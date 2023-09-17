@@ -3,6 +3,7 @@ import {
     getAllRestaurants,
     getFilteredRestaurants,
     getFilteredPriceRating,
+    getFilteredStarRating,
 } from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
@@ -46,6 +47,7 @@ export default function Dashboard() {
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     getFilteredPriceRating={getFilteredPriceRating}
+                    getFilteredStarRating={getFilteredStarRating}
                     activeFilter={activeFilter}
                     setActiveFilter={setActiveFilter}
                 />
@@ -57,6 +59,7 @@ export default function Dashboard() {
                         setCenter={setCenter}
                         setRestaurantList={setRestaurantList}
                         getFilteredRestaurants={getFilteredRestaurants}
+                        getFilteredStarRating={getFilteredStarRating}
                         restaurantMasterList={restaurantMasterList}
                         setMapZoom={setMapZoom}
                         query={query}
