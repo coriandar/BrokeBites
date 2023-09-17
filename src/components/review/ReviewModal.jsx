@@ -74,7 +74,7 @@ export default function ReviewModal({ selectedRestaurant }) {
 
             console.log("Review added to db");
             reviewInputRef.current.value = ""; // Clear the input field
-            //setOpen(false); // Close the modal
+            loadReview();
         } catch (error) {
             console.error("Error adding review:", error);
         }
