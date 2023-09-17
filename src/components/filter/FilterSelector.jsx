@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
-import InitPriceSlider from "./PriceSlider";
+import FilterSlider from "./FilterSlider";
 
 export default function FilterSelector({
     setQuery,
@@ -24,22 +24,22 @@ export default function FilterSelector({
             return <SearchBar setQuery={setQuery} />;
         } else if (activeFilter === "priceRange") {
             return (
-                <InitPriceSlider
+                <FilterSlider
                     sliderLabel="Price Range:"
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredPriceRating={getFilteredPriceRating}
+                    getFilteredList={getFilteredPriceRating}
                 />
             );
         } else if (activeFilter === "sortPrice") {
         } else if (activeFilter === "fillingFactor") {
         } else if (activeFilter === "starRating") {
             return (
-                <InitPriceSlider
+                <FilterSlider
                     sliderLabel="Star Range:"
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredPriceRating={getFilteredStarRating}
+                    getFilteredList={getFilteredStarRating}
                 />
             );
         }

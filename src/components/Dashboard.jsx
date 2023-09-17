@@ -44,10 +44,10 @@ export default function Dashboard() {
                     setQuery={setQuery}
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredPriceRating={getFilteredPriceRating}
-                    getFilteredStarRating={getFilteredStarRating}
                     activeFilter={activeFilter}
                     setActiveFilter={setActiveFilter}
+                    getFilteredPriceRating={getFilteredPriceRating}
+                    getFilteredStarRating={getFilteredStarRating}
                 />
 
                 <div className="overflow-y-auto no-scrollbar h-90% m-4">
@@ -57,7 +57,6 @@ export default function Dashboard() {
                         setCenter={setCenter}
                         setRestaurantList={setRestaurantList}
                         getFilteredRestaurants={getFilteredRestaurants}
-                        getFilteredStarRating={getFilteredStarRating}
                         restaurantMasterList={restaurantMasterList}
                         setMapZoom={setMapZoom}
                         query={query}
