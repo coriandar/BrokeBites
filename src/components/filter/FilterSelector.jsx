@@ -31,7 +31,7 @@ export default function FilterSelector({
             );
         } else if (activeFilter === "sortPrice") {
         } else if (activeFilter === "fillingFactor") {
-        } else if (activeFilter === "review") {
+        } else if (activeFilter === "starRating") {
         }
     };
 
@@ -73,9 +73,9 @@ export default function FilterSelector({
                     </button>
                     <button
                         className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
-                            "review"
+                            "starRating"
                         )}`}
-                        onClick={() => handleClick("review")}
+                        onClick={() => handleClick("starRating")}
                     >
                         Review
                     </button>

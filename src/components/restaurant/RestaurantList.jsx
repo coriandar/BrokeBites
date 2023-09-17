@@ -26,7 +26,6 @@ const InitList = ({
     const handleListItemClick = (restaurant) => {
         console.log(restaurant);
         setRestaurantSelected(restaurant);
-        // setActive(restaurant.id);
         setCenter({
             lat: restaurant.latitude,
             lng: restaurant.longitude,
@@ -42,25 +41,37 @@ const InitList = ({
         return price;
     };
 
+    const printStar = (starRating) => {
+        let star = "";
+        const blank = 5 - starRating;
+        for (let i = 0; i < starRating; i++) star += "★";
+        for (let i = 0; i < blank; i++) star += "☆";
+        return star;
+    };
+
+    const showSymbol = (restaurant) => {
+        if (activeFilter.includes("filling")) {
+            return restaurant.fillingFactor;
+        } else if (activeFilter.includes("star")) {
+            return printStar(restaurant.starRating);
+        } else {
+            return printPrice(restaurant.priceRating);
+        }
+    };
+
     //TODO: synchronise map and list selected
 
     return (
         <ul id="restaurantList">
             {restaurantList.map((restaurant) => (
                 <li
-                    className={`${
-                        active === restaurant.id ? "bg-slate-300" : ""
-                    } 
-                            hover:bg-slate-200`}
                     key={restaurant.id}
                     onClick={() => handleListItemClick(restaurant)}
                 >
-                    <div className="flex justify-between">
+                    <div className="flex justify-between bg-white m-2 p-4 rounded-lg shadow-lg hover:bg-slate-200 active:bg-slate-400">
                         <p>{restaurant.name}</p>
                         <p className="font-light text-sm">
-                            {activeFilter.includes("filling")
-                                ? `[${restaurant.fillingFactor}]`
-                                : printPrice(restaurant.priceRating)}
+                            {showSymbol(restaurant)}
                         </p>
                     </div>
                 </li>
