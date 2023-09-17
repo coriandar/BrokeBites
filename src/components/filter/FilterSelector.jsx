@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-    getFilteredPriceRating,
-    getFilteredStarRating,
-} from "../firebase/FirebaseApp";
 import SearchBar from "./SearchBar";
+import { getFilteredPriceRating, getFilteredStarRating } from "./FilterLogic";
 import FilterSlider from "./FilterSlider";
 
 export default function FilterSelector({

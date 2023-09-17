@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getFilteredSearch } from "../firebase/FirebaseApp";
+import { getFilteredSearch } from "./FilterLogic";
 
 export default function SearchBar({ setRestaurantList, restaurantMasterList }) {
     const [query, setQuery] = useState("");
