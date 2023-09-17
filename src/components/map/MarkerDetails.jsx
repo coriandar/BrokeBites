@@ -3,6 +3,7 @@ import FavouriteButton from "../savedBites/FavouriteButton";
 import { getAuth } from "firebase/auth";
 import ToVisitButton from "../savedBites/ToVisitButton";
 import MenuModal from "../modal/MenuModal";
+import ReviewModal from "../review/ReviewModal";
 
 export default function MarkerDetails({ selected }) {
     const auth = getAuth();
@@ -23,6 +24,7 @@ export default function MarkerDetails({ selected }) {
                 <MenuModal selectedRestaurant={selected} />
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
                 {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}
+                <ReviewModal selectedRestaurant={selected} />
             </div>
 
             <h3>Filling Factor: {selected.fillingFactor}</h3>
