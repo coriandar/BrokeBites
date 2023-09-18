@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { standard, retro, dark } from "@/config/MapStyles";
+import { deleteApp } from "firebase/app";
 
 const libraries = ["places"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
@@ -12,14 +14,9 @@ const mapContainerStyle = {
 
 let zoomIn = 17;
 
-// Set Map Styles (specifically, turn off points of interest)
-const mapStyles = [
-    {
-        featureType: "poi",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }],
-    },
-];
+const mapStyles = standard;
+// const mapStyles = dark;
+// const mapStyles = retro;
 
 export const InitMap = ({
     restaurantList,
