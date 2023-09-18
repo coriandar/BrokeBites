@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-    getFilteredSearch,
-    getFilteredPriceRating,
-    getFilteredStarRating,
-} from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
