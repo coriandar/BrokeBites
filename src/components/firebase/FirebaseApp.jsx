@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, updateProfile } from "firebase/auth";
 import { firebaseConfig } from "@/config/Firebase.config";
 import { getFirestore, getDocs, collection } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const getAllRestaurants = async () => {
     //Try to connect to the DB then brng the data over to the app
@@ -20,30 +21,21 @@ export const getAllRestaurants = async () => {
     }
 };
 
-// TODO: Sprint 2: refactor logic, move to a feature folder
-// TODO: Sprint2: Increase performance/lower memory, store index in list, then iterate based on index.
-export const getFilteredRestaurants = (items, query) => {
-    if (!query) {
-        return items;
-    }
-    const lowercaseQuery = query.toLowerCase(); // Convert the query to lowercase
+// storage
+// must update rules to: only allow if auth/size/path
+export async function upload(file, currentUser, setLoading, setPhotoURL) {
+    const fileRef = ref(storage, "/avatar/" + currentUser.uid + ".jpg");
 
-    return items.filter((restaurant) =>
-        restaurant.name.toLowerCase().includes(lowercaseQuery)
-    );
-};
+    setLoading(true);
 
-//return a list containing the restaurants that match the values
-export const getFilteredPriceRating = (items, values) => {
-    if (!values) {
-        return items;
-    }
-    return items.filter(
-        (restaurant) =>
-            restaurant.priceRating >= values[0] &&
-            restaurant.priceRating <= values[1]
-    );
-};
+    const snapshot = await uploadBytes(fileRef, file); // uploads
+    const newPhotoURL = await getDownloadURL(fileRef); // get link of new photo
+    setPhotoURL(newPhotoURL);
+    updateProfile(currentUser, { photoURL: newPhotoURL }); // update the photo
+
+    setLoading(false);
+    alert("File successfully uploaded...");
+}
 
 //return a list containing the restaurants that match the category
 export const getFilteredFillingFactor = (items, value) => {
@@ -82,6 +74,7 @@ export const getSortedPriceRating = (items, order) => {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);

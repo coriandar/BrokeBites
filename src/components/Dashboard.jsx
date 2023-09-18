@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from "react";
-import {
-    getAllRestaurants,
-    getFilteredRestaurants,
-    getFilteredPriceRating,
-    getFilteredFillingFactor,
-    getFilteredCuisine,
-    getSortedPriceRating,
-} from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
-import InitPriceSlider from "./restaurant/PriceSlider";
-import FillingFactorButtons from "./restaurant/FilingFactorButton";
-import CuisineButtons from "./restaurant/CuisineButton";
-import SortPriceButton from "./restaurant/SortByPriceButton";
+import FilterSelector from "./filter/FilterSelector";
 
-export default function Dashboard() {
-    const [restaurantMasterList, setRestaurantMasterList] = useState([]);
-    const [restaurantList, setRestaurantList] = useState([]);
+export default function Dashboard({
+    restaurantList,
+    setRestaurantList,
+    restaurantMasterList,
+    activeDashboard,
+}) {
     const [restaurantSelected, setRestaurantSelected] = useState(null);
+    const [activeFilter, setActiveFilter] = useState("search");
 
     const [center, setCenter] = useState({
         lat: -36.8537761039407,
@@ -26,67 +19,56 @@ export default function Dashboard() {
     });
     const [mapZoom, setMapZoom] = useState(17);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const restaurants = await getAllRestaurants();
-            setRestaurantMasterList(restaurants);
-            setRestaurantList(restaurants);
-        };
-
-        fetchData();
-    }, []);
+    const handleDeselect = () => {
+        setRestaurantSelected(null);
+    };
 
     return (
         <div className="flex h-full">
-            <div className="bg-slate-100 m-4 flex justify-center overflow-y-auto no-scrollbar w-1/3">
-                <InitList
-                    restaurantList={restaurantList}
-                    setRestaurantSelected={setRestaurantSelected}
-                    setCenter={setCenter}
-                    setRestaurantList={setRestaurantList}
-                    getFilteredRestaurants={getFilteredRestaurants}
+            <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
+                <FilterSelector
                     restaurantMasterList={restaurantMasterList}
-                    setMapZoom={setMapZoom}
+                    setRestaurantList={setRestaurantList}
+                    activeFilter={activeFilter}
+                    setActiveFilter={setActiveFilter}
                 />
+
+                <div className="overflow-y-auto no-scrollbar h-90% m-4">
+                    <InitList
+                        restaurantList={restaurantList}
+                        setRestaurantSelected={setRestaurantSelected}
+                        restaurantSelected={restaurantSelected}
+                        setCenter={setCenter}
+                        setMapZoom={setMapZoom}
+                        activeFilter={activeFilter}
+                    />
+                </div>
             </div>
-            <div className="bg-slate-300 w-2/3 relative">
+
+            <div className="bg-slate-300 w-3/4 relative">
                 <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
+                    restaurantSelected={restaurantSelected}
                     setCenter={setCenter}
                     center={center}
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
-                    restaurantSelected={restaurantSelected}
+                    activeDashboard={activeDashboard}
                 />
-                <div className="bg-slate-300 w-2/3 bg-opacity-90 absolute bottom-0 left-0">
+                <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
+                    {restaurantSelected && (
+                        <div className="relative">
+                            <button
+                                className="w-4 h-4 absolute right-0 top-0 text-xs"
+                                onClick={handleDeselect}
+                            >
+                                ✖
+                            </button>
+                        </div>
+                    )}
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
-            </div>
-            <div className="filters">
-                <InitPriceSlider
-                    restaurantMasterList={restaurantMasterList}
-                    setRestaurantList={setRestaurantList}
-                    getFilteredPriceRating={getFilteredPriceRating}
-                />
-                <h3>Filter filling factor</h3>
-                <FillingFactorButtons
-                    setRestaurantList={setRestaurantList}
-                    masterRestaurantList={restaurantMasterList}
-                    getFilteredFillingFactor={getFilteredFillingFactor}
-                />
-                <h3>Filter cuisine</h3>
-                <CuisineButtons
-                    setRestaurantList={setRestaurantList}
-                    masterRestaurantList={restaurantMasterList}
-                    getFilteredCuisine={getFilteredCuisine}
-                />
-                <h3>Sort by price</h3>
-                <SortPriceButton
-                    setRestaurantList={setRestaurantList}
-                    masterRestaurantList={restaurantMasterList}
-                    getSortedPriceRating={getSortedPriceRating}
-                />
             </div>
         </div>
     );

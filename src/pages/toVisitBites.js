@@ -1,9 +1,9 @@
 import DashboardLoader from "@/components/DashboardLoader";
 
-export default function index() {
+export default function toVisit() {
     return (
         <>
-            <DashboardLoader dashboardType={"all"} />
+            <DashboardLoader dashboardType={"toVisit"} />
         </>
     );
 }
