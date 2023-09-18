@@ -21,6 +21,17 @@ export const getFilteredCusine = (items, query) => {
     );
 };
 
+export const getFilteredDietary = (items, query) => {
+    if (!query || query === "All") {
+        return items;
+    }
+    const lowercaseQuery = query.toLowerCase().trim(); // Convert the query to lowercase
+
+    return items.filter((restaurant) =>
+        restaurant.dietary.toLowerCase().includes(lowercaseQuery)
+    );
+};
+
 export const getFilteredFillingFactor = (items, value) => {
     if (!value || value === "All") {
         return items;
@@ -38,6 +49,18 @@ export const getSortedPriceRating = (items, order) => {
         sortedItems = [...items].sort((a, b) => a.priceRating - b.priceRating);
     } else {
         return items; //return original list
+    }
+    return sortedItems;
+};
+
+export const getSortedStarRating = (items, order) => {
+    let sortedItems;
+    if (order === "descending") {
+        sortedItems = [...items].sort((a, b) => b.starRating - a.starRating);
+    } else if (order === "ascending") {
+        sortedItems = [...items].sort((a, b) => a.starRating - b.starRating);
+    } else {
+        return items;
     }
     return sortedItems;
 };
@@ -75,6 +98,15 @@ const cuisineNames = [
 
 const fillingFactor = ["Dessert", "Light", "Filling"];
 
+const dietary = [
+    "Dairy-free",
+    "Gluten-free",
+    "Halal",
+    "Low-carb",
+    "Vegan",
+    "Vegetarian",
+];
+
 export const optCuisine = [
     { value: "", text: "All", selected: "selected" },
     ...cuisineNames.map((cuisine) => ({ value: cuisine, text: cuisine })),
@@ -83,4 +115,9 @@ export const optCuisine = [
 export const optFilling = [
     { value: "", text: "All", selected: "selected" },
     ...fillingFactor.map((fillFac) => ({ value: fillFac, text: fillFac })),
+];
+
+export const optDietary = [
+    { value: "", text: "None", selected: "selected" },
+    ...dietary.map((fillFac) => ({ value: fillFac, text: fillFac })),
 ];
