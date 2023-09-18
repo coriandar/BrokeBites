@@ -3,11 +3,17 @@ import {
     getAllRestaurants,
     getFilteredRestaurants,
     getFilteredPriceRating,
+    getFilteredFillingFactor,
+    getFilteredCuisine,
+    getSortedPriceRating,
 } from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import InitPriceSlider from "./restaurant/PriceSlider";
+import FillingFactorButtons from "./restaurant/FilingFactorButton";
+import CuisineButtons from "./restaurant/CuisineButton";
+import SortPriceButton from "./restaurant/SortByPriceButton";
 
 export default function Dashboard() {
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
@@ -57,11 +63,31 @@ export default function Dashboard() {
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>
-            <InitPriceSlider
-                restaurantMasterList={restaurantMasterList}
-                setRestaurantList={setRestaurantList}
-                getFilteredPriceRating={getFilteredPriceRating}
-            />
+            <div className="filters">
+                <InitPriceSlider
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    getFilteredPriceRating={getFilteredPriceRating}
+                />
+                <h3>Filter filling factor</h3>
+                <FillingFactorButtons
+                    setRestaurantList={setRestaurantList}
+                    masterRestaurantList={restaurantMasterList}
+                    getFilteredFillingFactor={getFilteredFillingFactor}
+                />
+                <h3>Filter cuisine</h3>
+                <CuisineButtons
+                    setRestaurantList={setRestaurantList}
+                    masterRestaurantList={restaurantMasterList}
+                    getFilteredCuisine={getFilteredCuisine}
+                />
+                <h3>Sort by price</h3>
+                <SortPriceButton
+                    setRestaurantList={setRestaurantList}
+                    masterRestaurantList={restaurantMasterList}
+                    getSortedPriceRating={getSortedPriceRating}
+                />
+            </div>
         </div>
     );
 }

@@ -33,6 +33,7 @@ export const getFilteredRestaurants = (items, query) => {
     );
 };
 
+//return a list containing the restaurants that match the values
 export const getFilteredPriceRating = (items, values) => {
     if (!values) {
         return items;
@@ -42,6 +43,41 @@ export const getFilteredPriceRating = (items, values) => {
             restaurant.priceRating >= values[0] &&
             restaurant.priceRating <= values[1]
     );
+};
+
+//return a list containing the restaurants that match the category
+export const getFilteredFillingFactor = (items, value) => {
+    if (!value || value === "All") {
+        return items;
+    }
+
+    return items.filter((restaurant) => restaurant.fillingFactor === value);
+};
+
+//return a list containing the restaurants that match the category
+export const getFilteredCuisine = (items, value) => {
+    if (!value || value === "All") {
+        return items;
+    }
+    return items.filter((restaurant) => restaurant.cuisine === value);
+};
+
+//return a list of sorted restaurants based on price rating
+export const getSortedPriceRating = (items, order) => {
+    // Use the sort() method to sort the items based on price rating
+    let sortedItems;
+
+    if (order === "descending") {
+        sortedItems = [...items].sort((a, b) => b.priceRating - a.priceRating);
+    } else if (order === "ascending") {
+        sortedItems = [...items].sort((a, b) => a.priceRating - b.priceRating);
+    } else {
+        //return original list
+        return items;
+    }
+
+    //return sortedList
+    return sortedItems;
 };
 
 // Initialize Firebase
