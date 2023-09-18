@@ -4,10 +4,14 @@ import {
     getFilteredPriceRating,
     getFilteredStarRating,
     getFilteredCusine,
+    getFilteredFillingFactor,
+    getSortedPriceRating,
     optCuisine,
+    optFilling,
 } from "./FilterLogic";
 import FilterSlider from "./FilterSlider";
 import FilterType from "./FilterType";
+import SortBy from "./SortBy";
 
 export default function FilterSelector({
     activeFilter,
@@ -41,7 +45,23 @@ export default function FilterSelector({
                 />
             );
         } else if (activeFilter === "sortPrice") {
+            return (
+                <SortBy
+                    // sliderLabel="Price Range:"
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    getSortedBy={getSortedPriceRating} // price filter function
+                />
+            );
         } else if (activeFilter === "fillingFactor") {
+            return (
+                <FilterType
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    options={optFilling}
+                    getFilteredList={getFilteredFillingFactor} // star filter function
+                />
+            );
         } else if (activeFilter === "cuisine") {
             return (
                 <FilterType

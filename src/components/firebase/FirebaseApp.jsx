@@ -37,41 +37,6 @@ export async function upload(file, currentUser, setLoading, setPhotoURL) {
     alert("File successfully uploaded...");
 }
 
-//return a list containing the restaurants that match the category
-export const getFilteredFillingFactor = (items, value) => {
-    if (!value || value === "All") {
-        return items;
-    }
-
-    return items.filter((restaurant) => restaurant.fillingFactor === value);
-};
-
-//return a list containing the restaurants that match the category
-export const getFilteredCuisine = (items, value) => {
-    if (!value || value === "All") {
-        return items;
-    }
-    return items.filter((restaurant) => restaurant.cuisine === value);
-};
-
-//return a list of sorted restaurants based on price rating
-export const getSortedPriceRating = (items, order) => {
-    // Use the sort() method to sort the items based on price rating
-    let sortedItems;
-
-    if (order === "descending") {
-        sortedItems = [...items].sort((a, b) => b.priceRating - a.priceRating);
-    } else if (order === "ascending") {
-        sortedItems = [...items].sort((a, b) => a.priceRating - b.priceRating);
-    } else {
-        //return original list
-        return items;
-    }
-
-    //return sortedList
-    return sortedItems;
-};
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
