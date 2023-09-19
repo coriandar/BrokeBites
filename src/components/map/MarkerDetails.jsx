@@ -3,6 +3,14 @@ import FavouriteButton from "../savedBites/FavouriteButton";
 import { getAuth } from "firebase/auth";
 import ToVisitButton from "../savedBites/ToVisitButton";
 import MenuModal from "../modal/MenuModal";
+import {
+    EmailShareButton,
+    EmailIcon,
+    FacebookShareButton,
+    FacebookIcon,
+    TwitterShareButton,
+    TwitterIcon,
+} from "react-share";
 
 export default function MarkerDetails({ selected }) {
     const auth = getAuth();
@@ -46,6 +54,29 @@ export default function MarkerDetails({ selected }) {
                     "n/a"
                 )}
             </h3>
+
+            {user ? (
+                <div>
+                    <FacebookShareButton
+                        url={selected.website}
+                        quote="Take a look at this place!"
+                    >
+                        <FacebookIcon size={32} round={true} />
+                    </FacebookShareButton>
+                    <EmailShareButton
+                        url={selected.website}
+                        quote="Take a look at this place!"
+                    >
+                        <EmailIcon size={32} round={true} />
+                    </EmailShareButton>
+                    <TwitterShareButton
+                        url={selected.website}
+                        quote="Take a look at this place!"
+                    >
+                        <TwitterIcon size={32} round={true} />
+                    </TwitterShareButton>
+                </div>
+            ) : null}
         </div>
     );
 }
