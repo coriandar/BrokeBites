@@ -82,11 +82,20 @@ export default function Dashboard({
                     )}
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
+
+                <div className="bg-slate-300 w-40 bg-opacity-90 absolute top-0 right-0 rounded-2xl p-6 mr-14 mt-2">
+                    <div className="relative">
+                        <button onClick={handleHeatmapToggle}>
+                            Price Heatmap
+                        </button>
+                        <button onClick={handleMapMarkerToggle}>
+                            Map Markers
+                        </button>
+                        <button>Map theme</button>
+                    </div>
+                </div>
             </div>
-            <div>
-                <button onClick={handleHeatmapToggle}>Price Heatmap</button>
-                <button onClick={handleMapMarkerToggle}>Map Markers</button>
-            </div>
+            <div></div>
         </div>
     );
 }
