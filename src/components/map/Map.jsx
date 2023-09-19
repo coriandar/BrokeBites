@@ -72,9 +72,10 @@ export const InitMap = ({
             mapContainerStyle={mapContainerStyle}
             options={{ styles: mapStyles }}
         >
-            {heatmapToggle && (
-                <HeatmapComponent restaurantList={restaurantList} />
-            )}
+            <HeatmapComponent
+                restaurantList={restaurantList}
+                heatmapToggle={heatmapToggle}
+            />
 
             {mapMarkerToggle &&
                 restaurantList.map((restaurant) => (
