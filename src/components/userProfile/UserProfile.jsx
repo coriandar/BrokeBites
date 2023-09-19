@@ -1,44 +1,68 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase/FirebaseApp";
-import { collection, getDocs, where, query } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 
-export default function Favorites({ favorites }) {
+export default function UserProfile({ user }) {
+    const [userProfile, setUserProfile] = useState(null);
+    const [favorites, setFavorites] = useState([]);
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const userDocRef = doc(db, "userDB", user);
+                const userDocSnapshot = await getDoc(userDocRef);
+                if (userDocSnapshot.exists()) {
+                    const userData = userDocSnapshot.data();
+                    setUserProfile(userData);
+                }
+            } catch (error) {
+                console.error("Error fetching user profile:", error);
+            }
+        };
+
+        const fetchFavorites = async () => {
+            try {
+                const favoritesRef = collection(
+                    db,
+                    "userDB",
+                    user,
+                    "favorites"
+                );
+                const favoritesSnapshot = await getDocs(favoritesRef);
+
+                const userFavorites = favoritesSnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+
+                setFavorites(userFavorites);
+            } catch (error) {
+                console.error("Error fetching favorites:", error);
+            }
+        };
+
+        if (user) {
+            fetchUserProfile();
+            fetchFavorites();
+        }
+    }, [user]);
+
     return (
         <div>
-            <h1>User's Favorite List</h1>
-            <ul>
-                {favorites.map((favorite) => (
-                    <li key={favorite.id}>{favorite.name}</li>
-                ))}
-            </ul>
+            {console.log("userProfile: " + userProfile)}
+            {userProfile ? (
+                <div>
+                    <h1>{userProfile.displayName}'s Profile</h1>
+                    <h2>Favorite List</h2>
+                    <ul>
+                        {favorites.map((favorite) => (
+                            <li key={favorite.id}>{favorite.name}</li>
+                        ))}
+                    </ul>
+                </div>
+            ) : (
+                <p>Loading user profile...</p>
+            )}
         </div>
     );
-}
-
-// Fetch the user's favorite list based on UID
-export async function getServerSideProps(context) {
-    const { uid } = context.params;
-
-    try {
-        const favoritesRef = collection(db, "userDB", uid, "favorites");
-        const favoritesSnapshot = await getDocs(favoritesRef);
-
-        const favorites = favoritesSnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-
-        return {
-            props: {
-                favorites,
-            },
-        };
-    } catch (error) {
-        console.error("Error fetching favorites:", error);
-        return {
-            props: {
-                favorites: [],
-            },
-        };
-    }
 }
