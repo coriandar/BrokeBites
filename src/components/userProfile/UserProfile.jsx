@@ -35,12 +35,30 @@ export default function UserProfile({ uid }) {
             }
         };
 
-        const fetchReviews = async () => {};
+        // Fetch user reviews
+        const fetchReviewsByUser = async () => {
+            try {
+                const reviewsRef = firestore.collectionGroup("reviews");
+                const query = reviewsRef.where("userId", "==", uid); // Use 'uid' instead of 'userId'
+
+                const snapshot = await query.get();
+
+                const reviewsData = [];
+                snapshot.forEach((doc) => {
+                    reviewsData.push(doc.data());
+                });
+
+                setReviews(reviewsData);
+            } catch (error) {
+                console.error("Error fetching reviews:", error);
+            }
+        };
 
         // Call fetchUserProfile() and fetchFavorites() only if uid is defined
         if (uid) {
             fetchUserProfile();
             fetchFavorites();
+            fetchReviewsByUser();
         }
     }, [uid]);
 
@@ -61,7 +79,7 @@ export default function UserProfile({ uid }) {
                 {console.log("userProfile: " + JSON.stringify(userProfile))}
                 {userProfile ? (
                     <div>
-                        <h1>{userProfile.displayName}'s Profile</h1> <br />
+                        <br />
                         <h2>Favorite List</h2>
                         <ul>
                             {favorites.map((favorite) => (
