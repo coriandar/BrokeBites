@@ -15,12 +15,29 @@ export default function Dashboard({
 }) {
     const [restaurantSelected, setRestaurantSelected] = useState(null);
     const [activeFilter, setActiveFilter] = useState("search");
+    const [heatmapToggle, setHeatmapToggle] = useState(false);
+    const [mapMarkerToggle, setMapMarkerToggle] = useState(true);
 
     const [center, setCenter] = useState({
         lat: -36.8537761039407,
         lng: 174.7658246985396,
     });
     const [mapZoom, setMapZoom] = useState(17);
+
+    const handleMapMarkerToggle = () => {
+        mapMarkerToggle ? setMapMarkerToggle(false) : setMapMarkerToggle(true);
+    };
+
+    const handleHeatmapToggle = () => {
+        // heatmapToggle ? setHeatmapToggle(false) : setHeatmapToggle(true);
+        if (heatmapToggle) {
+            setHeatmapToggle(false);
+            window.location.reload(false);
+        } else {
+            setHeatmapToggle(true);
+        }
+        console.log(heatmapToggle);
+    };
 
     const handleDeselect = () => {
         setRestaurantSelected(null);
@@ -58,6 +75,8 @@ export default function Dashboard({
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
                     activeDashboard={activeDashboard}
+                    heatmapToggle={heatmapToggle}
+                    mapMarkerToggle={mapMarkerToggle}
                     mapTheme={mapTheme}
                     setMapTheme={setMapTheme}
                 />
@@ -73,6 +92,18 @@ export default function Dashboard({
                         </div>
                     )}
                     <MarkerDetails selected={restaurantSelected} />
+                </div>
+
+                <div className="bg-slate-300 w-40 bg-opacity-90 absolute top-0 right-0 rounded-2xl p-6 mr-14 mt-2">
+                    <div className="relative">
+                        <button onClick={handleHeatmapToggle}>
+                            Price Heatmap
+                        </button>
+                        <button onClick={handleMapMarkerToggle}>
+                            Map Markers
+                        </button>
+                        <button>Map theme</button>
+                    </div>
                 </div>
             </div>
             <MapTheme mapTheme={mapTheme} setMapTheme={setMapTheme} />
