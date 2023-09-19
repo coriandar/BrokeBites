@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import FilterSelector from "./filter/FilterSelector";
 import CenterToUserButton from "./map/CenterButton";
+import ToggleLocButton from "./map/toggleLocButton";
 
 export default function Dashboard({
     restaurantList,
@@ -14,18 +15,26 @@ export default function Dashboard({
     const [restaurantSelected, setRestaurantSelected] = useState(null);
     const [activeFilter, setActiveFilter] = useState("search");
 
-    //default center position
-    const [center, setCenter] = useState({
+    //location constants
+    //default center position(AUT)
+    const defaultCenter = {
         lat: -36.8537761039407,
         lng: 174.7658246985396,
-    });
+    };
+    //location enabled/disabled flag
+    const [locationEnabled, setLocationEnabled] = useState(true);
+    //setCenter
+    const [center, setCenter] = useState(defaultCenter);
 
+    //zoom
     const [mapZoom, setMapZoom] = useState(17);
 
+    //map markers
     const handleDeselect = () => {
         setRestaurantSelected(null);
     };
 
+    //parent component
     return (
         <div className="flex h-full">
             <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
@@ -73,7 +82,14 @@ export default function Dashboard({
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>
-            <CenterToUserButton setCenter={setCenter} />
+            <CenterToUserButton
+                setCenter={setCenter}
+                userLocationEnabled={locationEnabled}
+            />
+            <ToggleLocButton
+                locationEnabled={locationEnabled}
+                setLocationEnabled={setLocationEnabled}
+            />
         </div>
     );
 }
