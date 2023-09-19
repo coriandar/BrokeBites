@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import HeatmapComponent from "./Heatmap";
+import {
+    GoogleMap,
+    useLoadScript,
+    Marker,
+    HeatmapLayerF,
+} from "@react-google-maps/api";
 
 const libraries = ["places", "visualization"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
@@ -60,6 +64,21 @@ export const InitMap = ({
 
     console.log("restaurantSelected:", restaurantSelected);
 
+    const heatmapData = restaurantList.map((restaurant) => ({
+        location: new window.google.maps.LatLng(
+            restaurant.latitude,
+            restaurant.longitude
+        ),
+        weight: restaurant.priceRating, // Assuming priceRating is a property of your restaurant object
+    }));
+
+    // Define heatmap options
+    const heatmapOptions = {
+        radius: 40, // Adjust the radius as needed
+        opacity: heatmapToggle ? 0.7 : 0.0, // Set opacity based on heatmapToggle
+        gradient: ["rgba(255, 0, 0, 0)", "rgba(255, 0, 0, 1)"], // Customize the gradient colors
+    };
+
     // displays loading or loading error for map
     if (loadError) return <div>Error loading maps</div>;
     if (!isLoaded) return <div>Loading...</div>;
@@ -72,11 +91,7 @@ export const InitMap = ({
             mapContainerStyle={mapContainerStyle}
             options={{ styles: mapStyles }}
         >
-            <HeatmapComponent
-                restaurantList={restaurantList}
-                heatmapToggle={heatmapToggle}
-            />
-
+            <HeatmapLayerF data={heatmapData} options={heatmapOptions} />
             {mapMarkerToggle &&
                 restaurantList.map((restaurant) => (
                     <Marker
