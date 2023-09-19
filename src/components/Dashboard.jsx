@@ -3,12 +3,15 @@ import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import FilterSelector from "./filter/FilterSelector";
+import MapTheme from "./mapOptions/MapTheme";
 
 export default function Dashboard({
     restaurantList,
     setRestaurantList,
     restaurantMasterList,
     activeDashboard,
+    mapTheme,
+    setMapTheme,
 }) {
     const [restaurantSelected, setRestaurantSelected] = useState(null);
     const [activeFilter, setActiveFilter] = useState("search");
@@ -74,6 +77,8 @@ export default function Dashboard({
                     activeDashboard={activeDashboard}
                     heatmapToggle={heatmapToggle}
                     mapMarkerToggle={mapMarkerToggle}
+                    mapTheme={mapTheme}
+                    setMapTheme={setMapTheme}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     {restaurantSelected && (
@@ -101,7 +106,7 @@ export default function Dashboard({
                     </div>
                 </div>
             </div>
-            <div></div>
+            <MapTheme mapTheme={mapTheme} setMapTheme={setMapTheme} />
         </div>
     );
 }

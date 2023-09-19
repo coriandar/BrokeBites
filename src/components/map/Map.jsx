@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-    GoogleMap,
-    useLoadScript,
-    Marker,
-    HeatmapLayerF,
-} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import HeatMap from "./HeatMap";
+import { light, retro, dark } from "@/config/MapStyles";
 
 const libraries = ["places", "visualization"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
@@ -18,15 +14,6 @@ const mapContainerStyle = {
 
 let zoomIn = 17;
 
-// Set Map Styles (specifically, turn off points of interest)
-const mapStyles = [
-    {
-        featureType: "poi",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }],
-    },
-];
-
 export const InitMap = ({
     restaurantList,
     setRestaurantSelected,
@@ -38,6 +25,8 @@ export const InitMap = ({
     activeDashboard,
     heatmapToggle,
     mapMarkerToggle,
+    mapTheme,
+    setMapTheme,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
@@ -45,6 +34,14 @@ export const InitMap = ({
     });
 
     const [map, setMap] = useState(null);
+
+    const mapStyles = {
+        styles: (() => {
+            if (mapTheme === "light") return light;
+            else if (mapTheme === "dark") return dark;
+            else if (mapTheme === "retro") return retro;
+        })(),
+    };
 
     const handleMapLoad = (map) => {
         setMap(map);
@@ -65,21 +62,6 @@ export const InitMap = ({
 
     console.log("restaurantSelected:", restaurantSelected);
 
-    const heatmapData = restaurantList.map((restaurant) => ({
-        location: new window.google.maps.LatLng(
-            restaurant.latitude,
-            restaurant.longitude
-        ),
-        weight: restaurant.priceRating, // Assuming priceRating is a property of your restaurant object
-    }));
-
-    // Define heatmap options
-    const heatmapOptions = {
-        radius: 40, // Adjust the radius as needed
-        opacity: heatmapToggle ? 0.7 : 0.0, // Set opacity based on heatmapToggle
-        // gradient: ["rgba(255, 0, 0, 0)", "rgba(255, 0, 0, 1)"], // Customize the gradient colors
-    };
-
     // displays loading or loading error for map
     if (loadError) return <div>Error loading maps</div>;
     if (!isLoaded) return <div>Loading...</div>;
@@ -92,7 +74,7 @@ export const InitMap = ({
                     zoom={mapZoom}
                     center={center} // need set this to change, update based on selection
                     mapContainerStyle={mapContainerStyle}
-                    options={{ styles: mapStyles }}
+                    options={mapStyles}
                 >
                     {heatmapToggle && (
                         <HeatMap restaurantList={restaurantList} />
@@ -125,7 +107,7 @@ export const InitMap = ({
                     zoom={mapZoom}
                     center={center} // need set this to change, update based on selection
                     mapContainerStyle={mapContainerStyle}
-                    options={{ styles: mapStyles }}
+                    options={mapStyles}
                 >
                     {mapMarkerToggle &&
                         restaurantList.map((restaurant) => (
