@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { light, retro, dark } from "@/config/MapStyles";
+import { deleteApp } from "firebase/app";
 
 const libraries = ["places"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
@@ -12,15 +14,9 @@ const mapContainerStyle = {
 
 let zoomIn = 17;
 
-// Set Map Styles (specifically, turn off points of interest)
-const mapStyles = [
-    {
-        featureType: "poi",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }],
-    },
-];
-
+// const mapStyles = light;
+// const mapStyles = dark;
+// const mapStyles = retro;
 export const InitMap = ({
     restaurantList,
     setRestaurantSelected,
@@ -30,6 +26,8 @@ export const InitMap = ({
     setMapZoom,
     restaurantSelected,
     activeDashboard,
+    mapTheme,
+    setMapTheme,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
@@ -37,6 +35,14 @@ export const InitMap = ({
     });
 
     const [map, setMap] = useState(null);
+
+    const mapStyles = {
+        styles: (() => {
+            if (mapTheme === "light") return light;
+            else if (mapTheme === "dark") return dark;
+            else if (mapTheme === "retro") return retro;
+        })(),
+    };
 
     const handleMapLoad = (map) => {
         setMap(map);
@@ -67,7 +73,7 @@ export const InitMap = ({
             zoom={mapZoom}
             center={center} // need set this to change, update based on selection
             mapContainerStyle={mapContainerStyle}
-            options={{ styles: mapStyles }}
+            options={mapStyles}
         >
             {restaurantList.map((restaurant) => (
                 <Marker
