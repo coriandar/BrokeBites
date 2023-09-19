@@ -4,10 +4,17 @@ import {
     getFilteredPriceRating,
     getFilteredStarRating,
     getFilteredCusine,
+    getFilteredFillingFactor,
+    getFilteredDietary,
+    getSortedPriceRating,
+    getSortedStarRating,
     optCuisine,
+    optFilling,
+    optDietary,
 } from "./FilterLogic";
 import FilterSlider from "./FilterSlider";
 import FilterType from "./FilterType";
+import SortBy from "./SortBy";
 
 export default function FilterSelector({
     activeFilter,
@@ -37,18 +44,50 @@ export default function FilterSelector({
                     sliderLabel="Price Range:"
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredList={getFilteredPriceRating} // price filter function
+                    getFilteredList={getFilteredPriceRating}
                 />
             );
         } else if (activeFilter === "sortPrice") {
+            return (
+                <SortBy
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    getSortedBy={getSortedPriceRating}
+                />
+            );
         } else if (activeFilter === "fillingFactor") {
+            return (
+                <FilterType
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    options={optFilling}
+                    getFilteredList={getFilteredFillingFactor}
+                />
+            );
         } else if (activeFilter === "cuisine") {
             return (
                 <FilterType
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     options={optCuisine}
-                    getFilteredList={getFilteredCusine} // star filter function
+                    getFilteredList={getFilteredCusine}
+                />
+            );
+        } else if (activeFilter === "dietary") {
+            return (
+                <FilterType
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    options={optDietary}
+                    getFilteredList={getFilteredDietary}
+                />
+            );
+        } else if (activeFilter === "starRatingSort") {
+            return (
+                <SortBy
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    getSortedBy={getSortedStarRating}
                 />
             );
         } else if (activeFilter === "starRating") {
@@ -57,7 +96,7 @@ export default function FilterSelector({
                     sliderLabel="Star Range:"
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredList={getFilteredStarRating} // star filter function
+                    getFilteredList={getFilteredStarRating}
                 />
             );
         }
@@ -65,7 +104,7 @@ export default function FilterSelector({
 
     return (
         <div className="-m-2 -mt-3">
-            <ul className="flex items-center justify-start">
+            <ul id="row1" className="flex items-center justify-start -mb-2">
                 <li className="p-2 cursor-pointer">
                     <button
                         className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
@@ -81,7 +120,7 @@ export default function FilterSelector({
                         )}`}
                         onClick={() => handleClick("priceRange")}
                     >
-                        Price Range
+                        Filter by Price Range
                     </button>
                     <button
                         className={`text-xs px-4 py-1 ${changeColour(
@@ -91,21 +130,42 @@ export default function FilterSelector({
                     >
                         Sort by Price
                     </button>
+
                     <button
-                        className={`text-xs px-4 py-1 ${changeColour(
+                        className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
                             "fillingFactor"
                         )}`}
                         onClick={() => handleClick("fillingFactor")}
                     >
-                        Filling Factor
+                        Filter by Filling Factor
                     </button>
+                </li>
+            </ul>
+            <ul id="row2" className="flex items-center justify-start">
+                <li className="p-2 cursor-pointer">
                     <button
-                        className={`text-xs px-4 py-1 ${changeColour(
+                        className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
                             "cuisine"
                         )}`}
                         onClick={() => handleClick("cuisine")}
                     >
-                        Cuisine
+                        Filter by Cuisine
+                    </button>
+                    <button
+                        className={`text-xs px-4 py-1 ${changeColour(
+                            "dietary"
+                        )}`}
+                        onClick={() => handleClick("dietary")}
+                    >
+                        Filter by Dietary
+                    </button>
+                    <button
+                        className={`text-xs px-4 py-1 ${changeColour(
+                            "starRatingSort"
+                        )}`}
+                        onClick={() => handleClick("starRatingSort")}
+                    >
+                        Sort by Stars
                     </button>
                     <button
                         className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
@@ -113,7 +173,7 @@ export default function FilterSelector({
                         )}`}
                         onClick={() => handleClick("starRating")}
                     >
-                        Stars
+                        Filter by Stars
                     </button>
                 </li>
             </ul>
