@@ -12,12 +12,23 @@ export default function Dashboard({
 }) {
     const [restaurantSelected, setRestaurantSelected] = useState(null);
     const [activeFilter, setActiveFilter] = useState("search");
+    const [heatmapToggle, setHeatmapToggle] = useState(false);
+    const [mapMarkerToggle, setMapMarkerToggle] = useState(true);
 
     const [center, setCenter] = useState({
         lat: -36.8537761039407,
         lng: 174.7658246985396,
     });
     const [mapZoom, setMapZoom] = useState(17);
+
+    const handleMapMarkerToggle = () => {
+        mapMarkerToggle ? setMapMarkerToggle(false) : setMapMarkerToggle(true);
+    };
+
+    const handleHeatmapToggle = () => {
+        heatmapToggle ? setHeatmapToggle(false) : setHeatmapToggle(true);
+        console.log(heatmapToggle);
+    };
 
     const handleDeselect = () => {
         setRestaurantSelected(null);
@@ -55,6 +66,8 @@ export default function Dashboard({
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
                     activeDashboard={activeDashboard}
+                    heatmapToggle={heatmapToggle}
+                    mapMarkerToggle={mapMarkerToggle}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     {restaurantSelected && (
@@ -69,6 +82,10 @@ export default function Dashboard({
                     )}
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
+            </div>
+            <div>
+                <button onClick={handleHeatmapToggle}>Price Heatmap</button>
+                <button onClick={handleMapMarkerToggle}>Map Markers</button>
             </div>
         </div>
     );

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import HeatmapComponent from "./Heatmap";
 
-const libraries = ["places"];
+const libraries = ["places", "visualization"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
 
 // Set Map size
@@ -30,6 +31,8 @@ export const InitMap = ({
     setMapZoom,
     restaurantSelected,
     activeDashboard,
+    heatmapToggle,
+    mapMarkerToggle,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
@@ -69,26 +72,31 @@ export const InitMap = ({
             mapContainerStyle={mapContainerStyle}
             options={{ styles: mapStyles }}
         >
-            {restaurantList.map((restaurant) => (
-                <Marker
-                    key={restaurant.id}
-                    position={{
-                        lat: restaurant.latitude,
-                        lng: restaurant.longitude,
-                    }}
-                    title={restaurant.name} // Display the restaurant name on marker hover
-                    icon={
-                        restaurantSelected?.id === restaurant.id
-                            ? "/pink-dot-bite.png" // Use a different icon for the selected marker
-                            : activeDashboard === "all"
-                            ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Use the default marker icon for others
-                            : activeDashboard === "favourite"
-                            ? "http://maps.google.com/mapfiles/ms/icons/purple-dot.png" // icon for favorites
-                            : "http://maps.google.com/mapfiles/ms/icons/green-dot.png" // icon for toVisit
-                    }
-                    onClick={() => handleMarkerClick(restaurant)}
-                />
-            ))}
+            {heatmapToggle && (
+                <HeatmapComponent restaurantList={restaurantList} />
+            )}
+
+            {mapMarkerToggle &&
+                restaurantList.map((restaurant) => (
+                    <Marker
+                        key={restaurant.id}
+                        position={{
+                            lat: restaurant.latitude,
+                            lng: restaurant.longitude,
+                        }}
+                        title={restaurant.name} // Display the restaurant name on marker hover
+                        icon={
+                            restaurantSelected?.id === restaurant.id
+                                ? "/pink-dot-bite.png" // Use a different icon for the selected marker
+                                : activeDashboard === "all"
+                                ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Use the default marker icon for others
+                                : activeDashboard === "favourite"
+                                ? "http://maps.google.com/mapfiles/ms/icons/purple-dot.png" // icon for favorites
+                                : "http://maps.google.com/mapfiles/ms/icons/green-dot.png" // icon for toVisit
+                        }
+                        onClick={() => handleMarkerClick(restaurant)}
+                    />
+                ))}
         </GoogleMap>
     );
 };
