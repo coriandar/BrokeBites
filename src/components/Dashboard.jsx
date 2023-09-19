@@ -26,7 +26,13 @@ export default function Dashboard({
     };
 
     const handleHeatmapToggle = () => {
-        heatmapToggle ? setHeatmapToggle(false) : setHeatmapToggle(true);
+        // heatmapToggle ? setHeatmapToggle(false) : setHeatmapToggle(true);
+        if (heatmapToggle) {
+            setHeatmapToggle(false);
+            window.location.reload(false);
+        } else {
+            setHeatmapToggle(true);
+        }
         console.log(heatmapToggle);
     };
 
