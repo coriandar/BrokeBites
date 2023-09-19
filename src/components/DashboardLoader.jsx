@@ -7,6 +7,7 @@ export default function DashboardLoader({ dashboardType }) {
     const [restaurantList, setRestaurantList] = useState([]);
     const [restaurantMasterList, setRestaurantMasterList] = useState([]);
     const [activeDashboard, setActiveDashboard] = useState(null);
+    const [mapTheme, setMapTheme] = useState("light");
 
     let restaurants = null;
 
@@ -36,6 +37,8 @@ export default function DashboardLoader({ dashboardType }) {
             restaurantMasterList={restaurantMasterList}
             setRestaurantMasterList={setRestaurantList}
             activeDashboard={activeDashboard}
+            mapTheme={mapTheme}
+            setMapTheme={setMapTheme}
         />
     );
 }
