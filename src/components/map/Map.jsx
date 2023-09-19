@@ -69,6 +69,9 @@ export const InitMap = ({
             mapContainerStyle={mapContainerStyle}
             options={{ styles: mapStyles }}
         >
+            {/* marker to display user pos */}
+            <Marker position={center}></Marker>
+            {/* marker to display restaurant pos */}
             {restaurantList.map((restaurant) => (
                 <Marker
                     key={restaurant.id}

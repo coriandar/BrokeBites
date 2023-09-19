@@ -3,6 +3,7 @@ import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import FilterSelector from "./filter/FilterSelector";
+import CenterToUserButton from "./map/CenterButton";
 
 export default function Dashboard({
     restaurantList,
@@ -13,10 +14,12 @@ export default function Dashboard({
     const [restaurantSelected, setRestaurantSelected] = useState(null);
     const [activeFilter, setActiveFilter] = useState("search");
 
+    //default center position
     const [center, setCenter] = useState({
         lat: -36.8537761039407,
         lng: 174.7658246985396,
     });
+
     const [mapZoom, setMapZoom] = useState(17);
 
     const handleDeselect = () => {
@@ -70,6 +73,7 @@ export default function Dashboard({
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
             </div>
+            <CenterToUserButton setCenter={setCenter} />
         </div>
     );
 }
