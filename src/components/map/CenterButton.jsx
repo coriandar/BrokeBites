@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import Image from "next/image";
 import center from "./center-icon.svg";
 
-const CenterToUserButton = ({ setCenter, userLocation, defaultCenter }) => {
+const CenterToUserButton = ({
+    setCenter,
+    userLocation,
+    defaultCenter,
+    setUserGeo,
+    userGeo,
+}) => {
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
 
@@ -23,11 +29,16 @@ const CenterToUserButton = ({ setCenter, userLocation, defaultCenter }) => {
         //check if user location is enabled, if not use default location (AUT)
         if (userLocation) {
             getUserPosition();
+            setUserGeo({
+                lat: latitude,
+                lng: longitude,
+            });
             setCenter({
                 lat: latitude,
                 lng: longitude,
             });
         } else {
+            setUserGeo(defaultCenter);
             setCenter(defaultCenter);
         }
     };

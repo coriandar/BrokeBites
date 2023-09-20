@@ -37,19 +37,19 @@ function degreesToRadians(degrees) {
 //sort list
 const SortByNearest = ({
     restaurantMasterList,
-    userLocation,
+    userGeo,
     setRestaurantList,
 }) => {
     const sortedList = [...restaurantMasterList].sort((a, b) => {
         const distanceA = calculateEuclideanDistance(
-            userLocation.latitude,
-            userLocation.longitude,
+            userGeo.latitude,
+            userGeo.longitude,
             a.lat,
             a.lng
         );
         const distanceB = calculateEuclideanDistance(
-            userLocation.latitude,
-            userLocation.longitude,
+            userGeo.latitude,
+            userGeo.longitude,
             b.lat,
             b.lng
         );
