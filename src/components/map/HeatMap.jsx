@@ -21,8 +21,8 @@ export default function HeatMap({ restaurantList, heatmapToggle }) {
     // Define heatmap options
     const heatmapOptions = {
         radius: 50, // Adjust the radius as needed
-        opacity: 0.7, // Set opacity based on heatmapToggle
-        // opacity: heatmapToggle ? 0.7 : 0.0, // Set opacity based on heatmapToggle
+        // opacity: 0.7, // Set opacity based on heatmapToggle
+        opacity: heatmapToggle ? 0.7 : 0.0, // Set opacity based on heatmapToggle
         // gradient: ["rgba(255, 0, 0, 0)", "rgba(255, 0, 0, 1)"], // Customize the gradient colors
     };
 

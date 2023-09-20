@@ -1,13 +1,21 @@
 import React from "react";
 
-export default function ToggleSwitch() {
+export default function ToggleSwitch({ label, state, setState }) {
+    const handleToggle = () => {
+        setState(!state);
+    };
+
     return (
-        <label className="h-8 w-16 relative flex cursor-pointer">
-            <input type="checkbox" value="" className="peer" />
-            <div
-                className="rounded-full before:rounded-full bg-slate-500 absolute top-0 bottom-0 left-0 right-0 before:bg-white before:bottom-1 before:left-1 before:absolute before:h-6 before:w-6 before:transition-all peer-checked:before:translate-x-8 peer-checked:bg-green-500
-                "
-            ></div>
+        <label className="relative flex items-center mr-5 cursor-pointer">
+            <input
+                type="checkbox"
+                value=""
+                checked={state}
+                onChange={handleToggle}
+                className="sr-only peer"
+            />
+            <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+            <span className="ml-3">{label}</span>
         </label>
     );
 }
