@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";

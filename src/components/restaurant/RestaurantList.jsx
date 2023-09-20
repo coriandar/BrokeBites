@@ -1,4 +1,5 @@
 import React from "react";
+import { CheckUserDB } from "../account/UserDB";
 
 const InitList = ({
     restaurantList,
@@ -9,6 +10,7 @@ const InitList = ({
     restaurantSelected,
 }) => {
     const handleListItemClick = (restaurant) => {
+        CheckUserDB();
         console.log(restaurant);
         setRestaurantSelected(restaurant);
         setCenter({
