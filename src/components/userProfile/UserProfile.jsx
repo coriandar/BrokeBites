@@ -14,6 +14,7 @@ export default function UserProfile({ uid }) {
     const [favorites, setFavorites] = useState([]);
     const [masterFavorites, setMasterFavorites] = useState([]);
     const [activeDashboard, setActiveDashboard] = useState("favourite");
+    const [mapTheme, setMapTheme] = useState("light");
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -75,6 +76,8 @@ export default function UserProfile({ uid }) {
                         setRestaurantList={setFavorites}
                         restaurantMasterList={masterFavorites}
                         activeDashboard={activeDashboard}
+                        mapTheme={mapTheme}
+                        setMapTheme={setMapTheme}
                     />
                     {/* <FollowButton otherUser={uid} /> */}
                 </div>
