@@ -3,7 +3,7 @@ import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import FilterSelector from "./filter/FilterSelector";
-import MapTheme from "./mapOptions/MapTheme";
+import MapSetings from "./mapOptions/MapSettings";
 
 export default function Dashboard({
     restaurantList,
@@ -23,21 +23,6 @@ export default function Dashboard({
         lng: 174.7658246985396,
     });
     const [mapZoom, setMapZoom] = useState(17);
-
-    const handleMapMarkerToggle = () => {
-        mapMarkerToggle ? setMapMarkerToggle(false) : setMapMarkerToggle(true);
-    };
-
-    const handleHeatmapToggle = () => {
-        // heatmapToggle ? setHeatmapToggle(false) : setHeatmapToggle(true);
-        if (heatmapToggle) {
-            setHeatmapToggle(false);
-            window.location.reload(false);
-        } else {
-            setHeatmapToggle(true);
-        }
-        console.log(heatmapToggle);
-    };
 
     const handleDeselect = () => {
         setRestaurantSelected(null);
@@ -93,20 +78,15 @@ export default function Dashboard({
                     )}
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
-
-                <div className="bg-slate-300 w-40 bg-opacity-90 absolute top-0 right-0 rounded-2xl p-6 mr-14 mt-2">
-                    <div className="relative">
-                        <button onClick={handleHeatmapToggle}>
-                            Price Heatmap
-                        </button>
-                        <button onClick={handleMapMarkerToggle}>
-                            Map Markers
-                        </button>
-                        <button>Map theme</button>
-                    </div>
-                </div>
+                <MapSetings
+                    mapTheme={mapTheme}
+                    setMapTheme={setMapTheme}
+                    mapMarkerToggle={mapMarkerToggle}
+                    setMapMarkerToggle={setMapMarkerToggle}
+                    heatmapToggle={heatmapToggle}
+                    setHeatmapToggle={setHeatmapToggle}
+                />
             </div>
-            <MapTheme mapTheme={mapTheme} setMapTheme={setMapTheme} />
         </div>
     );
 }
