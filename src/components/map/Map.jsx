@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import HeatMap from "./HeatMap";
+import { light, retro, dark } from "@/config/MapStyles";
 
-const libraries = ["places"];
+const libraries = ["places", "visualization"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
 
 // Set Map size
@@ -12,15 +14,6 @@ const mapContainerStyle = {
 
 let zoomIn = 17;
 
-// Set Map Styles (specifically, turn off points of interest)
-const mapStyles = [
-    {
-        featureType: "poi",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }],
-    },
-];
-
 export const InitMap = ({
     restaurantList,
     setRestaurantSelected,
@@ -30,6 +23,10 @@ export const InitMap = ({
     setMapZoom,
     restaurantSelected,
     activeDashboard,
+    heatmapToggle,
+    mapMarkerToggle,
+    mapTheme,
+    setMapTheme,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
@@ -37,6 +34,14 @@ export const InitMap = ({
     });
 
     const [map, setMap] = useState(null);
+
+    const mapStyles = {
+        styles: (() => {
+            if (mapTheme === "light") return light;
+            else if (mapTheme === "dark") return dark;
+            else if (mapTheme === "retro") return retro;
+        })(),
+    };
 
     const handleMapLoad = (map) => {
         setMap(map);
@@ -67,31 +72,36 @@ export const InitMap = ({
             zoom={mapZoom}
             center={center} // need set this to change, update based on selection
             mapContainerStyle={mapContainerStyle}
-            options={{ styles: mapStyles }}
+            options={mapStyles}
         >
-            {/* marker to display user pos */}
+            {/* <HeatMap
+                    restaurantList={restaurantList}
+                    heatmapToggle={heatmapToggle}
+                /> */}
+
             <Marker key="user" position={center} title="You are here" />
-            {/* marker to display restaurant pos */}
-            {restaurantList.map((restaurant) => (
-                <Marker
-                    key={restaurant.id}
-                    position={{
-                        lat: restaurant.latitude,
-                        lng: restaurant.longitude,
-                    }}
-                    title={restaurant.name} // Display the restaurant name on marker hover
-                    icon={
-                        restaurantSelected?.id === restaurant.id
-                            ? "/pink-dot-bite.png" // Use a different icon for the selected marker
-                            : activeDashboard === "all"
-                            ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Use the default marker icon for others
-                            : activeDashboard === "favourite"
-                            ? "http://maps.google.com/mapfiles/ms/icons/purple-dot.png" // icon for favorites
-                            : "http://maps.google.com/mapfiles/ms/icons/green-dot.png" // icon for toVisit
-                    }
-                    onClick={() => handleMarkerClick(restaurant)}
-                />
-            ))}
+
+            {mapMarkerToggle &&
+                restaurantList.map((restaurant) => (
+                    <Marker
+                        key={restaurant.id}
+                        position={{
+                            lat: restaurant.latitude,
+                            lng: restaurant.longitude,
+                        }}
+                        title={restaurant.name} // Display the restaurant name on marker hover
+                        icon={
+                            restaurantSelected?.id === restaurant.id
+                                ? "/pink-dot-bite.png" // Use a different icon for the selected marker
+                                : activeDashboard === "all"
+                                ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Use the default marker icon for others
+                                : activeDashboard === "favourite"
+                                ? "http://maps.google.com/mapfiles/ms/icons/purple-dot.png" // icon for favorites
+                                : "http://maps.google.com/mapfiles/ms/icons/green-dot.png" // icon for toVisit
+                        }
+                        onClick={() => handleMarkerClick(restaurant)}
+                    />
+                ))}
         </GoogleMap>
     );
 };
