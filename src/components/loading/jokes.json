@@ -399,5 +399,9 @@
     {
         "id": 100,
         "joke": "I'd like to start a diet, but I've got too much on my plate right now."
+    },
+    {
+        "id": 101,
+        "joke": "Why did the dog jump into the fire? To be a hotdog."
     }
 ]
