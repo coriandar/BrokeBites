@@ -1,6 +1,9 @@
-import React from "react";
-import DashboardSave from "@/components/DashboardSave";
+import DashboardLoader from "@/components/DashboardLoader";
 
 export default function savedBites() {
-    return <DashboardSave listType={"favourite"} />;
+    return (
+        <>
+            <DashboardLoader dashboardType={"favourite"} />
+        </>
+    );
 }

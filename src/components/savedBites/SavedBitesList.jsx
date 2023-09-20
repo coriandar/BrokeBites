@@ -33,7 +33,11 @@ const fetchRestaurantData = async (restaurantId) => {
 
     if (!restaurantDocSnapshot.exists()) return null;
 
-    return restaurantDocSnapshot.data();
+    const restaurantData = {
+        ...restaurantDocSnapshot.data(),
+        id: restaurantId,
+    };
+    return restaurantData;
 };
 
 export const fetchSavedBitesList = async (listType) => {
@@ -45,6 +49,7 @@ export const fetchSavedBitesList = async (listType) => {
     if (!currentUserId) return [];
 
     try {
+        // gets list
         const listRestaurantIds = await fetchUserSavedList(
             currentUserId,
             listName
@@ -57,7 +62,8 @@ export const fetchSavedBitesList = async (listType) => {
         const restaurantDataList = await Promise.all(restaurantPromises);
 
         // Filter out null values
-        return restaurantDataList.filter(Boolean);
+        // return restaurantDataList.filter(Boolean);
+        return restaurantDataList;
     } catch (error) {
         console.error("Error fetching restaurant data:", error);
         throw error;

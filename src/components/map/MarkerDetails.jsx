@@ -11,6 +11,7 @@ import {
     TwitterShareButton,
     TwitterIcon,
 } from "react-share";
+import ReviewModal from "../review/ReviewModal";
 
 export default function MarkerDetails({ selected }) {
     const auth = getAuth();
@@ -31,10 +32,14 @@ export default function MarkerDetails({ selected }) {
                 <MenuModal selectedRestaurant={selected} />
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
                 {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}
+                <ReviewModal selectedRestaurant={selected} />
             </div>
 
             <h3>Filling Factor: {selected.fillingFactor}</h3>
             <h3>Price rating: {selected.priceRating}</h3>
+            <h3>Star rating: {selected.starRating}</h3>
+            <h3>Cusine: {selected.cuisine}</h3>
+            <h3>Dietary: {selected.dietary}</h3>
 
             <h3>
                 Phone: {selected.contactNumber ? selected.contactNumber : "n/a"}

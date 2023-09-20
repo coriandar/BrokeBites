@@ -4,22 +4,21 @@ import ReactSlider from "react-slider";
 const MIN = 1;
 const MAX = 5;
 
-function InitPriceSlider({
+export default function FilterSlider({
+    sliderLabel,
     setRestaurantList,
     restaurantMasterList,
-    getFilteredPriceRating,
+    getFilteredList,
 }) {
     const [sliderValues, setSliderValues] = useState([MIN, MAX]); // Values for slider
 
     useEffect(() => {
-        setRestaurantList(
-            getFilteredPriceRating(restaurantMasterList, sliderValues)
-        );
-    }, [sliderValues, restaurantMasterList, setRestaurantList]);
+        setRestaurantList(getFilteredList(restaurantMasterList, sliderValues));
+    }, [sliderValues]);
 
     return (
         <div className="w-full bg-slate-300 shadow-lg h-24 flex flex-col items-center pl-2 rounded-lg">
-            <h3>Price Rating:</h3>
+            <h3>{sliderLabel}</h3>
             <small>
                 Current range: {sliderValues[0]} - {sliderValues[1]}
             </small>
@@ -40,5 +39,3 @@ function InitPriceSlider({
         </div>
     );
 }
-
-export default InitPriceSlider;

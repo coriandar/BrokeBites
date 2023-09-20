@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-import {
-    getAllRestaurants,
-    getFilteredRestaurants,
-    getFilteredPriceRating,
-} from "./firebase/FirebaseApp";
 import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import FilterSelector from "./filter/FilterSelector";
+import MapTheme from "./mapOptions/MapTheme";
 
-export default function Dashboard() {
-    const [restaurantMasterList, setRestaurantMasterList] = useState([]);
-    const [restaurantList, setRestaurantList] = useState([]);
+export default function Dashboard({
+    restaurantList,
+    setRestaurantList,
+    restaurantMasterList,
+    activeDashboard,
+    mapTheme,
+    setMapTheme,
+}) {
     const [restaurantSelected, setRestaurantSelected] = useState(null);
-    const [query, setQuery] = useState("");
     const [activeFilter, setActiveFilter] = useState("search");
+    const [heatmapToggle, setHeatmapToggle] = useState(false);
+    const [mapMarkerToggle, setMapMarkerToggle] = useState(true);
 
     const [center, setCenter] = useState({
         lat: -36.8537761039407,
@@ -22,15 +24,20 @@ export default function Dashboard() {
     });
     const [mapZoom, setMapZoom] = useState(17);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const restaurants = await getAllRestaurants();
-            setRestaurantMasterList(restaurants);
-            setRestaurantList(restaurants);
-        };
+    const handleMapMarkerToggle = () => {
+        mapMarkerToggle ? setMapMarkerToggle(false) : setMapMarkerToggle(true);
+    };
 
-        fetchData();
-    }, []);
+    const handleHeatmapToggle = () => {
+        // heatmapToggle ? setHeatmapToggle(false) : setHeatmapToggle(true);
+        if (heatmapToggle) {
+            setHeatmapToggle(false);
+            window.location.reload(false);
+        } else {
+            setHeatmapToggle(true);
+        }
+        console.log(heatmapToggle);
+    };
 
     const handleDeselect = () => {
         setRestaurantSelected(null);
@@ -38,12 +45,10 @@ export default function Dashboard() {
 
     return (
         <div className="flex h-full">
-            <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/5">
+            <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
                 <FilterSelector
-                    setQuery={setQuery}
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredPriceRating={getFilteredPriceRating}
                     activeFilter={activeFilter}
                     setActiveFilter={setActiveFilter}
                 />
@@ -52,26 +57,28 @@ export default function Dashboard() {
                     <InitList
                         restaurantList={restaurantList}
                         setRestaurantSelected={setRestaurantSelected}
+                        restaurantSelected={restaurantSelected}
                         setCenter={setCenter}
-                        setRestaurantList={setRestaurantList}
-                        getFilteredRestaurants={getFilteredRestaurants}
-                        restaurantMasterList={restaurantMasterList}
                         setMapZoom={setMapZoom}
-                        query={query}
                         activeFilter={activeFilter}
                     />
                 </div>
             </div>
 
-            <div className="bg-slate-300 w-4/5 relative">
+            <div className="bg-slate-300 w-3/4 relative">
                 <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
+                    restaurantSelected={restaurantSelected}
                     setCenter={setCenter}
                     center={center}
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
-                    restaurantSelected={restaurantSelected}
+                    activeDashboard={activeDashboard}
+                    heatmapToggle={heatmapToggle}
+                    mapMarkerToggle={mapMarkerToggle}
+                    mapTheme={mapTheme}
+                    setMapTheme={setMapTheme}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     {restaurantSelected && (
@@ -84,10 +91,22 @@ export default function Dashboard() {
                             </button>
                         </div>
                     )}
-
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
+
+                <div className="bg-slate-300 w-40 bg-opacity-90 absolute top-0 right-0 rounded-2xl p-6 mr-14 mt-2">
+                    <div className="relative">
+                        <button onClick={handleHeatmapToggle}>
+                            Price Heatmap
+                        </button>
+                        <button onClick={handleMapMarkerToggle}>
+                            Map Markers
+                        </button>
+                        <button>Map theme</button>
+                    </div>
+                </div>
             </div>
+            <MapTheme mapTheme={mapTheme} setMapTheme={setMapTheme} />
         </div>
     );
 }
