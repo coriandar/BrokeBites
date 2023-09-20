@@ -37,7 +37,10 @@ export default function ReviewModal({ selectedRestaurant }) {
                 })
             );
             const reviews = await Promise.all(reviewsData);
-            setReviewsData(reviews);
+            const sortedReviews = reviews.sort(
+                (a, b) => a.timestamp - b.timestamp
+            );
+            setReviewsData(sortedReviews);
         } catch (error) {
             console.error("Error loading subcollection: ", error);
         }
