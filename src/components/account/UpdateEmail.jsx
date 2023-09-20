@@ -35,7 +35,7 @@ export default function UpdateEmail() {
                 if (!updating && success) {
                     alert("Updated email address.");
                 } else if (error) {
-                    alert("Unsuccessful.");
+                    alert("Unsuccessful. Email already registered.");
                 }
             }
         } catch (error) {

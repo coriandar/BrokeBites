@@ -3,26 +3,39 @@ import InitMap from "./map/Map";
 import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import FilterSelector from "./filter/FilterSelector";
+import CenterToUserButton from "./map/CenterButton";
+import MapSetings from "./mapOptions/MapSettings";
 
 export default function Dashboard({
     restaurantList,
     setRestaurantList,
     restaurantMasterList,
     activeDashboard,
+    mapTheme,
+    setMapTheme,
 }) {
     const [restaurantSelected, setRestaurantSelected] = useState(null);
     const [activeFilter, setActiveFilter] = useState("search");
+    const [heatmapToggle, setHeatmapToggle] = useState(false);
+    const [mapMarkerToggle, setMapMarkerToggle] = useState(true);
+    const [userLocation, setUserLocation] = useState(true);
+    const [mapZoom, setMapZoom] = useState(17);
+    const [userGeo, setUserGeo] = useState(null);
 
-    const [center, setCenter] = useState({
+    //default center position(AUT)
+    const defaultCenter = {
         lat: -36.8537761039407,
         lng: 174.7658246985396,
-    });
-    const [mapZoom, setMapZoom] = useState(17);
+    };
 
+    const [center, setCenter] = useState(defaultCenter);
+
+    //map markers
     const handleDeselect = () => {
         setRestaurantSelected(null);
     };
 
+    //parent component
     return (
         <div className="flex h-full">
             <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
@@ -55,6 +68,13 @@ export default function Dashboard({
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
                     activeDashboard={activeDashboard}
+                    heatmapToggle={heatmapToggle}
+                    mapMarkerToggle={mapMarkerToggle}
+                    mapTheme={mapTheme}
+                    setMapTheme={setMapTheme}
+                    userLocation={userLocation}
+                    userGeo={userGeo}
+                    setUserGeo={setUserGeo}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     {restaurantSelected && (
@@ -69,6 +89,23 @@ export default function Dashboard({
                     )}
                     <MarkerDetails selected={restaurantSelected} />
                 </div>
+                <MapSetings
+                    mapTheme={mapTheme}
+                    setMapTheme={setMapTheme}
+                    mapMarkerToggle={mapMarkerToggle}
+                    setMapMarkerToggle={setMapMarkerToggle}
+                    heatmapToggle={heatmapToggle}
+                    setHeatmapToggle={setHeatmapToggle}
+                    userLocation={userLocation}
+                    setUserLocation={setUserLocation}
+                />
+                <CenterToUserButton
+                    defaultCenter={defaultCenter}
+                    setCenter={setCenter}
+                    userLocation={userLocation}
+                    userGeo={userGeo}
+                    setUserGeo={setUserGeo}
+                />
             </div>
         </div>
     );
