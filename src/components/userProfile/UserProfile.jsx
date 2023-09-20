@@ -39,8 +39,8 @@ export default function UserProfile({ uid: selectedUserID }) {
         const fetchUserReviews = async () => {
             try {
                 console.log("Attempting to get reviews for", selectedUserID);
-                setUserReviews(getUserReviews(selectedUserID));
-                console.log(userReviews);
+                const reviewCollection = await getUserReviews();
+                setUserReviews(reviewCollection);
             } catch {
                 console.error("Error fetching user's review list:", error);
             }
@@ -51,6 +51,8 @@ export default function UserProfile({ uid: selectedUserID }) {
             fetchUserProfile();
             fetchFavorites();
             fetchUserReviews();
+
+            //console.log("UserReviews:");
         }
     }, [selectedUserID]);
 
@@ -71,9 +73,9 @@ export default function UserProfile({ uid: selectedUserID }) {
                     <div>
                         <h2>Review List</h2>
                         <ul>
-                            {/*{userReviews.map((review) => (
+                            {userReviews.map((review) => (
                                 <li key={review.id}>{review.reviewText}</li>
-                            ))}*/}
+                            ))}
                         </ul>
                     </div>
                 </div>

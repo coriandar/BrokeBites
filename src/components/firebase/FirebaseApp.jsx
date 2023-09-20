@@ -1,7 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, updateProfile } from "firebase/auth";
 import { firebaseConfig } from "@/config/Firebase.config";
-import { getFirestore, getDocs, collection, query } from "firebase/firestore";
+import {
+    getFirestore,
+    getDocs,
+    collection,
+    query,
+    where,
+} from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const getAllRestaurants = async () => {
@@ -13,8 +19,6 @@ export const getAllRestaurants = async () => {
             ...doc.data(),
             id: doc.id,
         }));
-
-        console.log(filteredData);
         return filteredData;
     } catch (err) {
         console.error(err);
@@ -37,18 +41,35 @@ export const getAllRestaurants = async () => {
 }
 
 export const getUserReviews = async (selectedUserID) => {
+    // try {
+    //     console.log("In getUserReviews for", selectedUserID);
+    //     const reviewsCollectionRef = collection(db, "reviewDB");
+    //     {
+    //         const reviewsQuery = query(
+    //         collection(db, "reviewDB"),
+    //         where("userID", "==", selectedUserID)
+    //     );
+    //     }
+
+    //     const data = await getDocs(reviewsCollectionRef);
+
+    //     console.log("in getUserReviews", data);
+    //     return data;
+    // } catch (err) {
+    //     console.error(err);
+    // }
+
     try {
-        console.log("In getUserReviews for", selectedUserID);
-        const reviewsCollectionRef = db.collection("reviewsDB");
-        const reviewsQuery = query(
-            collection(db, "reviewDB"),
-            where("userID", "==", selectedUserID)
-        );
+        const userReviewCollectionRef = collection(db, "reviewDB");
+        const data = await getDocs(userReviewCollectionRef);
+        const filteredData = data.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+        }));
 
-        const data = await getDocs(reviewsQuery);
+        console.log(filteredData);
 
-        console.log("in getUserReviews", data);
-        return data;
+        return filteredData;
     } catch (err) {
         console.error(err);
     }
