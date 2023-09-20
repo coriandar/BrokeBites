@@ -2,12 +2,18 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase/FirebaseApp";
 import { doc, getDoc } from "firebase/firestore";
-import { fetchSavedBitesList } from "../savedBites/SavedBitesList";
 import FollowButton from "./FollowButton";
+import Dashboard from "../Dashboard";
+import {
+    fetchUserSavedList,
+    fetchRestaurantData,
+} from "../savedBites/SavedBitesList";
 
 export default function UserProfile({ uid }) {
     const [userProfile, setUserProfile] = useState(null);
     const [favorites, setFavorites] = useState([]);
+    const [masterFavorites, setMasterFavorites] = useState([]);
+    const [activeDashboard, setActiveDashboard] = useState("favourite");
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -24,15 +30,29 @@ export default function UserProfile({ uid }) {
         };
 
         const fetchFavorites = async () => {
+            const currentUserId = uid;
+            const listName = "favourite";
+
+            if (!currentUserId) return [];
+
             try {
-                // Fetch favorites based on uid
-                const favoriteList = await fetchSavedBitesList(
-                    uid,
-                    "favourite"
+                const listRestaurantIds = await fetchUserSavedList(
+                    currentUserId,
+                    listName
                 );
-                setFavorites(favoriteList);
+
+                const restaurantPromises =
+                    listRestaurantIds.map(fetchRestaurantData);
+
+                const restaurantDataList = await Promise.all(
+                    restaurantPromises
+                );
+
+                setFavorites(restaurantDataList);
+                setMasterFavorites(restaurantDataList);
             } catch (error) {
-                console.error("Error fetching user's favorite list:", error);
+                console.error("Error fetching restaurant data:", error);
+                throw error;
             }
         };
 
@@ -44,21 +64,22 @@ export default function UserProfile({ uid }) {
     }, [uid]);
 
     return (
-        <div>
+        <div className="m-8">
             {userProfile ? (
-                <div>
-                    <h1>{userProfile.displayName}'s Profile</h1> <br />
-                    <h2>Favorite List</h2>
-                    <ul>
-                        {favorites.map((favorite) => (
-                            <li key={favorite.id}>{favorite.name}</li>
-                        ))}
-                    </ul>{" "}
-                    <br />
-                    <FollowButton otherUser={uid} />
+                <div className="lg:h-[900px] md:h-[600px] sm:h-[300px]">
+                    <h2 className="font-bold flex justify-center items-center text-xl">
+                        {userProfile.displayName}'s Profile
+                    </h2>
+                    <Dashboard
+                        restaurantList={favorites}
+                        setRestaurantList={setFavorites}
+                        restaurantMasterList={masterFavorites}
+                        activeDashboard={activeDashboard}
+                    />
+                    {/* <FollowButton otherUser={uid} /> */}
                 </div>
             ) : (
-                <p>Loading user profile...</p>
+                <p>User is private or does not exist...</p>
             )}
         </div>
     );
