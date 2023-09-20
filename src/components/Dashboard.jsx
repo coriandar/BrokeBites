@@ -20,6 +20,7 @@ export default function Dashboard({
     const [mapMarkerToggle, setMapMarkerToggle] = useState(true);
     const [userLocation, setUserLocation] = useState(true);
     const [mapZoom, setMapZoom] = useState(17);
+    const [userGeo, setUserGeo] = useState(null);
 
     //default center position(AUT)
     const defaultCenter = {
@@ -72,6 +73,8 @@ export default function Dashboard({
                     mapTheme={mapTheme}
                     setMapTheme={setMapTheme}
                     userLocation={userLocation}
+                    userGeo={userGeo}
+                    setUserGeo={setUserGeo}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     {restaurantSelected && (
@@ -100,6 +103,8 @@ export default function Dashboard({
                     defaultCenter={defaultCenter}
                     setCenter={setCenter}
                     userLocation={userLocation}
+                    userGeo={userGeo}
+                    setUserGeo={setUserGeo}
                 />
             </div>
         </div>

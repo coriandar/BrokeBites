@@ -29,6 +29,8 @@ export const InitMap = ({
     mapTheme,
     setMapTheme,
     userLocation,
+    userGeo,
+    setUserGeo,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
@@ -81,7 +83,7 @@ export const InitMap = ({
                 heatmapToggle={heatmapToggle}
             /> */}
 
-            <UserLocMarker center={center} userLocation={userLocation} />
+            <UserLocMarker userGeo={userGeo} userLocation={userLocation} />
 
             {mapMarkerToggle &&
                 restaurantList.map((restaurant) => (
