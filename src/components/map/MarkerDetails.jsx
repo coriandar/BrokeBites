@@ -65,13 +65,13 @@ export default function MarkerDetails({ selected }) {
                     </FacebookShareButton>
                     <EmailShareButton
                         url={selected.website}
-                        quote="Take a look at this place!"
+                        subject="Take a look at this place!"
                     >
                         <EmailIcon size={32} round={true} />
                     </EmailShareButton>
                     <TwitterShareButton
                         url={selected.website}
-                        quote="Take a look at this place!"
+                        title="Take a look at this place!"
                     >
                         <TwitterIcon size={32} round={true} />
                     </TwitterShareButton>
