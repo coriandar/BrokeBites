@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, updateProfile } from "firebase/auth";
 import { firebaseConfig } from "@/config/Firebase.config";
-import { getFirestore, getDocs, collection } from "firebase/firestore";
+import { getFirestore, getDocs, collection, query } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const getAllRestaurants = async () => {
@@ -14,6 +14,40 @@ export const getAllRestaurants = async () => {
             id: doc.id,
         }));
 
+        console.log(filteredData);
+        return filteredData;
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+{
+    /*export const getSelectedUserProfile = async (selectedUserID) => {
+    try {
+        const userDocRef = doc(db, "userDB", selectedUserID); // Use uid to fetch the user document
+        const userDocSnapshot = await getDoc(userDocRef);
+        if (userDocSnapshot.exists()) {
+            const userData = userDocSnapshot.data();
+            return userData;
+        }
+    } catch (error) {
+        console.error("Error fetching user profile:", error);
+    }
+};*/
+}
+
+export const getUserReviews = async (selectedUserID) => {
+    try {
+        const reviewsQuery = query(
+            collection(db, "reviewDB"),
+            where("userID", "==", selectedUserID)
+        );
+
+        const data = await getDocs(reviewsQuery);
+        const filteredData = data.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+        }));
         console.log(filteredData);
         return filteredData;
     } catch (err) {

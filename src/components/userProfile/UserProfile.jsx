@@ -1,12 +1,13 @@
 // UserProfile.js
 import { useState, useEffect } from "react";
-import { db } from "../firebase/FirebaseApp";
+import { db, getUserReviews } from "../firebase/FirebaseApp";
 import { doc, getDoc } from "firebase/firestore";
 import { fetchSavedBitesList } from "../savedBites/SavedBitesList";
 
 export default function UserProfile({ uid }) {
     const [userProfile, setUserProfile] = useState(null);
     const [favorites, setFavorites] = useState([]);
+    const [userReviews, setUserReviews] = useState([]);
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -35,25 +36,46 @@ export default function UserProfile({ uid }) {
             }
         };
 
+        const fetchUserReviews = async () => {
+            try {
+                const reviews = await getUserReviews(uid);
+                setUserReviews(reviews);
+                console.log("Attempting to get reviews");
+            } catch {
+                console.error("Error fetching user's review list:", error);
+            }
+        };
+
         // Call fetchUserProfile() and fetchFavorites() only if uid is defined
         if (uid) {
             fetchUserProfile();
             fetchFavorites();
+            fetchUserReviews();
         }
     }, [uid]);
 
     return (
         <div>
-            {console.log("userProfile: " + JSON.stringify(userProfile))}
+            {/*{console.log("userProfile: " + JSON.stringify(userProfile))}*/}
             {userProfile ? (
                 <div>
-                    <h1>{userProfile.displayName}'s Profile</h1> <br />
-                    <h2>Favorite List</h2>
-                    <ul>
-                        {favorites.map((favorite) => (
-                            <li key={favorite.id}>{favorite.name}</li>
-                        ))}
-                    </ul>
+                    <div>
+                        <h1>{userProfile.displayName}'s Profile</h1> <br />
+                        <h2>Favorite List</h2>
+                        <ul>
+                            {favorites.map((favorite) => (
+                                <li key={favorite.id}>{favorite.name}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Review List</h2>
+                        <ul>
+                            {/*{userReviews.map((review) => (
+                                <li key={review.id}>{review.reviewText}</li>
+                            ))}*/}
+                        </ul>
+                    </div>
                 </div>
             ) : (
                 <p>Loading user profile...</p>
