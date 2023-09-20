@@ -47,7 +47,6 @@ const InitList = ({
             return printPrice(restaurant.priceRating);
         }
     };
-
     return (
         <ul id="restaurantList">
             {restaurantList.map((restaurant) => (

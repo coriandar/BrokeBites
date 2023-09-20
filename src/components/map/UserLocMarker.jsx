@@ -1,9 +1,9 @@
 import React from "react";
-import { Marker } from "@react-google-maps/api";
+import { MarkerF } from "@react-google-maps/api";
 
 export default function UserLocMarker({ userGeo, userLocation }) {
     return (
-        <Marker
+        <MarkerF
             key="user"
             position={userGeo}
             icon={userLocation ? "/currentLocation.png" : ""}

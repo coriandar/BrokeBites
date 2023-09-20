@@ -11,6 +11,7 @@ import {
     optCuisine,
     optFilling,
     optDietary,
+    getSortedDistance,
 } from "./FilterLogic";
 import FilterSlider from "./FilterSlider";
 import FilterType from "./FilterType";
@@ -73,6 +74,7 @@ export default function FilterSelector({
                     getFilteredList={getFilteredCusine}
                 />
             );
+            a;
         } else if (activeFilter === "dietary") {
             return (
                 <FilterType
@@ -97,6 +99,14 @@ export default function FilterSelector({
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     getFilteredList={getFilteredStarRating}
+                />
+            );
+        } else if (activeFilter === "nearestSort") {
+            return (
+                <SortBy
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    getSortedBy={getSortedDistance}
                 />
             );
         }
@@ -174,6 +184,18 @@ export default function FilterSelector({
                         onClick={() => handleClick("starRating")}
                     >
                         Filter by Stars
+                    </button>
+                </li>
+            </ul>
+            <ul id="row3" className="flex items-center justify-start">
+                <li className="p-2 cursor-pointer">
+                    <button
+                        className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
+                            "nearest"
+                        )}`}
+                        onClick={() => handleClick("nearestSort")}
+                    >
+                        Sort by Nearest
                     </button>
                 </li>
             </ul>
