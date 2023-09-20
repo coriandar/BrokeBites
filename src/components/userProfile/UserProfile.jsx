@@ -22,6 +22,8 @@ export default function UserProfile({ uid }) {
             }
         };
 
+        console.log("viewing" + userProfile);
+
         const fetchFavorites = async () => {
             try {
                 // Fetch favorites based on uid
@@ -35,30 +37,12 @@ export default function UserProfile({ uid }) {
             }
         };
 
-        // Fetch user reviews
-        const fetchReviewsByUser = async () => {
-            try {
-                const reviewsRef = firestore.collectionGroup("reviews");
-                const query = reviewsRef.where("userId", "==", uid); // Use 'uid' instead of 'userId'
-
-                const snapshot = await query.get();
-
-                const reviewsData = [];
-                snapshot.forEach((doc) => {
-                    reviewsData.push(doc.data());
-                });
-
-                setReviews(reviewsData);
-            } catch (error) {
-                console.error("Error fetching reviews:", error);
-            }
-        };
+        const fetchReviews = async () => {};
 
         // Call fetchUserProfile() and fetchFavorites() only if uid is defined
         if (uid) {
             fetchUserProfile();
             fetchFavorites();
-            fetchReviewsByUser();
         }
     }, [uid]);
 

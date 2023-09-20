@@ -49,19 +49,6 @@ export default function ReviewModal({ selectedRestaurant }) {
         else setReviewsData([]);
     }, [open]);
 
-    const formatTimestamp = (timestamp) => {
-        const date = timestamp.toDate();
-        const options = {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false, // sets 24hr
-        };
-        return date.toLocaleString(undefined, options);
-    };
-
     const handleReviewSubmit = async (reviewText) => {
         const auth = getAuth();
         const currentUserId = auth.currentUser.uid;
@@ -127,11 +114,7 @@ export default function ReviewModal({ selectedRestaurant }) {
                                                         "Anonymous"}
                                                 </Link>
 
-                                                <p className="font-light text-xs">
-                                                    {formatTimestamp(
-                                                        review.timestamp
-                                                    )}
-                                                </p>
+                                                <p className="font-light text-xs"></p>
                                             </div>
                                             <p>{review.review}</p>
                                         </li>
