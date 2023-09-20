@@ -70,7 +70,7 @@ export const InitMap = ({
             options={{ styles: mapStyles }}
         >
             {/* marker to display user pos */}
-            <Marker position={center} title="You are here" />
+            <Marker key="user" position={center} title="You are here" />
             {/* marker to display restaurant pos */}
             {restaurantList.map((restaurant) => (
                 <Marker
