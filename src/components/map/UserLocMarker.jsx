@@ -1,12 +1,10 @@
-import React from "react";
-import { Marker } from "@react-google-maps/api";
+import React, { useState } from "react";
+import { MarkerF } from "@react-google-maps/api";
 
 export default function UserLocMarker({ userGeo, userLocation }) {
-    return (
-        <Marker
-            key="user"
-            position={userGeo}
-            icon={userLocation ? "/currentLocation.png" : ""}
-        />
-    );
+    const user = "/currentLocation.png";
+    const def = "";
+    const [icon, setIcon] = useState(user);
+
+    return <MarkerF key="user" position={userGeo} icon={icon} />;
 }
