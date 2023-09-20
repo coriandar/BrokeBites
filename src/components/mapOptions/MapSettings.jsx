@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { MapCog } from "./MapCog";
 import MapTheme from "./MapTheme";
 import MapMarkers from "./MapMarkers";
 import MapHeat from "./MapHeat";
-import { MapCog } from "./MapCog";
+import MapUserLocation from "./MapUserLocation";
 
 export default function MapSetings({
     mapTheme,
@@ -11,6 +12,8 @@ export default function MapSetings({
     setMapMarkerToggle,
     heatmapToggle,
     setHeatmapToggle,
+    userLocation,
+    setUserLocation,
 }) {
     const [showOptions, setShowOptions] = useState(false);
 
@@ -32,6 +35,10 @@ export default function MapSetings({
                         <MapMarkers
                             state={mapMarkerToggle}
                             setState={setMapMarkerToggle}
+                        />
+                        <MapUserLocation
+                            state={userLocation}
+                            setState={setUserLocation}
                         />
                         <MapTheme
                             mapTheme={mapTheme}

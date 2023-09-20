@@ -4,7 +4,6 @@ import InitList from "./restaurant/RestaurantList";
 import MarkerDetails from "./map/MarkerDetails";
 import FilterSelector from "./filter/FilterSelector";
 import CenterToUserButton from "./map/CenterButton";
-import ToggleLocButton from "./map/toggleLocButton";
 import MapSetings from "./mapOptions/MapSettings";
 
 export default function Dashboard({
@@ -19,20 +18,16 @@ export default function Dashboard({
     const [activeFilter, setActiveFilter] = useState("search");
     const [heatmapToggle, setHeatmapToggle] = useState(false);
     const [mapMarkerToggle, setMapMarkerToggle] = useState(true);
+    const [userLocation, setUserLocation] = useState(true);
+    const [mapZoom, setMapZoom] = useState(17);
 
-    //location constants
     //default center position(AUT)
     const defaultCenter = {
         lat: -36.8537761039407,
         lng: 174.7658246985396,
     };
-    //location enabled/disabled flag
-    const [locationEnabled, setLocationEnabled] = useState(true);
-    //setCenter
-    const [center, setCenter] = useState(defaultCenter);
 
-    //zoom
-    const [mapZoom, setMapZoom] = useState(17);
+    const [center, setCenter] = useState(defaultCenter);
 
     //map markers
     const handleDeselect = () => {
@@ -76,6 +71,7 @@ export default function Dashboard({
                     mapMarkerToggle={mapMarkerToggle}
                     mapTheme={mapTheme}
                     setMapTheme={setMapTheme}
+                    userLocation={userLocation}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     {restaurantSelected && (
@@ -97,16 +93,15 @@ export default function Dashboard({
                     setMapMarkerToggle={setMapMarkerToggle}
                     heatmapToggle={heatmapToggle}
                     setHeatmapToggle={setHeatmapToggle}
+                    userLocation={userLocation}
+                    setUserLocation={setUserLocation}
+                />
+                <CenterToUserButton
+                    defaultCenter={defaultCenter}
+                    setCenter={setCenter}
+                    userLocation={userLocation}
                 />
             </div>
-            <CenterToUserButton
-                setCenter={setCenter}
-                userLocationEnabled={locationEnabled}
-            />
-            <ToggleLocButton
-                locationEnabled={locationEnabled}
-                setLocationEnabled={setLocationEnabled}
-            />
         </div>
     );
 }

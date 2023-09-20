@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import HeatMap from "./HeatMap";
 import { light, retro, dark } from "@/config/MapStyles";
+import UserLocMarker from "./UserLocMarker";
 
 const libraries = ["places", "visualization"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
@@ -27,6 +28,7 @@ export const InitMap = ({
     mapMarkerToggle,
     mapTheme,
     setMapTheme,
+    userLocation,
 }) => {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
@@ -75,11 +77,11 @@ export const InitMap = ({
             options={mapStyles}
         >
             {/* <HeatMap
-                    restaurantList={restaurantList}
-                    heatmapToggle={heatmapToggle}
-                /> */}
+                restaurantList={restaurantList}
+                heatmapToggle={heatmapToggle}
+            /> */}
 
-            <Marker key="user" position={center} title="You are here" />
+            <UserLocMarker center={center} userLocation={userLocation} />
 
             {mapMarkerToggle &&
                 restaurantList.map((restaurant) => (
