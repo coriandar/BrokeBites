@@ -7,7 +7,6 @@ import { fetchSavedBitesList } from "../savedBites/SavedBitesList";
 export default function UserProfile({ uid }) {
     const [userProfile, setUserProfile] = useState(null);
     const [favorites, setFavorites] = useState([]);
-    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -36,27 +35,10 @@ export default function UserProfile({ uid }) {
             }
         };
 
-        const fetchUserReviews = async () => {
-            try {
-                // Query reviews collection for reviews created by the user with a specific UID
-                const reviewsQuery = query(
-                    collection(db, "restaurantDB", "reviews"),
-                    where("userId", "==", uid)
-                );
-
-                const querySnapshot = await getDocs(reviewsQuery);
-                const userReviews = querySnapshot.docs.map((doc) => doc.data());
-                setReviews(userReviews);
-            } catch (error) {
-                console.error("Error fetching user's reviews:", error);
-            }
-        };
-
         // Call fetchUserProfile() and fetchFavorites() only if uid is defined
         if (uid) {
             fetchUserProfile();
             fetchFavorites();
-            fetchUserReviews();
         }
     }, [uid]);
 
@@ -66,22 +48,12 @@ export default function UserProfile({ uid }) {
             {userProfile ? (
                 <div>
                     <h1>{userProfile.displayName}'s Profile</h1> <br />
-                    <div id="Favourites">
-                        <h2>Favorite List</h2>
-                        <ul>
-                            {favorites.map((favorite) => (
-                                <li key={favorite.id}>{favorite.name}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div id="Reviews">
-                        <h2>User Reviews</h2>
-                        <ul>
-                            {reviews.map((review) => (
-                                <li key={review.id}>{review.reviewText}</li>
-                            ))}
-                        </ul>
-                    </div>
+                    <h2>Favorite List</h2>
+                    <ul>
+                        {favorites.map((favorite) => (
+                            <li key={favorite.id}>{favorite.name}</li>
+                        ))}
+                    </ul>
                 </div>
             ) : (
                 <p>Loading user profile...</p>
