@@ -4,7 +4,7 @@ import { db, getUserReviews } from "../firebase/FirebaseApp";
 import { doc, getDoc } from "firebase/firestore";
 import { fetchSavedBitesList } from "../savedBites/SavedBitesList";
 
-export default function UserProfile({ uid }) {
+export default function UserProfile({ uid: selectedUserID }) {
     const [userProfile, setUserProfile] = useState(null);
     const [favorites, setFavorites] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
@@ -12,7 +12,7 @@ export default function UserProfile({ uid }) {
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                const userDocRef = doc(db, "userDB", uid); // Use uid to fetch the user document
+                const userDocRef = doc(db, "userDB", selectedUserID); // Use uid to fetch the user document
                 const userDocSnapshot = await getDoc(userDocRef);
                 if (userDocSnapshot.exists()) {
                     const userData = userDocSnapshot.data();
@@ -27,7 +27,7 @@ export default function UserProfile({ uid }) {
             try {
                 // Fetch favorites based on uid
                 const favoriteList = await fetchSavedBitesList(
-                    uid,
+                    selectedUserID,
                     "favourite"
                 );
                 setFavorites(favoriteList);
@@ -38,21 +38,21 @@ export default function UserProfile({ uid }) {
 
         const fetchUserReviews = async () => {
             try {
-                const reviews = await getUserReviews(uid);
-                setUserReviews(reviews);
-                console.log("Attempting to get reviews");
+                console.log("Attempting to get reviews for", selectedUserID);
+                setUserReviews(getUserReviews(selectedUserID));
+                console.log(userReviews);
             } catch {
                 console.error("Error fetching user's review list:", error);
             }
         };
 
         // Call fetchUserProfile() and fetchFavorites() only if uid is defined
-        if (uid) {
+        if (selectedUserID) {
             fetchUserProfile();
             fetchFavorites();
             fetchUserReviews();
         }
-    }, [uid]);
+    }, [selectedUserID]);
 
     return (
         <div>

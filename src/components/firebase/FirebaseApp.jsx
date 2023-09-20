@@ -38,18 +38,17 @@ export const getAllRestaurants = async () => {
 
 export const getUserReviews = async (selectedUserID) => {
     try {
+        console.log("In getUserReviews for", selectedUserID);
+        const reviewsCollectionRef = db.collection("reviewsDB");
         const reviewsQuery = query(
             collection(db, "reviewDB"),
             where("userID", "==", selectedUserID)
         );
 
         const data = await getDocs(reviewsQuery);
-        const filteredData = data.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-        }));
-        console.log(filteredData);
-        return filteredData;
+
+        console.log("in getUserReviews", data);
+        return data;
     } catch (err) {
         console.error(err);
     }
