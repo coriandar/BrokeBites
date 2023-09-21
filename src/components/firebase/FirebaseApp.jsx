@@ -5,6 +5,7 @@ import {
     getFirestore,
     getDocs,
     collection,
+    filter,
     query,
     where,
 } from "firebase/firestore";
@@ -62,12 +63,14 @@ export const getUserReviews = async (selectedUserID) => {
     try {
         const userReviewCollectionRef = collection(db, "reviewDB");
         const data = await getDocs(userReviewCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-        }));
+        const filteredData = data.docs
+            .map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }))
+            .filter((review) => review.userID === selectedUserID);
 
-        console.log(filteredData);
+        console.log("In getUserReviews for:", selectedUserID, filteredData);
 
         return filteredData;
     } catch (err) {

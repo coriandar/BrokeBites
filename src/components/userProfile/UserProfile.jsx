@@ -39,7 +39,7 @@ export default function UserProfile({ uid: selectedUserID }) {
         const fetchUserReviews = async () => {
             try {
                 console.log("Attempting to get reviews for", selectedUserID);
-                const reviewCollection = await getUserReviews();
+                const reviewCollection = await getUserReviews(selectedUserID);
                 setUserReviews(reviewCollection);
             } catch {
                 console.error("Error fetching user's review list:", error);
