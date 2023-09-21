@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import Modal from "../modal/Modal";
 import { getAuth } from "firebase/auth";
+import Link from "next/link";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -37,7 +38,10 @@ export default function ReviewModal({ selectedRestaurant }) {
                 })
             );
             const reviews = await Promise.all(reviewsData);
-            setReviewsData(reviews);
+            const sortedReviews = reviews.sort(
+                (a, b) => a.timestamp - b.timestamp
+            );
+            setReviewsData(sortedReviews);
         } catch (error) {
             console.error("Error loading subcollection: ", error);
         }
@@ -119,10 +123,13 @@ export default function ReviewModal({ selectedRestaurant }) {
                                     <ul key={review.id} className="w-full">
                                         <li className="m-4 bg-slate-50 p-4 rounded-lg shadow-lg w-95%">
                                             <div className="flex justify-between items-center w-full h-8">
-                                                <h4 className="font-bold">
+                                                <Link
+                                                    href={`/profile/${review.userID}`}
+                                                >
                                                     {review.userName ||
                                                         "Anonymous"}
-                                                </h4>
+                                                </Link>
+
                                                 <p className="font-light text-xs">
                                                     {formatTimestamp(
                                                         review.timestamp
