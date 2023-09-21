@@ -9,6 +9,18 @@ export default function UserProfile({ uid: selectedUserID }) {
     const [favorites, setFavorites] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
 
+    const formatTimestamp = (timestamp) => {
+        const date = timestamp.toDate();
+        const options = {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false, // sets 24hr
+        };
+    };
+
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
@@ -74,7 +86,15 @@ export default function UserProfile({ uid: selectedUserID }) {
                         <h2>Review List</h2>
                         <ul>
                             {userReviews.map((review) => (
-                                <li key={review.id}>{review.reviewText}</li>
+                                <li className="m-4 bg-slate-50 p-4 rounded-lg shadow-lg w-95%">
+                                    <div className="flex justify-between items-center w-full h-8">
+                                        <h3>{review.restaurantName}</h3>
+                                        <p className="font-light text-xs">
+                                            {formatTimestamp(review.timestamp)}
+                                        </p>
+                                    </div>
+                                    <p>{review.reviewText}</p>
+                                </li>
                             ))}
                         </ul>
                     </div>
