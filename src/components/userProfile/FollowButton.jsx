@@ -21,28 +21,22 @@ function FollowButton({ otherUser }) {
     useEffect(() => {
         if (otherUser && currentUserID) {
             // Check if the current user is following the other user
-            const followingDocRef = doc(firestore, "following", currentUserID);
+            const userDocRef = doc(firestore, "userDB", currentUserID);
 
-            const checkFollowing = async () => {
-                try {
-                    const followingDocSnapshot = await getDoc(followingDocRef);
-                    const followedUsers = followingDocSnapshot.exists()
-                        ? followingDocSnapshot.data().followedUsers || []
-                        : [];
+            getDoc(userDocRef).then((docSnapshot) => {
+                if (docSnapshot.exists()) {
+                    const data = docSnapshot.data();
+                    const followings = data?.following || [];
 
-                    const isCurrentlyFollowing =
-                        followedUsers.includes(otherUser);
-                    console.log("isCurrentlyFollowing: ", isCurrentlyFollowing);
+                    // Check if the selectedRestaurant ID exists in the favourite array
+                    const isCurrentlyFollowing = followings.includes(otherUser);
 
                     setIsFollowing(isCurrentlyFollowing);
-                } catch (error) {
-                    console.error("Error checking if following:", error);
+                    console.log("isCurrentlyFollowing: ", isCurrentlyFollowing);
                 }
-            };
-
-            checkFollowing();
+            });
         }
-    }, [otherUser, currentUserID, firestore]);
+    }, [otherUser, currentUserID]);
 
     // Function to follow a user
     const followUser = async () => {
