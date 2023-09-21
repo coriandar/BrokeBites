@@ -11,7 +11,7 @@ export default function SearchBar({ setRestaurantList, restaurantMasterList }) {
 
     return (
         <div className="w-full bg-slate-300 shadow-lg h-5% flex items-center pl-2 rounded-lg">
-            <label for="search">Search:</label>
+            <label htmlFor="search">Search:</label>
             <input
                 id="search"
                 className="m-4 w-full rounded-sm"
