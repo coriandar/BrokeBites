@@ -42,24 +42,6 @@ export const getAllRestaurants = async () => {
 }
 
 export const getUserReviews = async (selectedUserID) => {
-    // try {
-    //     console.log("In getUserReviews for", selectedUserID);
-    //     const reviewsCollectionRef = collection(db, "reviewDB");
-    //     {
-    //         const reviewsQuery = query(
-    //         collection(db, "reviewDB"),
-    //         where("userID", "==", selectedUserID)
-    //     );
-    //     }
-
-    //     const data = await getDocs(reviewsCollectionRef);
-
-    //     console.log("in getUserReviews", data);
-    //     return data;
-    // } catch (err) {
-    //     console.error(err);
-    // }
-
     try {
         const userReviewCollectionRef = collection(db, "reviewDB");
         const data = await getDocs(userReviewCollectionRef);
@@ -71,6 +53,29 @@ export const getUserReviews = async (selectedUserID) => {
             .filter((review) => review.userID === selectedUserID);
 
         console.log("In getUserReviews for:", selectedUserID, filteredData);
+
+        return filteredData;
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+export const getRestaurantReviews = async (selectedRestaurantID) => {
+    try {
+        const restaurantReviewCollectionRef = collection(db, "reviewDB");
+        const data = await getDocs(restaurantReviewCollectionRef);
+        const filteredData = data.docs
+            .map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }))
+            .filter((review) => review.restaurantID === selectedRestaurantID);
+
+        console.log(
+            "In getUserReviews for:",
+            selectedRestaurantID,
+            filteredData
+        );
 
         return filteredData;
     } catch (err) {

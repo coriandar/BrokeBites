@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { db } from "../firebase/FirebaseApp";
+import { db, getRestaurantReviews } from "../firebase/FirebaseApp";
 import {
     collection,
     getDocs,
@@ -17,30 +17,13 @@ export default function ReviewModal({ selectedRestaurant }) {
 
     const loadReview = async () => {
         try {
-            const restaurantId = selectedRestaurant.id;
-            const reviewsRef = collection(
-                db,
-                "restaurantDB",
-                restaurantId,
-                "reviews"
+            console.log("Attempting to get reviews for", selectedRestaurant.id);
+            const reviewCollection = await getRestaurantReviews(
+                selectedRestaurant.id
             );
-            const reviewsSnapshot = await getDocs(reviewsRef);
-            const reviewsData = await Promise.all(
-                reviewsSnapshot.docs.map(async (doc) => {
-                    const data = doc.data();
-                    const userDocRef = collection(db, "userDB"); // Reference to user document
-                    const userDocSnapshot = await getDocs(userDocRef);
-                    const userData = userDocSnapshot.docs[0].data();
-                    return {
-                        ...data,
-                        id: doc.id,
-                    };
-                })
-            );
-            const reviews = await Promise.all(reviewsData);
-            setReviewsData(reviews);
-        } catch (error) {
-            console.error("Error loading subcollection: ", error);
+            setReviewsData(reviewCollection);
+        } catch (err) {
+            console.error("Error fetching user's review list:", err);
         }
     };
 
@@ -68,18 +51,15 @@ export default function ReviewModal({ selectedRestaurant }) {
         const currentDisplayName = auth.currentUser.displayName;
 
         try {
-            const reviewsCollectionRef = collection(
-                db,
-                "restaurantDB",
-                selectedRestaurant.id,
-                "reviews"
-            );
+            const reviewsCollectionRef = collection(db, "reviewDB");
 
             await addDoc(reviewsCollectionRef, {
+                restaurantID: selectedRestaurant.id,
+                restaurantName: selectedRestaurant.name,
+                reviewText: reviewText,
+                timestamp: serverTimestamp(),
                 userID: currentUserId,
                 userName: currentDisplayName,
-                review: reviewText,
-                timestamp: serverTimestamp(),
             });
 
             console.log("Review added to db");
@@ -133,7 +113,7 @@ export default function ReviewModal({ selectedRestaurant }) {
                                                     )}
                                                 </p>
                                             </div>
-                                            <p>{review.review}</p>
+                                            <p>{review.reviewText}</p>
                                         </li>
                                     </ul>
                                 ))}
