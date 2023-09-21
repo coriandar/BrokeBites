@@ -1,5 +1,3 @@
-import GetUserPosition from "./UserLoc";
-
 // TODO: Sprint2: Increase performance/lower memory, store index in list, then iterate based on index.
 export const getFilteredSearch = (items, query) => {
     if (!query) {
@@ -138,14 +136,14 @@ export const getSortedDistance = (items, order) => {
             const distanceA = calculateEuclideanDistance(
                 defaultPos.lat,
                 defaultPos.lng,
-                a.lat,
-                a.lon
+                a.latitude,
+                a.longitude
             );
             const distanceB = calculateEuclideanDistance(
                 defaultPos.lat,
                 defaultPos.lng,
-                b.lat,
-                b.lon
+                b.latitude,
+                b.longitude
             );
             return distanceB - distanceA;
         });
