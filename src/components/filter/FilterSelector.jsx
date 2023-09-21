@@ -22,6 +22,7 @@ export default function FilterSelector({
     setActiveFilter,
     restaurantMasterList, // master list
     setRestaurantList, // setRestaurant function
+    userGeo,
 }) {
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
@@ -107,6 +108,7 @@ export default function FilterSelector({
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     getSortedBy={getSortedDistance}
+                    userGeo={userGeo}
                 />
             );
         }
