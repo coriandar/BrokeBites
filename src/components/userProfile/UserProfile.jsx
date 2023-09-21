@@ -19,6 +19,7 @@ export default function UserProfile({ uid: selectedUserID }) {
             minute: "2-digit",
             hour12: false, // sets 24hr
         };
+        return date.toLocaleString(undefined, options);
     };
 
     useEffect(() => {
