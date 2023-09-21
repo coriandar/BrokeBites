@@ -22,6 +22,7 @@ export default function FilterSelector({
     setActiveFilter,
     restaurantMasterList, // master list
     setRestaurantList, // setRestaurant function
+    userGeo,
 }) {
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
@@ -107,6 +108,7 @@ export default function FilterSelector({
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     getSortedBy={getSortedDistance}
+                    userGeo={userGeo}
                 />
             );
         }
@@ -190,8 +192,8 @@ export default function FilterSelector({
             <ul id="row3" className="flex items-center justify-start">
                 <li className="p-2 cursor-pointer">
                     <button
-                        className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
-                            "nearest"
+                        className={`text-xs px-4 py-1 rounded-md ${changeColour(
+                            "nearestSort"
                         )}`}
                         onClick={() => handleClick("nearestSort")}
                     >

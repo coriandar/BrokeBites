@@ -122,11 +122,13 @@ function degreesToRadians(degrees) {
 }
 
 // sort by nearest
-export const getSortedDistance = (items, order) => {
-    const defaultPos = {
+export const getSortedDistance = (items, order, userGeo) => {
+    let defaultPos = {
         lat: -36.8537761039407,
         lng: 174.7658246985396,
     };
+
+    if (userGeo) defaultPos = userGeo;
 
     let sortedItems;
     if (order === "descending") {

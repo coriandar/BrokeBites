@@ -44,6 +44,7 @@ export default function Dashboard({
                     setRestaurantList={setRestaurantList}
                     activeFilter={activeFilter}
                     setActiveFilter={setActiveFilter}
+                    userGeo={userGeo}
                 />
 
                 <div className="overflow-y-auto no-scrollbar h-90% m-4">
