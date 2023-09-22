@@ -68,9 +68,13 @@ export default function UserProfile({ uid }) {
         <div className="m-8">
             {userProfile ? (
                 <div className="lg:h-[900px] md:h-[600px] sm:h-[300px]">
-                    <h2 className="font-bold flex justify-center items-center text-xl">
-                        {userProfile.displayName}'s Profile
-                    </h2>
+                    <div className="flex justify-center items-center">
+                        <h2 className="font-bold text-xl">
+                            {userProfile.displayName}'s Profile
+                        </h2>
+
+                        <FollowButton otherUser={uid} />
+                    </div>
                     <Dashboard
                         restaurantList={favorites}
                         setRestaurantList={setFavorites}
@@ -79,7 +83,6 @@ export default function UserProfile({ uid }) {
                         mapTheme={mapTheme}
                         setMapTheme={setMapTheme}
                     />
-                    <FollowButton otherUser={uid} />
                 </div>
             ) : (
                 <p>User is private or does not exist...</p>
