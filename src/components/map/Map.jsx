@@ -54,17 +54,13 @@ export const InitMap = ({
     const [isMarkerClicked, setIsMarkerClicked] = useState(false);
 
     const handleMarkerClick = (restaurant) => {
-        console.log("Clicked restaurant:", restaurant); // Log the clicked restaurant
         setRestaurantSelected(restaurant);
-        console.log("restaurantSelected after click:", restaurantSelected);
         setCenter({
             lat: restaurant.latitude,
             lng: restaurant.longitude,
         });
         setMapZoom(20);
     };
-
-    console.log("restaurantSelected:", restaurantSelected);
 
     // displays loading or loading error for map
     if (loadError) return <div>Error loading maps</div>;
