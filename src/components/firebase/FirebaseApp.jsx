@@ -1,7 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, updateProfile } from "firebase/auth";
 import { firebaseConfig } from "@/config/Firebase.config";
-import { getFirestore, getDocs, collection } from "firebase/firestore";
+import {
+    getFirestore,
+    getDocs,
+    collection,
+    filter,
+    query,
+    where,
+} from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const getAllRestaurants = async () => {
@@ -13,8 +20,63 @@ export const getAllRestaurants = async () => {
             ...doc.data(),
             id: doc.id,
         }));
+        return filteredData;
+    } catch (err) {
+        console.error(err);
+    }
+};
 
-        console.log(filteredData);
+{
+    /*export const getSelectedUserProfile = async (selectedUserID) => {
+    try {
+        const userDocRef = doc(db, "userDB", selectedUserID); // Use uid to fetch the user document
+        const userDocSnapshot = await getDoc(userDocRef);
+        if (userDocSnapshot.exists()) {
+            const userData = userDocSnapshot.data();
+            return userData;
+        }
+    } catch (error) {
+        console.error("Error fetching user profile:", error);
+    }
+};*/
+}
+
+export const getUserReviews = async (selectedUserID) => {
+    try {
+        const userReviewCollectionRef = collection(db, "reviewDB");
+        const data = await getDocs(userReviewCollectionRef);
+        const filteredData = data.docs
+            .map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }))
+            .filter((review) => review.userID === selectedUserID);
+
+        console.log("In getUserReviews for:", selectedUserID, filteredData);
+
+        return filteredData;
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+export const getRestaurantReviews = async (selectedRestaurantID) => {
+    try {
+        const restaurantReviewCollectionRef = collection(db, "reviewDB");
+        const data = await getDocs(restaurantReviewCollectionRef);
+        const filteredData = data.docs
+            .map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }))
+            .filter((review) => review.restaurantID === selectedRestaurantID);
+
+        console.log(
+            "In getUserReviews for:",
+            selectedRestaurantID,
+            filteredData
+        );
+
         return filteredData;
     } catch (err) {
         console.error(err);
