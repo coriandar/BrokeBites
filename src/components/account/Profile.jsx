@@ -10,6 +10,7 @@ import UpdatePassword from "./UpdatePassword";
 import SubmitFeedback from "./SubmitFeedback";
 import SubmitBug from "./SubmitBug";
 import Link from "next/link";
+import GetFollowerList from "./GetFollowerList";
 
 export default function Profile() {
     const [user, loading] = useAuthState(auth);
@@ -29,6 +30,9 @@ export default function Profile() {
                     <UpdatePassword />
                     <SubmitFeedback />
                     <SubmitBug />
+                </div>
+                <div>
+                    <GetFollowerList />
                 </div>
             </div>
         );
