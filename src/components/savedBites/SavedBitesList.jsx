@@ -2,7 +2,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-const fetchUserSavedList = async (currentUserId, listName) => {
+export const fetchUserSavedList = async (currentUserId, listName) => {
     const firestore = getFirestore();
 
     // Create a reference to the user's document in Firestore
@@ -22,7 +22,7 @@ const fetchUserSavedList = async (currentUserId, listName) => {
     return userData[listName] || [];
 };
 
-const fetchRestaurantData = async (restaurantId) => {
+export const fetchRestaurantData = async (restaurantId) => {
     const firestore = getFirestore();
 
     // Create a reference to the restaurant document in Firestore

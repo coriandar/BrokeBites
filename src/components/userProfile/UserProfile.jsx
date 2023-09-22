@@ -3,11 +3,16 @@ import { useState, useEffect } from "react";
 import { db, getUserReviews } from "../firebase/FirebaseApp";
 import { doc, getDoc } from "firebase/firestore";
 import { fetchSavedBitesList } from "../savedBites/SavedBitesList";
+import FollowButton from "./FollowButton";
+import Dashboard from "../Dashboard";
 
 export default function UserProfile({ uid: selectedUserID }) {
     const [userProfile, setUserProfile] = useState(null);
     const [favorites, setFavorites] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
+    const [masterFavorites, setMasterFavorites] = useState([]);
+    const [activeDashboard, setActiveDashboard] = useState("favourite");
+    const [mapTheme, setMapTheme] = useState("light");
 
     const formatTimestamp = (timestamp) => {
         const date = timestamp.toDate();
@@ -37,6 +42,12 @@ export default function UserProfile({ uid: selectedUserID }) {
         };
 
         const fetchFavorites = async () => {
+            // const currentUserId = uid;
+            // const listName = "favourite";
+
+            // if (!currentUserId) return [];
+            if (!selectedUserID) return [];
+
             try {
                 // Fetch favorites based on uid
                 const favoriteList = await fetchSavedBitesList(
@@ -70,38 +81,49 @@ export default function UserProfile({ uid: selectedUserID }) {
     }, [selectedUserID]);
 
     return (
-        <div>
-            {/*{console.log("userProfile: " + JSON.stringify(userProfile))}*/}
+        <div className="m-8">
             {userProfile ? (
-                <div>
-                    <div>
-                        <h1>{userProfile.displayName}'s Profile</h1> <br />
-                        <h2>Favorite List</h2>
-                        <ul>
-                            {favorites.map((favorite) => (
-                                <li key={favorite.id}>{favorite.name}</li>
-                            ))}
-                        </ul>
+                <div className="lg:h-[900px] md:h-[600px] sm:h-[300px]">
+                    <div className="flex justify-center items-center">
+                        <h2 className="font-bold text-xl">
+                            {userProfile.displayName}'s Profile
+                        </h2>
+
+                        <FollowButton otherUser={selectedUserID} />
                     </div>
-                    <div>
-                        <h2>Review List</h2>
-                        <ul>
-                            {userReviews.map((review) => (
-                                <li className="m-4 bg-slate-50 p-4 rounded-lg shadow-lg w-95%">
-                                    <div className="flex justify-between items-center w-full h-8">
-                                        <h3>{review.restaurantName}</h3>
-                                        <p className="font-light text-xs">
-                                            {formatTimestamp(review.timestamp)}
-                                        </p>
-                                    </div>
-                                    <p>{review.reviewText}</p>
-                                </li>
-                            ))}
-                        </ul>
+                    <div className="flex">
+                        <div className="w-3/4 lg:h-[900px] md:h-[600px] sm:h-[300px]">
+                            <Dashboard
+                                restaurantList={favorites}
+                                setRestaurantList={setFavorites}
+                                restaurantMasterList={masterFavorites}
+                                activeDashboard={activeDashboard}
+                                mapTheme={mapTheme}
+                                setMapTheme={setMapTheme}
+                            />
+                        </div>
+                        <div className="w-1/4 m-4">
+                            <h2 className="font-bold text-xl">Review List</h2>
+                            <ul>
+                                {userReviews.map((review) => (
+                                    <li className="m-4 bg-slate-50 p-4 rounded-lg shadow-lg w-95%">
+                                        <div className="flex justify-between items-center w-full h-8">
+                                            <h3>{review.restaurantName}</h3>
+                                            <p className="font-light text-xs">
+                                                {formatTimestamp(
+                                                    review.timestamp
+                                                )}
+                                            </p>
+                                        </div>
+                                        <p>{review.reviewText}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             ) : (
-                <p>Loading user profile...</p>
+                <p>User is private or does not exist...</p>
             )}
         </div>
     );

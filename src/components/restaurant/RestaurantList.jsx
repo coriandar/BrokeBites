@@ -43,13 +43,12 @@ const InitList = ({
             return printStar(restaurant.starRating);
         } else if (activeFilter.includes("cuisine")) {
             return restaurant?.cuisine;
+        } else if (activeFilter.includes("dietary")) {
+            return restaurant?.dietary;
         } else {
             return printPrice(restaurant.priceRating);
         }
     };
-
-    //TODO: synchronise map and list selected
-
     return (
         <ul id="restaurantList">
             {restaurantList.map((restaurant) => (
