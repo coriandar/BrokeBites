@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FavouriteButton from "../savedBites/FavouriteButton";
 import { getAuth } from "firebase/auth";
 import ToVisitButton from "../savedBites/ToVisitButton";
@@ -12,10 +12,18 @@ import {
     TwitterIcon,
 } from "react-share";
 import ReviewModal from "../review/ReviewModal";
+import { CheckUserDB } from "../account/UserDB";
 
 export default function MarkerDetails({ selected }) {
     const auth = getAuth();
     const user = auth.currentUser;
+
+    useEffect(() => {
+        if (user) {
+            CheckUserDB();
+            console.log("User added to DB from MarkerDetails");
+        }
+    }, user);
 
     if (!selected) {
         return (

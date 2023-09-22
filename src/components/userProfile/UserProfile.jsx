@@ -79,7 +79,7 @@ export default function UserProfile({ uid }) {
                         mapTheme={mapTheme}
                         setMapTheme={setMapTheme}
                     />
-                    {/* <FollowButton otherUser={uid} /> */}
+                    <FollowButton otherUser={uid} />
                 </div>
             ) : (
                 <p>User is private or does not exist...</p>
