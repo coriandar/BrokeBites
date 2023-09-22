@@ -4,6 +4,7 @@ export default function SortBy({
     restaurantMasterList,
     setRestaurantList,
     getSortedBy,
+    userGeo, // only used for sortby nearest
 }) {
     const [activeButton, setActiveButton] = useState("default");
 
@@ -14,7 +15,11 @@ export default function SortBy({
 
     // Function to sort the restaurant list based on the order parameter
     const sortRestaurants = (order) => {
-        const sortedRestaurants = getSortedBy(restaurantMasterList, order);
+        const sortedRestaurants = getSortedBy(
+            restaurantMasterList,
+            order,
+            userGeo // for sort by neearest
+        );
         setRestaurantList(sortedRestaurants);
     };
 
