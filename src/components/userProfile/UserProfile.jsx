@@ -2,7 +2,11 @@
 import { useState, useEffect } from "react";
 import { db, getUserReviews } from "../firebase/FirebaseApp";
 import { doc, getDoc } from "firebase/firestore";
-import { fetchSavedBitesList } from "../savedBites/SavedBitesList";
+import {
+    fetchSavedBitesList,
+    fetchUserSavedList,
+    fetchRestaurantData,
+} from "../savedBites/SavedBitesList";
 import FollowButton from "./FollowButton";
 import Dashboard from "../Dashboard";
 
@@ -42,21 +46,29 @@ export default function UserProfile({ uid: selectedUserID }) {
         };
 
         const fetchFavorites = async () => {
-            // const currentUserId = uid;
-            // const listName = "favourite";
+            const currentUserId = selectedUserID;
+            const listName = "favourite";
 
-            // if (!currentUserId) return [];
-            if (!selectedUserID) return [];
+            if (!currentUserId) return [];
 
             try {
-                // Fetch favorites based on uid
-                const favoriteList = await fetchSavedBitesList(
-                    selectedUserID,
-                    "favourite"
+                const listRestaurantIds = await fetchUserSavedList(
+                    currentUserId,
+                    listName
                 );
-                setFavorites(favoriteList);
+
+                const restaurantPromises =
+                    listRestaurantIds.map(fetchRestaurantData);
+
+                const restaurantDataList = await Promise.all(
+                    restaurantPromises
+                );
+
+                setFavorites(restaurantDataList);
+                setMasterFavorites(restaurantDataList);
             } catch (error) {
-                console.error("Error fetching user's favorite list:", error);
+                console.error("Error fetching restaurant data:", error);
+                throw error;
             }
         };
 
