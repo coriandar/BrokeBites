@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { getFilteredType } from "./FilterLogic";
 
 export default function FilterType({
     setRestaurantList,
     restaurantMasterList,
-    getFilteredList,
+    filterLogic,
     options,
 }) {
     const [selected, setSelected] = useState("");
-
-    const handleChange = (e) => {
-        setSelected(e.target.value);
-    };
+    const handleChange = (e) => setSelected(e.target.value);
 
     useEffect(() => {
         // Filter the restaurant list when the query or restaurantMasterList changes
-        setRestaurantList(getFilteredList(restaurantMasterList, selected));
+        setRestaurantList(filterLogic(restaurantMasterList, selected));
     }, [selected]);
 
     return (

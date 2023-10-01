@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from "react";
-import SearchBar from "./SearchBar";
-import {
-    getFilteredPriceRating,
-    getFilteredStarRating,
-    getFilteredCusine,
-    getFilteredFillingFactor,
-    getFilteredDietary,
-    getSortedPriceRating,
-    getSortedStarRating,
-    optCuisine,
-    optFilling,
-    optDietary,
-    getSortedDistance,
-} from "./FilterLogic";
-import FilterSlider from "./FilterSlider";
-import FilterType from "./FilterType";
-import SortBy from "./SortBy";
+import React from "react";
+import { getFilteredCusine } from "./logic/getFilteredCusine";
+import { getFilteredDietary } from "./logic/getFilteredDietary";
+import { getFilteredFillingFactor } from "./logic/getFilteredFillingFactor";
+import { getFilteredPriceRating } from "./logic/getFilteredPriceRating";
+import { getFilteredSearch } from "./logic/getFilteredSearch";
+import { getFilteredStarRating } from "./logic/getFilteredStarRating";
+import { getSortedDistance } from "./logic/getSortedDistance";
+import { getSortedPriceRating } from "./logic/getSortedPriceRating";
+import { getSortedStarRating } from "./logic/getSortedStarRating";
+import { optCuisine } from "./options/optCuisine";
+import { optDietary } from "./options/optDietary";
+import { optFilling } from "./options/optFilling";
+import FilterSearch from "./components/FilterSearch";
+import FilterSlider from "./components/FilterSlider";
+import FilterType from "./components/FilterType";
+import SortBy from "./components/SortBy";
 
 export default function FilterSelector({
     activeFilter,
@@ -35,9 +34,10 @@ export default function FilterSelector({
     const changeFilter = (activeFilter) => {
         if (activeFilter === "search") {
             return (
-                <SearchBar
+                <FilterSearch
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
+                    filterLogic={getFilteredSearch}
                 />
             );
         } else if (activeFilter === "priceRange") {
@@ -46,7 +46,7 @@ export default function FilterSelector({
                     sliderLabel="Price Range:"
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredList={getFilteredPriceRating}
+                    filterLogic={getFilteredPriceRating}
                 />
             );
         } else if (activeFilter === "sortPrice") {
@@ -54,7 +54,7 @@ export default function FilterSelector({
                 <SortBy
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getSortedBy={getSortedPriceRating}
+                    sortLogic={getSortedPriceRating}
                 />
             );
         } else if (activeFilter === "fillingFactor") {
@@ -63,7 +63,7 @@ export default function FilterSelector({
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     options={optFilling}
-                    getFilteredList={getFilteredFillingFactor}
+                    filterLogic={getFilteredFillingFactor}
                 />
             );
         } else if (activeFilter === "cuisine") {
@@ -72,7 +72,7 @@ export default function FilterSelector({
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     options={optCuisine}
-                    getFilteredList={getFilteredCusine}
+                    filterLogic={getFilteredCusine}
                 />
             );
             a;
@@ -82,7 +82,7 @@ export default function FilterSelector({
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
                     options={optDietary}
-                    getFilteredList={getFilteredDietary}
+                    filterLogic={getFilteredDietary}
                 />
             );
         } else if (activeFilter === "starRatingSort") {
@@ -90,7 +90,7 @@ export default function FilterSelector({
                 <SortBy
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getSortedBy={getSortedStarRating}
+                    sortLogic={getSortedStarRating}
                 />
             );
         } else if (activeFilter === "starRating") {
@@ -99,7 +99,7 @@ export default function FilterSelector({
                     sliderLabel="Star Range:"
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getFilteredList={getFilteredStarRating}
+                    filterLogic={getFilteredStarRating}
                 />
             );
         } else if (activeFilter === "nearestSort") {
@@ -107,7 +107,7 @@ export default function FilterSelector({
                 <SortBy
                     restaurantMasterList={restaurantMasterList}
                     setRestaurantList={setRestaurantList}
-                    getSortedBy={getSortedDistance}
+                    sortLogic={getSortedDistance}
                     userGeo={userGeo}
                 />
             );

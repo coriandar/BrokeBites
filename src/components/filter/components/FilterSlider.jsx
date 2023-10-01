@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import ReactSlider from "react-slider";
 
-const MIN = 1;
-const MAX = 5;
-
 export default function FilterSlider({
     sliderLabel,
     setRestaurantList,
     restaurantMasterList,
-    getFilteredList,
+    filterLogic,
 }) {
+    const MIN = 1;
+    const MAX = 5;
     const [sliderValues, setSliderValues] = useState([MIN, MAX]); // Values for slider
 
     useEffect(() => {
-        setRestaurantList(getFilteredList(restaurantMasterList, sliderValues));
+        setRestaurantList(filterLogic(restaurantMasterList, sliderValues));
     }, [sliderValues]);
 
     return (

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function SortBy({
     restaurantMasterList,
     setRestaurantList,
-    getSortedBy,
+    sortLogic,
     userGeo, // only used for sortby nearest
 }) {
     const [activeButton, setActiveButton] = useState("default");
@@ -15,7 +15,7 @@ export default function SortBy({
 
     // Function to sort the restaurant list based on the order parameter
     const sortRestaurants = (order) => {
-        const sortedRestaurants = getSortedBy(
+        const sortedRestaurants = sortLogic(
             restaurantMasterList,
             order,
             userGeo // for sort by neearest

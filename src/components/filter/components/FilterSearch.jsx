@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { getFilteredSearch } from "./FilterLogic";
 
-export default function SearchBar({ setRestaurantList, restaurantMasterList }) {
+export default function FilterSearch({
+    setRestaurantList,
+    restaurantMasterList,
+    filterLogic,
+}) {
     const [query, setQuery] = useState("");
 
     useEffect(() => {
         // Filter the restaurant list when the query or restaurantMasterList changes
-        setRestaurantList(getFilteredSearch(restaurantMasterList, query));
+        setRestaurantList(filterLogic(restaurantMasterList, query));
     }, [query]);
 
     return (
