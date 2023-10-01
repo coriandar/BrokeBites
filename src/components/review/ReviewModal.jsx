@@ -21,6 +21,7 @@ export default function ReviewModal({ selectedRestaurant }) {
             const reviewCollection = await getRestaurantReviews(
                 selectedRestaurant.id
             );
+            reviewCollection.sort((a, b) => a.timestamp - b.timestamp);
             setReviewsData(reviewCollection);
         } catch (err) {
             console.error("Error fetching user's review list:", err);
