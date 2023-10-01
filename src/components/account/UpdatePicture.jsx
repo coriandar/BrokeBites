@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { auth, upload } from "../firebase/FirebaseApp";
+import { auth } from "../../database/firebase/firebaseApp";
+import { uploadAvatar } from "@/database/firebase/uploadAvatar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Modal from "../modal/Modal";
 import Image from "next/image";
@@ -13,15 +14,12 @@ export default function UpdatePicture() {
     const [user] = useAuthState(auth);
     const [photoURL, setPhotoURL] = useState(placeholder);
 
-    function handleChange(e) {
-        if (e.target.files[0]) {
-            setPhoto(e.target.files[0]);
-        }
-    }
+    const handleChange = (e) => {
+        if (e.target.files[0]) setPhoto(e.target.files[0]);
+    };
 
-    function handleUpload() {
-        upload(photo, user, setLoading, setPhotoURL);
-    }
+    const handleUpload = () =>
+        uploadAvatar(photo, user, setLoading, setPhotoURL);
 
     useEffect(() => {
         // js way of if user && user.photoURL

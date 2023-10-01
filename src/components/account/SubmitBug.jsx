@@ -1,7 +1,7 @@
 import Modal from "../modal/Modal";
 import React, { useState, useRef } from "react";
-import { db } from "@/components/firebase/FirebaseApp";
-import { auth } from "../firebase/FirebaseApp";
+import { db } from "@/database/firebase/firebaseApp";
+import { auth } from "../../database/firebase/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, addDoc } from "firebase/firestore";
 import Loading from "../loading/Loading";

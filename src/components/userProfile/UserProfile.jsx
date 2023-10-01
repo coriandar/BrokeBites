@@ -1,6 +1,6 @@
 // UserProfile.js
 import { useState, useEffect } from "react";
-import { db, getUserReviews } from "../firebase/FirebaseApp";
+import { db, getUserReviews } from "../../database/firebase/firebaseApp";
 import { doc, getDoc } from "firebase/firestore";
 import {
     fetchSavedBitesList,

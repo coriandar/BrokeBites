@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { db, getRestaurantReviews } from "../firebase/FirebaseApp";
+import { db, getRestaurantReviews } from "../../database/firebase/firebaseApp";
 import {
     collection,
     getDocs,

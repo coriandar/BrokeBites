@@ -1,5 +1,5 @@
 import React from "react";
-import { auth } from "../firebase/FirebaseApp";
+import { auth } from "../../database/firebase/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 import Avatar from "./Avatar";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "../modal/Modal";
-import { auth } from "../firebase/FirebaseApp";
+import { auth } from "../../database/firebase/firebaseApp";
 import { useUpdateEmail } from "react-firebase-hooks/auth";
 import Loading from "../loading/Loading";
 

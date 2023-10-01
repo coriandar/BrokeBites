@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "../firebase/FirebaseApp";
+import { auth } from "../../database/firebase/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import placeholder from "./placeholderAvatar.png";

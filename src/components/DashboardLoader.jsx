@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllRestaurants } from "./firebase/FirebaseApp";
+import { getAllRestaurants } from "../database/firebase/firebaseApp";
 import { fetchSavedBitesList } from "./savedBites/SavedBitesList";
 import Dashboard from "./Dashboard";
 

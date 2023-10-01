@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "@/components/modal/Modal";
-import { db } from "../firebase/FirebaseApp";
+import { db } from "../../database/firebase/firebaseApp";
 import { collection, getDocs } from "firebase/firestore";
 
 export default function RestaurantModal({ selectedRestaurant }) {

@@ -1,9 +1,9 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/FirebaseApp";
+import { auth } from "../../database/firebase/firebaseApp";
 import { useRouter } from "next/router";
-import { uiConfigSignIn } from "@/config/FirebaseAuthUI.config";
-import StyledFirebaseAuth from "../firebase/StyledFirebaseAuth";
+import { uiConfigSignIn } from "@/config/FirebaseAuthUILogin.config";
+import StyledFirebaseAuth from "../../lib/StyledFirebaseAuth";
 import Image from "next/image";
 import Loading from "../loading/Loading";
 

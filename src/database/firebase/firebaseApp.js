@@ -1,15 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, updateProfile } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "@/config/Firebase.config";
-import {
-    getFirestore,
-    getDocs,
-    collection,
-    filter,
-    query,
-    where,
-} from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getFirestore, getDocs, collection } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 export const getAllRestaurants = async () => {
     //Try to connect to the DB then brng the data over to the app
@@ -25,21 +18,6 @@ export const getAllRestaurants = async () => {
         console.error(err);
     }
 };
-
-{
-    /*export const getSelectedUserProfile = async (selectedUserID) => {
-    try {
-        const userDocRef = doc(db, "userDB", selectedUserID); // Use uid to fetch the user document
-        const userDocSnapshot = await getDoc(userDocRef);
-        if (userDocSnapshot.exists()) {
-            const userData = userDocSnapshot.data();
-            return userData;
-        }
-    } catch (error) {
-        console.error("Error fetching user profile:", error);
-    }
-};*/
-}
 
 export const getUserReviews = async (selectedUserID) => {
     try {
@@ -83,25 +61,9 @@ export const getRestaurantReviews = async (selectedRestaurantID) => {
     }
 };
 
-// storage
-// must update rules to: only allow if auth/size/path
-export async function upload(file, currentUser, setLoading, setPhotoURL) {
-    const fileRef = ref(storage, "/avatar/" + currentUser.uid + ".jpg");
-
-    setLoading(true);
-
-    const snapshot = await uploadBytes(fileRef, file); // uploads
-    const newPhotoURL = await getDownloadURL(fileRef); // get link of new photo
-    setPhotoURL(newPhotoURL);
-    updateProfile(currentUser, { photoURL: newPhotoURL }); // update the photo
-
-    setLoading(false);
-    alert("File successfully uploaded...");
-}
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
 export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
+export const storage = getStorage(app);
+export const googleProvider = new GoogleAuthProvider();

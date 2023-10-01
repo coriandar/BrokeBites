@@ -1,5 +1,5 @@
 import React from "react";
-import { auth } from "../firebase/FirebaseApp";
+import { auth } from "../../database/firebase/firebaseApp";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import Link from "next/link";
 import DefaultBtn from "./DefaultBtn";
