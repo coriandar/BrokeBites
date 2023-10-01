@@ -3,7 +3,7 @@ import { auth } from "../../database/firebase/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 import Avatar from "./Avatar";
-import Loading from "../loading/Loading";
+import Loading from "../Loading";
 import UpdatePicture from "./UpdatePicture";
 import UpdateEmail from "./UpdateEmail";
 import UpdatePassword from "./UpdatePassword";

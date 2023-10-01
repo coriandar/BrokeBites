@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { uiConfigSignUp } from "@/config/FirebaseAuthUISignup.config";
 import StyledFirebaseAuth from "../../lib/StyledFirebaseAuth";
 import Image from "next/image";
-import Loading from "../loading/Loading";
+import Loading from "../Loading";
 
 export default function Signup() {
     const [user, loading] = useAuthState(auth);

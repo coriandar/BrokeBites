@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import jokes from "./jokes.json";
-import spinner from "./spinner.gif";
+import jokes from "../database/jokesData.json";
+import spinner from "./__assets__/spinner.gif";
 
 function getRandomItem(array) {
     const randomIndex = Math.floor(Math.random() * array.length);

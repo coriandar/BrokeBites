@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "../modal/Modal";
 import { auth } from "../../database/firebase/firebaseApp";
 import { useUpdateEmail } from "react-firebase-hooks/auth";
-import Loading from "../loading/Loading";
+import Loading from "../Loading";
 
 export default function UpdateEmail() {
     const [open, setOpen] = useState(false);

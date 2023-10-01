@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Modal from "../modal/Modal";
 import Image from "next/image";
 import placeholder from "./placeholderAvatar.png";
-import spinner from "./../loading/spinner.gif";
+import spinner from "../__assets__/spinner.gif";
 
 export default function UpdatePicture() {
     const [open, setOpen] = useState(false);

@@ -4,7 +4,7 @@ import { db } from "@/database/firebase/firebaseApp";
 import { auth } from "../../database/firebase/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, addDoc } from "firebase/firestore";
-import Loading from "../loading/Loading";
+import Loading from "../Loading";
 
 export default function SubmitFeedback() {
     const [open, setOpen] = useState(false);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "../modal/Modal";
 import { auth } from "../../database/firebase/firebaseApp";
 import { useUpdatePassword } from "react-firebase-hooks/auth";
-import Loading from "../loading/Loading";
+import Loading from "../Loading";
 import { updatePassword } from "firebase/auth";
 
 export default function UpdatePassword() {
