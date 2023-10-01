@@ -1,64 +1,16 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { firebaseConfig } from "@/config/Firebase.config";
-import { getFirestore, getDocs, collection } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-export const getAllRestaurants = async () => {
-    //Try to connect to the DB then brng the data over to the app
-    try {
-        const restaurantCollectionRef = collection(db, "restaurantDB");
-        const data = await getDocs(restaurantCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-        }));
-        return filteredData;
-    } catch (err) {
-        console.error(err);
-    }
-};
-
-export const getUserReviews = async (selectedUserID) => {
-    try {
-        const userReviewCollectionRef = collection(db, "reviewDB");
-        const data = await getDocs(userReviewCollectionRef);
-        const filteredData = data.docs
-            .map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }))
-            .filter((review) => review.userID === selectedUserID);
-
-        console.log("In getUserReviews for:", selectedUserID, filteredData);
-
-        return filteredData;
-    } catch (err) {
-        console.error(err);
-    }
-};
-
-export const getRestaurantReviews = async (selectedRestaurantID) => {
-    try {
-        const restaurantReviewCollectionRef = collection(db, "reviewDB");
-        const data = await getDocs(restaurantReviewCollectionRef);
-        const filteredData = data.docs
-            .map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }))
-            .filter((review) => review.restaurantID === selectedRestaurantID);
-
-        console.log(
-            "In getUserReviews for:",
-            selectedRestaurantID,
-            filteredData
-        );
-
-        return filteredData;
-    } catch (err) {
-        console.error(err);
-    }
+const firebaseConfig = {
+    apiKey: process.env.NEXT_PUBLIC_FB_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FB_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FB_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FB_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FB_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FB_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FB_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -66,4 +18,3 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
-export const googleProvider = new GoogleAuthProvider();

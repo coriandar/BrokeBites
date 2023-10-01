@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { light, dark, retro } from "./config/MapStyles.config";
 import HeatMap from "./HeatMap";
-import { light, dark, retro } from "@/config/MapStyles.config";
-import UserLocMarker from "./UserLocMarker";
+import UserLocMarker from "./components/UserLocMarker";
 
 const libraries = ["places", "visualization"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;

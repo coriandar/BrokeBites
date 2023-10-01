@@ -1,13 +1,14 @@
 import React from "react";
-import { getFilteredCusine } from "./logic/getFilteredCusine";
-import { getFilteredDietary } from "./logic/getFilteredDietary";
-import { getFilteredFillingFactor } from "./logic/getFilteredFillingFactor";
-import { getFilteredPriceRating } from "./logic/getFilteredPriceRating";
-import { getFilteredSearch } from "./logic/getFilteredSearch";
-import { getFilteredStarRating } from "./logic/getFilteredStarRating";
+import {
+    getFilteredCusine,
+    getFilteredDietary,
+    getFilteredFillingFactor,
+    getFilteredPriceRating,
+    getFilteredSearch,
+    getFilteredStarRating,
+} from "./logic/filterLogic";
+import { getSortedPriceRating, getSortedStarRating } from "./logic/sortedLogic";
 import { getSortedDistance } from "./logic/getSortedDistance";
-import { getSortedPriceRating } from "./logic/getSortedPriceRating";
-import { getSortedStarRating } from "./logic/getSortedStarRating";
 import { optCuisine } from "./options/optCuisine";
 import { optDietary } from "./options/optDietary";
 import { optFilling } from "./options/optFilling";

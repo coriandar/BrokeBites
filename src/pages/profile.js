@@ -1,6 +1,6 @@
 import React from "react";
-import Profile from "@/components/account/Profile";
+import AccountSettings from "@/components/account/accountSettings/AccountSettings";
 
 export default function profilePage() {
-    return <Profile />;
+    return <AccountSettings />;
 }
