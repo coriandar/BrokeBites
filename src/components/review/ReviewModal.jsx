@@ -1,85 +1,35 @@
-import { useState, useEffect, useRef } from "react";
-import { db, getRestaurantReviews } from "../firebase/FirebaseApp";
-import {
-    collection,
-    getDocs,
-    addDoc,
-    serverTimestamp,
-} from "firebase/firestore";
-import Modal from "../modal/Modal";
-import { getAuth } from "firebase/auth";
-import Link from "next/link";
+import React, { useState, useEffect, useRef } from "react";
+import { submitReview } from "@/database/firebase/firestore/reviewDB";
+import Modal from "../__shared__/layout/Modal";
+import ReviewContainer from "./ReviewContainer";
+import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
+import ButtonSmall from "../__shared__/ui/ButtonSmall";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
     const [reviewsData, setReviewsData] = useState([]);
     const reviewInputRef = useRef(null);
 
-    const loadReview = async () => {
-        try {
-            console.log("Attempting to get reviews for", selectedRestaurant.id);
-            const reviewCollection = await getRestaurantReviews(
-                selectedRestaurant.id
-            );
-            reviewCollection.sort((a, b) => a.timestamp - b.timestamp);
-            setReviewsData(reviewCollection);
-        } catch (err) {
-            console.error("Error fetching user's review list:", err);
-        }
-    };
-
     useEffect(() => {
-        if (open) loadReview();
+        if (open) loadReviews();
         else setReviewsData([]);
     }, [open]);
 
-    const formatTimestamp = (timestamp) => {
-        const date = timestamp.toDate();
-        const options = {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false, // sets 24hr
-        };
-        return date.toLocaleString(undefined, options);
+    const loadReviews = async () => {
+        const reviews = await fetchRestaurantReviews(selectedRestaurant.id);
+        setReviewsData(reviews);
     };
 
     const handleReviewSubmit = async (reviewText) => {
-        const auth = getAuth();
-        const currentUserId = auth.currentUser.uid;
-        const currentDisplayName = auth.currentUser.displayName;
-
-        try {
-            const reviewsCollectionRef = collection(db, "reviewDB");
-
-            await addDoc(reviewsCollectionRef, {
-                restaurantID: selectedRestaurant.id,
-                restaurantName: selectedRestaurant.name,
-                reviewText: reviewText,
-                timestamp: serverTimestamp(),
-                userID: currentUserId,
-                userName: currentDisplayName,
-            });
-
-            console.log("Review added to db");
-            reviewInputRef.current.value = ""; // Clear the input field
-            loadReview();
-            alert("Review submitted");
-        } catch (error) {
-            console.error("Error adding review:", error);
-        }
+        await submitReview({ selectedRestaurant, reviewText });
+        reviewInputRef.current.value = ""; // Clear the input field
+        loadReviews();
+        alert("Review submitted");
     };
 
     return (
         <div className="flex">
-            <button
-                className="font-light text-sm bg-slate-200 rounded-md p-1 shadow-lg m-1"
-                onClick={() => setOpen(true)}
-            >
-                Reviews
-            </button>
+            <ButtonSmall label={"Reviews"} action={() => setOpen(true)} />
 
             <Modal
                 open={open}
@@ -91,38 +41,8 @@ export default function ReviewModal({ selectedRestaurant }) {
                     <h3 className="font-bold text-lg">
                         {selectedRestaurant.name}'s Reviews
                     </h3>
-                    <div className="flex h-75% mt-2 mb-2 overflow-y-auto no-scrollbar">
-                        {reviewsData.length > 0 ? (
-                            <div
-                                id="review"
-                                className="w-full flex flex-col justify-center items-center"
-                            >
-                                {reviewsData.map((review) => (
-                                    <ul key={review.id} className="w-full">
-                                        <li className="m-4 bg-slate-50 p-4 rounded-lg shadow-lg w-95%">
-                                            <div className="flex justify-between items-center w-full h-8">
-                                                <Link
-                                                    href={`/profile/${review.userID}`}
-                                                >
-                                                    {review.userName ||
-                                                        "Anonymous"}
-                                                </Link>
 
-                                                <p className="font-light text-xs">
-                                                    {formatTimestamp(
-                                                        review.timestamp
-                                                    )}
-                                                </p>
-                                            </div>
-                                            <p>{review.reviewText}</p>
-                                        </li>
-                                    </ul>
-                                ))}
-                            </div>
-                        ) : (
-                            <div>No reviews</div>
-                        )}
-                    </div>
+                    <ReviewContainer reviewsData={reviewsData} />
 
                     <div className="flex h-25% w-full mt-2 pl-4 pr-4">
                         <form

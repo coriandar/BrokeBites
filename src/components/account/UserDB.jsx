@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../firebase/FirebaseApp";
+import { db } from "../../database/firebase/firebaseApp";
 import { getAuth } from "firebase/auth";
 
 export async function CheckUserDB() {

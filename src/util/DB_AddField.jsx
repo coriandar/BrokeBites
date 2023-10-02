@@ -1,4 +1,4 @@
-import { db } from "@/components/firebase/FirebaseApp";
+import { db } from "@/database/firebase/firebaseApp";
 import {
     collection,
     getDocs,

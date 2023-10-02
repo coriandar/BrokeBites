@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { MapCog } from "./MapCog";
-import MapTheme from "./MapTheme";
-import MapMarkers from "./MapMarkers";
-import MapHeat from "./MapHeat";
-import MapUserLocation from "./MapUserLocation";
+import { MapCog } from "./components/MapCog";
+import MapTheme from "./components/MapTheme";
+import MapMarkers from "./components/MapMarkers";
+import MapHeat from "./components/MapHeat";
+import MapUserLocation from "./components/MapUserLocation";
 
 export default function MapSetings({
     mapTheme,

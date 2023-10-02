@@ -1,89 +1,41 @@
-import { getAuth } from "firebase/auth";
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    setDoc,
-    arrayUnion,
-    arrayRemove,
-} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import ButtonSmall from "../__shared__/ui/ButtonSmall";
+import { auth } from "@/database/firebase/firebaseApp";
+import {
+    followSelectedUser,
+    unfollowSelectedUser,
+    fetchUserList,
+} from "@/database/firebase/firestore/userDB";
 
-function FollowButton({ otherUser }) {
-    const firestore = getFirestore();
-    const auth = getAuth();
+export default function FollowButton({ otherUser }) {
     const currentUserID = auth.currentUser.uid;
     const [isFollowing, setIsFollowing] = useState(false);
 
-    console.log("Follow button current user: ", currentUserID);
-    console.log("Follow button other user: ", otherUser);
-
     useEffect(() => {
         if (otherUser && currentUserID) {
-            // Check if the current user is following the other user
-            const userDocRef = doc(firestore, "userDB", currentUserID);
-
-            getDoc(userDocRef).then((docSnapshot) => {
-                if (docSnapshot.exists()) {
-                    const data = docSnapshot.data();
-                    const followings = data?.following || [];
-
-                    // Check if the selectedRestaurant ID exists in the favourite array
-                    const isCurrentlyFollowing = followings.includes(otherUser);
-
-                    setIsFollowing(isCurrentlyFollowing);
-                    console.log("isCurrentlyFollowing: ", isCurrentlyFollowing);
-                }
-            });
+            checkIsFollowing();
         }
     }, [otherUser, currentUserID]);
 
-    // Function to follow a user
-    const followUser = async () => {
-        const userDocRef = doc(firestore, "userDB", currentUserID);
-
-        try {
-            await setDoc(
-                userDocRef,
-                { following: arrayUnion(otherUser) },
-                { merge: true }
-            );
-
-            console.log(otherUser, " added to following");
-            setIsFollowing(true);
-            console.log(isFollowing);
-        } catch (error) {
-            console.error("Error adding to favorites:", error);
-        }
+    const checkIsFollowing = async () => {
+        const followingList = await fetchUserList(currentUserID, "following");
+        setIsFollowing(followingList.includes(otherUser));
     };
 
-    // Function to unfollow a user
-    const unfollowUser = async () => {
-        const userDocRef = doc(firestore, "userDB", currentUserID);
+    const follow = async () => {
+        await followSelectedUser(otherUser);
+        setIsFollowing(true);
+    };
 
-        try {
-            await setDoc(
-                userDocRef,
-                { following: arrayRemove(otherUser) },
-                { merge: true }
-            );
-
-            console.log(otherUser, " removed from following");
-            setIsFollowing(false);
-            console.log(isFollowing);
-        } catch (error) {
-            console.error("Error removing from favorites:", error);
-        }
+    const unfollow = async () => {
+        await unfollowSelectedUser(otherUser);
+        setIsFollowing(false);
     };
 
     return (
-        <button
-            className="font-light text-sm bg-slate-200 rounded-md p-1 shadow-lg m-1"
-            onClick={isFollowing ? unfollowUser : followUser}
-        >
-            {isFollowing ? "Unfollow" : "Follow"}
-        </button>
+        <ButtonSmall
+            label={isFollowing ? "Unfollow" : "Follow"}
+            action={isFollowing ? unfollow : follow}
+        />
     );
 }
-
-export default FollowButton;

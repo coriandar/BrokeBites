@@ -1,5 +1,6 @@
 import React from "react";
 import { CheckUserDB } from "../account/UserDB";
+import { showSymbol } from "./printSymbol";
 
 const InitList = ({
     restaurantList,
@@ -10,8 +11,7 @@ const InitList = ({
     restaurantSelected,
 }) => {
     const handleListItemClick = (restaurant) => {
-        CheckUserDB();
-        console.log(restaurant);
+        CheckUserDB(); // make implementation more elegant
         setRestaurantSelected(restaurant);
         setCenter({
             lat: restaurant.latitude,
@@ -20,35 +20,6 @@ const InitList = ({
         setMapZoom(20);
     };
 
-    const printPrice = (priceRating) => {
-        let price = "";
-        for (let i = 0; i < priceRating; i++) {
-            price += "$";
-        }
-        return price;
-    };
-
-    const printStar = (starRating) => {
-        let star = "";
-        const blank = 5 - starRating;
-        for (let i = 0; i < starRating; i++) star += "★";
-        for (let i = 0; i < blank; i++) star += "☆";
-        return star;
-    };
-
-    const showSymbol = (restaurant) => {
-        if (activeFilter.includes("filling")) {
-            return restaurant.fillingFactor;
-        } else if (activeFilter.includes("star")) {
-            return printStar(restaurant.starRating);
-        } else if (activeFilter.includes("cuisine")) {
-            return restaurant?.cuisine;
-        } else if (activeFilter.includes("dietary")) {
-            return restaurant?.dietary;
-        } else {
-            return printPrice(restaurant.priceRating);
-        }
-    };
     return (
         <ul id="restaurantList">
             {restaurantList.map((restaurant) => (
@@ -65,7 +36,7 @@ const InitList = ({
                     >
                         <p>{restaurant.name}</p>
                         <p className="font-light text-sm">
-                            {showSymbol(restaurant)}
+                            {showSymbol({ restaurant, activeFilter })}
                         </p>
                     </div>
                 </li>

@@ -9,7 +9,6 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@googlemaps/js-api-loader": "^1.16.2",
         "@react-google-maps/api": "^2.19.2",
         "autoprefixer": "10.4.15",
         "eslint": "8.47.0",
