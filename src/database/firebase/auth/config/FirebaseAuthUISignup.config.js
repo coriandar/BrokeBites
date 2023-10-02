@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, EmailAuthProvider } from "firebase/auth";
+import { EmailAuthProvider } from "firebase/auth";
 
 export const uiConfigSignUp = {
     signInFlow: "popup",
