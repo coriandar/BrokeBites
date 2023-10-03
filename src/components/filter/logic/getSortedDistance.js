@@ -1,3 +1,5 @@
+import defaultCenter from "@/components/__shared__/defaultCenter";
+
 // Calculate euclidean distance between user and restaurant
 const calculateEuclideanDistance = (lat1, lon1, lat2, lon2) => {
     const degreesToRadians = (degrees) => degrees * (Math.PI / 180);
@@ -29,10 +31,7 @@ const calculateEuclideanDistance = (lat1, lon1, lat2, lon2) => {
 
 // sort by nearest
 export const getSortedDistance = (items, order, userGeo) => {
-    let defaultPos = {
-        lat: -36.8537761039407,
-        lng: 174.7658246985396,
-    };
+    let defaultPos = defaultCenter;
 
     if (userGeo) defaultPos = userGeo;
 

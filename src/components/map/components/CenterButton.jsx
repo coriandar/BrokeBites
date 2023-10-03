@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import center from "../../__assets__/center-icon.svg";
+import defaultCenter from "@/components/__shared__/defaultCenter";
 
 const CenterToUserButton = ({
     setCenter,
     userLocation,
-    defaultCenter,
     setUserGeo,
     userGeo,
 }) => {
