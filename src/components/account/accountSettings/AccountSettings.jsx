@@ -14,6 +14,7 @@ import FollowingList from "@/components/following/FollowingList";
 export default function AccountSettings() {
     const [user, loading] = useAuthState(auth);
     const router = useRouter();
+    const photoURL = user?.photoURL;
 
     if (loading) return <Loading />;
     else if (!user) {
@@ -23,7 +24,7 @@ export default function AccountSettings() {
         return (
             <div className="w-full h-full flex justify-center items-center bg-slate-100">
                 <div className="flex flex-col bg-slate-300 items-center h-90% rounded-xl shadow-2xl">
-                    <Avatar maxW={"w-50%"} />
+                    <Avatar maxW={"w-50%"} photoURL={photoURL} />
                     <UpdatePicture />
                     <UpdateEmail />
                     <UpdatePassword />

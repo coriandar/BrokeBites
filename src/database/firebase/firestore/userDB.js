@@ -5,6 +5,7 @@ import {
     setDoc,
     arrayUnion,
     arrayRemove,
+    updateDoc,
 } from "firebase/firestore";
 import { fetchRestaurant } from "./restaurantDB";
 
@@ -164,5 +165,15 @@ export const removeRestaurantFavourite = async (selectedRestaurant) => {
         );
     } catch (error) {
         console.error("Error removing from favorites:", error);
+    }
+};
+
+export const updateAvatarUserDB = async (photoURL) => {
+    const currentUserID = auth.currentUser?.uid;
+    const userDocRef = doc(db, "userDB", currentUserID);
+    try {
+        await updateDoc(userDocRef, { photoURL: photoURL });
+    } catch (error) {
+        console.error("Error adding to photoURL:", error);
     }
 };

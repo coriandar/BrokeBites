@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "../../database/firebase/firebaseApp";
-import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
 import placeholder from "../__assets__/placeholderAvatar.png";
 
-export default function Avatar({ maxW }) {
-    const [photoURL, setPhotoURL] = useState(placeholder);
-    const [user] = useAuthState(auth);
-
-    useEffect(() => {
-        if (user?.photoURL) {
-            setPhotoURL(user.photoURL);
-        }
-    }, [user, photoURL]);
+export default function Avatar({ maxW, photoURL }) {
+    if (!photoURL) photoURL = placeholder;
 
     return (
-        <div
-            className={`${maxW} flex justify-center items=center m-8 bg-slate-500 rounded-lg`}
-        >
+        <div className={`${maxW} rounded-lg`}>
             <Image
                 className="w-full rounded-lg"
                 src={photoURL}
