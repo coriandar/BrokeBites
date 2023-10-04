@@ -9,7 +9,7 @@ import UpdateEmail from "./components/UpdateEmail";
 import UpdatePassword from "./components/UpdatePassword";
 import SubmitFeedback from "./components/SubmitFeedback";
 import SubmitBug from "./components/SubmitBug";
-import FollowingList from "@/components/following/FollowingList";
+import FollowingContainer from "@/components/following/FollowingContainer";
 
 export default function AccountSettings() {
     const [user, loading] = useAuthState(auth);
@@ -32,7 +32,7 @@ export default function AccountSettings() {
                     <SubmitBug />
                 </div>
                 <div>
-                    <FollowingList />
+                    <FollowingContainer />
                 </div>
             </div>
         );

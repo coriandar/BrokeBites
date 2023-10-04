@@ -61,6 +61,7 @@ export const fetchFollowingList = async (uid) => {
         const followingList = list.map((doc) => ({
             displayName: doc.displayName,
             id: doc.id,
+            photoURL: doc.photoURL,
         }));
         followingList.sort((a, b) => a.displayName - b.displayName);
         return followingList;
@@ -179,7 +180,19 @@ export const updateAvatarUserDB = async (photoURL) => {
     }
 };
 
-export const fetchUserAvatar = async (uid) => {
-    const userData = await fetchUser(uid);
-    return userData?.photoURL;
+export const appendUserAvatar = async (initialData) => {
+    const fetchUserAvatar = async (uid) => {
+        const userData = await fetchUser(uid);
+        return userData?.photoURL;
+    };
+
+    return await Promise.all(
+        initialData.map(async (data) => {
+            const avatarURL = await fetchUserAvatar(data.userID);
+            return {
+                ...data,
+                photoURL: avatarURL,
+            };
+        })
+    );
 };

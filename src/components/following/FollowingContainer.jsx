@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import FollowingCard from "./FollowingCard";
 import { fetchFollowingList } from "@/database/firebase/firestore/userDB";
 import { auth } from "@/database/firebase/firebaseApp";
 
-export default function FollowingList() {
+export default function FollowingContainer() {
     const [following, setFollowing] = useState(null);
 
     useEffect(() => {
@@ -19,21 +19,13 @@ export default function FollowingList() {
                 {following ? (
                     following.map((follow) => (
                         <li key={follow.id}>
-                            <div className="h-8 bg-slate-200 m-5 rounded-lg">
-                                <Link href={`/profile/${follow.id}`}>
-                                    <p className="flex items-center justify-center">
-                                        {follow.displayName
-                                            ? follow.displayName
-                                            : "Anonymous"}
-                                    </p>
-                                </Link>
-                            </div>
+                            <FollowingCard follow={follow} />
                         </li>
                     ))
                 ) : (
                     <p>loading...</p>
                 )}
-            </ul>{" "}
+            </ul>
         </div>
     );
 }

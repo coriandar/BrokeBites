@@ -7,7 +7,9 @@ import Avatar from "../account/Avatar";
 export default function ReviewCardRestaurant({ review }) {
     return (
         <ReviewCard>
-            <Avatar maxW={"w-[75px]"} photoURL={review.photoURL} />
+            <Link href={`/profile/${review.userID}`}>
+                <Avatar maxW={"w-[75px]"} photoURL={review.photoURL} />
+            </Link>
             <div className="w-full ml-4">
                 <div className="flex justify-between items-center w-full h-8">
                     <Link href={`/profile/${review.userID}`}>

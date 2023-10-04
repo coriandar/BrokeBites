@@ -5,7 +5,7 @@ import {
     collection,
     serverTimestamp,
 } from "firebase/firestore";
-import { fetchUserAvatar } from "./userDB";
+import { appendUserAvatar } from "./userDB";
 
 export const fetchUserReviews = async (selectedUserID) => {
     try {
@@ -41,17 +41,7 @@ export const fetchRestaurantReviews = async (selectedRestaurantID) => {
         reviewData.sort((a, b) => a.timestamp - b.timestamp);
 
         // appends user photoURl
-        const reviewDataAvatar = await Promise.all(
-            reviewData.map(async (review) => {
-                const avatarURL = await fetchUserAvatar(review.userID);
-                return {
-                    ...review,
-                    photoURL: avatarURL,
-                };
-            })
-        );
-
-        return reviewDataAvatar;
+        return await appendUserAvatar(reviewData);
     } catch (err) {
         console.error(err);
     }
