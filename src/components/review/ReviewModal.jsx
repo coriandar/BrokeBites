@@ -4,6 +4,7 @@ import Modal from "../__shared__/layout/Modal";
 import ReviewContainer from "./ReviewContainer";
 import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
 import ButtonSmall from "../__shared__/ui/ButtonSmall";
+import ReviewCardRestaurant from "./ReviewCardRestaurant";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -16,8 +17,8 @@ export default function ReviewModal({ selectedRestaurant }) {
     }, [open]);
 
     const loadReviews = async () => {
-        const reviews = await fetchRestaurantReviews(selectedRestaurant.id);
-        setReviewsData(reviews);
+        const reviewsData = await fetchRestaurantReviews(selectedRestaurant.id);
+        setReviewsData(reviewsData);
     };
 
     const handleReviewSubmit = async (reviewText) => {
@@ -42,7 +43,10 @@ export default function ReviewModal({ selectedRestaurant }) {
                         {selectedRestaurant.name}'s Reviews
                     </h3>
 
-                    <ReviewContainer reviewsData={reviewsData} />
+                    <ReviewContainer
+                        reviewsData={reviewsData}
+                        reviewCardType={ReviewCardRestaurant}
+                    />
 
                     <div className="flex h-25% w-full mt-2 pl-4 pr-4">
                         <form

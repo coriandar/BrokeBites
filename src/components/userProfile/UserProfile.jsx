@@ -7,6 +7,8 @@ import {
     fetchFavouritesList,
 } from "@/database/firebase/firestore/userDB";
 import { fetchUserReviews } from "@/database/firebase/firestore/reviewDB";
+import Avatar from "../account/Avatar";
+import ReviewCardProfile from "../review/ReviewCardProfile";
 
 export default function UserProfile({ uid: selectedUserID }) {
     const [userProfile, setUserProfile] = useState(null);
@@ -42,8 +44,12 @@ export default function UserProfile({ uid: selectedUserID }) {
     return (
         <div className="m-8">
             {userProfile ? (
-                <div className="lg:h-[900px] md:h-[600px] sm:h-[300px]">
+                <div className="lg:h-[800px] md:h-[600px] sm:h-[300px]">
                     <div className="flex justify-center items-center">
+                        <Avatar
+                            maxW={"w-[50px]"}
+                            photoURL={userProfile.photoURL}
+                        />
                         <h2 className="font-bold text-xl">
                             {userProfile.displayName}'s Profile
                         </h2>
@@ -51,7 +57,7 @@ export default function UserProfile({ uid: selectedUserID }) {
                         <FollowButton otherUser={selectedUserID} />
                     </div>
                     <div className="flex">
-                        <div className="w-3/4 lg:h-[900px] md:h-[600px] sm:h-[300px]">
+                        <div className="w-3/4 lg:h-[800px] md:h-[600px] sm:h-[300px]">
                             <Dashboard
                                 restaurantList={favorites}
                                 setRestaurantList={setFavorites}
@@ -61,9 +67,12 @@ export default function UserProfile({ uid: selectedUserID }) {
                                 setMapTheme={setMapTheme}
                             />
                         </div>
-                        <div className="w-1/4 m-4">
+                        <div className="w-1/4 m-4 lg:h-[800px] md:h-[600px] sm:h-[300px]">
                             <h2 className="font-bold text-xl">Review List</h2>
-                            <ReviewContainer reviewsData={userReviews} />
+                            <ReviewContainer
+                                reviewsData={userReviews}
+                                reviewCardType={ReviewCardProfile}
+                            />
                         </div>
                     </div>
                 </div>

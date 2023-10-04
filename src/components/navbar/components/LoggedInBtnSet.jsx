@@ -8,6 +8,7 @@ import Avatar from "../../account/Avatar";
 export default function LoggedInBtnSet() {
     const [user] = useAuthState(auth);
     const [signOut] = useSignOut(auth);
+    const photoURL = user?.photoURL;
 
     async function signoutHandler() {
         const success = await signOut();
@@ -17,7 +18,7 @@ export default function LoggedInBtnSet() {
     return (
         <>
             <ul className="flex items-center">
-                <Avatar maxW={"w-8"} />
+                <Avatar maxW={"w-8"} photoURL={photoURL} />
                 <li className="p-2 cursor-pointer">
                     <Link href="/">
                         Welcome!{" "}
