@@ -8,6 +8,7 @@ import {
     updateDoc,
 } from "firebase/firestore";
 import { fetchRestaurant } from "./restaurantDB";
+import { useReducer } from "react";
 
 // fetch a users data
 export const fetchUser = async (userID) => {
@@ -176,4 +177,9 @@ export const updateAvatarUserDB = async (photoURL) => {
     } catch (error) {
         console.error("Error adding to photoURL:", error);
     }
+};
+
+export const fetchUserAvatar = async (uid) => {
+    const userData = await fetchUser(uid);
+    return userData?.photoURL;
 };
