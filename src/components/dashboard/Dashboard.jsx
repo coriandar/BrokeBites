@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InitMap from "../map/Map";
 import InitList from "../restaurant/RestaurantList";
+import RandomRestaurant from "../restaurant/RandomRestaurant";
 import MarkerDetails from "../map/components/MarkerDetails";
 import CenterToUserButton from "../map/components/CenterButton";
 import MapSetings from "../mapOptions/MapSettings";
@@ -76,6 +77,15 @@ export default function Dashboard({
                     userLocation={userLocation}
                     userGeo={userGeo}
                     setUserGeo={setUserGeo}
+                />
+                <RandomRestaurant
+                    restaurantList={restaurantList}
+                    setRestaurantSelected={setRestaurantSelected}
+                    restaurantSelected={restaurantSelected}
+                    setCenter={setCenter}
+                    center={center}
+                    mapZoom={mapZoom}
+                    setMapZoom={setMapZoom}
                 />
                 <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
                     {restaurantSelected && (
