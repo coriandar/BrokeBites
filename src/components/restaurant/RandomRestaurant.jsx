@@ -5,19 +5,18 @@ import { showSymbol } from "./printSymbol";
 const RandomRestaurant = ({
     restaurantList,
     setRestaurantSelected,
-    restaurantSelected,
     setCenter,
     setMapZoom,
 }) => {
     const handleRandomRestaurantClick = () => {
         CheckUserDB(); // make implementation more elegant
-        let random =
+        let restaurant =
             restaurantList[Math.floor(Math.random() * restaurantList.length)];
 
-        setRestaurantSelected(random);
+        setRestaurantSelected(restaurant);
         setCenter({
-            lat: restaurantSelected.latitude,
-            lng: restaurantSelected.longitude,
+            lat: restaurant.latitude,
+            lng: restaurant.longitude,
         });
         setMapZoom(20);
     };
