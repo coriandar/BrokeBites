@@ -26,6 +26,7 @@ export const fetchAllRestaurants = async () => {
             ...doc.data(),
             id: doc.id,
         }));
+        console.log(filteredData.length);
         return filteredData;
     } catch (err) {
         console.error(err);
