@@ -8,8 +8,9 @@ const printPrice = (priceRating) => {
 
 const printStar = (starRating) => {
     let star = "";
-    const blank = 5 - starRating;
-    for (let i = 0; i < starRating; i++) star += "★";
+    const starFloored = Math.floor(starRating);
+    const blank = 5 - starFloored;
+    for (let i = 0; i < starFloored; i++) star += "★";
     for (let i = 0; i < blank; i++) star += "☆";
     return star;
 };
