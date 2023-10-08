@@ -44,18 +44,16 @@ const CenterToUserButton = ({
     };
 
     return (
-        <div className="bg-slate-300 bg-opacity-90 absolute bottom-48 right-0 rounded-2xl p-4 mr-2 mt-2">
-            <div className="relative flex flex-col justify-center">
-                <Image
-                    className="opacity-30 hover:opacity-70"
-                    src={center}
-                    alt="center"
-                    width={20}
-                    height={20}
-                    priority
-                    onClick={HandleCenterToUser}
-                />
-            </div>
+        <div className="relative flex flex-col justify-center">
+            <Image
+                className="opacity-30 hover:opacity-70"
+                src={center}
+                alt="center"
+                width={20}
+                height={20}
+                priority
+                onClick={HandleCenterToUser}
+            />
         </div>
     );
 };
