@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import InitMap from "../map/Map";
 import InitList from "../restaurant/RestaurantList";
-import RandomRestaurant from "../restaurant/RandomRestaurant";
-import MarkerDetails from "../map/components/MarkerDetails";
 import CenterToUserButton from "../map/components/CenterButton";
 import MapSetings from "../mapOptions/MapSettings";
 import FilterSelector from "../filter/FilterSelector";
+import RestaurantInfo from "../restaurant/RestaurantInfo";
 
 export default function Dashboard({
     restaurantList,
@@ -78,7 +77,8 @@ export default function Dashboard({
                     userGeo={userGeo}
                     setUserGeo={setUserGeo}
                 />
-                <RandomRestaurant
+                <RestaurantInfo
+                    handleDeselect={handleDeselect}
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
                     restaurantSelected={restaurantSelected}
@@ -87,19 +87,6 @@ export default function Dashboard({
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
                 />
-                <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
-                    {restaurantSelected && (
-                        <div className="relative">
-                            <button
-                                className="w-4 h-4 absolute right-0 top-0 text-xs"
-                                onClick={handleDeselect}
-                            >
-                                ✖
-                            </button>
-                        </div>
-                    )}
-                    <MarkerDetails selected={restaurantSelected} />
-                </div>
                 <MapSetings
                     mapTheme={mapTheme}
                     setMapTheme={setMapTheme}

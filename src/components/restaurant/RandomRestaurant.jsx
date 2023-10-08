@@ -1,6 +1,5 @@
 import React from "react";
-import { CheckUserDB } from "../account/UserDB";
-import { showSymbol } from "./printSymbol";
+import ButtonLarge from "../__shared__/ui/ButtonLarge";
 
 const RandomRestaurant = ({
     restaurantList,
@@ -9,9 +8,10 @@ const RandomRestaurant = ({
     setMapZoom,
 }) => {
     const handleRandomRestaurantClick = () => {
-        CheckUserDB(); // make implementation more elegant
         let restaurant =
             restaurantList[Math.floor(Math.random() * restaurantList.length)];
+
+        if (!restaurant) return;
 
         setRestaurantSelected(restaurant);
         setCenter({
@@ -22,9 +22,10 @@ const RandomRestaurant = ({
     };
 
     return (
-        <button onClick={handleRandomRestaurantClick}>
-            I'm feeling hungry
-        </button>
+        <ButtonLarge
+            label={"I'm feeling hungry"}
+            action={handleRandomRestaurantClick}
+        />
     );
 };
 
