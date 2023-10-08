@@ -14,6 +14,7 @@ import {
 import ReviewModal from "../../review/ReviewModal";
 import { CheckUserDB } from "../../account/UserDB";
 import GetDirections from "./GetDirections";
+import ButtonSmall from "@/components/__shared__/ui/ButtonSmall";
 
 export default function MarkerDetails({ selected, userGeo }) {
     const auth = getAuth();
@@ -34,15 +35,31 @@ export default function MarkerDetails({ selected, userGeo }) {
         );
     }
 
+    const openWebsite = () => {
+        window.open(selected?.website);
+    };
+
+    const openOrder = () => {
+        let url = "";
+        if (selected?.order[0]?.orderUrl) url = selected?.order[0]?.orderUrl;
+        else url = selected?.order[0]?.url;
+        window.open(url);
+    };
+
     return (
         <div id="SelectedMarkerDetails">
             <h3 className="font-bold">{selected.name}</h3>
             <div className="flex -ml-1">
-                <MenuModal selectedRestaurant={selected} />
+                <ButtonSmall label={"Menu"} action={openWebsite} />
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
                 {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}
                 <ReviewModal selectedRestaurant={selected} />
                 <GetDirections selected={selected} userGeo={userGeo} />
+                {selected.order[0] ? (
+                    <ButtonSmall label={"Order"} action={openOrder} />
+                ) : (
+                    <></>
+                )}
             </div>
 
             <h3>Filling Factor: {selected.fillingFactor}</h3>
@@ -53,21 +70,6 @@ export default function MarkerDetails({ selected, userGeo }) {
 
             <h3>
                 Phone: {selected.contactNumber ? selected.contactNumber : "n/a"}
-            </h3>
-
-            <h3>
-                Website:{" "}
-                {selected.website ? (
-                    <a
-                        href={selected.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Link
-                    </a>
-                ) : (
-                    "n/a"
-                )}
             </h3>
 
             {user ? (
