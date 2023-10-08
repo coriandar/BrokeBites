@@ -1,5 +1,5 @@
 import React from "react";
-import MarkerDetails from "../map/components/MarkerDetails";
+import MarkerDetails from "./components/MarkerDetails";
 import ButtonClose from "../__shared__/ui/ButtonClose";
 import RandomRestaurant from "./RandomRestaurant";
 
