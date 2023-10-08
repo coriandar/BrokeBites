@@ -6,12 +6,16 @@ import {
     getFilteredPriceRating,
     getFilteredSearch,
     getFilteredStarRating,
+    getFilteredPost,
+    getFilteredPlace,
 } from "./logic/filterLogic";
 import { getSortedPriceRating, getSortedStarRating } from "./logic/sortedLogic";
 import { getSortedDistance } from "./logic/getSortedDistance";
 import { optCuisine } from "./options/optCuisine";
 import { optDietary } from "./options/optDietary";
 import { optFilling } from "./options/optFilling";
+import { optPlace } from "./options/optPlace";
+import { optPost } from "./options/optPost";
 import FilterSearch from "./components/FilterSearch";
 import FilterSlider from "./components/FilterSlider";
 import FilterType from "./components/FilterType";
@@ -112,12 +116,30 @@ export default function FilterSelector({
                     userGeo={userGeo}
                 />
             );
+        } else if (activeFilter === "post") {
+            return (
+                <FilterType
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    options={optPost}
+                    filterLogic={getFilteredPost}
+                />
+            );
+        } else if (activeFilter === "place") {
+            return (
+                <FilterType
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    options={optPlace}
+                    filterLogic={getFilteredPlace}
+                />
+            );
         }
     };
 
     return (
         <div className="-m-2 -mt-3">
-            <ul id="row1" className="flex items-center justify-start -mb-2">
+            <ul id="filter1" className="flex items-center justify-start -mb-2">
                 <li className="p-2 cursor-pointer">
                     <button
                         className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
@@ -127,6 +149,7 @@ export default function FilterSelector({
                     >
                         Search
                     </button>
+
                     <button
                         className={`text-xs px-4 py-1 ${changeColour(
                             "priceRange"
@@ -134,14 +157,6 @@ export default function FilterSelector({
                         onClick={() => handleClick("priceRange")}
                     >
                         Filter by Price Range
-                    </button>
-                    <button
-                        className={`text-xs px-4 py-1 ${changeColour(
-                            "sortPrice"
-                        )}`}
-                        onClick={() => handleClick("sortPrice")}
-                    >
-                        Sort by Price
                     </button>
 
                     <button
@@ -154,7 +169,8 @@ export default function FilterSelector({
                     </button>
                 </li>
             </ul>
-            <ul id="row2" className="flex items-center justify-start">
+
+            <ul id="filter2" className="flex items-center justify-start">
                 <li className="p-2 cursor-pointer">
                     <button
                         className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
@@ -173,14 +189,6 @@ export default function FilterSelector({
                         Filter by Dietary
                     </button>
                     <button
-                        className={`text-xs px-4 py-1 ${changeColour(
-                            "starRatingSort"
-                        )}`}
-                        onClick={() => handleClick("starRatingSort")}
-                    >
-                        Sort by Stars
-                    </button>
-                    <button
                         className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
                             "starRating"
                         )}`}
@@ -190,8 +198,42 @@ export default function FilterSelector({
                     </button>
                 </li>
             </ul>
-            <ul id="row3" className="flex items-center justify-start">
+            <ul id="filter3" className="flex items-center justify-start">
                 <li className="p-2 cursor-pointer">
+                    <button
+                        className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
+                            "post"
+                        )}`}
+                        onClick={() => handleClick("post")}
+                    >
+                        Filter by Postcode
+                    </button>
+                    <button
+                        className={`text-xs px-4 py-1 ${changeColour("place")}`}
+                        onClick={() => handleClick("place")}
+                    >
+                        Filter by Place
+                    </button>
+                </li>
+            </ul>
+            <ul id="sort1" className="flex items-center justify-start">
+                <li className="p-2 cursor-pointer">
+                    <button
+                        className={`text-xs px-4 py-1 ${changeColour(
+                            "sortPrice"
+                        )}`}
+                        onClick={() => handleClick("sortPrice")}
+                    >
+                        Sort by Price
+                    </button>
+                    <button
+                        className={`text-xs px-4 py-1 ${changeColour(
+                            "starRatingSort"
+                        )}`}
+                        onClick={() => handleClick("starRatingSort")}
+                    >
+                        Sort by Stars
+                    </button>
                     <button
                         className={`text-xs px-4 py-1 rounded-md ${changeColour(
                             "nearestSort"

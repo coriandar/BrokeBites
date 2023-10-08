@@ -59,3 +59,25 @@ export const getFilteredStarRating = (items, values) => {
             restaurant.starRating <= values[1]
     );
 };
+
+export const getFilteredPlace = (items, query) => {
+    if (!query || query === "All") {
+        return items;
+    }
+    const lowercaseQuery = query.toLowerCase().trim(); // Convert the query to lowercase
+
+    return items.filter((restaurant) =>
+        restaurant.category.toLowerCase().includes(lowercaseQuery)
+    );
+};
+
+export const getFilteredPost = (items, query) => {
+    if (!query || query === "All") {
+        return items;
+    }
+    const lowercaseQuery = query.toLowerCase().trim(); // Convert the query to lowercase
+
+    return items.filter((restaurant) =>
+        restaurant.postalCode.toLowerCase().includes(lowercaseQuery)
+    );
+};
