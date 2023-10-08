@@ -8,12 +8,14 @@ import {
     getFilteredStarRating,
     getFilteredPost,
     getFilteredPlace,
+    getFilteredCardinal,
 } from "./logic/filterLogic";
 import { optCuisine } from "./options/optCuisine";
 import { optDietary } from "./options/optDietary";
 import { optFilling } from "./options/optFilling";
 import { optPlace } from "./options/optPlace";
 import { optPost } from "./options/optPost";
+import { optCardinal } from "./options/optCardinal";
 import FilterSearch from "./components/FilterSearch";
 import FilterSlider from "./components/FilterSlider";
 import FilterType from "./components/FilterType";
@@ -24,9 +26,8 @@ export default function FilterSelector({
     setActiveFilter,
     restaurantMasterList, // master list
     setRestaurantList, // setRestaurant function
-    handleDeselect,
 }) {
-    const [showOptions, setShowOptions] = useState(false);
+    const [showOptions, setShowOptions] = useState(true);
 
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
@@ -107,6 +108,15 @@ export default function FilterSelector({
                     setRestaurantList={setRestaurantList}
                     options={optPlace}
                     filterLogic={getFilteredPlace}
+                />
+            );
+        } else if (activeFilter === "cardinal") {
+            return (
+                <FilterType
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    options={optCardinal}
+                    filterLogic={getFilteredCardinal}
                 />
             );
         }
@@ -205,6 +215,14 @@ export default function FilterSelector({
                                 onClick={() => handleClick("place")}
                             >
                                 Filter by Place
+                            </button>
+                            <button
+                                className={`text-xs px-4 py-1 ${changeColour(
+                                    "cardinal"
+                                )}`}
+                                onClick={() => handleClick("cardinal")}
+                            >
+                                Filter by Cardinality
                             </button>
                         </li>
                     </ul>

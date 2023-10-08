@@ -81,3 +81,34 @@ export const getFilteredPost = (items, query) => {
         restaurant.postalCode.toLowerCase().includes(lowercaseQuery)
     );
 };
+
+export const getFilteredCardinal = (items, query) => {
+    if (!query || query === "All") {
+        return items;
+    }
+    const lowercaseQuery = query.toLowerCase().trim(); // Convert the query to lowercase
+    let lowerBound = 0;
+    let upperBound = 0;
+
+    if (lowercaseQuery === "west") {
+        lowerBound = 600;
+        upperBound = 618;
+    } else if (lowercaseQuery === "north") {
+        lowerBound = 620;
+        upperBound = 632;
+    } else if (lowercaseQuery === "central") {
+        lowerBound = 1000;
+        upperBound = 1144;
+    } else if (lowercaseQuery === "east") {
+        lowerBound = 2000;
+        upperBound = 2016;
+    } else if (lowercaseQuery === "south") {
+        lowerBound = 2019;
+        upperBound = 2105;
+    }
+
+    return items.filter((restaurant) => {
+        const postalCode = parseInt(restaurant.postalCode, 10); // Convert postalCode to an integer
+        return lowerBound <= postalCode && postalCode <= upperBound;
+    });
+};
