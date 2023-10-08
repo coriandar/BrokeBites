@@ -5,6 +5,7 @@ import CenterToUserButton from "../map/components/CenterButton";
 import MapSetings from "../mapOptions/MapSettings";
 import FilterSelector from "../filter/FilterSelector";
 import RestaurantInfo from "../restaurant/RestaurantInfo";
+import defaultCenter from "../__shared__/defaultCenter";
 
 export default function Dashboard({
     restaurantList,
@@ -20,14 +21,7 @@ export default function Dashboard({
     const [mapMarkerToggle, setMapMarkerToggle] = useState(true);
     const [userLocation, setUserLocation] = useState(true);
     const [mapZoom, setMapZoom] = useState(17);
-    const [userGeo, setUserGeo] = useState(null);
-
-    //default center position(AUT)
-    const defaultCenter = {
-        lat: -36.8537761039407,
-        lng: 174.7658246985396,
-    };
-
+    const [userGeo, setUserGeo] = useState(defaultCenter);
     const [center, setCenter] = useState(defaultCenter);
 
     //map markers
@@ -86,6 +80,7 @@ export default function Dashboard({
                     center={center}
                     mapZoom={mapZoom}
                     setMapZoom={setMapZoom}
+                    userGeo={userGeo}
                 />
                 <MapSetings
                     mapTheme={mapTheme}
@@ -98,7 +93,6 @@ export default function Dashboard({
                     setUserLocation={setUserLocation}
                 />
                 <CenterToUserButton
-                    defaultCenter={defaultCenter}
                     setCenter={setCenter}
                     userLocation={userLocation}
                     userGeo={userGeo}

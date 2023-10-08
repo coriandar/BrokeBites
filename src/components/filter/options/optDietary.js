@@ -1,11 +1,4 @@
-const dietary = [
-    "Dairy-free",
-    "Gluten-free",
-    "Halal",
-    "Low-carb",
-    "Vegan",
-    "Vegetarian",
-];
+const dietary = ["Halal", "Vegan", "Vegetarian"];
 
 export const optDietary = [
     { value: "", text: "None", selected: "selected" },

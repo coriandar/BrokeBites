@@ -84,14 +84,14 @@ export const InitMap = ({
             {mapMarkerToggle &&
                 restaurantList.map((restaurant) => (
                     <Marker
-                        key={restaurant.id}
+                        key={restaurant?.id}
                         position={{
-                            lat: restaurant.latitude,
-                            lng: restaurant.longitude,
+                            lat: restaurant?.latitude,
+                            lng: restaurant?.longitude,
                         }}
-                        title={restaurant.name} // Display the restaurant name on marker hover
+                        title={restaurant?.name} // Display the restaurant name on marker hover
                         icon={
-                            restaurantSelected?.id === restaurant.id
+                            restaurantSelected?.id === restaurant?.id
                                 ? "/pink-dot-bite.png" // Use a different icon for the selected marker
                                 : activeDashboard === "all"
                                 ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" // Use the default marker icon for others

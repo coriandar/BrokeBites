@@ -5,8 +5,10 @@ import {
     setDoc,
     arrayUnion,
     arrayRemove,
+    updateDoc,
 } from "firebase/firestore";
 import { fetchRestaurant } from "./restaurantDB";
+import { useReducer } from "react";
 
 // fetch a users data
 export const fetchUser = async (userID) => {
@@ -59,6 +61,7 @@ export const fetchFollowingList = async (uid) => {
         const followingList = list.map((doc) => ({
             displayName: doc.displayName,
             id: doc.id,
+            photoURL: doc.photoURL,
         }));
         followingList.sort((a, b) => a.displayName - b.displayName);
         return followingList;
@@ -165,4 +168,31 @@ export const removeRestaurantFavourite = async (selectedRestaurant) => {
     } catch (error) {
         console.error("Error removing from favorites:", error);
     }
+};
+
+export const updateAvatarUserDB = async (photoURL) => {
+    const currentUserID = auth.currentUser?.uid;
+    const userDocRef = doc(db, "userDB", currentUserID);
+    try {
+        await updateDoc(userDocRef, { photoURL: photoURL });
+    } catch (error) {
+        console.error("Error adding to photoURL:", error);
+    }
+};
+
+export const appendUserAvatar = async (initialData) => {
+    const fetchUserAvatar = async (uid) => {
+        const userData = await fetchUser(uid);
+        return userData?.photoURL;
+    };
+
+    return await Promise.all(
+        initialData.map(async (data) => {
+            const avatarURL = await fetchUserAvatar(data.userID);
+            return {
+                ...data,
+                photoURL: avatarURL,
+            };
+        })
+    );
 };

@@ -1,7 +1,6 @@
 import React from "react";
-import ReviewCard from "./ReviewCard";
 
-export default function ReviewContainer({ reviewsData }) {
+export default function ReviewContainer({ reviewsData, reviewCardType }) {
     return (
         <div className="flex h-75% mt-2 mb-2 overflow-y-auto no-scrollbar">
             {reviewsData.length > 0 ? (
@@ -11,7 +10,7 @@ export default function ReviewContainer({ reviewsData }) {
                 >
                     {reviewsData.map((review) => (
                         <ul key={review.id} className="w-full">
-                            <ReviewCard review={review} />
+                            {reviewCardType({ review })}
                         </ul>
                     ))}
                 </div>

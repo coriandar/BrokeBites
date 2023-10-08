@@ -13,8 +13,9 @@ import {
 } from "react-share";
 import ReviewModal from "../../review/ReviewModal";
 import { CheckUserDB } from "../../account/UserDB";
+import GetDirections from "./GetDirections";
 
-export default function MarkerDetails({ selected }) {
+export default function MarkerDetails({ selected, userGeo }) {
     const auth = getAuth();
     const user = auth.currentUser;
 
@@ -41,6 +42,7 @@ export default function MarkerDetails({ selected }) {
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
                 {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}
                 <ReviewModal selectedRestaurant={selected} />
+                <GetDirections selected={selected} userGeo={userGeo} />
             </div>
 
             <h3>Filling Factor: {selected.fillingFactor}</h3>

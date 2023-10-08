@@ -12,6 +12,7 @@ export default function RestaurantInfo({
     center,
     mapZoom,
     setMapZoom,
+    userGeo,
 }) {
     return (
         <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
@@ -20,7 +21,7 @@ export default function RestaurantInfo({
                     <ButtonClose action={handleDeselect} />
                 </div>
             )}
-            <MarkerDetails selected={restaurantSelected} />
+            <MarkerDetails selected={restaurantSelected} userGeo={userGeo} />
             <RandomRestaurant
                 restaurantList={restaurantList}
                 setRestaurantSelected={setRestaurantSelected}

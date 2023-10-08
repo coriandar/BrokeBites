@@ -5,6 +5,7 @@ import {
     collection,
     serverTimestamp,
 } from "firebase/firestore";
+import { appendUserAvatar } from "./userDB";
 
 export const fetchUserReviews = async (selectedUserID) => {
     try {
@@ -38,7 +39,9 @@ export const fetchRestaurantReviews = async (selectedRestaurantID) => {
             .filter((review) => review.restaurantID === selectedRestaurantID);
 
         reviewData.sort((a, b) => a.timestamp - b.timestamp);
-        return reviewData;
+
+        // appends user photoURl
+        return await appendUserAvatar(reviewData);
     } catch (err) {
         console.error(err);
     }
