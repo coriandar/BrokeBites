@@ -8,6 +8,7 @@ import SortSelector from "../sort/SortSelector";
 import RestaurantInfo from "../restaurant/RestaurantInfo";
 import defaultCenter from "../__shared__/defaultCenter";
 import Layer from "../__shared__/layout/Layer";
+import { ListToggle } from "../restaurant/components/ListToggle";
 
 export default function Dashboard({
     restaurantList,
@@ -25,6 +26,7 @@ export default function Dashboard({
     const [mapZoom, setMapZoom] = useState(17);
     const [userGeo, setUserGeo] = useState(defaultCenter);
     const [center, setCenter] = useState(defaultCenter);
+    const [showList, setShowList] = useState(true);
 
     //map markers
     const handleDeselect = () => {
@@ -34,26 +36,27 @@ export default function Dashboard({
     //parent component
     return (
         <div className="flex h-full">
-            <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
-                <SortSelector
-                    restaurantMasterList={restaurantMasterList}
-                    setRestaurantList={setRestaurantList}
-                    activeFilter={activeFilter}
-                    setActiveFilter={setActiveFilter}
-                    userGeo={userGeo}
-                />
-                <div className="overflow-y-auto no-scrollbar h-90% m-4">
-                    <InitList
-                        restaurantList={restaurantList}
-                        setRestaurantSelected={setRestaurantSelected}
-                        restaurantSelected={restaurantSelected}
-                        setCenter={setCenter}
-                        setMapZoom={setMapZoom}
+            {showList && (
+                <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
+                    <SortSelector
+                        restaurantMasterList={restaurantMasterList}
+                        setRestaurantList={setRestaurantList}
                         activeFilter={activeFilter}
+                        setActiveFilter={setActiveFilter}
+                        userGeo={userGeo}
                     />
+                    <div className="overflow-y-auto no-scrollbar h-90% m-4">
+                        <InitList
+                            restaurantList={restaurantList}
+                            setRestaurantSelected={setRestaurantSelected}
+                            restaurantSelected={restaurantSelected}
+                            setCenter={setCenter}
+                            setMapZoom={setMapZoom}
+                            activeFilter={activeFilter}
+                        />
+                    </div>
                 </div>
-            </div>
-
+            )}
             <div className="bg-slate-300 w-full relative">
                 <InitMap
                     restaurantList={restaurantList}
@@ -72,6 +75,12 @@ export default function Dashboard({
                     userGeo={userGeo}
                     setUserGeo={setUserGeo}
                 />
+                <Layer position={"top-72 left-8"}>
+                    <ListToggle
+                        showOptions={showList}
+                        setShowOptions={setShowList}
+                    />
+                </Layer>
                 <Layer position={"top-16 left-8"}>
                     <FilterSelector
                         restaurantMasterList={restaurantMasterList}
