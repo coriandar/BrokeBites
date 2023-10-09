@@ -21,27 +21,27 @@ export default function GetFollowerList() {
         return userData;
     };
 
-    const fetchFollowerList = async () => {
-        const auth = getAuth();
-        const currentUserId = auth.currentUser?.uid;
-
-        if (!currentUserId) return [];
-
-        try {
-            const followingList = await fetchUserSavedList(
-                currentUserId,
-                "following"
-            );
-            const followingPromises = followingList.map(fetchUserList);
-            const followingDataList = await Promise.all(followingPromises);
-            setFollowing(followingDataList);
-        } catch (error) {
-            console.error("Error fetching restaurant data:", error);
-            return null;
-        }
-    };
-
     useEffect(() => {
+        const fetchFollowerList = async () => {
+            const auth = getAuth();
+            const currentUserId = auth.currentUser?.uid;
+
+            if (!currentUserId) return [];
+
+            try {
+                const followingList = await fetchUserSavedList(
+                    currentUserId,
+                    "following"
+                );
+                const followingPromises = followingList.map(fetchUserList);
+                const followingDataList = await Promise.all(followingPromises);
+                setFollowing(followingDataList);
+            } catch (error) {
+                console.error("Error fetching restaurant data:", error);
+                return null;
+            }
+        };
+
         (async () => {
             await fetchFollowerList();
         })();

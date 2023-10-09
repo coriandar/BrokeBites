@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { light, dark, retro } from "./config/MapStyles.config";
-import HeatMap from "./HeatMap";
+// import HeatMap from "./HeatMap";
 import UserLocMarker from "./components/UserLocMarker";
 
 const libraries = ["places", "visualization"];

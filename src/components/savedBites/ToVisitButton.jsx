@@ -13,15 +13,13 @@ export default function ToVisitButton({ selectedRestaurant }) {
 
     // Update isToVisit when selectedRestaurant changes
     useEffect(() => {
-        if (currentUserID && selectedRestaurant) {
-            checkIsToVisit();
-        }
-    }, [currentUserID, selectedRestaurant]);
+        const checkIsToVisit = async () => {
+            const toVisit = await fetchUserList(currentUserID, "toVisit");
+            setIsToVisit(toVisit.includes(selectedRestaurant.id));
+        };
 
-    const checkIsToVisit = async () => {
-        const toVisit = await fetchUserList(currentUserID, "toVisit");
-        setIsToVisit(toVisit.includes(selectedRestaurant.id));
-    };
+        if (currentUserID && selectedRestaurant) checkIsToVisit();
+    }, [currentUserID, selectedRestaurant]);
 
     const addToVisit = async () => {
         await addRestaurantToVisit(selectedRestaurant);

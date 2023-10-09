@@ -23,27 +23,27 @@ export default function UserProfile() {
     const selectedUserID = uid;
 
     useEffect(() => {
+        const fetchProfile = async () => {
+            setUserProfile(await fetchUser(selectedUserID));
+        };
+
+        const fetchProfileFavorites = async () => {
+            const restaurants = await fetchFavouritesList(selectedUserID);
+            setFavorites(restaurants);
+            setMasterFavorites(restaurants);
+        };
+
+        const fetchProfileReviews = async () => {
+            const reviewCollection = await fetchUserReviews(selectedUserID);
+            setUserReviews(reviewCollection);
+        };
+
         if (selectedUserID) {
             fetchProfile();
             fetchProfileFavorites();
             fetchProfileReviews();
         }
     }, [selectedUserID]);
-
-    const fetchProfile = async () => {
-        setUserProfile(await fetchUser(selectedUserID));
-    };
-
-    const fetchProfileFavorites = async () => {
-        const restaurants = await fetchFavouritesList(selectedUserID);
-        setFavorites(restaurants);
-        setMasterFavorites(restaurants);
-    };
-
-    const fetchProfileReviews = async () => {
-        const reviewCollection = await fetchUserReviews(selectedUserID);
-        setUserReviews(reviewCollection);
-    };
 
     return (
         <div className="m-8">
