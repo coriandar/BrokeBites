@@ -12,38 +12,37 @@ import ReviewCardProfile from "../review/ReviewCardProfile";
 import { useRouter } from "next/router";
 
 export default function UserProfile() {
+    const router = useRouter();
+    const { uid } = router.query;
     const [userProfile, setUserProfile] = useState(null);
     const [favorites, setFavorites] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
     const [masterFavorites, setMasterFavorites] = useState([]);
     const [activeDashboard, setActiveDashboard] = useState("favourite");
     const [mapTheme, setMapTheme] = useState("light");
-    const router = useRouter();
-    const { uid } = router.query;
-    const selectedUserID = uid;
 
     useEffect(() => {
         const fetchProfile = async () => {
-            setUserProfile(await fetchUser(selectedUserID));
+            setUserProfile(await fetchUser(uid));
         };
 
         const fetchProfileFavorites = async () => {
-            const restaurants = await fetchFavouritesList(selectedUserID);
+            const restaurants = await fetchFavouritesList(uid);
             setFavorites(restaurants);
             setMasterFavorites(restaurants);
         };
 
         const fetchProfileReviews = async () => {
-            const reviewCollection = await fetchUserReviews(selectedUserID);
+            const reviewCollection = await fetchUserReviews(uid);
             setUserReviews(reviewCollection);
         };
 
-        if (selectedUserID) {
+        if (uid) {
             fetchProfile();
             fetchProfileFavorites();
             fetchProfileReviews();
         }
-    }, [selectedUserID]);
+    }, [uid]);
 
     return (
         <div className="m-8">
@@ -58,7 +57,7 @@ export default function UserProfile() {
                             {userProfile.displayName}'s Profile
                         </h2>
 
-                        <FollowButton otherUser={selectedUserID} />
+                        <FollowButton otherUser={uid} />
                     </div>
                     <div className="flex">
                         <div className="w-3/4 lg:h-[800px] md:h-[600px] sm:h-[300px]">

@@ -15,7 +15,7 @@ export default function FavouriteButton({ selectedRestaurant }) {
     useEffect(() => {
         const checkIsFavourite = async () => {
             const favourite = await fetchUserList(currentUserID, "favourite");
-            setIsFavourite(favourite.includes(selectedRestaurant.id));
+            setIsFavourite(favourite?.includes(selectedRestaurant.id));
         };
 
         if (currentUserID && selectedRestaurant) checkIsFavourite();

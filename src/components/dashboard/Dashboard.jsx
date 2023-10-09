@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InitMap from "../map/Map";
+import InitMap from "../map/MapContainer";
 import InitList from "../restaurant/RestaurantList";
 import CenterToUserButton from "../map/components/CenterButton";
 import MapSetings from "../mapOptions/MapSettings";
