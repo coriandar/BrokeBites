@@ -14,6 +14,7 @@ import ReviewModal from "../../review/ReviewModal";
 import { CheckUserDB } from "../../account/UserDB";
 import GetDirections from "./GetDirections";
 import ButtonSmall from "@/components/__shared__/ui/ButtonSmall";
+import Link from "next/link";
 
 export default function MarkerDetails({ selected, userGeo }) {
     const auth = getAuth();
@@ -47,7 +48,9 @@ export default function MarkerDetails({ selected, userGeo }) {
 
     return (
         <div id="SelectedMarkerDetails">
-            <h3 className="font-bold">{selected.name}</h3>
+            <Link href={`/restaurant/${selected.id}`}>
+                <h3 className="font-bold">{selected.name}</h3>
+            </Link>
             <div className="flex -ml-1">
                 <ButtonSmall label={"Menu"} action={openWebsite} />
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}

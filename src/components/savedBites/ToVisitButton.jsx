@@ -15,7 +15,7 @@ export default function ToVisitButton({ selectedRestaurant }) {
     useEffect(() => {
         const checkIsToVisit = async () => {
             const toVisit = await fetchUserList(currentUserID, "toVisit");
-            setIsToVisit(toVisit.includes(selectedRestaurant.id));
+            setIsToVisit(toVisit?.includes(selectedRestaurant.id));
         };
 
         if (currentUserID && selectedRestaurant) checkIsToVisit();
