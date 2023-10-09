@@ -4,10 +4,6 @@ import { HeatmapLayerF } from "@react-google-maps/api";
 export default function HeatMap({ restaurantList, heatmapToggle }) {
     const [heatmapData, setHeatMapData] = useState(getData());
 
-    useEffect(() => {
-        setHeatMapData(getData(restaurantList));
-    }, [restaurantList, setHeatMapData, heatmapData]);
-
     function getData() {
         return restaurantList.map((restaurant) => ({
             location: new google.maps.LatLng(
@@ -17,6 +13,10 @@ export default function HeatMap({ restaurantList, heatmapToggle }) {
             weight: restaurant.priceRating, // Assuming priceRating is a property of your restaurant object
         }));
     }
+
+    useEffect(() => {
+        setHeatMapData(getData(restaurantList));
+    }, [restaurantList, setHeatMapData, heatmapData, getData]);
 
     // Define heatmap options
     const heatmapOptions = {

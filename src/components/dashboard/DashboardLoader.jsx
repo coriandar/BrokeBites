@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { auth } from "../../database/firebase/firebaseApp";
 import Dashboard from "./Dashboard";
 import {
@@ -13,27 +13,28 @@ export default function DashboardLoader({ dashboardType }) {
     const [activeDashboard, setActiveDashboard] = useState(null);
     const [mapTheme, setMapTheme] = useState("light");
     const currentUser = auth.currentUser?.uid;
+    const restaurants = useRef(null);
 
-    let restaurants = null;
+    // let restaurants = null;
 
     useEffect(() => {
         const fetchData = async () => {
             if (dashboardType === "all") {
-                restaurants = await allRestaurants();
+                restaurants.current = await allRestaurants();
                 setActiveDashboard("all");
             } else if (dashboardType === "favourite") {
-                restaurants = await favouriteRestaurants(currentUser);
+                restaurants.current = await favouriteRestaurants(currentUser);
                 setActiveDashboard("favourite");
             } else if (dashboardType === "toVisit") {
-                restaurants = await toVisitRestaurants(currentUser);
+                restaurants.current = await toVisitRestaurants(currentUser);
                 setActiveDashboard("toVisit");
             }
-            setRestaurantMasterList(restaurants);
-            setRestaurantList(restaurants);
+            setRestaurantMasterList(restaurants.current);
+            setRestaurantList(restaurants.current);
         };
 
         fetchData();
-    }, []);
+    }, [currentUser, dashboardType]);
 
     return (
         <Dashboard

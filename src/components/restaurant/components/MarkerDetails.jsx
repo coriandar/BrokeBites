@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import FavouriteButton from "../../savedBites/FavouriteButton";
 import { getAuth } from "firebase/auth";
 import ToVisitButton from "../../savedBites/ToVisitButton";
-import MenuModal from "../../menu/MenuModal";
 import {
     EmailShareButton,
     EmailIcon,
@@ -25,7 +24,7 @@ export default function MarkerDetails({ selected, userGeo }) {
             CheckUserDB();
             console.log("User added to DB from MarkerDetails");
         }
-    }, user);
+    }, [user]);
 
     if (!selected) {
         return (

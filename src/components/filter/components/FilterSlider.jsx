@@ -13,7 +13,7 @@ export default function FilterSlider({
 
     useEffect(() => {
         setRestaurantList(filterLogic(restaurantMasterList, sliderValues));
-    }, [sliderValues]);
+    }, [sliderValues, filterLogic, restaurantMasterList, setRestaurantList]);
 
     return (
         <div className="w-full bg-slate-300 shadow-lg h-24 flex flex-col items-center pl-2 rounded-lg">
