@@ -14,14 +14,12 @@ export default function ReviewModal({ selectedRestaurant }) {
     const reviewInputRef = useRef(null);
     const [user] = useAuthState(auth);
 
-    useEffect(() => {
-        const loadReviews = async () => {
-            const reviewsData = await fetchRestaurantReviews(
-                selectedRestaurant.id
-            );
-            setReviewsData(reviewsData);
-        };
+    const loadReviews = async () => {
+        const reviewsData = await fetchRestaurantReviews(selectedRestaurant.id);
+        setReviewsData(reviewsData);
+    };
 
+    useEffect(() => {
         if (open) loadReviews();
         else setReviewsData([]);
     }, [open, selectedRestaurant.id]);
