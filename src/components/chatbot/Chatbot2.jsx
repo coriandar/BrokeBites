@@ -4,19 +4,10 @@ import { ThemeProvider } from 'styled-components';
 const steps = [
 	{
 		id: '0',
-		message: 'Hello',
-		trigger: '1',   // goes to id 1
+		message: 'Hello',   // can add users name if profile
+		trigger: '3',   // goes to id 1
 	}, 
-    {
-		id: '1',
-		message: 'What do you want?',
-		trigger: '2',
-	}, 
-    {
-		id: '2',    // user input
-		user: true, 
-		trigger: '3',
-	}, 
+    // add id 1 and 2 
     {
 		id: '3',
 		message: " You want {previousValue}?",
@@ -25,11 +16,42 @@ const steps = [
     {
 		id: '4',
 		options: [  // option list
-			{ value: 1, label: 'View Frequently Asked Questions', trigger: 'faq' },
+			{ value: 1, label: 'View Frequently Asked Questions', trigger: 'faqStep' },
             { value: 2, label: 'End Conversation', trigger: 'end' },
 		],
 		//end: true
 	},
+    {
+        id: 'faqStep',
+        message: 'Here are some frequently asked questions:',
+        trigger: 'faqOptions',
+      },
+      {
+        id: 'faqOptions',
+        options: [
+          {
+            value: 'faq1',
+            label: 'How do I use the map?',
+            trigger: 'faq1Answer',
+          },
+          {
+            value: 'faq2',
+            label: 'How to I create an account',
+            trigger: 'faq2Answer',
+          },
+          // Add more FAQ questions 
+        ],
+      },
+      {
+        id: 'faq1Answer',
+        message: 'To use the map #',
+        trigger: 'faqOptions', // Return to the FAQ options after displaying the answer.
+      },
+      {
+        id: 'faq2Answer',
+        message: 'You can create an account by viewing the login page and selecting to create a new login.',
+        trigger: 'faqOptions', // Return to the FAQ options after displaying the answer.
+      },
     {
         id: 'faq', 
         message: 'What is your question:',
@@ -44,6 +66,10 @@ const steps = [
         id: 'faqResponse',
         message: 'You asked: {previousValue}',
         trigger: '4', // Return to the main menu
+    },
+    {
+        id: 'userInput',
+        user: true,
     },
     {
         id: 'end',
