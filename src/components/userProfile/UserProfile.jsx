@@ -9,14 +9,18 @@ import {
 import { fetchUserReviews } from "@/database/firebase/firestore/reviewDB";
 import Avatar from "../account/Avatar";
 import ReviewCardProfile from "../review/ReviewCardProfile";
+import { useRouter } from "next/router";
 
-export default function UserProfile({ uid: selectedUserID }) {
+export default function UserProfile() {
     const [userProfile, setUserProfile] = useState(null);
     const [favorites, setFavorites] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
     const [masterFavorites, setMasterFavorites] = useState([]);
     const [activeDashboard, setActiveDashboard] = useState("favourite");
     const [mapTheme, setMapTheme] = useState("light");
+    const router = useRouter();
+    const { uid } = router.query;
+    const selectedUserID = uid;
 
     useEffect(() => {
         if (selectedUserID) {

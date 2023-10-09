@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function aboutPage() {
+export default function AboutPage() {
     return (
         <div className="flex h-full p-80">
             <div className="m-4 w-1/3">

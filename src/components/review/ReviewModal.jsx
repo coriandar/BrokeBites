@@ -5,11 +5,14 @@ import ReviewContainer from "./ReviewContainer";
 import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
 import ButtonSmall from "../__shared__/ui/ButtonSmall";
 import ReviewCardRestaurant from "./ReviewCardRestaurant";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/database/firebase/firebaseApp";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
     const [reviewsData, setReviewsData] = useState([]);
     const reviewInputRef = useRef(null);
+    const [user] = useAuthState(auth);
 
     useEffect(() => {
         if (open) loadReviews();
@@ -48,31 +51,34 @@ export default function ReviewModal({ selectedRestaurant }) {
                         reviewCardType={ReviewCardRestaurant}
                     />
 
-                    <div className="flex h-25% w-full mt-2 pl-4 pr-4">
-                        <form
-                            className="w-full"
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                const reviewText = reviewInputRef.current.value;
-                                if (reviewText) {
-                                    handleReviewSubmit(reviewText);
-                                }
-                            }}
-                        >
-                            <textarea
-                                className="w-full h-24 rounded-lg p-2 shadow-lg bg-slate-100"
-                                ref={reviewInputRef}
-                                style={{ resize: "none" }}
-                                placeholder="Write review..."
-                            />
+                    {user && (
+                        <div className="flex h-25% w-full mt-2 pl-4 pr-4">
+                            <form
+                                className="w-full"
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    const reviewText =
+                                        reviewInputRef.current.value;
+                                    if (reviewText) {
+                                        handleReviewSubmit(reviewText);
+                                    }
+                                }}
+                            >
+                                <textarea
+                                    className="w-full h-24 rounded-lg p-2 shadow-lg bg-slate-100"
+                                    ref={reviewInputRef}
+                                    style={{ resize: "none" }}
+                                    placeholder="Write review..."
+                                />
 
-                            <div className="flex justify-end">
-                                <button className="bg-slate-400 rounded-md p-1 shadow-lg m-1">
-                                    Submit Review
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                                <div className="flex justify-end">
+                                    <button className="bg-slate-400 rounded-md p-1 shadow-lg m-1">
+                                        Submit Review
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    )}
                 </div>
             </Modal>
         </div>
