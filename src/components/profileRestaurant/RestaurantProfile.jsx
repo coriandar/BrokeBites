@@ -7,8 +7,15 @@ import ReviewContainer from "../review/ReviewContainer";
 import ReviewCardRestaurant from "../review/ReviewCardRestaurant";
 import defaultCenter from "../__shared__/defaultCenter";
 import { MarkerF } from "@react-google-maps/api";
+import UserLocMarker from "../map/components/UserLocMarker";
 import FavouriteButton from "../savedBites/FavouriteButton";
 import ToVisitButton from "../savedBites/ToVisitButton";
+import { MenuButton } from "../restaurant/components/MenuButton";
+import { OrderButton } from "../restaurant/components/OrderButton";
+import { ShareContainer } from "../restaurant/components/ShareContainer";
+import GetDirections from "../restaurant/components/GetDirections";
+import CenterToUserButton from "../map/components/CenterButton";
+import Layer from "../__shared__/layout/Layer";
 
 export default function RestaurantProfile() {
     const router = useRouter();
@@ -18,10 +25,13 @@ export default function RestaurantProfile() {
     const mapTheme = "light";
     const mapZoom = 17;
     const [center, setCenter] = useState(defaultCenter);
+    const [userGeo, setUserGeo] = useState(defaultCenter);
+    const [userLocation, setUserLocation] = useState(true);
 
     useEffect(() => {
         const fetchProfile = async () => {
             setRestaurant(await fetchRestaurant(pid));
+
             setCenter({
                 lat: restaurant?.latitude,
                 lng: restaurant?.longitude,
@@ -53,8 +63,21 @@ export default function RestaurantProfile() {
                         <h2 className="font-bold text-xl">
                             Restaurant Details
                         </h2>
+                        <MenuButton selected={restaurant} />
+                        <OrderButton selected={restaurant} />
+                        <GetDirections
+                            selected={restaurant}
+                            userGeo={userGeo}
+                        />
+                        <h3>Filling Factor: {restaurant?.fillingFactor}</h3>
+                        <h3>Price rating: {restaurant?.priceRating}</h3>
+                        <h3>Star rating: {restaurant?.starRating}</h3>
+                        <h3>Cusine: {restaurant?.cuisine}</h3>
+                        <h3>Dietary: {restaurant?.dietary}</h3>
+                        <h3>Phone: {restaurant?.contactNumber}</h3>
+                        <ShareContainer selected={restaurant} />
                     </div>
-                    <div className="w-1/2 lg:h-[800px] md:h-[600px] sm:h-[300px]">
+                    <div className="w-1/2 lg:h-[800px] md:h-[600px] sm:h-[300px] relative">
                         <Map
                             center={center}
                             mapZoom={mapZoom}
@@ -69,7 +92,19 @@ export default function RestaurantProfile() {
                                 title={restaurant?.name}
                                 icon={"/pink-dot-bite.png"}
                             />
+                            <UserLocMarker
+                                userGeo={userGeo}
+                                userLocation={userLocation}
+                            />
                         </Map>
+                        <Layer position={"bottom-48 right-2"}>
+                            <CenterToUserButton
+                                setCenter={setCenter}
+                                userLocation={userLocation}
+                                userGeo={userGeo}
+                                setUserGeo={setUserGeo}
+                            />
+                        </Layer>
                     </div>
                     <div className="w-1/4 m-4 lg:h-[800px] md:h-[600px] sm:h-[300px]">
                         <h2 className="font-bold text-xl">Review List</h2>
