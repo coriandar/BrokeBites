@@ -69,6 +69,7 @@ export default function RestaurantProfile() {
                             selected={restaurant}
                             userGeo={userGeo}
                         />
+                        <h3 className="m-4">Address: {restaurant?.address}</h3>
                         <h3>Filling Factor: {restaurant?.fillingFactor}</h3>
                         <h3>Price rating: {restaurant?.priceRating}</h3>
                         <h3>Star rating: {restaurant?.starRating}</h3>

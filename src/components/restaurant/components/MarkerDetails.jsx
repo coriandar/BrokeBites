@@ -43,6 +43,7 @@ export default function MarkerDetails({ selected, userGeo }) {
                 <OrderButton selected={selected} />
             </div>
 
+            <h3>Address: {selected?.address}</h3>
             <h3>Filling Factor: {selected?.fillingFactor}</h3>
             <h3>Price rating: {selected?.priceRating}</h3>
             <h3>Star rating: {selected?.starRating}</h3>
