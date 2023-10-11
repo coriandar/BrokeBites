@@ -59,7 +59,7 @@ export default function UpdatePassword() {
     return (
         <div className="flex">
             <button
-                className="bg-slate-200 m-4 px-4 py-1 rounded-md w-40"
+                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                 onClick={() => setOpen(true)}
             >
                 Update password
@@ -71,16 +71,16 @@ export default function UpdatePassword() {
                 maxH={"h-50%"}
                 onClose={() => setOpen(false)}
             >
-                <div className="w-full h-full bg-slate-300 rounded-lg flex flex-col items-center">
-                    <h3 className="font-bold text-lg">Update password</h3>
+                <div className="flex h-full w-full flex-col items-center rounded-lg bg-slate-300">
+                    <h3 className="text-lg font-bold">Update password</h3>
 
                     {updating ? (
                         <Loading />
                     ) : (
                         <form
                             onSubmit={handleUpdatePassword}
-                            className="flex h-full flex-col justify-start
-                            items-center"
+                            className="flex h-full flex-col items-center
+                            justify-start"
                         >
                             <div className="mt-8">
                                 <label htmlFor="newPassword">
@@ -118,7 +118,7 @@ export default function UpdatePassword() {
                             </div>
                             <div className="text-xs"></div>
                             <button
-                                className="bg-slate-200 m-4 px-4 py-1 rounded-md w-40"
+                                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                                 type="submit"
                             >
                                 Update password

@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function NavImage() {
     return (
         <ul className="flex items-center">
-            <li className="p-2 cursor-pointer">
+            <li className="cursor-pointer p-2">
                 <Link href="/">
                     <Image
                         className="m-8 w-35%"

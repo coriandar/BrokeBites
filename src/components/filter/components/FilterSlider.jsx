@@ -16,14 +16,14 @@ export default function FilterSlider({
     }, [sliderValues, filterLogic, restaurantMasterList, setRestaurantList]);
 
     return (
-        <div className="w-full bg-slate-300 shadow-lg h-24 flex flex-col items-center pl-2 rounded-lg">
+        <div className="flex h-24 w-full flex-col items-center rounded-lg bg-slate-300 pl-2 shadow-lg">
             <h3>{sliderLabel}</h3>
             <small>
                 Current range: {sliderValues[0]} - {sliderValues[1]}
             </small>
             <div className="w-90%">
                 <ReactSlider
-                    className="bg-white w-full h-2 mt-4"
+                    className="mt-4 h-2 w-full bg-white"
                     thumbClassName="bg-slate-400 w-4 h-8 rounded-md flex justify-center items-center -mt-3"
                     defaultValue={[MIN, MAX]}
                     renderThumb={(props, state) => (

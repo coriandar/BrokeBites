@@ -41,8 +41,8 @@ export default function ReviewModal({ selectedRestaurant }) {
                 maxH={"h-70%"}
                 onClose={() => setOpen(false)}
             >
-                <div className="w-full h-full bg-slate-300 rounded-lg flex flex-col p-2">
-                    <h3 className="font-bold text-lg">
+                <div className="flex h-full w-full flex-col rounded-lg bg-slate-300 p-2">
+                    <h3 className="text-lg font-bold">
                         {selectedRestaurant.name}'s Reviews
                     </h3>
 
@@ -52,7 +52,7 @@ export default function ReviewModal({ selectedRestaurant }) {
                     />
 
                     {user && (
-                        <div className="flex h-25% w-full mt-2 pl-4 pr-4">
+                        <div className="mt-2 flex h-25% w-full pl-4 pr-4">
                             <form
                                 className="w-full"
                                 onSubmit={(e) => {
@@ -65,14 +65,14 @@ export default function ReviewModal({ selectedRestaurant }) {
                                 }}
                             >
                                 <textarea
-                                    className="w-full h-24 rounded-lg p-2 shadow-lg bg-slate-100"
+                                    className="h-24 w-full rounded-lg bg-slate-100 p-2 shadow-lg"
                                     ref={reviewInputRef}
                                     style={{ resize: "none" }}
                                     placeholder="Write review..."
                                 />
 
                                 <div className="flex justify-end">
-                                    <button className="bg-slate-400 rounded-md p-1 shadow-lg m-1">
+                                    <button className="m-1 rounded-md bg-slate-400 p-1 shadow-lg">
                                         Submit Review
                                     </button>
                                 </div>

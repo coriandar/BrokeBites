@@ -21,7 +21,7 @@ export default function SubmitFeedback() {
     return (
         <div className="flex">
             <button
-                className="bg-slate-200 m-4 px-4 py-1 rounded-md w-40"
+                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                 onClick={() => setOpen(true)}
             >
                 Submit feedback
@@ -33,13 +33,13 @@ export default function SubmitFeedback() {
                 maxH={"h-50%"}
                 onClose={() => setOpen(false)}
             >
-                <div className="w-full h-full bg-slate-300 rounded-lg flex flex-col justify-between items-center">
-                    <h3 className="font-bold text-lg">Submit feedback</h3>
+                <div className="flex h-full w-full flex-col items-center justify-between rounded-lg bg-slate-300">
+                    <h3 className="text-lg font-bold">Submit feedback</h3>
                     {loading ? (
                         <Loading />
                     ) : (
                         <form
-                            className="flex h-full w-full flex-col justify-start items-center m-4 pl-20 pr-20"
+                            className="m-4 flex h-full w-full flex-col items-center justify-start pl-20 pr-20"
                             onSubmit={(e) => {
                                 e.preventDefault();
                                 const reportText = reportInputRef.current.value;
@@ -47,13 +47,13 @@ export default function SubmitFeedback() {
                             }}
                         >
                             <textarea
-                                className="w-full h-full rounded-lg p-2 shadow-lg bg-slate-100"
+                                className="h-full w-full rounded-lg bg-slate-100 p-2 shadow-lg"
                                 ref={reportInputRef}
                                 style={{ resize: "none" }}
                                 placeholder="Write feedback..."
                             />
                             <button
-                                className="bg-slate-200 m-4 px-4 py-1 rounded-md w-40"
+                                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                                 type="submit"
                             >
                                 Submit

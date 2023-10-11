@@ -10,12 +10,12 @@ export default function ReviewCardRestaurant({ review }) {
             <Link href={`/profile/${review.userID}`}>
                 <Avatar maxW={"w-[75px]"} photoURL={review.photoURL} />
             </Link>
-            <div className="w-full ml-4">
-                <div className="flex justify-between items-center w-full h-8">
+            <div className="ml-4 w-full">
+                <div className="flex h-8 w-full items-center justify-between">
                     <Link href={`/profile/${review.userID}`}>
                         {review.userName || "Anonymous"}
                     </Link>
-                    <p className="font-light text-xs">
+                    <p className="text-xs font-light">
                         {formatTimestamp(review.timestamp)}
                     </p>
                 </div>

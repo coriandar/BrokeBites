@@ -17,7 +17,7 @@ export default function Loading() {
     }, []);
 
     return (
-        <div className="bg-slate-50 flex flex-col justify-center items-center h-full font-medium text-lg">
+        <div className="flex h-full flex-col items-center justify-center bg-slate-50 text-lg font-medium">
             <Image
                 className="m-8"
                 src="/logoCut.png"

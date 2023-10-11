@@ -17,7 +17,7 @@ export default function Signup() {
         return null;
     } else if (!user) {
         return (
-            <div className="flex flex-col items-center h-full">
+            <div className="flex h-full flex-col items-center">
                 <Image
                     className="m-8 w-52"
                     src="/logoCut.png"
@@ -27,13 +27,13 @@ export default function Signup() {
                     priority
                 />
 
-                <div className="bg-white w-80 relative">
+                <div className="relative w-80 bg-white">
                     <StyledFirebaseAuth
                         uiConfig={uiConfigSignUp}
                         firebaseAuth={auth}
                     />
-                    <div className="h-23% w-full absolute top-0 left-0 z-50 bg-white">
-                        <h1 className="m-8 flex justify-center font-medium text-xl">
+                    <div className="absolute left-0 top-0 z-50 h-23% w-full bg-white">
+                        <h1 className="m-8 flex justify-center text-xl font-medium">
                             Signup with Email
                         </h1>
                     </div>

@@ -50,26 +50,26 @@ export default function SortSelector({
     return (
         <div className="-m-2 -mt-3">
             <ul id="sort1" className="flex items-center justify-start">
-                <li className="p-2 cursor-pointer">
+                <li className="cursor-pointer p-2">
                     <button
-                        className={`text-xs px-4 py-1 ${changeColour(
-                            "sortPrice"
+                        className={`px-4 py-1 text-xs ${changeColour(
+                            "sortPrice",
                         )}`}
                         onClick={() => handleClick("sortPrice")}
                     >
                         Sort by Price
                     </button>
                     <button
-                        className={`text-xs px-4 py-1 ${changeColour(
-                            "starRatingSort"
+                        className={`px-4 py-1 text-xs ${changeColour(
+                            "starRatingSort",
                         )}`}
                         onClick={() => handleClick("starRatingSort")}
                     >
                         Sort by Stars
                     </button>
                     <button
-                        className={`text-xs px-4 py-1 rounded-md ${changeColour(
-                            "nearestSort"
+                        className={`rounded-md px-4 py-1 text-xs ${changeColour(
+                            "nearestSort",
                         )}`}
                         onClick={() => handleClick("nearestSort")}
                     >

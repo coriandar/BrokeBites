@@ -4,7 +4,7 @@ export default function ButtonClose({ action }) {
     return (
         <button
             onClick={action}
-            className="absolute top-2 right-2 p-1 rounded-lg text-gray-400 hover:text-gray-600"
+            className="absolute right-2 top-2 rounded-lg p-1 text-gray-400 hover:text-gray-600"
         >
             ✖
         </button>
