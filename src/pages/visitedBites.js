@@ -1,9 +1,9 @@
 import DashboardLoader from "@/components/dashboard/DashboardLoader";
 
-export default function savedBites() {
+export default function visitedBites() {
     return (
         <>
-            <DashboardLoader dashboardType={"favourite"} />
+            <DashboardLoader dashboardType={"visited"} />
         </>
     );
 }

@@ -5,6 +5,7 @@ import {
     allRestaurants,
     favouriteRestaurants,
     toVisitRestaurants,
+    visitedRestaurants,
 } from "@/database/restaurantData";
 
 export default function DashboardLoader({ dashboardType }) {
@@ -28,6 +29,8 @@ export default function DashboardLoader({ dashboardType }) {
             } else if (dashboardType === "toVisit") {
                 restaurants.current = await toVisitRestaurants(currentUser);
                 setActiveDashboard("toVisit");
+            } else if (dashboardType === "visited") {
+                restaurants.current = await visitedRestaurants(currentUser);
             }
             setRestaurantMasterList(restaurants.current);
             setRestaurantList(restaurants.current);
