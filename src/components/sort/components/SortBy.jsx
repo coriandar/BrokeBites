@@ -18,7 +18,7 @@ export default function SortBy({
         const sortedRestaurants = sortLogic(
             restaurantMasterList,
             order,
-            userGeo // for sort by neearest
+            userGeo, // for sort by neearest
         );
         setRestaurantList(sortedRestaurants);
     };
@@ -28,26 +28,26 @@ export default function SortBy({
     };
 
     return (
-        <div className="w-full bg-slate-300 shadow-lg h-14 flex justify-center items-center pl-2 rounded-lg">
+        <div className="flex h-14 w-full items-center justify-center rounded-lg bg-slate-300 pl-2 shadow-lg">
             <button
-                className={`text-xs px-4 py-1 rounded-md m-1 ${changeColour(
-                    "default"
+                className={`m-1 rounded-md px-4 py-1 text-xs ${changeColour(
+                    "default",
                 )}`}
                 onClick={() => handleClick("default")}
             >
                 Default
             </button>
             <button
-                className={`text-xs px-4 py-1 rounded-md m-1 ${changeColour(
-                    "ascending"
+                className={`m-1 rounded-md px-4 py-1 text-xs ${changeColour(
+                    "ascending",
                 )}`}
                 onClick={() => handleClick("ascending")}
             >
                 Ascending
             </button>
             <button
-                className={`text-xs px-4 py-1 rounded-md m-1 ${changeColour(
-                    "descending"
+                className={`m-1 rounded-md px-4 py-1 text-xs ${changeColour(
+                    "descending",
                 )}`}
                 onClick={() => handleClick("descending")}
             >

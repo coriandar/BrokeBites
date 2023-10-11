@@ -32,7 +32,7 @@ export default function UpdatePicture() {
     return (
         <div className="flex">
             <button
-                className="bg-slate-200 m-4 px-4 py-1 rounded-md w-40"
+                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                 onClick={() => setOpen(true)}
             >
                 Update picture
@@ -47,12 +47,12 @@ export default function UpdatePicture() {
                     window.location.reload();
                 }}
             >
-                <div className="w-full h-full bg-slate-300 rounded-lg flex flex-col justify-between items-center">
-                    <h3 className="font-bold text-lg">Update picture</h3>
+                <div className="flex h-full w-full flex-col items-center justify-between rounded-lg bg-slate-300">
+                    <h3 className="text-lg font-bold">Update picture</h3>
 
                     <Image
                         id="photo-preview"
-                        className="rounded-lg w-40"
+                        className="w-40 rounded-lg"
                         src={photoURL}
                         alt="Avatar"
                         width={200}
@@ -71,7 +71,7 @@ export default function UpdatePicture() {
                         />
                     ) : (
                         <button
-                            className="bg-slate-200 m-4 px-4 py-1 rounded-md w-40"
+                            className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                             disabled={loading || !photo}
                             onClick={handleUpload}
                         >

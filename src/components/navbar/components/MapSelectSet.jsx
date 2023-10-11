@@ -14,11 +14,11 @@ export default function MapSelectSet() {
 
     return (
         <ul className="flex items-center justify-start">
-            <li className="p-2 cursor-pointer">
+            <li className="cursor-pointer p-2">
                 <Link href="/">
                     <button
-                        className={`px-4 py-1 rounded-s-md ${changeColour(
-                            "All"
+                        className={`rounded-s-md px-4 py-1 ${changeColour(
+                            "All",
                         )}`}
                         onClick={() => handleClick("All")}
                     >
@@ -43,8 +43,8 @@ export default function MapSelectSet() {
                 </Link>
                 <Link href="/visitedBites">
                     <button
-                        className={`px-4 py-1 rounded-e-md ${changeColour(
-                            "Visited"
+                        className={`rounded-e-md px-4 py-1 ${changeColour(
+                            "Visited",
                         )}`}
                         onClick={() => handleClick("Visited")}
                     >

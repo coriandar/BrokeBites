@@ -37,7 +37,7 @@ export default function Dashboard({
     return (
         <div className="flex h-full">
             {showList && (
-                <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
+                <div className="m-4 flex w-1/4 flex-col justify-start bg-slate-100">
                     <SortSelector
                         restaurantMasterList={restaurantMasterList}
                         setRestaurantList={setRestaurantList}
@@ -45,7 +45,7 @@ export default function Dashboard({
                         setActiveFilter={setActiveFilter}
                         userGeo={userGeo}
                     />
-                    <div className="overflow-y-auto no-scrollbar h-90% m-4">
+                    <div className="no-scrollbar m-4 h-90% overflow-y-auto">
                         <InitList
                             restaurantList={restaurantList}
                             setRestaurantSelected={setRestaurantSelected}
@@ -57,7 +57,7 @@ export default function Dashboard({
                     </div>
                 </div>
             )}
-            <div className="bg-slate-300 w-full relative">
+            <div className="relative w-full bg-slate-300">
                 <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}

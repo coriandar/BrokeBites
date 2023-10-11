@@ -2,11 +2,11 @@ import React from "react";
 
 export default function ReviewContainer({ reviewsData, reviewCardType }) {
     return (
-        <div className="flex h-75% mt-2 mb-2 overflow-y-auto no-scrollbar">
+        <div className="no-scrollbar mb-2 mt-2 flex h-75% overflow-y-auto">
             {reviewsData.length > 0 ? (
                 <div
                     id="review"
-                    className="w-full flex flex-col justify-start items-center"
+                    className="flex w-full flex-col items-center justify-start"
                 >
                     {reviewsData.map((review) => (
                         <ul key={review.id} className="w-full">

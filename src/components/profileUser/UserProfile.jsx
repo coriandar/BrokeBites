@@ -47,20 +47,20 @@ export default function UserProfile() {
     return (
         <div className="m-8">
             {userProfile ? (
-                <div className="lg:h-[800px] md:h-[600px] sm:h-[300px]">
-                    <div className="flex justify-center items-center">
+                <div className="sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                    <div className="flex items-center justify-center">
                         <Avatar
                             maxW={"w-[50px]"}
                             photoURL={userProfile.photoURL}
                         />
-                        <h2 className="font-bold text-xl">
+                        <h2 className="text-xl font-bold">
                             {userProfile.displayName}'s Profile
                         </h2>
 
                         <FollowButton otherUser={uid} />
                     </div>
                     <div className="flex">
-                        <div className="w-3/4 lg:h-[800px] md:h-[600px] sm:h-[300px]">
+                        <div className="w-3/4 sm:h-[300px] md:h-[600px] lg:h-[800px]">
                             <Dashboard
                                 restaurantList={favorites}
                                 setRestaurantList={setFavorites}
@@ -70,8 +70,8 @@ export default function UserProfile() {
                                 setMapTheme={setMapTheme}
                             />
                         </div>
-                        <div className="w-1/4 m-4 lg:h-[800px] md:h-[600px] sm:h-[300px]">
-                            <h2 className="font-bold text-xl">Review List</h2>
+                        <div className="m-4 w-1/4 sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                            <h2 className="text-xl font-bold">Review List</h2>
                             <ReviewContainer
                                 reviewsData={userReviews}
                                 reviewCardType={ReviewCardProfile}

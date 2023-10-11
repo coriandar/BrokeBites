@@ -35,7 +35,7 @@ export default function MarkerDetails({ selected, userGeo }) {
             <Link href={`/restaurant/${selected.id}`}>
                 <h3 className="font-bold">{selected.name}</h3>
             </Link>
-            <div className="flex -ml-1">
+            <div className="-ml-1 flex">
                 <MenuButton selected={selected} />
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
                 {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}

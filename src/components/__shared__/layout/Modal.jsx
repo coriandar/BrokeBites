@@ -5,14 +5,14 @@ export default function Modal({ open, onClose, children, maxW, maxH }) {
     return (
         <div
             onClick={onClose}
-            className={`fixed w-screen h-screen inset-0 flex justify-center items-center transition-colours ${
+            className={`transition-colours fixed inset-0 flex h-screen w-screen items-center justify-center ${
                 open ? "visible bg-black/30" : "invisible"
             }`}
         >
             <div
                 onClick={(e) => e.stopPropagation()}
                 className={`${maxW} ${maxH} 
-            bg-white rounded-xl shadow p-6 transition-all
+            rounded-xl bg-white p-6 shadow transition-all
             ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}
             `}
             >

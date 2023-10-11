@@ -19,7 +19,7 @@ export default function LoggedInBtnSet() {
         <>
             <ul className="flex items-center">
                 <Avatar maxW={"w-8"} photoURL={photoURL} />
-                <li className="p-2 cursor-pointer">
+                <li className="cursor-pointer p-2">
                     <Link href="/">
                         Welcome!{" "}
                         <span className="font-bold">{user.displayName}</span>
@@ -28,12 +28,12 @@ export default function LoggedInBtnSet() {
             </ul>
             <ul className="flex items-center">
                 <DefaultBtn />
-                <li className="p-2 cursor-pointer">
+                <li className="cursor-pointer p-2">
                     <Link href="/profile">Profile</Link>
                 </li>
-                <li className="p-2 cursor-pointer">
+                <li className="cursor-pointer p-2">
                     <button
-                        className="bg-slate-200 px-4 py-1 rounded-md justify-end"
+                        className="justify-end rounded-md bg-slate-200 px-4 py-1"
                         onClick={signoutHandler}
                     >
                         Logout

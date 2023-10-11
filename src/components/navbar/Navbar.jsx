@@ -14,7 +14,7 @@ export default function Navbar() {
     }
 
     return (
-        <nav className="bg-slate-300 flex justify-between w-full h-full p-2 border-b-2">
+        <nav className="flex h-full w-full justify-between border-b-2 bg-slate-300 p-2">
             {user ? <MapSelectSet /> : <NavImage />}
             {user ? <LoggedInBtnSet /> : <LoggedOutBtnSet />}
         </nav>

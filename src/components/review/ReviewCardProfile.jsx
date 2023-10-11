@@ -6,13 +6,13 @@ import Link from "next/link";
 export default function ReviewCardProfile({ review }) {
     return (
         <ReviewCard>
-            <div className="w-full ml-4">
-                <div className="flex justify-between items-center w-full h-8">
+            <div className="ml-4 w-full">
+                <div className="flex h-8 w-full items-center justify-between">
                     <Link href={`/restaurant/${review.restaurantID}`}>
                         {review.restaurantName}
                     </Link>
 
-                    <p className="font-light text-xs">
+                    <p className="text-xs font-light">
                         {formatTimestamp(review.timestamp)}
                     </p>
                 </div>

@@ -132,12 +132,12 @@ export default function FilterSelector({
                     />
                     <ul
                         id="filter1"
-                        className="flex items-center justify-start -mb-2"
+                        className="-mb-2 flex items-center justify-start"
                     >
-                        <li className="p-2 cursor-pointer">
+                        <li className="cursor-pointer p-2">
                             <button
-                                className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
-                                    "search"
+                                className={`rounded-s-md px-4 py-1 text-xs ${changeColour(
+                                    "search",
                                 )}`}
                                 onClick={() => handleClick("search")}
                             >
@@ -145,8 +145,8 @@ export default function FilterSelector({
                             </button>
 
                             <button
-                                className={`text-xs px-4 py-1 ${changeColour(
-                                    "priceRange"
+                                className={`px-4 py-1 text-xs ${changeColour(
+                                    "priceRange",
                                 )}`}
                                 onClick={() => handleClick("priceRange")}
                             >
@@ -154,8 +154,8 @@ export default function FilterSelector({
                             </button>
 
                             <button
-                                className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
-                                    "fillingFactor"
+                                className={`rounded-e-md px-4 py-1 text-xs ${changeColour(
+                                    "fillingFactor",
                                 )}`}
                                 onClick={() => handleClick("fillingFactor")}
                             >
@@ -168,26 +168,26 @@ export default function FilterSelector({
                         id="filter2"
                         className="flex items-center justify-start"
                     >
-                        <li className="p-2 cursor-pointer">
+                        <li className="cursor-pointer p-2">
                             <button
-                                className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
-                                    "cuisine"
+                                className={`rounded-s-md px-4 py-1 text-xs ${changeColour(
+                                    "cuisine",
                                 )}`}
                                 onClick={() => handleClick("cuisine")}
                             >
                                 Filter by Cuisine
                             </button>
                             <button
-                                className={`text-xs px-4 py-1 ${changeColour(
-                                    "dietary"
+                                className={`px-4 py-1 text-xs ${changeColour(
+                                    "dietary",
                                 )}`}
                                 onClick={() => handleClick("dietary")}
                             >
                                 Filter by Dietary
                             </button>
                             <button
-                                className={`text-xs px-4 py-1 rounded-e-md ${changeColour(
-                                    "starRating"
+                                className={`rounded-e-md px-4 py-1 text-xs ${changeColour(
+                                    "starRating",
                                 )}`}
                                 onClick={() => handleClick("starRating")}
                             >
@@ -199,26 +199,26 @@ export default function FilterSelector({
                         id="filter3"
                         className="flex items-center justify-start"
                     >
-                        <li className="p-2 cursor-pointer">
+                        <li className="cursor-pointer p-2">
                             <button
-                                className={`text-xs px-4 py-1 rounded-s-md ${changeColour(
-                                    "post"
+                                className={`rounded-s-md px-4 py-1 text-xs ${changeColour(
+                                    "post",
                                 )}`}
                                 onClick={() => handleClick("post")}
                             >
                                 Filter by Postcode
                             </button>
                             <button
-                                className={`text-xs px-4 py-1 ${changeColour(
-                                    "place"
+                                className={`px-4 py-1 text-xs ${changeColour(
+                                    "place",
                                 )}`}
                                 onClick={() => handleClick("place")}
                             >
                                 Filter by Place
                             </button>
                             <button
-                                className={`text-xs px-4 py-1 ${changeColour(
-                                    "cardinal"
+                                className={`px-4 py-1 text-xs ${changeColour(
+                                    "cardinal",
                                 )}`}
                                 onClick={() => handleClick("cardinal")}
                             >

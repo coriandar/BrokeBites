@@ -48,9 +48,9 @@ export default function RestaurantProfile() {
 
     return (
         <div className="m-8">
-            <div className="lg:h-[800px] md:h-[600px] sm:h-[300px]">
-                <div className="flex justify-center items-center">
-                    <h2 className="font-bold text-xl">
+            <div className="sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                <div className="flex items-center justify-center">
+                    <h2 className="text-xl font-bold">
                         {restaurant
                             ? `${restaurant?.name}'s Profile`
                             : "Loading..."}
@@ -59,8 +59,8 @@ export default function RestaurantProfile() {
                     <ToVisitButton selectedRestaurant={restaurant} />
                 </div>
                 <div className="flex">
-                    <div className="w-1/4 m-4 lg:h-[800px] md:h-[600px] sm:h-[300px]">
-                        <h2 className="font-bold text-xl">
+                    <div className="m-4 w-1/4 sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                        <h2 className="text-xl font-bold">
                             Restaurant Details
                         </h2>
                         <MenuButton selected={restaurant} />
@@ -78,7 +78,7 @@ export default function RestaurantProfile() {
                         <h3>Phone: {restaurant?.contactNumber}</h3>
                         <ShareContainer selected={restaurant} />
                     </div>
-                    <div className="w-1/2 lg:h-[800px] md:h-[600px] sm:h-[300px] relative">
+                    <div className="relative w-1/2 sm:h-[300px] md:h-[600px] lg:h-[800px]">
                         <Map
                             center={center}
                             mapZoom={mapZoom}
@@ -107,8 +107,8 @@ export default function RestaurantProfile() {
                             />
                         </Layer>
                     </div>
-                    <div className="w-1/4 m-4 lg:h-[800px] md:h-[600px] sm:h-[300px]">
-                        <h2 className="font-bold text-xl">Review List</h2>
+                    <div className="m-4 w-1/4 sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                        <h2 className="text-xl font-bold">Review List</h2>
                         <ReviewContainer
                             reviewsData={reviews}
                             reviewCardType={ReviewCardRestaurant}
