@@ -25,22 +25,30 @@ export default function MapSelectSet() {
                         All Bites
                     </button>
                 </Link>
-                <Link href="/savedBites">
+                <Link href="/favouriteBites">
                     <button
-                        className={`px-4 py-1 ${changeColour("Saved")}`}
-                        onClick={() => handleClick("Saved")}
+                        className={`px-4 py-1 ${changeColour("Favourite")}`}
+                        onClick={() => handleClick("Favourite")}
                     >
-                        Saved Bites
+                        Favourite Bites
                     </button>
                 </Link>
                 <Link href="/toVisitBites">
                     <button
-                        className={`px-4 py-1 rounded-e-md ${changeColour(
-                            "Visit"
-                        )}`}
+                        className={`px-4 py-1 ${changeColour("Visit")}`}
                         onClick={() => handleClick("Visit")}
                     >
                         ToVisit Bites
+                    </button>
+                </Link>
+                <Link href="/visitedBites">
+                    <button
+                        className={`px-4 py-1 rounded-e-md ${changeColour(
+                            "Visited"
+                        )}`}
+                        onClick={() => handleClick("Visited")}
+                    >
+                        Visited Bites
                     </button>
                 </Link>
             </li>

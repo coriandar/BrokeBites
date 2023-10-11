@@ -80,6 +80,10 @@ export const fetchToVisitList = async (uid) => {
     return await fetchUserListData(uid, "toVisit", fetchRestaurant);
 };
 
+export const fetchVisitedList = async (uid) => {
+    return await fetchUserListData(uid, "visited", fetchRestaurant);
+};
+
 // follow
 export const followSelectedUser = async (otherUser) => {
     const currentUserID = auth.currentUser?.uid;
@@ -159,7 +163,7 @@ export const removeRestaurantFavourite = async (selectedRestaurant) => {
     const currentUserID = auth.currentUser?.uid;
     const userDocRef = doc(db, "userDB", currentUserID);
     try {
-        // Use arrayUnion to add the restaurant to the array
+        // Use arrayUnion to remove the restaurant to the array
         await setDoc(
             userDocRef,
             { favourite: arrayRemove(selectedRestaurant.id) },
@@ -167,6 +171,34 @@ export const removeRestaurantFavourite = async (selectedRestaurant) => {
         );
     } catch (error) {
         console.error("Error removing from favorites:", error);
+    }
+};
+
+export const addRestaurantVisited = async (selectedRestaurant) => {
+    const currentUserID = auth.currentUser?.uid;
+    const userDocRef = doc(db, "userDB", currentUserID);
+    try {
+        await setDoc(
+            userDocRef,
+            { visited: arrayUnion(selectedRestaurant.id) },
+            { merge: true }
+        );
+    } catch (error) {
+        console.error("Error adding to visited list: ", error);
+    }
+};
+
+export const removeRestaurantVisited = async (selectedRestaurant) => {
+    const currentUserID = auth.currentUser?.uid;
+    const userDocRef = doc(db, "userDB", currentUserID);
+    try {
+        await setDoc(
+            userDocRef,
+            { visited: arrayRemove(selectedRestaurant.id) },
+            { merge: true }
+        );
+    } catch (error) {
+        console.error("Error removing from visited list: ", error);
     }
 };
 

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { MenuButton } from "./MenuButton";
 import { OrderButton } from "./OrderButton";
 import { ShareContainer } from "./ShareContainer";
+import VisitedButton from "@/components/savedBites/VisitedButton";
 
 export default function MarkerDetails({ selected, userGeo }) {
     const auth = getAuth();
@@ -38,6 +39,7 @@ export default function MarkerDetails({ selected, userGeo }) {
                 <MenuButton selected={selected} />
                 {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
                 {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}
+                {user ? <VisitedButton selectedRestaurant={selected} /> : ""}
                 <ReviewModal selectedRestaurant={selected} />
                 <GetDirections selected={selected} userGeo={userGeo} />
                 <OrderButton selected={selected} />
