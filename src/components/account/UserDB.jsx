@@ -24,6 +24,7 @@ export async function CheckUserDB() {
                     email: user.email,
                     favourite: [], // Initialise favourite, and toVisit with empty array
                     toVisit: [],
+                    visited: [],
                 });
                 console.log("User added to userDB successfully.");
             }
