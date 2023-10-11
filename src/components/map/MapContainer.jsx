@@ -2,7 +2,7 @@ import React from "react";
 import UserLocMarker from "./components/UserLocMarker";
 import MapMarker from "./components/MapMarker";
 import Map from "./components/Map";
-// import HeatMap from "./HeatMap";
+import HeatMap from "./HeatMap";
 
 export const InitMap = ({
     restaurantList,
@@ -31,10 +31,10 @@ export const InitMap = ({
                 restaurantSelected={restaurantSelected}
                 activeDashboard={activeDashboard}
             />
-            {/* <HeatMap
+            <HeatMap
                 restaurantList={restaurantList}
                 heatmapToggle={heatmapToggle}
-            /> */}
+            />
         </Map>
     );
 };
