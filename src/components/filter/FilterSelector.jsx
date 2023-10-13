@@ -27,7 +27,7 @@ export default function FilterSelector({
     restaurantMasterList, // master list
     setRestaurantList, // setRestaurant function
 }) {
-    const [showOptions, setShowOptions] = useState(true);
+    const [showOptions, setShowOptions] = useState(false);
 
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
