@@ -20,8 +20,7 @@ export default function LoggedInBtnSet() {
             <ul className="flex items-center">
                 <Avatar maxW={"w-8"} photoURL={photoURL} />
                 <li className="cursor-pointer p-2">
-                    <Link href="/">
-                        Welcome!{" "}
+                    <Link href={`/profile/${user.uid}`}>
                         <span className="font-bold">{user.displayName}</span>
                     </Link>
                 </li>
