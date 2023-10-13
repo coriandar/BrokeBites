@@ -10,7 +10,10 @@
     },
     "dependencies": {
         "@react-google-maps/api": "^2.19.2",
+        "@stripe/react-stripe-js": "^2.3.1",
+        "@stripe/stripe-js": "^2.1.7",
         "autoprefixer": "10.4.15",
+        "axios": "^1.5.1",
         "eslint": "8.47.0",
         "eslint-config-next": "13.4.19",
         "firebase": "^10.2.0",
