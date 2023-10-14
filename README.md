@@ -79,6 +79,12 @@ npm run build
 npm run start
 ```
 
+### Run tests
+```js
+npm test // run test suite
+npm test -t "testName" // run specific test
+```
+
 ### Access
 ```js
 http://localhost:3000
