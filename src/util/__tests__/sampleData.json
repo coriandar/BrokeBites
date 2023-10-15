@@ -1,0 +1,2565 @@
+[
+    {
+        "url": "https://www.google.com/maps/place/Bab+Korean+Restaurant/@-36.7367867,174.7249556,17z/data=!3m1!4b1!4m6!3m5!1s0x6d0d23849e14ffff:0xf0ea172f4ae92c2c!8m2!3d-36.7367867!4d174.7249556!16s%2Fg%2F11dfmjwcl_?hl=en&entry=ttu",
+        "searchString": "restaurants",
+        "rank": 71,
+        "searchPageUrl": "https://www.google.com/maps/search/restaurants/@-36.7163401,174.7415491,15.52z/data=!4m2!2m1!6e5?entry=ttu&hl=en",
+        "searchPageLoadedUrl": "https://www.google.com/maps/search/restaurants/@-36.7163401,174.7415491,15z/data=!4m2!2m1!6e5?hl=en&entry=ttu",
+        "isAdvertisement": false,
+        "title": "Bab Korean Restaurant",
+        "subTitle": null,
+        "description": null,
+        "price": "Brunch",
+        "categoryName": "Korean restaurant",
+        "address": "Unit 11/96 Rosedale Road, Albany, Auckland 0632, New Zealand",
+        "neighborhood": "Unit 11/96 Rosedale Rd",
+        "street": "Unit 11/96 Rosedale Rd",
+        "city": "Auckland",
+        "postalCode": "0632",
+        "state": null,
+        "countryCode": "NZ",
+        "website": "http://www.facebook.com/BabRestaurant",
+        "phone": "+64 9 200 0273",
+        "phoneUnformatted": "+6492000273",
+        "claimThisBusiness": false,
+        "location": {
+            "lat": -36.7367867,
+            "lng": 174.7249556
+        },
+        "locatedIn": null,
+        "plusCode": "7P7F+7X Auckland, New Zealand",
+        "menu": "https://www.facebook.com/photo/?fbid=762217232276417&set=a.762217262276414",
+        "totalScore": 4.6,
+        "permanentlyClosed": false,
+        "temporarilyClosed": false,
+        "placeId": "ChIJ__8UnoQjDW0RLCzpSi8X6vA",
+        "categories": ["Korean restaurant"],
+        "cid": "17359713205540695084",
+        "reviewsCount": 130,
+        "reviewsDistribution": {
+            "oneStar": 6,
+            "twoStar": 0,
+            "threeStar": 6,
+            "fourStar": 19,
+            "fiveStar": 99
+        },
+        "imagesCount": 59,
+        "imageCategories": [
+            "All",
+            "Menu",
+            "Food & drink",
+            "Vibe",
+            "Take-out",
+            "Meat",
+            "By owner",
+            "Street View & 360°"
+        ],
+        "scrapedAt": "2023-10-05T15:28:36.571Z",
+        "reserveTableUrl": null,
+        "googleFoodUrl": "https://food.google.com/chooseprovider?restaurantId=/g/11dfmjwcl_&g2lbs=ANTchaOJg6XpJugwPxruGInzLvQ_nj9cDWLfjbXHbCupVKOGdp-Lg3meowOK4AnShAUIv9j7Cr90f06-cb38hxv2hOgKvX-TVLs3AJ9sSs1LkE5HJcSVS0mBAEyRMJLFxCRNn_JF1FVH&hl=en-US&gl=us&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&utm_source=tactile&gei=G9YeZYnJBMGo5NoPnrqbGA&ei=G9YeZYnJBMGo5NoPnrqbGA&fo_s=OA,SOE&opi=79508299",
+        "hotelStars": null,
+        "hotelDescription": null,
+        "checkInDate": null,
+        "checkOutDate": null,
+        "similarHotelsNearby": null,
+        "hotelReviewSummary": null,
+        "openingHours": [
+            {
+                "day": "Monday",
+                "hours": "11 AM to 3 PM"
+            },
+            {
+                "day": "Tuesday",
+                "hours": "11 AM to 3 PM, 5 to 8 PM"
+            },
+            {
+                "day": "Wednesday",
+                "hours": "11 AM to 3 PM, 5 to 8 PM"
+            },
+            {
+                "day": "Thursday",
+                "hours": "11 AM to 3 PM, 5 to 8 PM"
+            },
+            {
+                "day": "Friday",
+                "hours": "11 AM to 3 PM, 5 to 8 PM"
+            },
+            {
+                "day": "Saturday",
+                "hours": "11 AM to 3 PM, 5 to 8 PM"
+            },
+            {
+                "day": "Sunday",
+                "hours": "Closed"
+            }
+        ],
+        "peopleAlsoSearch": [
+            {
+                "category": "People also search for",
+                "title": "Maru Sushi & Don Silverdale",
+                "reviewsCount": 58,
+                "totalScore": 4.6
+            },
+            {
+                "category": "People also search for",
+                "title": "Golden Cuisine",
+                "reviewsCount": 160,
+                "totalScore": 4.2
+            },
+            {
+                "category": "People also search for",
+                "title": "KFC",
+                "reviewsCount": 1251,
+                "totalScore": 2.9
+            }
+        ],
+        "placesTags": [],
+        "reviewsTags": [
+            {
+                "title": "bibimbap",
+                "count": 7
+            },
+            {
+                "title": "lunch",
+                "count": 5
+            },
+            {
+                "title": "kimchi",
+                "count": 4
+            },
+            {
+                "title": "price",
+                "count": 4
+            },
+            {
+                "title": "dumplings",
+                "count": 3
+            },
+            {
+                "title": "salad",
+                "count": 3
+            },
+            {
+                "title": "side dishes",
+                "count": 3
+            },
+            {
+                "title": "negi",
+                "count": 3
+            },
+            {
+                "title": "pork",
+                "count": 3
+            },
+            {
+                "title": "chicken",
+                "count": 3
+            }
+        ],
+        "additionalInfo": {
+            "Service options": [
+                {
+                    "Outdoor seating": true
+                },
+                {
+                    "Curbside pickup": true
+                },
+                {
+                    "No-contact delivery": true
+                },
+                {
+                    "Delivery": true
+                },
+                {
+                    "Takeout": true
+                },
+                {
+                    "Dine-in": true
+                }
+            ],
+            "Accessibility": [
+                {
+                    "Wheelchair accessible entrance": true
+                },
+                {
+                    "Wheelchair accessible parking lot": true
+                },
+                {
+                    "Wheelchair accessible restroom": true
+                },
+                {
+                    "Wheelchair accessible seating": true
+                }
+            ],
+            "Offerings": [
+                {
+                    "Small plates": true
+                }
+            ],
+            "Dining options": [
+                {
+                    "Brunch": true
+                },
+                {
+                    "Lunch": true
+                },
+                {
+                    "Dinner": true
+                },
+                {
+                    "Seating": true
+                }
+            ],
+            "Amenities": [
+                {
+                    "Restroom": true
+                }
+            ],
+            "Atmosphere": [
+                {
+                    "Casual": true
+                },
+                {
+                    "Cozy": true
+                }
+            ],
+            "Crowd": [
+                {
+                    "Groups": true
+                }
+            ],
+            "Planning": [
+                {
+                    "Accepts reservations": true
+                }
+            ],
+            "Payments": [
+                {
+                    "Credit cards": true
+                }
+            ],
+            "Children": [
+                {
+                    "Good for kids": true
+                },
+                {
+                    "High chairs": true
+                }
+            ]
+        },
+        "gasPrices": [],
+        "questionsAndAnswers": null,
+        "updatesFromCustomers": null,
+        "webResults": [],
+        "orderBy": [
+            {
+                "name": "delivereasy.co.nz",
+                "url": "delivereasy.co.nz",
+                "orderUrl": "https://www.delivereasy.co.nz/doruri-korean-silverdale-delivery"
+            }
+        ],
+        "imageUrls": [],
+        "reviews": []
+    },
+    {
+        "url": "https://www.google.com/maps/place/Inspired+Food/@-36.8817285,174.749467,17z/data=!3m1!4b1!4m6!3m5!1s0x6d0d464b294fffff:0x672c8e4991e11b78!8m2!3d-36.8817285!4d174.749467!16s%2Fg%2F11hzvbbphy?hl=en&entry=ttu",
+        "searchString": "food",
+        "rank": 57,
+        "searchPageUrl": "https://www.google.com/maps/search/food/@-36.87643127048515,174.7480200278022,16z?hl=en",
+        "searchPageLoadedUrl": "https://www.google.com/maps/search/food/@-36.8764313,174.74802,16z/data=!4m2!2m1!6e5?hl=en&entry=ttu",
+        "isAdvertisement": false,
+        "title": "Inspired Food",
+        "subTitle": null,
+        "description": null,
+        "price": null,
+        "categoryName": "Restaurant",
+        "address": "422 Dominion Road, Mount Eden, Auckland 1024, New Zealand",
+        "neighborhood": "422 Dominion Rd",
+        "street": "422 Dominion Rd",
+        "city": "Auckland",
+        "postalCode": "1024",
+        "state": null,
+        "countryCode": "NZ",
+        "website": "http://www.inspiredfood.co.nz/stockist/stockist%20original.html",
+        "phone": "+64 9 632 1034",
+        "phoneUnformatted": "+6496321034",
+        "claimThisBusiness": true,
+        "location": {
+            "lat": -36.8817285,
+            "lng": 174.749467
+        },
+        "locatedIn": null,
+        "plusCode": "4P9X+8Q Auckland, New Zealand",
+        "menu": null,
+        "totalScore": null,
+        "permanentlyClosed": false,
+        "temporarilyClosed": true,
+        "placeId": "ChIJ__9PKUtGDW0ReBvhkUmOLGc",
+        "categories": ["Restaurant"],
+        "cid": "7434473531513052024",
+        "reviewsCount": 0,
+        "reviewsDistribution": {
+            "oneStar": 0,
+            "twoStar": 0,
+            "threeStar": 0,
+            "fourStar": 0,
+            "fiveStar": 0
+        },
+        "imagesCount": 1,
+        "imageCategories": ["All", "Street View & 360°"],
+        "scrapedAt": "2023-09-30T14:18:59.610Z",
+        "reserveTableUrl": null,
+        "googleFoodUrl": null,
+        "hotelStars": null,
+        "hotelDescription": null,
+        "checkInDate": null,
+        "checkOutDate": null,
+        "similarHotelsNearby": null,
+        "hotelReviewSummary": null,
+        "openingHours": [],
+        "peopleAlsoSearch": [
+            {
+                "category": "People also search for",
+                "title": "Barilla Dumplings (百味饺子酒楼）",
+                "reviewsCount": 520,
+                "totalScore": 4.2
+            },
+            {
+                "category": "People also search for",
+                "title": "Spicy Potato Noodles",
+                "reviewsCount": 105,
+                "totalScore": 4.6
+            },
+            {
+                "category": "People also search for",
+                "title": "Barilla Dumpling",
+                "reviewsCount": 1471,
+                "totalScore": 4
+            },
+            {
+                "category": "People also search for",
+                "title": "Inovio Kitchen",
+                "reviewsCount": 0,
+                "totalScore": 0
+            },
+            {
+                "category": "People also search for",
+                "title": "Panda Noodle Express",
+                "reviewsCount": 103,
+                "totalScore": 4.3
+            }
+        ],
+        "placesTags": [],
+        "reviewsTags": [],
+        "additionalInfo": {
+            "Service options": [
+                {
+                    "Dine-in": true
+                }
+            ]
+        },
+        "gasPrices": [],
+        "questionsAndAnswers": null,
+        "updatesFromCustomers": null,
+        "webResults": [],
+        "orderBy": [],
+        "imageUrls": [],
+        "reviews": []
+    },
+    {
+        "url": "https://www.google.com/maps/place/Miku+Asian+Eatery/@-36.8483374,174.8311622,17z/data=!3m1!4b1!4m6!3m5!1s0x6d0d49e4954247ff:0xbf6927a21bdf95a4!8m2!3d-36.8483374!4d174.8311622!16s%2Fg%2F11fm_8csdv?hl=en&entry=ttu",
+        "searchString": "korean+restaurant",
+        "rank": 97,
+        "searchPageUrl": "https://www.google.com/maps/search/korean+restaurant/@-36.8557642,174.7664748,15z/data=!3m1!4b1?entry=ttu&hl=en",
+        "searchPageLoadedUrl": "https://www.google.com/maps/search/korean+restaurant/@-36.8557633,174.7664748,15z/data=!4m2!2m1!6e5?hl=en&entry=ttu",
+        "isAdvertisement": false,
+        "title": "Miku Asian Eatery",
+        "subTitle": null,
+        "description": null,
+        "price": "Brunch",
+        "categoryName": "Pan-Asian restaurant",
+        "address": "2/55 Tamaki Drive, Mission Bay, Auckland 1071, New Zealand",
+        "neighborhood": "2/55 Tamaki Dr",
+        "street": "2/55 Tamaki Dr",
+        "city": "Auckland",
+        "postalCode": "1071",
+        "state": null,
+        "countryCode": "NZ",
+        "website": "https://mikueatery.co.nz/",
+        "phone": "+64 27 724 0020",
+        "phoneUnformatted": "+64277240020",
+        "claimThisBusiness": false,
+        "location": {
+            "lat": -36.8483374,
+            "lng": 174.8311622
+        },
+        "locatedIn": null,
+        "plusCode": "5R2J+MF Auckland, New Zealand",
+        "menu": "https://order.tabin.co.nz/dd82c7c1-e2bc-4491-b54f-cc7dfefc4de0",
+        "totalScore": 4.6,
+        "permanentlyClosed": false,
+        "temporarilyClosed": false,
+        "placeId": "ChIJ_0dCleRJDW0RpJXfG6Inab8",
+        "categories": [
+            "Pan-Asian restaurant",
+            "Chicken shop",
+            "Japanese restaurant",
+            "Korean restaurant",
+            "Sushi restaurant"
+        ],
+        "cid": "13792598911004677540",
+        "reviewsCount": 113,
+        "reviewsDistribution": {
+            "oneStar": 3,
+            "twoStar": 1,
+            "threeStar": 5,
+            "fourStar": 17,
+            "fiveStar": 87
+        },
+        "imagesCount": 242,
+        "imageCategories": [
+            "All",
+            "Latest",
+            "Videos",
+            "Menu",
+            "Food & drink",
+            "Vibe",
+            "Take-out",
+            "Bento",
+            "Korean fried chicken",
+            "Tempura",
+            "By owner",
+            "Street View & 360°"
+        ],
+        "scrapedAt": "2023-10-01T02:03:06.505Z",
+        "reserveTableUrl": null,
+        "googleFoodUrl": null,
+        "hotelStars": null,
+        "hotelDescription": null,
+        "checkInDate": null,
+        "checkOutDate": null,
+        "similarHotelsNearby": null,
+        "hotelReviewSummary": null,
+        "openingHours": [
+            {
+                "day": "Monday",
+                "hours": "5 to 8:30 PM"
+            },
+            {
+                "day": "Tuesday",
+                "hours": "5 to 8:30 PM"
+            },
+            {
+                "day": "Wednesday",
+                "hours": "12 to 8 PM"
+            },
+            {
+                "day": "Thursday",
+                "hours": "12 to 8 PM"
+            },
+            {
+                "day": "Friday",
+                "hours": "12 to 8:30 PM"
+            },
+            {
+                "day": "Saturday",
+                "hours": "11 AM to 9 PM"
+            },
+            {
+                "day": "Sunday",
+                "hours": "11 AM to 8 PM"
+            }
+        ],
+        "peopleAlsoSearch": [
+            {
+                "category": "People also search for",
+                "title": "Temakeria",
+                "reviewsCount": 114,
+                "totalScore": 4.8
+            },
+            {
+                "category": "People also search for",
+                "title": "Azabu Mission Bay",
+                "reviewsCount": 339,
+                "totalScore": 4.3
+            },
+            {
+                "category": "People also search for",
+                "title": "Lupino",
+                "reviewsCount": 319,
+                "totalScore": 4.7
+            },
+            {
+                "category": "People also search for",
+                "title": "Nare Sushi",
+                "reviewsCount": 12,
+                "totalScore": 4.3
+            },
+            {
+                "category": "People also search for",
+                "title": "Mamma Mia Restaurant 1972",
+                "reviewsCount": 584,
+                "totalScore": 4.1
+            }
+        ],
+        "placesTags": [],
+        "reviewsTags": [
+            {
+                "title": "chicken",
+                "count": 12
+            },
+            {
+                "title": "japanese food",
+                "count": 9
+            },
+            {
+                "title": "hotdog",
+                "count": 5
+            },
+            {
+                "title": "sashimi",
+                "count": 5
+            },
+            {
+                "title": "tempura",
+                "count": 5
+            },
+            {
+                "title": "honey",
+                "count": 4
+            },
+            {
+                "title": "soy",
+                "count": 4
+            },
+            {
+                "title": "udon",
+                "count": 4
+            },
+            {
+                "title": "portion sizes",
+                "count": 3
+            }
+        ],
+        "additionalInfo": {
+            "Service options": [
+                {
+                    "Delivery": true
+                },
+                {
+                    "Takeaway": true
+                },
+                {
+                    "Dine-in": true
+                }
+            ],
+            "Accessibility": [
+                {
+                    "Wheelchair-accessible entrance": true
+                },
+                {
+                    "Wheelchair-accessible seating": true
+                },
+                {
+                    "Wheelchair-accessible toilet": true
+                }
+            ],
+            "Offerings": [
+                {
+                    "Beer": true
+                },
+                {
+                    "Happy-hour drinks": true
+                },
+                {
+                    "Happy-hour food": true
+                },
+                {
+                    "Small plates": true
+                },
+                {
+                    "Spirits": true
+                },
+                {
+                    "Vegan options": true
+                },
+                {
+                    "Vegetarian options": true
+                },
+                {
+                    "Wine": true
+                }
+            ],
+            "Dining options": [
+                {
+                    "Brunch": true
+                },
+                {
+                    "Lunch": true
+                },
+                {
+                    "Dinner": true
+                },
+                {
+                    "Counter service": true
+                },
+                {
+                    "Seating": true
+                }
+            ],
+            "Amenities": [
+                {
+                    "Bar on site": true
+                },
+                {
+                    "Toilets": true
+                },
+                {
+                    "Wi-Fi": true
+                },
+                {
+                    "Free Wi-Fi": true
+                }
+            ],
+            "Atmosphere": [
+                {
+                    "Casual": true
+                }
+            ],
+            "Crowd": [
+                {
+                    "Family friendly": true
+                },
+                {
+                    "LGBTQ+ friendly": true
+                },
+                {
+                    "Transgender safe space": true
+                }
+            ],
+            "Planning": [
+                {
+                    "Accepts reservations": true
+                },
+                {
+                    "Tests limited to certain patients": false
+                },
+                {
+                    "Appointment required for Covid test": false
+                },
+                {
+                    "Referral required": false
+                }
+            ],
+            "Payments": [
+                {
+                    "Credit cards": true
+                },
+                {
+                    "Debit cards": true
+                },
+                {
+                    "NFC mobile payments": true
+                },
+                {
+                    "Credit cards": true
+                }
+            ],
+            "Children": [
+                {
+                    "Good for kids": true
+                },
+                {
+                    "High chairs": true
+                },
+                {
+                    "Kids' menu": true
+                }
+            ],
+            "Pets": [
+                {
+                    "Dogs allowed outside": true
+                }
+            ]
+        },
+        "gasPrices": [],
+        "questionsAndAnswers": null,
+        "updatesFromCustomers": null,
+        "webResults": [],
+        "orderBy": [
+            {
+                "name": "mikueatery.co.nz",
+                "url": "https://mikueatery.co.nz/reserve-table.php"
+            }
+        ],
+        "imageUrls": [],
+        "reviews": []
+    },
+    {
+        "url": "https://www.google.com/maps/place/McDonald's+Albany/@-36.7297933,174.7032431,17z/data=!3m1!4b1!4m6!3m5!1s0x6d0d3becd98048ff:0xc03ce7f2a3d72e61!8m2!3d-36.7297933!4d174.7032431!16s%2Fg%2F1pycwwr0g?hl=en&entry=ttu",
+        "searchString": "restaurants",
+        "rank": 43,
+        "searchPageUrl": "https://www.google.com/maps/search/restaurants/@-36.730741,174.7084884,15z/data=!4m2!2m1!6e5?entry=ttu&hl=en",
+        "searchPageLoadedUrl": "https://www.google.com/maps/search/restaurants/@-36.730741,174.7084884,15z/data=!4m2!2m1!6e5?hl=en&entry=ttu",
+        "isAdvertisement": false,
+        "title": "McDonald's Albany",
+        "subTitle": null,
+        "description": "Classic, long-running fast-food chain known for its burgers & fries.",
+        "price": "$",
+        "categoryName": "Fast food restaurant",
+        "address": "5 Coliseum Drive, Albany, Auckland 0632, New Zealand",
+        "neighborhood": "5 Coliseum Dr",
+        "street": "5 Coliseum Dr",
+        "city": "Auckland",
+        "postalCode": "0632",
+        "state": null,
+        "countryCode": "NZ",
+        "website": "https://mcdonalds.co.nz/find-us/restaurants?utm_source=organic&utm_medium=google-my-business",
+        "phone": "+64 9 414 7400",
+        "phoneUnformatted": "+6494147400",
+        "claimThisBusiness": false,
+        "location": {
+            "lat": -36.7297933,
+            "lng": 174.7032431
+        },
+        "locatedIn": "Albany Mega Centre",
+        "plusCode": "7PC3+37 Auckland, New Zealand",
+        "menu": null,
+        "totalScore": 3.6,
+        "permanentlyClosed": false,
+        "temporarilyClosed": false,
+        "placeId": "ChIJ_0iA2ew7DW0RYS7Xo_LnPMA",
+        "categories": [
+            "Fast food restaurant",
+            "Breakfast restaurant",
+            "Family restaurant",
+            "Hamburger restaurant"
+        ],
+        "cid": "13852201583201693281",
+        "reviewsCount": 1663,
+        "reviewsDistribution": {
+            "oneStar": 254,
+            "twoStar": 118,
+            "threeStar": 286,
+            "fourStar": 412,
+            "fiveStar": 593
+        },
+        "imagesCount": 210,
+        "imageCategories": [
+            "All",
+            "Latest",
+            "Videos",
+            "Menu",
+            "Food & drink",
+            "Vibe",
+            "Take-out",
+            "Comfort food",
+            "Street View & 360°"
+        ],
+        "scrapedAt": "2023-10-05T15:45:07.085Z",
+        "reserveTableUrl": null,
+        "googleFoodUrl": "https://food.google.com/chooseprovider?restaurantId=/g/1pycwwr0g&g2lbs=ANTchaMeplbUez0PSTj8IAw9kHLk4aTTwkhkFMSFsklbS_fOqx0NtFEJ6MFuNaYNsPMvUPQt-JKOLJnoTDcdv5GZMHsOfRRBfwTFg6c4zeDAA0ZoJQODkwpRKeJ-H0o8agkSVoJfdaPF&hl=en-US&gl=us&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&utm_source=tactile&gei=89keZdaCINmv5NoPv9Cj6Aw&ei=89keZdaCINmv5NoPv9Cj6Aw&fo_s=OA,SOE&opi=79508299",
+        "hotelStars": null,
+        "hotelDescription": null,
+        "checkInDate": null,
+        "checkOutDate": null,
+        "similarHotelsNearby": null,
+        "hotelReviewSummary": null,
+        "popularTimesLiveText": "Not busy",
+        "popularTimesLivePercent": 2,
+        "popularTimesHistogram": {
+            "Su": [
+                {
+                    "hour": 4,
+                    "occupancyPercent": 2
+                },
+                {
+                    "hour": 5,
+                    "occupancyPercent": 6
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 7
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 16
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 31
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 50
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 60
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 71
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 79
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 88
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 85
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 76
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 66
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 63
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 58
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 52
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 34
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 23,
+                    "occupancyPercent": 17
+                },
+                {
+                    "hour": 0,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 1,
+                    "occupancyPercent": 5
+                },
+                {
+                    "hour": 2,
+                    "occupancyPercent": 1
+                },
+                {
+                    "hour": 3,
+                    "occupancyPercent": 1
+                }
+            ],
+            "Mo": [
+                {
+                    "hour": 4,
+                    "occupancyPercent": 4
+                },
+                {
+                    "hour": 5,
+                    "occupancyPercent": 4
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 19
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 30
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 38
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 40
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 40
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 43
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 44
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 41
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 39
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 37
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 39
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 42
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 29
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 22
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 19
+                },
+                {
+                    "hour": 23,
+                    "occupancyPercent": 13
+                },
+                {
+                    "hour": 0,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 1,
+                    "occupancyPercent": 4
+                },
+                {
+                    "hour": 2,
+                    "occupancyPercent": 4
+                },
+                {
+                    "hour": 3,
+                    "occupancyPercent": 4
+                }
+            ],
+            "Tu": [
+                {
+                    "hour": 4,
+                    "occupancyPercent": 5
+                },
+                {
+                    "hour": 5,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 16
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 24
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 31
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 39
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 41
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 44
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 46
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 42
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 38
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 37
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 43
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 50
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 53
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 47
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 32
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 25
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 16
+                },
+                {
+                    "hour": 23,
+                    "occupancyPercent": 11
+                },
+                {
+                    "hour": 0,
+                    "occupancyPercent": 7
+                },
+                {
+                    "hour": 1,
+                    "occupancyPercent": 3
+                },
+                {
+                    "hour": 2,
+                    "occupancyPercent": 2
+                },
+                {
+                    "hour": 3,
+                    "occupancyPercent": 3
+                }
+            ],
+            "We": [
+                {
+                    "hour": 4,
+                    "occupancyPercent": 2
+                },
+                {
+                    "hour": 5,
+                    "occupancyPercent": 8
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 20
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 30
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 42
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 46
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 46
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 48
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 50
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 49
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 42
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 39
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 38
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 49
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 55
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 52
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 40
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 33
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 26
+                },
+                {
+                    "hour": 23,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 0,
+                    "occupancyPercent": 11
+                },
+                {
+                    "hour": 1,
+                    "occupancyPercent": 6
+                },
+                {
+                    "hour": 2,
+                    "occupancyPercent": 2
+                },
+                {
+                    "hour": 3,
+                    "occupancyPercent": 1
+                }
+            ],
+            "Th": [
+                {
+                    "hour": 4,
+                    "occupancyPercent": 3
+                },
+                {
+                    "hour": 5,
+                    "occupancyPercent": 10
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 17
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 29
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 37
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 41
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 39
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 42
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 44
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 46
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 43
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 43
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 44
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 50
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 54
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 51
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 48
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 42
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 35
+                },
+                {
+                    "hour": 23,
+                    "occupancyPercent": 25
+                },
+                {
+                    "hour": 0,
+                    "occupancyPercent": 15
+                },
+                {
+                    "hour": 1,
+                    "occupancyPercent": 10
+                },
+                {
+                    "hour": 2,
+                    "occupancyPercent": 3
+                },
+                {
+                    "hour": 3,
+                    "occupancyPercent": 2
+                }
+            ],
+            "Fr": [
+                {
+                    "hour": 4,
+                    "occupancyPercent": 5
+                },
+                {
+                    "hour": 5,
+                    "occupancyPercent": 8
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 16
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 25
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 32
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 34
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 38
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 42
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 49
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 51
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 50
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 54
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 57
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 59
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 59
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 54
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 52
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 38
+                },
+                {
+                    "hour": 23,
+                    "occupancyPercent": 26
+                },
+                {
+                    "hour": 0,
+                    "occupancyPercent": 17
+                },
+                {
+                    "hour": 1,
+                    "occupancyPercent": 11
+                },
+                {
+                    "hour": 2,
+                    "occupancyPercent": 8
+                },
+                {
+                    "hour": 3,
+                    "occupancyPercent": 6
+                }
+            ],
+            "Sa": [
+                {
+                    "hour": 4,
+                    "occupancyPercent": 1
+                },
+                {
+                    "hour": 5,
+                    "occupancyPercent": 2
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 7
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 34
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 52
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 68
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 82
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 96
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 100
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 88
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 72
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 59
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 56
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 59
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 57
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 57
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 53
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 46
+                },
+                {
+                    "hour": 23,
+                    "occupancyPercent": 33
+                },
+                {
+                    "hour": 0,
+                    "occupancyPercent": 20
+                },
+                {
+                    "hour": 1,
+                    "occupancyPercent": 11
+                },
+                {
+                    "hour": 2,
+                    "occupancyPercent": 6
+                },
+                {
+                    "hour": 3,
+                    "occupancyPercent": 3
+                }
+            ]
+        },
+        "openingHours": [
+            {
+                "day": "Monday",
+                "hours": "Open 24 hours"
+            },
+            {
+                "day": "Tuesday",
+                "hours": "Open 24 hours"
+            },
+            {
+                "day": "Wednesday",
+                "hours": "Open 24 hours"
+            },
+            {
+                "day": "Thursday",
+                "hours": "Open 24 hours"
+            },
+            {
+                "day": "Friday",
+                "hours": "Open 24 hours"
+            },
+            {
+                "day": "Saturday",
+                "hours": "Open 24 hours"
+            },
+            {
+                "day": "Sunday",
+                "hours": "Open 24 hours"
+            }
+        ],
+        "peopleAlsoSearch": [
+            {
+                "category": "People also search for",
+                "title": "Chicking Albany",
+                "reviewsCount": 575,
+                "totalScore": 4
+            },
+            {
+                "category": "People also search for",
+                "title": "Burger King Albany",
+                "reviewsCount": 650,
+                "totalScore": 3.6
+            },
+            {
+                "category": "People also search for",
+                "title": "Carl's Jr. Albany",
+                "reviewsCount": 1622,
+                "totalScore": 3.9
+            },
+            {
+                "category": "People also search for",
+                "title": "KFC Albany",
+                "reviewsCount": 1576,
+                "totalScore": 3.1
+            },
+            {
+                "category": "People also search for",
+                "title": "Wendy's",
+                "reviewsCount": 1367,
+                "totalScore": 3.7
+            }
+        ],
+        "placesTags": [],
+        "reviewsTags": [
+            {
+                "title": "drive through",
+                "count": 87
+            },
+            {
+                "title": "clean",
+                "count": 60
+            },
+            {
+                "title": "playground",
+                "count": 21
+            },
+            {
+                "title": "floor",
+                "count": 13
+            },
+            {
+                "title": "self service",
+                "count": 8
+            },
+            {
+                "title": "kiosk",
+                "count": 7
+            },
+            {
+                "title": "hot chocolate",
+                "count": 6
+            },
+            {
+                "title": "frozen",
+                "count": 6
+            },
+            {
+                "title": "egg mcmuffin",
+                "count": 6
+            },
+            {
+                "title": "premises",
+                "count": 5
+            }
+        ],
+        "additionalInfo": {
+            "Service options": [
+                {
+                    "No-contact delivery": true
+                },
+                {
+                    "Delivery": true
+                },
+                {
+                    "Drive-through": true
+                },
+                {
+                    "Takeout": true
+                },
+                {
+                    "Dine-in": true
+                }
+            ],
+            "Highlights": [
+                {
+                    "Fast service": true
+                }
+            ],
+            "Accessibility": [
+                {
+                    "Wheelchair accessible entrance": true
+                },
+                {
+                    "Wheelchair accessible parking lot": true
+                },
+                {
+                    "Wheelchair accessible restroom": true
+                },
+                {
+                    "Wheelchair accessible seating": true
+                }
+            ],
+            "Offerings": [
+                {
+                    "Coffee": true
+                },
+                {
+                    "Healthy options": true
+                },
+                {
+                    "Late-night food": true
+                },
+                {
+                    "Quick bite": true
+                },
+                {
+                    "Vegetarian options": true
+                }
+            ],
+            "Dining options": [
+                {
+                    "Breakfast": true
+                },
+                {
+                    "Lunch": true
+                },
+                {
+                    "Dinner": true
+                },
+                {
+                    "Counter service": true
+                },
+                {
+                    "Dessert": true
+                },
+                {
+                    "Seating": true
+                }
+            ],
+            "Amenities": [
+                {
+                    "Restroom": true
+                }
+            ],
+            "Atmosphere": [
+                {
+                    "Casual": true
+                }
+            ],
+            "Crowd": [
+                {
+                    "Groups": true
+                }
+            ],
+            "Payments": [
+                {
+                    "Credit cards": true
+                },
+                {
+                    "Debit cards": true
+                },
+                {
+                    "NFC mobile payments": true
+                },
+                {
+                    "Credit cards": true
+                }
+            ],
+            "Children": [
+                {
+                    "Good for kids": true
+                },
+                {
+                    "Good for kids birthday": true
+                },
+                {
+                    "High chairs": true
+                },
+                {
+                    "Kids' menu": true
+                },
+                {
+                    "Playground": true
+                }
+            ]
+        },
+        "gasPrices": [],
+        "questionsAndAnswers": {
+            "question": "Is it just me or does the manager at McDonalds Colesium Dr not seem very nice?",
+            "answer": "burger  burger burger burger's ",
+            "askDate": "4 years ago",
+            "askedBy": {
+                "name": "Ethan Johnson",
+                "url": "https://www.google.com/maps/contrib/103340783206229668031"
+            },
+            "answerDate": "4 years ago",
+            "answeredBy": {
+                "name": "Jorja Funney",
+                "url": "https://www.google.com/maps/contrib/107456522141665465387"
+            }
+        },
+        "updatesFromCustomers": {
+            "text": "Wrong orders and so unfriendly welcome shame I gave 5 stars and always great comments but 😥",
+            "language": "en",
+            "postDate": "a week ago",
+            "postedBy": {
+                "name": "Ebru Aydin",
+                "url": "https://www.google.com/maps/contrib/111630990063687953593?hl=en-US",
+                "title": "Local Guide",
+                "totalReviews": 95
+            },
+            "media": []
+        },
+        "webResults": [],
+        "orderBy": [
+            {
+                "name": "Just Eat",
+                "url": "menulog.co.nz",
+                "orderUrl": "https://www.menulog.co.nz/restaurants-mcdonalds-albany/menu?serviceType=collection&utm_source=google&utm_medium=organic&utm_campaign=orderactionv2"
+            }
+        ],
+        "imageUrls": [],
+        "reviews": []
+    },
+    {
+        "url": "https://www.google.com/maps/place/Onemata/@-36.8416595,174.7586823,17z/data=!3m1!4b1!4m6!3m5!1s0x6d0d4758805454ff:0xd70f4dfef47a4c3e!8m2!3d-36.8416595!4d174.7586823!16s%2Fg%2F11l9yyklgg?hl=en&entry=ttu",
+        "searchString": "restaurants",
+        "rank": 30,
+        "searchPageUrl": "https://www.google.com/maps/search/restaurants/@-36.819845,174.7886386,14.92z/data=!4m2!2m1!6e5?entry=ttu&hl=en",
+        "searchPageLoadedUrl": "https://www.google.com/maps/search/restaurants/@-36.819845,174.7886386,14z/data=!4m2!2m1!6e5?hl=en&entry=ttu",
+        "isAdvertisement": false,
+        "title": "Onemata",
+        "subTitle": null,
+        "description": null,
+        "price": null,
+        "categoryName": "Restaurant",
+        "address": "Park Hyatt Auckland 99 Halsey Street, Auckland CBD, Auckland 1010, New Zealand",
+        "neighborhood": "Park Hyatt Auckland 99 Halsey St",
+        "street": "Park Hyatt Auckland 99 Halsey St",
+        "city": "Auckland",
+        "postalCode": "1010",
+        "state": null,
+        "countryCode": "NZ",
+        "website": "http://www.onematarestaurant.co.nz/",
+        "phone": "+64 9 366 2500",
+        "phoneUnformatted": "+6493662500",
+        "claimThisBusiness": false,
+        "location": {
+            "lat": -36.8416595,
+            "lng": 174.7586823
+        },
+        "locatedIn": null,
+        "plusCode": "5Q55+8F Auckland, New Zealand",
+        "menu": "https://onematarestaurant.co.nz/menu/",
+        "totalScore": 4.2,
+        "permanentlyClosed": false,
+        "temporarilyClosed": false,
+        "placeId": "ChIJ_1RUgFhHDW0RPkx69P5ND9c",
+        "categories": ["Restaurant"],
+        "cid": "15496690600223853630",
+        "reviewsCount": 126,
+        "reviewsDistribution": {
+            "oneStar": 12,
+            "twoStar": 3,
+            "threeStar": 14,
+            "fourStar": 19,
+            "fiveStar": 78
+        },
+        "imagesCount": 354,
+        "imageCategories": [
+            "All",
+            "Latest",
+            "Videos",
+            "Menu",
+            "Food & drink",
+            "Vibe",
+            "Rib eye steak",
+            "Risotto",
+            "By owner",
+            "Street View & 360°"
+        ],
+        "scrapedAt": "2023-10-06T02:55:31.770Z",
+        "reserveTableUrl": null,
+        "googleFoodUrl": null,
+        "hotelStars": null,
+        "hotelDescription": null,
+        "checkInDate": null,
+        "checkOutDate": null,
+        "similarHotelsNearby": null,
+        "hotelReviewSummary": null,
+        "popularTimesLiveText": "Now: Usually not too busy",
+        "popularTimesLivePercent": null,
+        "popularTimesHistogram": {
+            "Su": [
+                {
+                    "hour": 6,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 63
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 54
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 23,
+                    "occupancyPercent": 0
+                }
+            ],
+            "Mo": [
+                {
+                    "hour": 5,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 0
+                }
+            ],
+            "Tu": [
+                {
+                    "hour": 5,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 0
+                }
+            ],
+            "We": [
+                {
+                    "hour": 5,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 90
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 63
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 0
+                }
+            ],
+            "Th": [
+                {
+                    "hour": 5,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 54
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 54
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 9
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 72
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 81
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 0
+                }
+            ],
+            "Fr": [
+                {
+                    "hour": 5,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 90
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 100
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 81
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 54
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 54
+                },
+                {
+                    "hour": 22,
+                    "occupancyPercent": 0
+                }
+            ],
+            "Sa": [
+                {
+                    "hour": 4,
+                    "occupancyPercent": 0
+                },
+                {
+                    "hour": 5,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 6,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 7,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 8,
+                    "occupancyPercent": 63
+                },
+                {
+                    "hour": 9,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 10,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 11,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 12,
+                    "occupancyPercent": 18
+                },
+                {
+                    "hour": 13,
+                    "occupancyPercent": 27
+                },
+                {
+                    "hour": 14,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 15,
+                    "occupancyPercent": 63
+                },
+                {
+                    "hour": 16,
+                    "occupancyPercent": 45
+                },
+                {
+                    "hour": 17,
+                    "occupancyPercent": 72
+                },
+                {
+                    "hour": 18,
+                    "occupancyPercent": 72
+                },
+                {
+                    "hour": 19,
+                    "occupancyPercent": 63
+                },
+                {
+                    "hour": 20,
+                    "occupancyPercent": 36
+                },
+                {
+                    "hour": 21,
+                    "occupancyPercent": 9
+                }
+            ]
+        },
+        "openingHours": [
+            {
+                "day": "Monday",
+                "hours": "6:30 AM to 2:30 PM"
+            },
+            {
+                "day": "Tuesday",
+                "hours": "6:30 AM to 2:30 PM"
+            },
+            {
+                "day": "Wednesday",
+                "hours": "6:30 AM to 2:30 PM"
+            },
+            {
+                "day": "Thursday",
+                "hours": "6:30 AM to 9:30 PM"
+            },
+            {
+                "day": "Friday",
+                "hours": "6:30 AM to 9:30 PM"
+            },
+            {
+                "day": "Saturday",
+                "hours": "5:30 AM to 9:30 PM"
+            },
+            {
+                "day": "Sunday",
+                "hours": "7 AM to 2:30 PM"
+            }
+        ],
+        "peopleAlsoSearch": [
+            {
+                "category": "People also search for",
+                "title": "The Living Room",
+                "reviewsCount": 69,
+                "totalScore": 4.5
+            },
+            {
+                "category": "People also search for",
+                "title": "Giraffe",
+                "reviewsCount": 859,
+                "totalScore": 4.1
+            },
+            {
+                "category": "People also search for",
+                "title": "Market Square",
+                "reviewsCount": 107,
+                "totalScore": 4.2
+            },
+            {
+                "category": "People also search for",
+                "title": "La Marée",
+                "reviewsCount": 223,
+                "totalScore": 4.3
+            },
+            {
+                "category": "People also search for",
+                "title": "The Grove Restaurant",
+                "reviewsCount": 592,
+                "totalScore": 4.7
+            }
+        ],
+        "placesTags": [],
+        "reviewsTags": [
+            {
+                "title": "dinner",
+                "count": 11
+            },
+            {
+                "title": "breakfast",
+                "count": 10
+            },
+            {
+                "title": "dish",
+                "count": 10
+            },
+            {
+                "title": "atmosphere",
+                "count": 6
+            },
+            {
+                "title": "hotel",
+                "count": 6
+            },
+            {
+                "title": "waiter",
+                "count": 6
+            },
+            {
+                "title": "salmon",
+                "count": 5
+            },
+            {
+                "title": "night",
+                "count": 5
+            },
+            {
+                "title": "price",
+                "count": 5
+            },
+            {
+                "title": "wine list",
+                "count": 4
+            }
+        ],
+        "additionalInfo": {
+            "Service options": [
+                {
+                    "Takeout": true
+                },
+                {
+                    "Dine-in": true
+                },
+                {
+                    "Delivery": false
+                }
+            ],
+            "Highlights": [
+                {
+                    "Great cocktails": true
+                }
+            ],
+            "Accessibility": [
+                {
+                    "Wheelchair accessible entrance": true
+                },
+                {
+                    "Wheelchair accessible parking lot": true
+                },
+                {
+                    "Wheelchair accessible restroom": true
+                },
+                {
+                    "Wheelchair accessible seating": true
+                }
+            ],
+            "Offerings": [
+                {
+                    "Alcohol": true
+                },
+                {
+                    "Beer": true
+                },
+                {
+                    "Cocktails": true
+                },
+                {
+                    "Coffee": true
+                },
+                {
+                    "Halal food": true
+                },
+                {
+                    "Hard liquor": true
+                },
+                {
+                    "Vegan options": true
+                },
+                {
+                    "Vegetarian options": true
+                },
+                {
+                    "Wine": true
+                }
+            ],
+            "Dining options": [
+                {
+                    "Breakfast": true
+                },
+                {
+                    "Lunch": true
+                },
+                {
+                    "Dinner": true
+                },
+                {
+                    "Dessert": true
+                },
+                {
+                    "Seating": true
+                }
+            ],
+            "Amenities": [
+                {
+                    "Bar onsite": true
+                },
+                {
+                    "Restroom": true
+                },
+                {
+                    "Wi-Fi": true
+                },
+                {
+                    "Free Wi-Fi": true
+                }
+            ],
+            "Atmosphere": [
+                {
+                    "Cozy": true
+                }
+            ],
+            "Crowd": [
+                {
+                    "Family-friendly": true
+                },
+                {
+                    "Groups": true
+                }
+            ],
+            "Planning": [
+                {
+                    "Accepts reservations": true
+                }
+            ],
+            "Payments": [
+                {
+                    "Credit cards": true
+                }
+            ],
+            "Children": [
+                {
+                    "Good for kids": true
+                },
+                {
+                    "High chairs": true
+                },
+                {
+                    "Kids' menu": true
+                }
+            ]
+        },
+        "gasPrices": [],
+        "questionsAndAnswers": null,
+        "updatesFromCustomers": {
+            "text": "A treat to be back for breakfast and dinner",
+            "language": "en",
+            "postDate": "a year ago",
+            "postedBy": {
+                "name": "Royal Reed",
+                "url": "https://www.google.com/maps/contrib/107732971929622366623?hl=en-US",
+                "title": "Local Guide",
+                "totalReviews": 432
+            },
+            "media": []
+        },
+        "webResults": [],
+        "orderBy": [
+            {
+                "name": "tablecheck.com",
+                "url": "https://www.tablecheck.com/onemata/reserve?utm_source=google"
+            }
+        ],
+        "imageUrls": [],
+        "reviews": []
+    }
+]
