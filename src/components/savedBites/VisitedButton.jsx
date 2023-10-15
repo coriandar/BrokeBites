@@ -1,7 +1,7 @@
 import { auth } from "@/database/firebase/firebaseApp";
 import {
-    addRestaurantVisited,
     fetchUserList,
+    addRestaurantVisited,
     removeRestaurantVisited,
 } from "@/database/firebase/firestore/userDB";
 import { useEffect, useState } from "react";
@@ -23,13 +23,13 @@ export default function VisitedButton({ selectedRestaurant }) {
     });
 
     const addVisited = async () => {
-        await addRestaurantVisited(selectedRestaurant);
         setIsVisited(true);
+        await addRestaurantVisited(selectedRestaurant);
     };
 
     const removeVisited = async () => {
-        await removeRestaurantVisited(selectedRestaurant);
         setIsVisited(false);
+        await removeRestaurantVisited(selectedRestaurant);
     };
 
     return (
