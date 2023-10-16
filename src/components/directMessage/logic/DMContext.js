@@ -2,19 +2,19 @@ import { auth } from "@/database/firebase/firebaseApp";
 import { createContext, useReducer } from "react";
 
 // Context: to share the data that can be considered 'global'.
-export const ChatContext = createContext();
+export const DMContext = createContext();
 
-export const ChatContextProvider = ({ children }) => {
+export const DMContextProvider = ({ children }) => {
     const currentUser = auth.currentUser;
 
-    // Inital state for chatReducer
+    // Inital state for DMReducer
     const INITIAL_STATE = {
         chatID: "null",
         user: {},
     };
 
     // Reducer: similar to useState, but more effective when trying to update multiple variables' state at once.
-    const chatReducer = (state, action) => {
+    const DMReducer = (state, action) => {
         switch (action.type) {
             case "CHANGE_USER":
                 return {
@@ -30,11 +30,11 @@ export const ChatContextProvider = ({ children }) => {
         }
     };
 
-    const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
+    const [state, dispatch] = useReducer(DMReducer, INITIAL_STATE);
 
     return (
-        <ChatContext.Provider value={{ data: state, dispatch }}>
+        <DMContext.Provider value={{ data: state, dispatch }}>
             {children}
-        </ChatContext.Provider>
+        </DMContext.Provider>
     );
 };
