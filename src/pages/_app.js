@@ -16,8 +16,7 @@ export default function App({ Component, pageProps }) {
     if (!user && path.includes("about")) {
         return (
             <Layout>
-                {/* <AboutPage /> */}
-                <paymentPage />
+                <AboutPage />
             </Layout>
         );
     } else if (!user && path.includes("signup")) {

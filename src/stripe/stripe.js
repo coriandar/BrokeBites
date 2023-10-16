@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const stripe = require("stripe")("process.env.STRIPE_SECRET_TEST");
+const stripe = require("stripe")(process.env.SECRET_KEY_TEST); // Load your secret key from an environment variable
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -24,12 +24,12 @@ app.post("/payment", cors(), async (req, res) => {
         //create a new payment intent
         const payment = await stripe.paymentIntents.create({
             amount: amount,
-            currency: "NZD",
-            description: "BrokeBites premium",
+            currency: "USD",
+            description: "BrokeBites Premium",
             payment_method: id,
             confirm: true,
         });
-        //if successful
+        //if successfunpml
         console.log("Payment", payment);
         res.json({
             message: "Payment successful",
@@ -45,7 +45,7 @@ app.post("/payment", cors(), async (req, res) => {
     }
 });
 
-//listen for http requests on port 4000 using express
 app.listen(process.env.PORT || 4000, () => {
-    console.log("Server running on port 4000");
+    const port = process.env.PORT || 4000;
+    console.log(`Server is running on port ${port}`);
 });

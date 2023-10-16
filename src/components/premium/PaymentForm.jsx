@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"; //import elements from stripe react
 import axios from "axios"; //import axios for http requests
+import styles from "./FormStyles.module.css"; //import css for payment form
 
 //card options css from stripe documentation
 const CARD_OPTIONS = {
@@ -24,6 +25,8 @@ const CARD_OPTIONS = {
     },
 };
 
+//public key
+
 //export payment form
 export default function PaymentForm() {
     const [success, setSuccess] = useState(false); //success hook
@@ -39,6 +42,8 @@ export default function PaymentForm() {
             card: elements.getElement(CardElement),
         });
 
+        console.log(elements.getElement(CardElement));
+
         //error handling for payments
         if (!error) {
             try {
@@ -46,10 +51,12 @@ export default function PaymentForm() {
                 const response = await axios.post(
                     "http://localhost:4000/payment",
                     {
-                        amount: 0, //amount to be paid in cents
+                        amount: 10000, //amount to be paid in cents
                         id, //id of payment method
                     },
                 );
+
+                console.log(response);
 
                 if (response.data.success) {
                     console.log("successful payment"); //successful payment
@@ -66,21 +73,18 @@ export default function PaymentForm() {
     //return the component
     return (
         <>
-            {!success ? ( //if not successful
+            {!success ? (
                 <form onSubmit={handleSubmit}>
-                    <fieldset className="FormGroup">
-                        <div className="FormRow">
+                    <fieldset className={styles.FormGroup}>
+                        <div className={styles.FormRow}>
                             <CardElement options={CARD_OPTIONS} />
                         </div>
                     </fieldset>
-                    <button className="btn btn-primary" type="submit">
-                        Pay
-                    </button>
+                    <button>Pay</button>
                 </form>
             ) : (
-                //show thank you message if payment is successful
                 <div>
-                    <h2>Thank you for subscribing to BrokeBytes!!</h2>
+                    <h2>Thank you for subscribing to our premium service!</h2>
                 </div>
             )}
         </>
