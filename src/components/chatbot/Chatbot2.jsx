@@ -1,4 +1,4 @@
-import ChatBot from 'react-simple-chatbot';
+import ChatBot from 'react-simple-chatbot'; // npm install react-simple-chatbot
 import { ThemeProvider } from 'styled-components';
 
 const steps = [
