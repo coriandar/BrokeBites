@@ -2,56 +2,80 @@ import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
 
 const steps = [
-	{
+    {
 		id: '0',
-		message: 'Hello',   // can add users name if profile
-		trigger: '3',   // goes to id 1
-	}, 
-    // add id 1 and 2 
+		message: "Hello",   // can add users name if profile
+		trigger: '1',   // goes to id 1
+	},
     {
-		id: '3',
-		message: " You want {previousValue}?",
-		trigger: 4,
-	}, 
-    {
-		id: '4',
+		id: '1',
 		options: [  // option list
 			{ value: 1, label: 'View Frequently Asked Questions', trigger: 'faqStep' },
             { value: 2, label: 'End Conversation', trigger: 'end' },
 		],
-		//end: true
 	},
     {
         id: 'faqStep',
         message: 'Here are some frequently asked questions:',
         trigger: 'faqOptions',
-      },
-      {
+    },
+    {
         id: 'faqOptions',
         options: [
-          {
+            {
             value: 'faq1',
-            label: 'How do I use the map?',
+            label: 'How to use the map?',
             trigger: 'faq1Answer',
-          },
-          {
+        },
+        {
             value: 'faq2',
-            label: 'How to I create an account',
+            label: 'How to create an account?',
             trigger: 'faq2Answer',
-          },
+        },
+        {
+            value: 'faq3',
+            label: 'How to login to my account?',
+            trigger: 'faq3Answer',
+        },
+        {
+            value: 'faq4',
+            label: 'How to search for restaurant?',
+            trigger: 'faq4Answer',
+        },
+        {
+            value: 'faq5',
+            label: 'How to view restaurant menu?',
+            trigger: 'faq5Answer',
+        },
           // Add more FAQ questions 
         ],
-      },
-      {
+    },
+    {
         id: 'faq1Answer',
-        message: 'To use the map #',
-        trigger: 'faqOptions', // Return to the FAQ options after displaying the answer.
-      },
-      {
+        message: 'You can use the map by panning around with your mouse, scroll in and out for better coverage or viewing' 
+        + 'filter options are located to the left, various buttons surround the map each with their own function. ',
+        trigger: 'faqStep', // Return to the FAQ options after displaying the answer.
+    },
+    {
         id: 'faq2Answer',
-        message: 'You can create an account by viewing the login page and selecting to create a new login.',
-        trigger: 'faqOptions', // Return to the FAQ options after displaying the answer.
-      },
+        message: 'You can create an account by viewing the signup page from the navbar.',
+        trigger: 'faqStep', // Return to the FAQ options after displaying the answer.
+    },
+    {
+        id: 'faq3Answer',
+        message: 'Visit the login page via the navbar button and sign in with login details.',
+        trigger: 'faqStep', // Return to the FAQ options after displaying the answer.
+    },
+    {
+        id: 'faq4Answer',
+        message: 'From the main page utilise the search bar located just below the filter options.',
+        trigger: 'faqStep', // Return to the FAQ options after displaying the answer.
+    },
+    {
+        id: 'faq5Answer',
+        message: 'Click on your restaurant of choice and select the menu option from the window that pops up.',
+        trigger: 'faqStep', // Return to the FAQ options after displaying the answer.
+    },
     {
         id: 'faq', 
         message: 'What is your question:',
@@ -65,7 +89,7 @@ const steps = [
     {
         id: 'faqResponse',
         message: 'You asked: {previousValue}',
-        trigger: '4', // Return to the main menu
+        trigger: '1', // Return to the main menu
     },
     {
         id: 'userInput',
@@ -97,12 +121,13 @@ const config = {
 };
 
 function Chat() {
+    console.log('Chatbot component rendering')
 	return (
 		<div className="Chat">
 			<ThemeProvider theme={theme}>
 				<ChatBot
                     // chatbot header
-					headerTitle="Chatbot"
+					headerTitle="BrokeBot"
 					steps={steps}
 					{...config}
 
