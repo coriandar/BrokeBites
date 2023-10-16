@@ -1,21 +1,13 @@
+//Stripe button used to take user to the payment page
 import React, { useState } from "react";
-import StripeContainer from "./StripeContainer"; // Import the StripeContainer component
+import Link from "next/link";
 
 export default function SubscribeButton() {
-    const [showItem, setShowItem] = useState(false);
-
     return (
-        <div>
-            {showItem ? (
-                <StripeContainer />
-            ) : (
-                <button
-                    className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
-                    onClick={() => setShowItem(true)}
-                >
-                    Subscribe
-                </button>
-            )}
-        </div>
+        <Link href="/paymentPage">
+            <button className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1">
+                Subscribe
+            </button>
+        </Link>
     );
 }
