@@ -14,33 +14,41 @@ export default function MapSelectSet() {
 
     return (
         <ul className="flex items-center justify-start">
-            <li className="p-2 cursor-pointer">
+            <li className="cursor-pointer p-2">
                 <Link href="/">
                     <button
-                        className={`px-4 py-1 rounded-s-md ${changeColour(
-                            "All"
+                        className={`rounded-s-md px-4 py-1 ${changeColour(
+                            "All",
                         )}`}
                         onClick={() => handleClick("All")}
                     >
                         All Bites
                     </button>
                 </Link>
-                <Link href="/savedBites">
+                <Link href="/favouriteBites">
                     <button
-                        className={`px-4 py-1 ${changeColour("Saved")}`}
-                        onClick={() => handleClick("Saved")}
+                        className={`px-4 py-1 ${changeColour("Favourite")}`}
+                        onClick={() => handleClick("Favourite")}
                     >
-                        Saved Bites
+                        Favourite Bites
                     </button>
                 </Link>
                 <Link href="/toVisitBites">
                     <button
-                        className={`px-4 py-1 rounded-e-md ${changeColour(
-                            "Visit"
-                        )}`}
+                        className={`px-4 py-1 ${changeColour("Visit")}`}
                         onClick={() => handleClick("Visit")}
                     >
                         ToVisit Bites
+                    </button>
+                </Link>
+                <Link href="/visitedBites">
+                    <button
+                        className={`rounded-e-md px-4 py-1 ${changeColour(
+                            "Visited",
+                        )}`}
+                        onClick={() => handleClick("Visited")}
+                    >
+                        Visited Bites
                     </button>
                 </Link>
             </li>

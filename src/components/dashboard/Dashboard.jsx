@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import InitMap from "../map/Map";
+import InitMap from "../map/MapContainer";
 import InitList from "../restaurant/RestaurantList";
-import MarkerDetails from "../map/components/MarkerDetails";
 import CenterToUserButton from "../map/components/CenterButton";
 import MapSetings from "../mapOptions/MapSettings";
 import FilterSelector from "../filter/FilterSelector";
+import SortSelector from "../sort/SortSelector";
+import RestaurantInfo from "../restaurant/RestaurantInfo";
 import defaultCenter from "../__shared__/defaultCenter";
+import Layer from "../__shared__/layout/Layer";
+import { ListToggle } from "../restaurant/components/ListToggle";
 
 export default function Dashboard({
     restaurantList,
@@ -23,6 +26,7 @@ export default function Dashboard({
     const [mapZoom, setMapZoom] = useState(17);
     const [userGeo, setUserGeo] = useState(defaultCenter);
     const [center, setCenter] = useState(defaultCenter);
+    const [showList, setShowList] = useState(true);
 
     //map markers
     const handleDeselect = () => {
@@ -32,28 +36,28 @@ export default function Dashboard({
     //parent component
     return (
         <div className="flex h-full">
-            <div className="bg-slate-100 m-4 flex flex-col justify-start w-1/4">
-                <FilterSelector
-                    restaurantMasterList={restaurantMasterList}
-                    setRestaurantList={setRestaurantList}
-                    activeFilter={activeFilter}
-                    setActiveFilter={setActiveFilter}
-                    userGeo={userGeo}
-                />
-
-                <div className="overflow-y-auto no-scrollbar h-90% m-4">
-                    <InitList
-                        restaurantList={restaurantList}
-                        setRestaurantSelected={setRestaurantSelected}
-                        restaurantSelected={restaurantSelected}
-                        setCenter={setCenter}
-                        setMapZoom={setMapZoom}
+            {showList && (
+                <div className="m-4 flex w-1/4 flex-col justify-start bg-slate-100">
+                    <SortSelector
+                        restaurantMasterList={restaurantMasterList}
+                        setRestaurantList={setRestaurantList}
                         activeFilter={activeFilter}
+                        setActiveFilter={setActiveFilter}
+                        userGeo={userGeo}
                     />
+                    <div className="no-scrollbar m-4 h-90% overflow-y-auto">
+                        <InitList
+                            restaurantList={restaurantList}
+                            setRestaurantSelected={setRestaurantSelected}
+                            restaurantSelected={restaurantSelected}
+                            setCenter={setCenter}
+                            setMapZoom={setMapZoom}
+                            activeFilter={activeFilter}
+                        />
+                    </div>
                 </div>
-            </div>
-
-            <div className="bg-slate-300 w-3/4 relative">
+            )}
+            <div className="relative w-full bg-slate-300">
                 <InitMap
                     restaurantList={restaurantList}
                     setRestaurantSelected={setRestaurantSelected}
@@ -71,38 +75,55 @@ export default function Dashboard({
                     userGeo={userGeo}
                     setUserGeo={setUserGeo}
                 />
-                <div className="bg-slate-300 w-30% bg-opacity-90 absolute bottom-0 left-0 rounded-2xl p-6 m-8">
-                    {restaurantSelected && (
-                        <div className="relative">
-                            <button
-                                className="w-4 h-4 absolute right-0 top-0 text-xs"
-                                onClick={handleDeselect}
-                            >
-                                ✖
-                            </button>
-                        </div>
-                    )}
-                    <MarkerDetails
-                        selected={restaurantSelected}
+                <Layer position={"top-72 left-8"}>
+                    <ListToggle
+                        showOptions={showList}
+                        setShowOptions={setShowList}
+                    />
+                </Layer>
+                <Layer position={"top-16 left-8"}>
+                    <FilterSelector
+                        restaurantMasterList={restaurantMasterList}
+                        setRestaurantList={setRestaurantList}
+                        activeFilter={activeFilter}
+                        setActiveFilter={setActiveFilter}
                         userGeo={userGeo}
                     />
-                </div>
-                <MapSetings
-                    mapTheme={mapTheme}
-                    setMapTheme={setMapTheme}
-                    mapMarkerToggle={mapMarkerToggle}
-                    setMapMarkerToggle={setMapMarkerToggle}
-                    heatmapToggle={heatmapToggle}
-                    setHeatmapToggle={setHeatmapToggle}
-                    userLocation={userLocation}
-                    setUserLocation={setUserLocation}
-                />
-                <CenterToUserButton
-                    setCenter={setCenter}
-                    userLocation={userLocation}
-                    userGeo={userGeo}
-                    setUserGeo={setUserGeo}
-                />
+                </Layer>
+
+                <Layer position={"bottom-8 left-8"}>
+                    <RestaurantInfo
+                        handleDeselect={handleDeselect}
+                        restaurantList={restaurantList}
+                        setRestaurantSelected={setRestaurantSelected}
+                        restaurantSelected={restaurantSelected}
+                        setCenter={setCenter}
+                        center={center}
+                        mapZoom={mapZoom}
+                        setMapZoom={setMapZoom}
+                        userGeo={userGeo}
+                    />
+                </Layer>
+                <Layer position={"top-2 right-14"}>
+                    <MapSetings
+                        mapTheme={mapTheme}
+                        setMapTheme={setMapTheme}
+                        mapMarkerToggle={mapMarkerToggle}
+                        setMapMarkerToggle={setMapMarkerToggle}
+                        heatmapToggle={heatmapToggle}
+                        setHeatmapToggle={setHeatmapToggle}
+                        userLocation={userLocation}
+                        setUserLocation={setUserLocation}
+                    />
+                </Layer>
+                <Layer position={"bottom-48 right-2"}>
+                    <CenterToUserButton
+                        setCenter={setCenter}
+                        userLocation={userLocation}
+                        userGeo={userGeo}
+                        setUserGeo={setUserGeo}
+                    />
+                </Layer>
             </div>
         </div>
     );

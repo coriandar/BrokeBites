@@ -12,15 +12,16 @@ export default function FollowButton({ otherUser }) {
     const [isFollowing, setIsFollowing] = useState(false);
 
     useEffect(() => {
-        if (otherUser && currentUserID) {
-            checkIsFollowing();
-        }
-    }, [otherUser, currentUserID]);
+        const checkIsFollowing = async () => {
+            const followingList = await fetchUserList(
+                currentUserID,
+                "following"
+            );
+            setIsFollowing(followingList.includes(otherUser));
+        };
 
-    const checkIsFollowing = async () => {
-        const followingList = await fetchUserList(currentUserID, "following");
-        setIsFollowing(followingList.includes(otherUser));
-    };
+        if (otherUser && currentUserID) checkIsFollowing();
+    }, [otherUser, currentUserID]);
 
     const follow = async () => {
         await followSelectedUser(otherUser);

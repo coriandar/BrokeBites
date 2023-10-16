@@ -12,10 +12,10 @@ export default function FilterType({
     useEffect(() => {
         // Filter the restaurant list when the query or restaurantMasterList changes
         setRestaurantList(filterLogic(restaurantMasterList, selected));
-    }, [selected]);
+    }, [selected, filterLogic, restaurantMasterList, setRestaurantList]);
 
     return (
-        <div className="w-full bg-slate-300 shadow-lg h-5% flex justify-center items-center pl-2 rounded-lg">
+        <div className="flex h-5% w-full items-center justify-center rounded-lg bg-slate-300 pl-2 shadow-lg">
             <label for="cuisine">Type:</label>
 
             <select

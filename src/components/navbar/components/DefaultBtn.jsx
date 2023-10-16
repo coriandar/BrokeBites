@@ -4,10 +4,10 @@ import Link from "next/link";
 export default function DefaultBtn() {
     return (
         <>
-            <li className="p-2 cursor-pointer">
+            <li className="cursor-pointer p-2">
                 <Link href="/">Home</Link>
             </li>
-            <li className="p-2 cursor-pointer">
+            <li className="cursor-pointer p-2">
                 <Link href="/about">About</Link>
             </li>
         </>

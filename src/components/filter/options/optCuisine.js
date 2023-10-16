@@ -1,10 +1,22 @@
-const cuisineNames = [
+export const cuisineNames = [
     "Chinese",
+    "Filipino",
+    "French",
+    "Greek",
     "Indian",
+    "Italian",
     "Japanese",
     "Korean",
+    "Malaysian",
+    "Mediterranean",
+    "Mexican",
+    "Middle Eastern",
+    "Persian",
     "Taiwanese",
-    "Western",
+    "Thai",
+    "Turkish",
+    "Vietnamese",
+    "Other",
 ];
 
 export const optCuisine = [

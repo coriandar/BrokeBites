@@ -8,11 +8,11 @@ const Layout = ({ children }) => {
             <Head>
                 <title>BrokeBites</title>
             </Head>
-            <div className="h-screen w-screen flex flex-col">
-                <header className="bg-slate-300 h-5%">
+            <div className="flex h-screen w-screen flex-col">
+                <header className="h-5% bg-slate-300">
                     <Navbar />
                 </header>
-                <main className="bg-slate-100 h-95%">{children}</main>
+                <main className="h-95% bg-slate-100">{children}</main>
             </div>
         </>
     );

@@ -13,15 +13,13 @@ export default function FavouriteButton({ selectedRestaurant }) {
 
     // Update isFavourite when selectedRestaurant changes
     useEffect(() => {
-        if (currentUserID && selectedRestaurant) {
-            checkIsFavourite();
-        }
-    }, [currentUserID, selectedRestaurant]);
+        const checkIsFavourite = async () => {
+            const favourite = await fetchUserList(currentUserID, "favourite");
+            setIsFavourite(favourite?.includes(selectedRestaurant.id));
+        };
 
-    const checkIsFavourite = async () => {
-        const favourite = await fetchUserList(currentUserID, "favourite");
-        setIsFavourite(favourite.includes(selectedRestaurant.id));
-    };
+        if (currentUserID && selectedRestaurant) checkIsFavourite();
+    }, [currentUserID, selectedRestaurant]);
 
     const addFavourite = async () => {
         await addRestaurantFavourite(selectedRestaurant);

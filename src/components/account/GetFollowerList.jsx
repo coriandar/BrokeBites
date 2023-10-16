@@ -21,40 +21,40 @@ export default function GetFollowerList() {
         return userData;
     };
 
-    const fetchFollowerList = async () => {
-        const auth = getAuth();
-        const currentUserId = auth.currentUser?.uid;
-
-        if (!currentUserId) return [];
-
-        try {
-            const followingList = await fetchUserSavedList(
-                currentUserId,
-                "following"
-            );
-            const followingPromises = followingList.map(fetchUserList);
-            const followingDataList = await Promise.all(followingPromises);
-            setFollowing(followingDataList);
-        } catch (error) {
-            console.error("Error fetching restaurant data:", error);
-            return null;
-        }
-    };
-
     useEffect(() => {
+        const fetchFollowerList = async () => {
+            const auth = getAuth();
+            const currentUserId = auth.currentUser?.uid;
+
+            if (!currentUserId) return [];
+
+            try {
+                const followingList = await fetchUserSavedList(
+                    currentUserId,
+                    "following",
+                );
+                const followingPromises = followingList.map(fetchUserList);
+                const followingDataList = await Promise.all(followingPromises);
+                setFollowing(followingDataList);
+            } catch (error) {
+                console.error("Error fetching restaurant data:", error);
+                return null;
+            }
+        };
+
         (async () => {
             await fetchFollowerList();
         })();
     }, []);
 
     return (
-        <div className="flex flex-col justify-center items-center m-8 bg-slate-300 w-full h-full rounded-lg">
-            <h3 className="font-bold text-lg">Following List</h3>
+        <div className="m-8 flex h-full w-full flex-col items-center justify-center rounded-lg bg-slate-300">
+            <h3 className="text-lg font-bold">Following List</h3>
             <ul>
                 {following ? (
                     following.map((follow) => (
                         <li key={follow.id}>
-                            <div className="h-8 bg-slate-200 m-5 rounded-lg">
+                            <div className="m-5 h-8 rounded-lg bg-slate-200">
                                 <Link href={`/profile/${follow.id}`}>
                                     <p className="flex items-center justify-center">
                                         {follow.displayName}

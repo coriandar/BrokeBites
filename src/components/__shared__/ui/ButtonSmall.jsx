@@ -3,7 +3,7 @@ import React from "react";
 export default function ButtonSmall({ label, action }) {
     return (
         <button
-            className="font-light text-sm bg-slate-200 rounded-md p-1 shadow-lg m-1"
+            className="m-1 rounded-md bg-slate-200 p-1 text-sm font-light shadow-lg"
             onClick={action}
         >
             {label}

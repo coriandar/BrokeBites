@@ -17,7 +17,7 @@ export default function Login() {
         return null;
     } else if (!user) {
         return (
-            <div className="flex flex-col items-center h-full">
+            <div className="flex h-full flex-col items-center">
                 <Image
                     className="m-8 w-52"
                     src="/logoCut.png"

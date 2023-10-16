@@ -6,15 +6,15 @@ export default function ToggleSwitch({ label, state, setState }) {
     };
 
     return (
-        <label className="relative flex items-center mr-5 cursor-pointer">
+        <label className="relative mr-5 flex cursor-pointer items-center">
             <input
                 type="checkbox"
                 value=""
                 checked={state}
                 onChange={handleToggle}
-                className="sr-only peer"
+                className="peer sr-only"
             />
-            <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+            <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full dark:bg-gray-700"></div>
             <span className="ml-3">{label}</span>
         </label>
     );

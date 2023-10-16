@@ -9,8 +9,11 @@ import {
 import { fetchUserReviews } from "@/database/firebase/firestore/reviewDB";
 import Avatar from "../account/Avatar";
 import ReviewCardProfile from "../review/ReviewCardProfile";
+import { useRouter } from "next/router";
 
-export default function UserProfile({ uid: selectedUserID }) {
+export default function UserProfile() {
+    const router = useRouter();
+    const { uid } = router.query;
     const [userProfile, setUserProfile] = useState(null);
     const [favorites, setFavorites] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
@@ -19,45 +22,45 @@ export default function UserProfile({ uid: selectedUserID }) {
     const [mapTheme, setMapTheme] = useState("light");
 
     useEffect(() => {
-        if (selectedUserID) {
+        const fetchProfile = async () => {
+            setUserProfile(await fetchUser(uid));
+        };
+
+        const fetchProfileFavorites = async () => {
+            const restaurants = await fetchFavouritesList(uid);
+            setFavorites(restaurants);
+            setMasterFavorites(restaurants);
+        };
+
+        const fetchProfileReviews = async () => {
+            const reviewCollection = await fetchUserReviews(uid);
+            setUserReviews(reviewCollection);
+        };
+
+        if (uid) {
             fetchProfile();
             fetchProfileFavorites();
             fetchProfileReviews();
         }
-    }, [selectedUserID]);
-
-    const fetchProfile = async () => {
-        setUserProfile(await fetchUser(selectedUserID));
-    };
-
-    const fetchProfileFavorites = async () => {
-        const restaurants = await fetchFavouritesList(selectedUserID);
-        setFavorites(restaurants);
-        setMasterFavorites(restaurants);
-    };
-
-    const fetchProfileReviews = async () => {
-        const reviewCollection = await fetchUserReviews(selectedUserID);
-        setUserReviews(reviewCollection);
-    };
+    }, [uid]);
 
     return (
         <div className="m-8">
             {userProfile ? (
-                <div className="lg:h-[800px] md:h-[600px] sm:h-[300px]">
-                    <div className="flex justify-center items-center">
+                <div className="sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                    <div className="flex items-center justify-center">
                         <Avatar
                             maxW={"w-[50px]"}
                             photoURL={userProfile.photoURL}
                         />
-                        <h2 className="font-bold text-xl">
+                        <h2 className="text-xl font-bold">
                             {userProfile.displayName}'s Profile
                         </h2>
 
-                        <FollowButton otherUser={selectedUserID} />
+                        <FollowButton otherUser={uid} />
                     </div>
                     <div className="flex">
-                        <div className="w-3/4 lg:h-[800px] md:h-[600px] sm:h-[300px]">
+                        <div className="w-3/4 sm:h-[300px] md:h-[600px] lg:h-[800px]">
                             <Dashboard
                                 restaurantList={favorites}
                                 setRestaurantList={setFavorites}
@@ -67,8 +70,8 @@ export default function UserProfile({ uid: selectedUserID }) {
                                 setMapTheme={setMapTheme}
                             />
                         </div>
-                        <div className="w-1/4 m-4 lg:h-[800px] md:h-[600px] sm:h-[300px]">
-                            <h2 className="font-bold text-xl">Review List</h2>
+                        <div className="m-4 w-1/4 sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                            <h2 className="text-xl font-bold">Review List</h2>
                             <ReviewContainer
                                 reviewsData={userReviews}
                                 reviewCardType={ReviewCardProfile}

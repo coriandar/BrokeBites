@@ -4,7 +4,7 @@ import Avatar from "../account/Avatar";
 
 export default function FollowingCard({ follow }) {
     return (
-        <div className="flex justify-start items-center h-12 bg-slate-200 m-5 rounded-lg">
+        <div className="m-5 flex h-12 items-center justify-start rounded-lg bg-slate-200">
             <Link href={`/profile/${follow.id}`}>
                 <Avatar maxW={"w-[40px]"} photoURL={follow.photoURL} />
             </Link>

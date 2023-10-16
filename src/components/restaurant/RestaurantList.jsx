@@ -22,25 +22,29 @@ const InitList = ({
 
     return (
         <ul id="restaurantList">
-            {restaurantList.map((restaurant) => (
-                <li
-                    key={restaurant.id}
-                    onClick={() => handleListItemClick(restaurant)}
-                >
-                    <div
-                        className={`flex justify-between m-2 p-4 rounded-lg shadow-lg hover:bg-slate-200 ${
-                            restaurantSelected?.id === restaurant.id
-                                ? "bg-slate-300 font-bold"
-                                : "bg-white"
-                        }`}
+            {restaurantList.map((restaurant) =>
+                restaurant ? (
+                    <li
+                        key={restaurant?.id}
+                        onClick={() => handleListItemClick(restaurant)}
                     >
-                        <p>{restaurant.name}</p>
-                        <p className="font-light text-sm">
-                            {showSymbol({ restaurant, activeFilter })}
-                        </p>
-                    </div>
-                </li>
-            ))}
+                        <div
+                            className={`m-2 flex justify-between rounded-lg p-4 shadow-lg hover:bg-slate-200 ${
+                                restaurantSelected?.id === restaurant?.id
+                                    ? "bg-slate-300 font-bold"
+                                    : "bg-white"
+                            }`}
+                        >
+                            <p>{restaurant?.name}</p>
+                            <p className="text-sm font-light">
+                                {showSymbol({ restaurant, activeFilter })}
+                            </p>
+                        </div>
+                    </li>
+                ) : (
+                    <></>
+                ),
+            )}
         </ul>
     );
 };

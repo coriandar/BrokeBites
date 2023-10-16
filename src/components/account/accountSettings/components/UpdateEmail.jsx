@@ -15,6 +15,7 @@ export default function UpdateEmail() {
     const checkEmail = () => {
         if (!newEmail || !confirmEmail) {
             alert("Fill in missing fields.");
+
             return false;
         } else if (newEmail !== confirmEmail) {
             alert("Emails do not match.");
@@ -53,7 +54,7 @@ export default function UpdateEmail() {
     return (
         <div className="flex">
             <button
-                className="bg-slate-200 m-4 px-4 py-1 rounded-md w-40"
+                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                 onClick={() => setOpen(true)}
             >
                 Update email
@@ -65,16 +66,16 @@ export default function UpdateEmail() {
                 maxH={"h-50%"}
                 onClose={() => setOpen(false)}
             >
-                <div className="w-full h-full bg-slate-300 rounded-lg flex flex-col items-center">
-                    <h3 className="font-bold text-lg">Update email</h3>
+                <div className="flex h-full w-full flex-col items-center rounded-lg bg-slate-300">
+                    <h3 className="text-lg font-bold">Update email</h3>
 
                     {updating ? (
                         <Loading />
                     ) : (
                         <form
                             onSubmit={handleUpdateEmail}
-                            className="flex h-full flex-col justify-start
-                            items-center"
+                            className="flex h-full flex-col items-center
+                            justify-start"
                         >
                             <div className="mt-8">
                                 <label htmlFor="newEmail">New email:</label>
@@ -103,7 +104,7 @@ export default function UpdateEmail() {
                                 />
                             </div>
                             <button
-                                className="bg-slate-200 m-4 px-4 py-1 rounded-md w-40"
+                                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                                 type="submit"
                             >
                                 Update email
