@@ -6,7 +6,7 @@ import MapSetings from "../mapOptions/MapSettings";
 import FilterSelector from "../filter/FilterSelector";
 import SortSelector from "../sort/SortSelector";
 import RestaurantInfo from "../restaurant/RestaurantInfo";
-import defaultCenter from "../__shared__/defaultCenter";
+import defaultCenter from "../__shared__/util/defaultCenter";
 import Layer from "../__shared__/layout/Layer";
 import { ListToggle } from "../restaurant/components/ListToggle";
 
