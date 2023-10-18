@@ -19,10 +19,10 @@ export const DMContextProvider = ({ children }) => {
             case "CHANGE_USER":
                 return {
                     user: action.payload,
-                    chatID:
-                        currentUser.uid > action.payload.uid
-                            ? currentUser.uid + action.payload.uid
-                            : action.payload.uid + currentUser.uid,
+                    conversationID:
+                        currentUser.uid < selectedUser.id
+                            ? currentUser.uid + selectedUser.id
+                            : selectedUser.id + currentUser.uid,
                 };
 
             default:

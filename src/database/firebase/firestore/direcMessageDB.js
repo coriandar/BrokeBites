@@ -5,15 +5,16 @@ import {
     serverTimestamp,
     addDoc,
     orderBy,
+    query,
 } from "firebase/firestore";
-import { db } from "../firebaseApp";
+import { auth, db } from "../firebaseApp";
 
 export const fetchAllUsers = async () => {
     try {
         const userCollectionRef = collection(db, "userDB");
         const data = await getDocs(userCollectionRef);
         const filteredData = data.docs.map((doc) => ({
-            ...doc.data,
+            ...doc.data(),
             id: doc.id,
         }));
 
@@ -21,6 +22,18 @@ export const fetchAllUsers = async () => {
     } catch (error) {
         console.error(error);
     }
+};
+
+export const searchUser = async (userDisplayName) => {
+    const userMasterList = await fetchAllUsers();
+
+    if (!userDisplayName) {
+        return userMasterList;
+    }
+
+    return userMasterList.filter((user) =>
+        user.displayName.toLowerCase().includes(userDisplayName.toLowerCase()),
+    );
 };
 
 export const sendMessage = async (conversationID, messageText, senderID) => {
@@ -78,14 +91,22 @@ export const getMessages = async (conversationID) => {
     }
 };
 
-export const searchUser = async (userDisplayName) => {
-    const userMasterList = fetchAllUsers();
-
-    if (!userDisplayName) {
-        return userMasterList;
-    }
-
-    return userMasterList.filter((user) =>
-        user.displayName.toLowerCase().includes(userDisplayName.toLowerCase()),
+export const getMessageList = async (currentUserID) => {
+    const directMessageRef = collection(db, "directMessageDB");
+    const query = query(
+        directMessageRef,
+        where("senderID", "===", currentUserID),
     );
+
+    try {
+        const querySnapshot = await getDocs(query);
+        const messageList = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+
+        return messageList;
+    } catch (error) {
+        console.log("Error fetching message list: ", error);
+    }
 };
