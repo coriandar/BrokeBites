@@ -1,5 +1,6 @@
 import React from "react";
 import AuthForm from "./AuthForm";
+import { Terms } from "./AuthTerms";
 
 export default function AuthSignup() {
     return (
@@ -14,20 +15,7 @@ export default function AuthSignup() {
             </div>
 
             <AuthForm buttonLabel={"Sign Up with Email"} />
-
-            <p
-                id="termsPrivacy"
-                className="text-muted-foreground px-8 text-center text-sm"
-            >
-                <span>By clicking continue, you agree to our </span>
-                <span className="hover:text-primary cursor-pointer underline underline-offset-4">
-                    Terms of Service
-                </span>
-                <span> and </span>
-                <span className="hover:text-primary cursor-pointer underline underline-offset-4">
-                    Privacy Policy.
-                </span>
-            </p>
+            <Terms />
         </div>
     );
 }

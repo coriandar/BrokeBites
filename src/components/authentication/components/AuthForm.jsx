@@ -5,9 +5,13 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Icons } from "@/components/__shared__/icons/Icons";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { auth } from "@/database/firebase/firebaseApp";
 
 export default function AuthForm({ buttonLabel, className, ...props }) {
     const [isLoading, setIsLoading] = useState(false);
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
     async function onSubmit(event) {
         event.preventDefault();
@@ -55,14 +59,17 @@ export default function AuthForm({ buttonLabel, className, ...props }) {
                     </span>
                 </div>
             </div>
-            <Button variant="outline" type="button" disabled={isLoading}>
+            <Button
+                variant="outline"
+                type="button"
+                disabled={isLoading}
+                onClick={() => signInWithGoogle()}
+            >
                 {isLoading ? (
-                    <></>
+                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
-                    // <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                    <></>
-                    // <Icons.gitHub className="mr-2 h-4 w-4" />
-                )}{" "}
+                    <Icons.google className="mr-2 h-4 w-4" />
+                )}
                 Google
             </Button>
         </div>
