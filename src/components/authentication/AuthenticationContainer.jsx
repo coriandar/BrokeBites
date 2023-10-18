@@ -28,7 +28,7 @@ export default function AuthenticationContainer() {
                 <ThemeToggle />
             </div>
             <div className="overflow-hidden rounded-2xl border-2 border-solid shadow-2xl">
-                <div className="container relative h-[800px] flex-col items-center justify-center sm:grid lg:max-w-[1200px] lg:grid-cols-2 lg:px-0">
+                <div className="container relative grid h-[800px] flex-col items-center justify-center lg:max-w-[1200px] lg:grid-cols-2 lg:px-0">
                     <AuthHero />
                     {login ? <AuthLogin /> : <AuthSignup />}
                 </div>
