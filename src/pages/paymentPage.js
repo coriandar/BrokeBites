@@ -1,13 +1,8 @@
 //page for payments containing the stripe payment container
 import React from "react";
-import StripeContainer from "@/components/premium/StripeContainer";
 
 function paymentPage() {
-    return (
-        <div>
-            <StripeContainer />
-        </div>
-    );
+    return <div>{/* TODO */}</div>;
 }
 
 export default paymentPage;
