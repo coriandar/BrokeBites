@@ -10,6 +10,7 @@ import UpdatePassword from "./components/UpdatePassword";
 import SubmitFeedback from "./components/SubmitFeedback";
 import SubmitBug from "./components/SubmitBug";
 import FollowingContainer from "@/components/following/FollowingContainer";
+import SubscribeButton from "@/components/premium/SubscribeButton";
 
 export default function AccountSettings() {
     const [user, loading] = useAuthState(auth);
@@ -30,6 +31,7 @@ export default function AccountSettings() {
                     <UpdatePassword />
                     <SubmitFeedback />
                     <SubmitBug />
+                    <SubscribeButton />
                 </div>
                 <div>
                     <FollowingContainer />

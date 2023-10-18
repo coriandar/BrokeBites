@@ -6,6 +6,7 @@ import AboutPage from "@/components/about/AboutPage";
 import Login from "@/components/account/login/Login";
 import Signup from "@/components/account/login/Signup";
 import { useRouter } from "next/router";
+import paymentPage from "./paymentPage";
 
 export default function App({ Component, pageProps }) {
     const router = useRouter();
