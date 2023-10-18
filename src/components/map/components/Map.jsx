@@ -1,6 +1,7 @@
 import React from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import { light, dark, retro } from "../config/MapStyles.config";
+import { useTheme } from "next-themes";
 
 const libraries = ["places", "visualization"];
 const mapApiKey = process.env.NEXT_PUBLIC_FB_API_KEY;
@@ -11,7 +12,15 @@ const mapContainerStyle = {
     width: "100%",
 };
 
-export default function Map({ center, mapZoom, mapTheme, children }) {
+export default function Map({
+    center,
+    mapZoom,
+    mapTheme,
+    setMapTheme,
+    children,
+}) {
+    const { theme } = useTheme();
+
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
         libraries,
@@ -23,6 +32,11 @@ export default function Map({ center, mapZoom, mapTheme, children }) {
         scaleControl: true,
         streetViewControl: true,
     };
+
+    React.useEffect(() => {
+        if (theme === "light") setMapTheme("light");
+        else if (theme === "dark") setMapTheme("dark");
+    }, [theme]);
 
     const mapStyles = {
         styles: (() => {

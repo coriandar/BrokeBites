@@ -15,12 +15,18 @@ export const InitMap = ({
     activeDashboard,
     mapMarkerToggle,
     mapTheme,
+    setMapTheme,
     userLocation,
     userGeo,
     heatmapToggle,
 }) => {
     return (
-        <Map center={center} mapZoom={mapZoom} mapTheme={mapTheme}>
+        <Map
+            center={center}
+            mapZoom={mapZoom}
+            mapTheme={mapTheme}
+            setMapTheme={setMapTheme}
+        >
             <UserLocMarker userGeo={userGeo} userLocation={userLocation} />
             <MapMarker
                 mapMarkerToggle={mapMarkerToggle}

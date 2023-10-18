@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
-// import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Icons } from "@/components/__shared__/icons/Icons";
+import { Icons } from "@/components/__shared__/icons/icons";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth } from "@/database/firebase/firebaseApp";
 
@@ -42,8 +41,7 @@ export default function AuthForm({ buttonLabel, className, ...props }) {
                     </div>
                     <Button disabled={isLoading}>
                         {isLoading && (
-                            // <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                            <></>
+                            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                         )}
                         {buttonLabel}
                     </Button>
