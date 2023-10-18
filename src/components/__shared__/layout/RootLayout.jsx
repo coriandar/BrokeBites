@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Navbar from "@/components/navbar/Navbar";
 
+import { auth } from "@/database/firebase/firebaseApp";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./ThemeProvider";
@@ -12,6 +14,8 @@ export const fontSans = FontSans({
 });
 
 export default function RootLayout({ children }) {
+    const [user] = useAuthState(auth);
+
     return (
         <>
             <Head>
@@ -29,7 +33,7 @@ export default function RootLayout({ children }) {
                         fontSans.variable,
                     )}
                 >
-                    <Navbar />
+                    {user && <Navbar />}
                     {children}
                 </main>
             </ThemeProvider>
