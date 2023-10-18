@@ -17,6 +17,13 @@ export default function Map({ center, mapZoom, mapTheme, children }) {
         libraries,
     });
 
+    const mapUIOptions = {
+        disableDefaultUI: true,
+        zoomControl: true,
+        scaleControl: true,
+        streetViewControl: true,
+    };
+
     const mapStyles = {
         styles: (() => {
             if (mapTheme === "light") return light;
@@ -35,7 +42,10 @@ export default function Map({ center, mapZoom, mapTheme, children }) {
             zoom={mapZoom}
             center={center} // need set this to change, update based on selection
             mapContainerStyle={mapContainerStyle}
-            options={mapStyles}
+            options={{
+                ...mapUIOptions,
+                ...mapStyles,
+            }}
         >
             {children}
         </GoogleMap>

@@ -35,7 +35,7 @@ export default function Dashboard({
 
     //parent component
     return (
-        <div className="flex h-full">
+        <div className="flex h-full w-full">
             {showList && (
                 <div className="m-4 flex w-1/4 flex-col justify-start bg-slate-100">
                     <SortSelector
