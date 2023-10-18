@@ -5,7 +5,7 @@ import LoggedInBtnSet from "./components/LoggedInBtnSet";
 import LoggedOutBtnSet from "./components/LoggedOutBtnSet";
 import NavImage from "./components/NavImage";
 import MapSelectSet from "./components/MapSelectSet";
-import ThemeToggle from "../__shared__/theme/ThemeToggle";
+import ThemeToggle from "../ui/theme/ThemeToggle";
 
 export default function Navbar() {
     const [user, loading] = useAuthState(auth);

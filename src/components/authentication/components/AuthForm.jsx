@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Icons } from "@/components/__shared__/icons/icons";
+import { Icons } from "@/components/ui/icons/icons";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth } from "@/database/firebase/firebaseApp";
 

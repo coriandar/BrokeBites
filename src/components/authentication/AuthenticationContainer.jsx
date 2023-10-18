@@ -2,7 +2,7 @@ import React from "react";
 import AuthHero from "./components/AuthHero";
 import AuthSignup from "./components/AuthSignup";
 import AuthLogin from "./components/AuthLogin";
-import ThemeToggle from "../__shared__/theme/ThemeToggle";
+import ThemeToggle from "../ui/theme/ThemeToggle";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function AuthenticationContainer() {

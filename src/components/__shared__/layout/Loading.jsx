@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import spinner from "../../__assets__/spinner.gif";
+import { Icons } from "../../ui/icons/icons";
 import { getJoke } from "../util/getJoke";
 
 export default function Loading() {
@@ -21,13 +21,7 @@ export default function Loading() {
                 priority
             />
             {joke ? <p> {joke}</p> : <p>...</p>}
-            <Image
-                src={spinner}
-                alt="Loading..."
-                width={50}
-                height={50}
-                priority
-            />
+            <Icons.spinner className="h-7 w-7 animate-spin" />
         </div>
     );
 }

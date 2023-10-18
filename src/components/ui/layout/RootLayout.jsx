@@ -6,7 +6,7 @@ import { auth } from "@/database/firebase/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "./ThemeProvider";
+import { ThemeProvider } from "../theme/ThemeProvider";
 
 export const fontSans = FontSans({
     subsets: ["latin"],

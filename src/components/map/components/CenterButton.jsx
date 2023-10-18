@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Image from "next/image";
-import center from "../../__assets__/center-icon.svg";
 import defaultCenter from "@/components/__shared__/util/defaultCenter";
+import { ButtonCircleIcon } from "@/components/ui/buttons/ButtonCircleIcon";
+import { Locate } from "lucide-react";
 
 const CenterToUserButton = ({
     setCenter,
@@ -25,7 +25,7 @@ const CenterToUserButton = ({
         }
     };
 
-    const HandleCenterToUser = () => {
+    const handleCenterToUser = () => {
         //check if user location is enabled, if not use default location (AUT)
         if (userLocation) {
             getUserPosition();
@@ -44,17 +44,9 @@ const CenterToUserButton = ({
     };
 
     return (
-        <div className="relative flex flex-col justify-center">
-            <Image
-                className="opacity-30 hover:opacity-70"
-                src={center}
-                alt="center"
-                width={20}
-                height={20}
-                priority
-                onClick={HandleCenterToUser}
-            />
-        </div>
+        <ButtonCircleIcon action={handleCenterToUser}>
+            <Locate className="h-[1.2rem] w-[1.2rem]" />
+        </ButtonCircleIcon>
     );
 };
 

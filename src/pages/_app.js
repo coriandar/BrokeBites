@@ -1,4 +1,4 @@
-import RootLayout from "@/components/__shared__/layout/RootLayout";
+import RootLayout from "@/components/ui/layout/RootLayout";
 import "@/styles/globals.css";
 import { auth } from "@/database/firebase/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";

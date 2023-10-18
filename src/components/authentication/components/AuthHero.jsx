@@ -1,9 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { getJoke } from "@/components/__shared__/util/getJoke";
-import locationPin from "@/components/ui/icons/locationPin.svg";
-import Image from "next/image";
 import AuthGallery from "./AuthGallery";
+import { Icons } from "@/components/ui/icons/icons";
 
 export default function AuthHero() {
     const [joke, setJoke] = useState();
@@ -18,13 +17,7 @@ export default function AuthHero() {
                 <AuthGallery />
             </div>
             <div className="relative z-20 flex items-center text-lg font-medium">
-                <Image
-                    src={locationPin}
-                    width={24}
-                    height={24}
-                    alt="Authentication"
-                    className="mr-2 h-6 w-6"
-                />
+                <Icons.locationPinPhat className="mr-4 h-6 w-6" />
                 BrokeBites
             </div>
             <div className="relative z-20 mt-auto">
