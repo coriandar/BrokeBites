@@ -3,6 +3,8 @@ import Head from "next/head";
 import Navbar from "@/components/navbar/Navbar";
 
 import { Inter as FontSans } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { ThemeProvider } from "./ThemeProvider";
 
 export const fontSans = FontSans({
     subsets: ["latin"],
@@ -16,9 +18,19 @@ export default function RootLayout({ children }) {
                 <title>BrokeBites</title>
             </Head>
             <main
-                className={`bg-background min-h-screen font-sans antialiased ${fontSans.variable}`}
+                className={cn(
+                    "bg-background min-h-screen font-sans antialiased",
+                    fontSans.variable,
+                )}
             >
-                {children}
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="light"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {children}
+                </ThemeProvider>
             </main>
         </>
         // <>
