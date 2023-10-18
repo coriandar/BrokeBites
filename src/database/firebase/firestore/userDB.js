@@ -92,7 +92,7 @@ export const followSelectedUser = async (otherUser) => {
         await setDoc(
             userDocRef,
             { following: arrayUnion(otherUser) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error adding to favorites:", error);
@@ -107,7 +107,7 @@ export const unfollowSelectedUser = async (otherUser) => {
         await setDoc(
             userDocRef,
             { following: arrayRemove(otherUser) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error removing from favorites:", error);
@@ -122,7 +122,7 @@ export const addRestaurantToVisit = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { toVisit: arrayUnion(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error adding to To Visit:", error);
@@ -137,7 +137,7 @@ export const removeRestaurantToVisit = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { toVisit: arrayRemove(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error removing from To Visit:", error);
@@ -152,7 +152,7 @@ export const addRestaurantFavourite = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { favourite: arrayUnion(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error adding to favorites:", error);
@@ -167,7 +167,7 @@ export const removeRestaurantFavourite = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { favourite: arrayRemove(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error removing from favorites:", error);
@@ -181,7 +181,7 @@ export const addRestaurantVisited = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { visited: arrayUnion(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error adding to visited list: ", error);
@@ -195,7 +195,7 @@ export const removeRestaurantVisited = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { visited: arrayRemove(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error removing from visited list: ", error);
@@ -225,6 +225,28 @@ export const appendUserAvatar = async (initialData) => {
                 ...data,
                 photoURL: avatarURL,
             };
-        })
+        }),
     );
+};
+
+//set user to premium
+export const setPremium = async () => {
+    const currentUserID = auth.currentUser?.uid;
+    const userDocRef = doc(db, "userDB", currentUserID);
+    try {
+        await updateDoc(userDocRef, { premium: true });
+    } catch (error) {
+        console.error("Error adding premium:", error);
+    }
+};
+
+//set premium to false
+export const removePremium = async () => {
+    const currentUserID = auth.currentUser?.uid;
+    const userDocRef = doc(db, "userDB", currentUserID);
+    try {
+        await updateDoc(userDocRef, { premium: false });
+    } catch (error) {
+        console.error("Error removing premium:", error);
+    }
 };
