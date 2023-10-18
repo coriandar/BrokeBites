@@ -59,3 +59,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari, Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        /* Hide scrollbar for IE, Edge, Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
