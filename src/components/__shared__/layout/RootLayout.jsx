@@ -17,34 +17,22 @@ export default function RootLayout({ children }) {
             <Head>
                 <title>BrokeBites</title>
             </Head>
-            <main
-                className={cn(
-                    "bg-background min-h-screen font-sans antialiased",
-                    fontSans.variable,
-                )}
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+                disableTransitionOnChange
             >
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="light"
-                    enableSystem
-                    disableTransitionOnChange
+                <main
+                    className={cn(
+                        "flex h-screen min-h-screen items-center justify-center font-sans antialiased",
+                        fontSans.variable,
+                    )}
                 >
+                    <Navbar />
                     {children}
-                </ThemeProvider>
-            </main>
+                </main>
+            </ThemeProvider>
         </>
-        // <>
-        //     <Head>
-        //         <title>BrokeBites</title>
-        //     </Head>
-        //     <main
-        //         className={cn(
-        //             "bg-background min-h-screen font-sans antialiased",
-        //             fontSans.variable,
-        //         )}
-        //     >
-        //         {children}
-        //     </main>
-        // </>
     );
 }

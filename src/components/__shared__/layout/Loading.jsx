@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import jokes from "../../../database/jokesData.json";
 import spinner from "../../__assets__/spinner.gif";
-
-function getRandomItem(array) {
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex] || null;
-}
+import { getJoke } from "../util/getJoke";
 
 export default function Loading() {
     const [joke, setJoke] = useState(null);
 
     useEffect(() => {
-        const randJoke = getRandomItem(jokes);
-        setJoke(randJoke);
+        setJoke(getJoke());
     }, []);
 
     return (
@@ -26,7 +20,7 @@ export default function Loading() {
                 height={200}
                 priority
             />
-            {joke ? <p> {joke.joke}</p> : <p>...</p>}
+            {joke ? <p> {joke}</p> : <p>...</p>}
             <Image
                 src={spinner}
                 alt="Loading..."
