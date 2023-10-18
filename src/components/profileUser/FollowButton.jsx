@@ -15,7 +15,7 @@ export default function FollowButton({ otherUser }) {
         const checkIsFollowing = async () => {
             const followingList = await fetchUserList(
                 currentUserID,
-                "following"
+                "following",
             );
             setIsFollowing(followingList.includes(otherUser));
         };
@@ -34,9 +34,15 @@ export default function FollowButton({ otherUser }) {
     };
 
     return (
-        <ButtonSmall
-            label={isFollowing ? "Unfollow" : "Follow"}
-            action={isFollowing ? unfollow : follow}
-        />
+        <>
+            {currentUserID != otherUser ? (
+                <ButtonSmall
+                    label={isFollowing ? "Unfollow" : "Follow"}
+                    action={isFollowing ? unfollow : follow}
+                />
+            ) : (
+                <></>
+            )}
+        </>
     );
 }

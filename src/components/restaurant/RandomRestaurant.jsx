@@ -11,7 +11,7 @@ const RandomRestaurant = ({
         let restaurant =
             restaurantList[Math.floor(Math.random() * restaurantList.length)];
 
-        if (!restaurant) return;
+        if (!restaurant?.latitude || !restaurant?.longitude) return;
 
         setRestaurantSelected(restaurant);
         setCenter({
@@ -20,7 +20,6 @@ const RandomRestaurant = ({
         });
         setMapZoom(20);
     };
-
     return (
         <ButtonLarge
             label={"I'm feeling hungry"}
