@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import FavouriteButton from "../../savedBites/FavouriteButton";
 import { getAuth } from "firebase/auth";
 import ToVisitButton from "../../savedBites/ToVisitButton";
 import ReviewModal from "../../review/ReviewModal";
-import { CheckUserDB } from "../../account/UserDB";
 import GetDirections from "./GetDirections";
 import Link from "next/link";
 import { MenuButton } from "./MenuButton";
@@ -14,13 +13,6 @@ import VisitedButton from "@/components/savedBites/VisitedButton";
 export default function MarkerDetails({ selected, userGeo }) {
     const auth = getAuth();
     const user = auth.currentUser;
-
-    useEffect(() => {
-        if (user) {
-            CheckUserDB();
-            console.log("User added to DB from MarkerDetails");
-        }
-    }, [user]);
 
     if (!selected) {
         return <div id="SelectedMarkerDetails"></div>;

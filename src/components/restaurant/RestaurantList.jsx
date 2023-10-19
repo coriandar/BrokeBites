@@ -1,5 +1,4 @@
 import React from "react";
-import { CheckUserDB } from "../account/UserDB";
 import { showSymbol } from "./printSymbol";
 
 const InitList = ({
@@ -11,7 +10,6 @@ const InitList = ({
     restaurantSelected,
 }) => {
     const handleListItemClick = (restaurant) => {
-        CheckUserDB(); // make implementation more elegant
         setRestaurantSelected(restaurant);
         setCenter({
             lat: restaurant.latitude,

@@ -8,7 +8,62 @@ import {
     updateDoc,
 } from "firebase/firestore";
 import { fetchRestaurant } from "./restaurantDB";
-import { useReducer } from "react";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+
+export const login = async (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            checkUserDB();
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert("Email or password incorrect.");
+        });
+};
+
+export const logout = async () => {
+    signOut(auth)
+        .then(() => {
+            alert("Signed out");
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
+};
+
+async function checkUserDB() {
+    const user = auth.currentUser;
+    if (user) {
+        console.log("User is signed in.");
+        // User is signed in, proceed with Firestore operations
+
+        const userRef = doc(db, "userDB", user.uid);
+
+        try {
+            console.log("Before Firestore operation");
+            const userSnapshot = await getDoc(userRef);
+            console.log("After Firestore operation");
+
+            if (!userSnapshot.exists()) {
+                // If the user document doesn't exist, add them to the userDB
+                await setDoc(userRef, {
+                    displayName: user.displayName,
+                    email: user.email,
+                    favourite: [], // Initialise favourite, and toVisit with empty array
+                    toVisit: [],
+                    visited: [],
+                });
+                console.log("User added to userDB successfully.");
+            }
+        } catch (error) {
+            console.error("Error adding user to userDB:", error);
+            // Handle the error as needed
+        }
+    } else {
+        console.log("User is not signed in.");
+    }
+}
 
 // fetch a users data
 export const fetchUser = async (userID) => {
@@ -92,7 +147,7 @@ export const followSelectedUser = async (otherUser) => {
         await setDoc(
             userDocRef,
             { following: arrayUnion(otherUser) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error adding to favorites:", error);
@@ -107,7 +162,7 @@ export const unfollowSelectedUser = async (otherUser) => {
         await setDoc(
             userDocRef,
             { following: arrayRemove(otherUser) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error removing from favorites:", error);
@@ -122,7 +177,7 @@ export const addRestaurantToVisit = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { toVisit: arrayUnion(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error adding to To Visit:", error);
@@ -137,7 +192,7 @@ export const removeRestaurantToVisit = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { toVisit: arrayRemove(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error removing from To Visit:", error);
@@ -152,7 +207,7 @@ export const addRestaurantFavourite = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { favourite: arrayUnion(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error adding to favorites:", error);
@@ -167,7 +222,7 @@ export const removeRestaurantFavourite = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { favourite: arrayRemove(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error removing from favorites:", error);
@@ -181,7 +236,7 @@ export const addRestaurantVisited = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { visited: arrayUnion(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error adding to visited list: ", error);
@@ -195,7 +250,7 @@ export const removeRestaurantVisited = async (selectedRestaurant) => {
         await setDoc(
             userDocRef,
             { visited: arrayRemove(selectedRestaurant.id) },
-            { merge: true }
+            { merge: true },
         );
     } catch (error) {
         console.error("Error removing from visited list: ", error);
@@ -225,6 +280,6 @@ export const appendUserAvatar = async (initialData) => {
                 ...data,
                 photoURL: avatarURL,
             };
-        })
+        }),
     );
 };

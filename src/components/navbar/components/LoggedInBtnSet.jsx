@@ -1,18 +1,17 @@
 import React from "react";
 import { auth } from "../../../database/firebase/firebaseApp";
-import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
+import { logout } from "@/database/firebase/firestore/userDB";
 import Link from "next/link";
 import DefaultBtn from "./DefaultBtn";
 import Avatar from "../../account/Avatar";
 
 export default function LoggedInBtnSet() {
-    const [user] = useAuthState(auth);
-    const [signOut] = useSignOut(auth);
-    const photoURL = user?.photoURL;
+    const photoURL = auth.currentUser?.photoURL;
+    const uid = auth.currentUser?.uid;
+    const displayName = auth.currentUser?.displayName;
 
     async function signoutHandler() {
-        const success = await signOut();
-        if (success) alert("Signed out");
+        await logout();
     }
 
     return (
@@ -20,8 +19,8 @@ export default function LoggedInBtnSet() {
             <ul className="flex items-center">
                 <Avatar maxW={"w-8"} photoURL={photoURL} />
                 <li className="cursor-pointer p-2">
-                    <Link href={`/profile/${user.uid}`}>
-                        <span className="font-bold">{user.displayName}</span>
+                    <Link href={`/profile/${uid}`}>
+                        <span className="font-bold">{displayName}</span>
                     </Link>
                 </li>
             </ul>
