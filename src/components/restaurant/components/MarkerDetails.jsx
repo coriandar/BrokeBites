@@ -25,9 +25,9 @@ export default function MarkerDetails({ selected, userGeo }) {
             </Link>
             <div className="-ml-1 flex">
                 <MenuButton selected={selected} />
-                {user ? <FavouriteButton selectedRestaurant={selected} /> : ""}
-                {user ? <ToVisitButton selectedRestaurant={selected} /> : ""}
-                {user ? <VisitedButton selectedRestaurant={selected} /> : ""}
+                <FavouriteButton selectedRestaurant={selected} />
+                <ToVisitButton selectedRestaurant={selected} />
+                <VisitedButton selectedRestaurant={selected} />
                 <ReviewModal selectedRestaurant={selected} />
                 <GetDirections selected={selected} userGeo={userGeo} />
                 <OrderButton selected={selected} />

@@ -6,13 +6,13 @@ export default function Modal({ open, onClose, children, maxW, maxH }) {
         <div
             onClick={onClose}
             className={`transition-colours fixed inset-0 flex h-screen w-screen items-center justify-center ${
-                open ? "visible bg-black/30" : "invisible"
+                open ? "visible bg-black/50" : "invisible"
             }`}
         >
             <div
                 onClick={(e) => e.stopPropagation()}
                 className={`${maxW} ${maxH} 
-            rounded-xl bg-white p-6 shadow transition-all
+            rounded-xl bg-white p-6 shadow transition-all dark:bg-black
             ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}
             `}
             >

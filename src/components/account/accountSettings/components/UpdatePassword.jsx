@@ -3,6 +3,7 @@ import Modal from "../../../__shared__/layout/Modal";
 import { auth } from "../../../../database/firebase/firebaseApp";
 import { useUpdatePassword } from "react-firebase-hooks/auth";
 import Loading from "../../../__shared__/layout/Loading";
+import { Button } from "@/components/ui/shadcn-ui/button";
 
 export default function UpdatePassword() {
     const [open, setOpen] = useState(false);
@@ -56,12 +57,9 @@ export default function UpdatePassword() {
 
     return (
         <div className="flex">
-            <button
-                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
-                onClick={() => setOpen(true)}
-            >
+            <Button variant={"secondary"} onClick={() => setOpen(true)}>
                 Update password
-            </button>
+            </Button>
 
             <Modal
                 open={open}

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import ButtonSmall from "../__shared__/ui/ButtonSmall";
 import { auth } from "@/database/firebase/firebaseApp";
 import {
     addRestaurantToVisit,
     removeRestaurantToVisit,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
+import { Button } from "../ui/shadcn-ui/button";
 
 export default function ToVisitButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
@@ -32,9 +32,12 @@ export default function ToVisitButton({ selectedRestaurant }) {
     };
 
     return (
-        <ButtonSmall
-            label={isToVisit ? "Remove To-Visit" : "To-Visit"}
-            action={isToVisit ? removeToVisit : addToVisit}
-        />
+        <Button
+            variant={"secondary"}
+            className={"mr-1 h-6 rounded-full"}
+            onClick={isToVisit ? removeToVisit : addToVisit}
+        >
+            {isToVisit ? "Remove To-Visit" : "To-Visit"}
+        </Button>
     );
 }
