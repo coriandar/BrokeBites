@@ -8,11 +8,13 @@ import { Icons } from "@/components/ui/icons/icons";
 import { AuthSignInGoogle } from "./AuthSignInGoogle";
 import { Terms } from "./AuthTerms";
 import { login } from "@/database/firebase/firestore/userDB";
+import { useToast } from "@/components/ui/shadcn-ui/use-toast";
 
 export default function AuthSignin({ className, ...props }) {
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { toast } = useToast();
 
     const regexPattern = "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{6,}";
     const regexTitle =
@@ -21,7 +23,16 @@ export default function AuthSignin({ className, ...props }) {
     async function onSubmit(event) {
         event.preventDefault();
         setIsLoading(true);
-        login(email, password);
+
+        const success = await login(email, password);
+        if (success) {
+            toast({ description: "Logged in" });
+        } else if (!success) {
+            toast({
+                variant: "destructive",
+                description: "Email or password incorrect!",
+            });
+        }
 
         setTimeout(() => {
             setIsLoading(false);

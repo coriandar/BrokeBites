@@ -4,14 +4,24 @@ import { logout } from "@/database/firebase/firestore/userDB";
 import Link from "next/link";
 import DefaultBtn from "./DefaultBtn";
 import Avatar from "../../account/Avatar";
+import { useToast } from "@/components/ui/shadcn-ui/use-toast";
 
 export default function LoggedInBtnSet() {
     const photoURL = auth.currentUser?.photoURL;
     const uid = auth.currentUser?.uid;
     const displayName = auth.currentUser?.displayName;
+    const { toast } = useToast();
 
     async function signoutHandler() {
-        await logout();
+        const success = await logout();
+        if (success) {
+            toast({ description: "Logged out" });
+        } else if (!success) {
+            toast({
+                variant: "destructive",
+                description: "Error logging out.",
+            });
+        }
     }
 
     return (

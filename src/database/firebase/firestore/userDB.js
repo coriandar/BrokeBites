@@ -11,25 +11,25 @@ import { fetchRestaurant } from "./restaurantDB";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export const login = async (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            checkUserDB();
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert("Email or password incorrect.");
-        });
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        checkUserDB();
+        return true;
+    } catch (error) {
+        const errorCode = error.code;
+        console.log(error.meessage);
+        return false;
+    }
 };
 
 export const logout = async () => {
-    signOut(auth)
-        .then(() => {
-            alert("Signed out");
-        })
-        .catch((error) => {
-            console.log(error.message);
-        });
+    try {
+        await signOut(auth);
+        return true;
+    } catch (error) {
+        console.log(error.meessage);
+        return false;
+    }
 };
 
 async function checkUserDB() {
