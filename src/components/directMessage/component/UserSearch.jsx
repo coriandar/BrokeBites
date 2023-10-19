@@ -1,15 +1,18 @@
 import { auth } from "@/database/firebase/firebaseApp";
 import {
+    createConversation,
     fetchAllUsers,
     searchUser,
 } from "@/database/firebase/firestore/direcMessageDB";
 import { useEffect, useRef, useState } from "react";
+import Message from "./Message";
 
 export default function UserSearch() {
     const [query, setQuery] = useState("");
     const [userList, setUserList] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
     const [searchBoxClicked, setSearchBoxClicked] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
     const inputRef = useRef(null);
 
     const currentUser = auth.currentUser;
@@ -31,16 +34,20 @@ export default function UserSearch() {
         }
     }, [query, userList]);
 
-    const handleSelect = async (selectedUser) => {
-        setSearchBoxClicked(false);
+    useEffect(() => {
+        if (selectedUser) {
+            setSearchBoxClicked(false);
 
-        const conversationID =
-            currentUser.uid < selectedUser.id
-                ? currentUser.uid + selectedUser.id
-                : selectedUser.id + currentUser.uid;
+            console.log("Selected user after setting: ", selectedUser);
 
-        console.log("Combined ID: ", conversationID);
-    };
+            const conversationID =
+                currentUser.uid < selectedUser.id
+                    ? currentUser.uid + selectedUser.id
+                    : selectedUser.id + currentUser.uid;
+
+            createConversation(conversationID);
+        }
+    }, [selectedUser]);
 
     const handleClickOutside = (e) => {
         if (inputRef.current && !inputRef.current.contains(e.target)) {
@@ -78,12 +85,13 @@ export default function UserSearch() {
                 onClick={() => setSearchBoxClicked(true)}
                 onChange={(e) => setQuery(e.target.value)}
             />
-            {searchBoxClicked &&
-                searchResult.map((user) => (
-                    <div key={user.id} onClick={() => handleSelect(user)}>
-                        {user.displayName}
-                    </div>
-                ))}
+            {searchBoxClicked
+                ? searchResult.map((user) => (
+                      <div key={user.id} onClick={() => setSelectedUser(user)}>
+                          {user.displayName}
+                      </div>
+                  ))
+                : selectedUser && <Message selectedUser={selectedUser} />}
         </div>
     );
 }

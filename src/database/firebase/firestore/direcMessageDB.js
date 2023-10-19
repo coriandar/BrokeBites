@@ -1,13 +1,15 @@
 import {
     updateDoc,
     collection,
+    doc,
     getDocs,
+    getDoc,
     serverTimestamp,
     addDoc,
     orderBy,
-    query,
+    setDoc,
 } from "firebase/firestore";
-import { auth, db } from "../firebaseApp";
+import { db } from "../firebaseApp";
 
 export const fetchAllUsers = async () => {
     try {
@@ -36,22 +38,27 @@ export const searchUser = async (userDisplayName) => {
     );
 };
 
+export const createConversation = async (conversationID) => {
+    const docRef = doc(db, "directMessageDB", conversationID);
+
+    try {
+        const conversationDoc = await getDoc(docRef);
+
+        if (!conversationDoc.exists()) {
+            await setDoc(docRef, { latestMessage: "" });
+            console.log("Document added");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export const sendMessage = async (conversationID, messageText, senderID) => {
     const conversationDocRef = doc(db, "directMessageDB", conversationID);
-    const conversationDoc = await getDocs(conversationDocRef);
 
-    if (!conversationDoc.exists()) {
-        try {
-            await addDoc(conversationDocRef, { latestMessage: messageText });
-        } catch (error) {
-            console.error("Error creating conversation document:", error);
-            return;
-        }
-    }
-
-    const messageRef = collection(conversationDocRef, "messages");
     try {
-        await addDoc(messageRef, {
+        const collectionRef = collection(conversationDocRef, "messages");
+        await addDoc(collectionRef, {
             messageText: messageText,
             senderID: senderID,
             timestamp: serverTimestamp(),
