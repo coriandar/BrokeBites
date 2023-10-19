@@ -8,7 +8,24 @@ import {
     updateDoc,
 } from "firebase/firestore";
 import { fetchRestaurant } from "./restaurantDB";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    updateProfile,
+} from "firebase/auth";
+
+export const createAccount = async (username, email, password) => {
+    try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(auth.currentUser, { displayName: username });
+        checkUserDB();
+        return true;
+    } catch (error) {
+        console.log(error.meessage);
+        return false;
+    }
+};
 
 export const login = async (email, password) => {
     try {

@@ -1,6 +1,7 @@
 import React from "react";
 import AuthHero from "./components/AuthHero";
 import AuthSignin from "./components/AuthSignin";
+import AuthSignup from "./components/AuthSignup";
 import ThemeToggle from "../ui/theme/ThemeToggle";
 import { Tabs, TabsList, TabsTrigger } from "../ui/shadcn-ui/tabs";
 
@@ -43,7 +44,7 @@ export default function AuthenticationContainer() {
                     {value === 0 ? (
                         <AuthSignin />
                     ) : value === 1 ? (
-                        <></>
+                        <AuthSignup />
                     ) : (
                         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                             <div className="flex flex-col text-center">
