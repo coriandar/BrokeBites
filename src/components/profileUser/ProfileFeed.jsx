@@ -1,9 +1,6 @@
-export default function InitFeed() {
+import { fetchFeed } from "../../database/firebase/firestore/userFeedDB";
 
-
-    return (
-        <ul id="UserFeed">
-            
-            </ul> 
-    )
-}
+export const initFeed = (uid) => {
+    const feed = fetchFeed(uid);
+    console.log(feed);
+};

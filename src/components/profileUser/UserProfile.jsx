@@ -10,6 +10,7 @@ import { fetchUserReviews } from "@/database/firebase/firestore/reviewDB";
 import Avatar from "../account/Avatar";
 import ReviewCardProfile from "../review/ReviewCardProfile";
 import { useRouter } from "next/router";
+import { initFeed } from "../profileUser/ProfileFeed";
 
 export default function UserProfile() {
     const router = useRouter();
@@ -17,6 +18,7 @@ export default function UserProfile() {
     const [userProfile, setUserProfile] = useState(null);
     const [favorites, setFavorites] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
+    const [userFeed, setUserFeed] = useState([]);
     const [masterFavorites, setMasterFavorites] = useState([]);
     const [activeDashboard, setActiveDashboard] = useState("favourite");
     const [mapTheme, setMapTheme] = useState("light");
@@ -37,10 +39,15 @@ export default function UserProfile() {
             setUserReviews(reviewCollection);
         };
 
+        const fetchFeed = async () => {
+            initFeed(uid);
+        };
+
         if (uid) {
             fetchProfile();
             fetchProfileFavorites();
             fetchProfileReviews();
+            fetchFeed();
         }
     }, [uid]);
 
