@@ -6,7 +6,7 @@ import MapSetings from "../mapOptions/MapSettings";
 import FilterSelector from "../filter/FilterSelector";
 import SortSelector from "../sort/SortSelector";
 import RestaurantInfo from "../restaurant/RestaurantInfo";
-import defaultCenter from "../__shared__/defaultCenter";
+import defaultCenter from "../__shared__/util/defaultCenter";
 import Layer from "../__shared__/layout/Layer";
 import { ListToggle } from "../restaurant/components/ListToggle";
 
@@ -35,9 +35,9 @@ export default function Dashboard({
 
     //parent component
     return (
-        <div className="flex h-full">
+        <div className="flex h-full w-full">
             {showList && (
-                <div className="m-4 flex w-1/4 flex-col justify-start bg-slate-100">
+                <div className="border-input bg-background text-accent-foreground m-4 flex w-1/4 flex-col justify-start">
                     <SortSelector
                         restaurantMasterList={restaurantMasterList}
                         setRestaurantList={setRestaurantList}
@@ -75,13 +75,13 @@ export default function Dashboard({
                     userGeo={userGeo}
                     setUserGeo={setUserGeo}
                 />
-                <Layer position={"top-72 left-8"}>
+                <Layer position={"top-9 left-8"} transparent={true}>
                     <ListToggle
                         showOptions={showList}
                         setShowOptions={setShowList}
                     />
                 </Layer>
-                <Layer position={"top-16 left-8"}>
+                <Layer position={"top-9 left-20"} transparent={true}>
                     <FilterSelector
                         restaurantMasterList={restaurantMasterList}
                         setRestaurantList={setRestaurantList}
@@ -91,7 +91,7 @@ export default function Dashboard({
                     />
                 </Layer>
 
-                <Layer position={"bottom-8 left-8"}>
+                <Layer position={"bottom-8 left-8 p-6"}>
                     <RestaurantInfo
                         handleDeselect={handleDeselect}
                         restaurantList={restaurantList}
@@ -104,7 +104,7 @@ export default function Dashboard({
                         userGeo={userGeo}
                     />
                 </Layer>
-                <Layer position={"top-2 right-14"}>
+                <Layer position={"bottom-60 right-3"} transparent={true}>
                     <MapSetings
                         mapTheme={mapTheme}
                         setMapTheme={setMapTheme}
@@ -116,7 +116,7 @@ export default function Dashboard({
                         setUserLocation={setUserLocation}
                     />
                 </Layer>
-                <Layer position={"bottom-48 right-2"}>
+                <Layer position={"bottom-48 right-3"} transparent={true}>
                     <CenterToUserButton
                         setCenter={setCenter}
                         userLocation={userLocation}

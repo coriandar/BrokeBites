@@ -5,6 +5,7 @@ import LoggedInBtnSet from "./components/LoggedInBtnSet";
 import LoggedOutBtnSet from "./components/LoggedOutBtnSet";
 import NavImage from "./components/NavImage";
 import MapSelectSet from "./components/MapSelectSet";
+import ThemeToggle from "../ui/theme/ThemeToggle";
 
 export default function Navbar() {
     const [user, loading] = useAuthState(auth);
@@ -14,9 +15,11 @@ export default function Navbar() {
     }
 
     return (
-        <nav className="flex h-full w-full justify-between border-b-2 bg-slate-300 p-2">
+        // <nav className="fixed top-8 z-50 flex h-12 items-center justify-between rounded-full bg-slate-300 p-4">
+        <nav className="border-input bg-background text-accent-foreground fixed top-8 z-50 flex h-12 items-center justify-between rounded-full border p-4">
             {user ? <MapSelectSet /> : <NavImage />}
             {user ? <LoggedInBtnSet /> : <LoggedOutBtnSet />}
+            <ThemeToggle />
         </nav>
     );
 }

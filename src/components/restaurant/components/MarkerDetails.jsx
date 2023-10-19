@@ -23,11 +23,7 @@ export default function MarkerDetails({ selected, userGeo }) {
     }, [user]);
 
     if (!selected) {
-        return (
-            <div id="SelectedMarkerDetails">
-                <h3>Nothing selected</h3>
-            </div>
-        );
+        return <div id="SelectedMarkerDetails"></div>;
     }
 
     return (

@@ -4,8 +4,8 @@ import { uploadAvatar } from "@/database/firebase/storage/avatarDB";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Modal from "../../../__shared__/layout/Modal";
 import Image from "next/image";
-import spinner from "../../../__assets__/spinner.gif";
 import placeholder from "../../../__assets__/placeholderAvatar.png";
+import { Icons } from "@/components/ui/icons/icons";
 
 export default function UpdatePicture() {
     const [open, setOpen] = useState(false);
@@ -62,14 +62,15 @@ export default function UpdatePicture() {
                     <input type="file" onChange={handleChange} />
 
                     {loading ? (
-                        <Image
-                            src={spinner}
-                            alt="Loading..."
-                            width={50}
-                            height={50}
-                            priority
-                        />
+                        <Icons.spinner className="h-7 w-7 animate-spin" />
                     ) : (
+                        // <Image
+                        //     src={spinner}
+                        //     alt="Loading..."
+                        //     width={50}
+                        //     height={50}
+                        //     priority
+                        // />
                         <button
                             className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                             disabled={loading || !photo}
