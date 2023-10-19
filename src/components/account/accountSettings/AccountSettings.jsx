@@ -22,8 +22,8 @@ export default function AccountSettings() {
         return null;
     } else if (user) {
         return (
-            <div className="flex h-full w-full items-center justify-center bg-slate-100">
-                <div className="flex h-90% flex-col items-center rounded-xl bg-slate-300 shadow-2xl">
+            <div className="flex h-full w-full items-center justify-center ">
+                <div className="flex h-90% flex-col items-center rounded-xl shadow-2xl">
                     <Avatar maxW={"w-50%"} photoURL={photoURL} />
                     <UpdatePicture />
                     <UpdateEmail />
