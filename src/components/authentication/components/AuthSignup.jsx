@@ -17,9 +17,9 @@ export default function AuthSignup({ className, ...props }) {
     const [password, setPassword] = useState("");
     const { toast } = useToast();
 
-    const regexPattern = "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{6,}";
+    const regexPattern = "(?=.*[a-z])(?=.*[A-Z]).{6,}";
     const regexTitle =
-        "*Must contain at least one number & one uppercase & lowercase letter, & 6 or more characters";
+        "*Must contain one uppercase & lowercase letter, & 6 or more characters";
 
     const checkFields = () => {
         if (!username || !email || !password) {
@@ -106,7 +106,7 @@ export default function AuthSignup({ className, ...props }) {
                                 type="password"
                                 disabled={isLoading}
                                 value={password}
-                                // pattern={regexPattern}
+                                pattern={regexPattern}
                                 title={regexTitle}
                                 onChange={(e) => setPassword(e.target.value)}
                             />

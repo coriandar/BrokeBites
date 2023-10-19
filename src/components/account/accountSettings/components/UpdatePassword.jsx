@@ -12,11 +12,9 @@ export default function UpdatePassword() {
     const [password, setPassword] = useState("");
     const [updatePassword, updating, error] = useUpdatePassword(auth);
 
-    // Must contain at least one number & one uppercase & lowercase letter,
-    // and 6 or more characters
-    const regexPattern = "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{6,}";
+    const regexPattern = "(?=.*[a-z])(?=.*[A-Z]).{6,}";
     const regexTitle =
-        "*Must contain at least one number & one uppercase & lowercase letter, & 6 or more characters";
+        "*Must contain one uppercase & lowercase letter, & 6 or more characters";
 
     const checkPassword = () => {
         if (!newPassword || !confirmPassword) {
