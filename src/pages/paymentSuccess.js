@@ -1,22 +1,45 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
-import verifyPayment from "../stripe/verifyPayment";
+import { setPremium } from "@/database/firebase/firestore/userDB";
 
 export default function paymentSuccess() {
-    //hook for payment status
-    const [paymentStatus, setPaymentStatus] = useState(null);
+    const [paymentStatus, setPaymentStatus] = useState(null); //hook for payment status
+    const urlParams = new URLSearchParams(window.location.search); //const for url parameters
+    const session_id = urlParams.get("session_id"); //const for session id
 
-    useEffect(() => {
-        const queryParams = new URLSearchParams(window.location.search);
-        const sessionId = queryParams.get("session_id");
+    //if session id exists, verify payment
+    if (session_id) {
+        //get secret key
+        const secretKey = process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY;
+        const stripe = require("stripe")(secretKey);
+        //retrieve payment status from stripe
+        stripe.checkout.sessions.retrieve(session_id, function (err, session) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (session.payment_status === "paid") {
+                setPaymentStatus("success");
+                console.log("Payment was successful!");
+                //payment successful, update user to premium
+                setPremium();
+            } else {
+                setPaymentStatus("failed");
+                console.log("Payment was unsuccessful");
+                //payment unsuccessful, do not update user
+            }
+        });
+    } else {
+        //error loading session id
+        setPaymentStatus("error");
+        console.log("No session_id found in URL parameters.");
+    }
 
-        if (sessionId) {
-            verifyPayment(sessionId).then((data) => {
-                setPaymentStatus(data);
-            });
-        }
-    }, []);
+    console.log("paymentStatus: ", paymentStatus);
+    console.log(session_id);
+    console.log(urlParams);
 
+    //render payment status
     return (
         <div>
             {paymentStatus === "success" && <p>Payment was successful!</p>}
