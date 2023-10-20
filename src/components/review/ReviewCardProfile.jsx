@@ -1,6 +1,6 @@
 import React from "react";
 import ReviewCard from "./ReviewCard";
-import { formatTimestamp } from "./formatTimestamp";
+import { formatTimestamp } from "../../util/dateFunctions";
 import Link from "next/link";
 
 export default function ReviewCardProfile({ review }) {

@@ -1,7 +1,7 @@
 import React from "react";
 import ReviewCard from "./ReviewCard";
 import Link from "next/link";
-import { formatTimestamp } from "./formatTimestamp";
+import { formatTimestamp } from "../../util/dateFunctions";
 import Avatar from "../account/Avatar";
 
 export default function ReviewCardRestaurant({ review }) {
