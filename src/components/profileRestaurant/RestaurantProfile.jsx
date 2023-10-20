@@ -22,7 +22,7 @@ export default function RestaurantProfile() {
     const { pid } = router.query; // restaurant_id (placeId)
     const [restaurant, setRestaurant] = useState(null);
     const [reviews, setReviews] = useState([]);
-    const mapTheme = "light";
+    const [mapTheme, setMapTheme] = useState("light");
     const mapZoom = 17;
     const [center, setCenter] = useState(defaultCenter);
     const [userGeo, setUserGeo] = useState(defaultCenter);
@@ -48,7 +48,7 @@ export default function RestaurantProfile() {
 
     return (
         <div className="m-8">
-            <div className="sm:h-[300px] md:h-[600px] lg:h-[800px]">
+            <div className=" w-screen sm:h-[300px] md:h-[600px] lg:h-[800px]">
                 <div className="flex items-center justify-center">
                     <h2 className="text-xl font-bold">
                         {restaurant
@@ -83,6 +83,7 @@ export default function RestaurantProfile() {
                             center={center}
                             mapZoom={mapZoom}
                             mapTheme={mapTheme}
+                            setMapTheme={setMapTheme}
                         >
                             <MarkerF
                                 key={restaurant?.id}

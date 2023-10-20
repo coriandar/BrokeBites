@@ -47,7 +47,7 @@ export default function UserProfile() {
     return (
         <div className="m-8">
             {userProfile ? (
-                <div className="sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                <div className="w-screen sm:h-[300px] md:h-[600px] lg:h-[800px]">
                     <div className="flex items-center justify-center">
                         <Avatar
                             maxW={"w-[50px]"}
