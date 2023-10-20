@@ -6,6 +6,7 @@ import {
     removeRestaurantFavourite,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
+import { Button } from "../ui/shadcn-ui/button";
 
 export default function FavouriteButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
@@ -32,9 +33,12 @@ export default function FavouriteButton({ selectedRestaurant }) {
     };
 
     return (
-        <ButtonSmall
-            label={isFavourite ? "Remove favourite" : "Favourite"}
-            action={isFavourite ? removeFavourite : addFavourite}
-        />
+        <Button
+            variant={"secondary"}
+            className={"mr-1 h-6 rounded-full"}
+            onClick={isFavourite ? removeFavourite : addFavourite}
+        >
+            {isFavourite ? "Remove favourite" : "Favourite"}
+        </Button>
     );
 }

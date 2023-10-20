@@ -13,7 +13,7 @@ export default function FollowingContainer() {
     }, []);
 
     return (
-        <div className="m-8 flex h-full w-full flex-col items-center justify-center rounded-lg bg-slate-300">
+        <div className="m-8 flex h-full w-full flex-col items-center justify-center rounded-lg">
             <h3 className="text-lg font-bold">Following List</h3>
             <ul>
                 {following ? (

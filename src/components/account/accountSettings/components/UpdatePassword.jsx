@@ -3,6 +3,7 @@ import Modal from "../../../__shared__/layout/Modal";
 import { auth } from "../../../../database/firebase/firebaseApp";
 import { useUpdatePassword } from "react-firebase-hooks/auth";
 import Loading from "../../../__shared__/layout/Loading";
+import { Button } from "@/components/ui/shadcn-ui/button";
 
 export default function UpdatePassword() {
     const [open, setOpen] = useState(false);
@@ -12,11 +13,9 @@ export default function UpdatePassword() {
     const [password, setPassword] = useState("");
     const [updatePassword, updating, error] = useUpdatePassword(auth);
 
-    // Must contain at least one number & one uppercase & lowercase letter,
-    // and 6 or more characters
-    const regexPattern = "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{6,}";
+    const regexPattern = "(?=.*[a-z])(?=.*[A-Z]).{6,}";
     const regexTitle =
-        "*Must contain at least one number & one uppercase & lowercase letter, & 6 or more characters";
+        "*Must contain one uppercase & lowercase letter, & 6 or more characters";
 
     const checkPassword = () => {
         if (!newPassword || !confirmPassword) {
@@ -58,12 +57,9 @@ export default function UpdatePassword() {
 
     return (
         <div className="flex">
-            <button
-                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
-                onClick={() => setOpen(true)}
-            >
+            <Button variant={"secondary"} onClick={() => setOpen(true)}>
                 Update password
-            </button>
+            </Button>
 
             <Modal
                 open={open}

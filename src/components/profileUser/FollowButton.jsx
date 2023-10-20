@@ -17,7 +17,7 @@ export default function FollowButton({ otherUser }) {
                 currentUserID,
                 "following",
             );
-            setIsFollowing(followingList.includes(otherUser));
+            setIsFollowing(followingList?.includes(otherUser));
         };
 
         if (otherUser && currentUserID) checkIsFollowing();

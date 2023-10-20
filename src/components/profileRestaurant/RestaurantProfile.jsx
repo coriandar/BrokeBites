@@ -5,7 +5,7 @@ import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
 import Map from "../map/components/Map";
 import ReviewContainer from "../review/ReviewContainer";
 import ReviewCardRestaurant from "../review/ReviewCardRestaurant";
-import defaultCenter from "../__shared__/defaultCenter";
+import defaultCenter from "../__shared__/util/defaultCenter";
 import { MarkerF } from "@react-google-maps/api";
 import UserLocMarker from "../map/components/UserLocMarker";
 import FavouriteButton from "../savedBites/FavouriteButton";

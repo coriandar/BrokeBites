@@ -5,7 +5,7 @@ import {
     removeRestaurantVisited,
 } from "@/database/firebase/firestore/userDB";
 import { useEffect, useState } from "react";
-import ButtonSmall from "../__shared__/ui/ButtonSmall";
+import { Button } from "../ui/shadcn-ui/button";
 
 export default function VisitedButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
@@ -20,7 +20,7 @@ export default function VisitedButton({ selectedRestaurant }) {
         if (currentUserID && selectedRestaurant) {
             checkIsVisited();
         }
-    });
+    }, [currentUserID, selectedRestaurant]);
 
     const addVisited = async () => {
         setIsVisited(true);
@@ -33,9 +33,12 @@ export default function VisitedButton({ selectedRestaurant }) {
     };
 
     return (
-        <ButtonSmall
-            label={isVisited ? "Remove Visited" : "Visited"}
-            action={isVisited ? removeVisited : addVisited}
-        />
+        <Button
+            variant={"secondary"}
+            className={"mr-1 h-6 rounded-full"}
+            onClick={isVisited ? removeVisited : addVisited}
+        >
+            {isVisited ? "Remove Visited" : "Visited"}
+        </Button>
     );
 }

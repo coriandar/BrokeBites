@@ -48,13 +48,13 @@ export default function GetFollowerList() {
     }, []);
 
     return (
-        <div className="m-8 flex h-full w-full flex-col items-center justify-center rounded-lg bg-slate-300">
+        <div className="m-8 flex h-full w-full flex-col items-center justify-center rounded-lg">
             <h3 className="text-lg font-bold">Following List</h3>
             <ul>
                 {following ? (
                     following.map((follow) => (
                         <li key={follow.id}>
-                            <div className="m-5 h-8 rounded-lg bg-slate-200">
+                            <div className="m-5 h-8 rounded-lg">
                                 <Link href={`/profile/${follow.id}`}>
                                     <p className="flex items-center justify-center">
                                         {follow.displayName}
@@ -66,7 +66,7 @@ export default function GetFollowerList() {
                 ) : (
                     <p>loading...</p>
                 )}
-            </ul>{" "}
+            </ul>
         </div>
     );
 }
