@@ -53,20 +53,64 @@ module.exports = {
         return "Other";
     },
 
-    getFillingFactor: (
-        doc,
-        lightCounter,
-        dessertCounter,
-        MAX_LIGHT,
-        MAX_DESSERT,
-    ) => {
-        const rand = Math.floor(Math.random() * 3);
-        if (lightCounter < MAX_LIGHT && rand === 0) {
-            lightCounter++;
-            return "Light";
-        } else if (dessertCounter < MAX_DESSERT && rand === 1) {
-            dessertCounter++;
-            return "Dessert";
-        } else return "Filling";
+    convertOpenHour: (doc) => {
+        const openingHours = doc?.openingHours;
+
+        const splitHourMin = (timeString) => {
+            const timeParts = timeString.split(" ");
+            const time = timeParts[0].split(":");
+            timeParts[0] = parseInt(time[0]);
+
+            timeParts.splice(1, 0, time.length > 1 ? time[1] : "00");
+            return timeParts;
+        };
+
+        const convertHour24 = (timeArray) => {
+            if (timeArray[2].toLowerCase() === "pm" && timeArray[0] !== 12) {
+                timeArray[0] += 12;
+            }
+        };
+
+        const convertStringToTime = (hoursString) => {
+            const [start, end] = hoursString
+                .split(" to ")
+                .map((time) => time.trim());
+
+            const startTimeParts = splitHourMin(start);
+            const endTimeParts = splitHourMin(end);
+
+            convertHour24(startTimeParts);
+            convertHour24(endTimeParts);
+
+            const timeOpen = `${startTimeParts[0]}:${startTimeParts[1]}`;
+            const timeClose = `${endTimeParts[0]}:${endTimeParts[1]}`;
+
+            return { timeOpen: timeOpen, timeClose: timeClose };
+        };
+
+        const convertOpeningHours = openingHours.map((entry) => ({
+            day: entry.day,
+            hours: entry.hours,
+            ...convertStringToTime(entry.hours),
+        }));
+
+        return convertOpeningHours;
     },
+
+    // getFillingFactor: (
+    //     doc,
+    //     lightCounter,
+    //     dessertCounter,
+    //     MAX_LIGHT,
+    //     MAX_DESSERT,
+    // ) => {
+    //     const rand = Math.floor(Math.random() * 3);
+    //     if (lightCounter < MAX_LIGHT && rand === 0) {
+    //         lightCounter++;
+    //         return "Light";
+    //     } else if (dessertCounter < MAX_DESSERT && rand === 1) {
+    //         dessertCounter++;
+    //         return "Dessert";
+    //     } else return "Filling";
+    // },
 };

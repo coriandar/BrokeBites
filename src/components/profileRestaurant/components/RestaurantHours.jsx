@@ -15,7 +15,7 @@ export const RestaurantHours = ({ restaurant }) => {
             Opening hours
             <ul>
                 {openHourArray?.map((entry) => (
-                    <li key={entry.day}>{getDayInfo(entry)}</li>
+                    <li key={`${entry.day}x`}>{getDayInfo(entry)}</li>
                 ))}
             </ul>
         </div>
