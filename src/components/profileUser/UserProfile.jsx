@@ -10,6 +10,7 @@ import { fetchUserReviews } from "@/database/firebase/firestore/reviewDB";
 import Avatar from "../account/Avatar";
 import ReviewCardProfile from "../review/ReviewCardProfile";
 import { useRouter } from "next/router";
+import UserProfileStatistics from "./UserProfileStatistics";
 
 export default function UserProfile() {
     const router = useRouter();
@@ -56,6 +57,10 @@ export default function UserProfile() {
                         <h2 className="text-xl font-bold">
                             {userProfile.displayName}'s Profile
                         </h2>
+                        <UserProfileStatistics
+                            userProfile={userProfile}
+                            userReviews={userReviews}
+                        />
 
                         <FollowButton otherUser={uid} />
                     </div>
