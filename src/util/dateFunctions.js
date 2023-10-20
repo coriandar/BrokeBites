@@ -16,3 +16,8 @@ export const getCurrentDayString = () => {
     const options = { weekday: "long" };
     return date.toLocaleDateString("en-US", options);
 };
+
+export const getCurrentDayHour = () => {
+    const date = new Date();
+    return date.getHours();
+};
