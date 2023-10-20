@@ -16,6 +16,7 @@ import { ShareContainer } from "../restaurant/components/ShareContainer";
 import GetDirections from "../restaurant/components/GetDirections";
 import CenterToUserButton from "../map/components/CenterButton";
 import Layer from "../__shared__/layout/Layer";
+import { RestaurantHours } from "./components/RestaurantHours";
 
 export default function RestaurantProfile() {
     const router = useRouter();
@@ -79,6 +80,7 @@ export default function RestaurantProfile() {
                             userGeo={userGeo}
                         />
                         <h3 className="m-4">Address: {restaurant?.address}</h3>
+                        <RestaurantHours restaurant={restaurant} />
                         <h3>Filling Factor: {restaurant?.fillingFactor}</h3>
                         <h3>Price rating: {restaurant?.priceRating}</h3>
                         <h3>Star rating: {restaurant?.starRating}</h3>
