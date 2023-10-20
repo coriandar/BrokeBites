@@ -45,7 +45,7 @@ export default function AuthSignin({ className, ...props }) {
                 <h1 className="text-2xl font-semibold tracking-tight">
                     Login to existing account
                 </h1>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-sm text-muted-foreground">
                     Enter your email below to log into your account
                 </p>
             </div>
@@ -74,7 +74,7 @@ export default function AuthSignin({ className, ...props }) {
                             </Label>
                             <Input
                                 id="password"
-                                placeholder="**********"
+                                placeholder="password"
                                 type="password"
                                 disabled={isLoading}
                                 value={password}
