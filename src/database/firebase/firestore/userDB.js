@@ -142,6 +142,22 @@ export const fetchFollowingList = async (uid) => {
     }
 };
 
+export const fetchFollowerList = async (uid) => {
+    try {
+        const list = await fetchUserListData(uid, "followers", fetchUser);
+        // parse to only contain display name and id
+        const followerList = list.map((doc) => ({
+            displayName: doc.displayName,
+            id: doc.id,
+            photoURL: doc.photoURL,
+        }));
+        followerList.sort((a, b) => a.displayName - b.displayName);
+        return followerList;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 // fetch users favourites list data
 export const fetchFavouritesList = async (uid) => {
     return await fetchUserListData(uid, "favourite", fetchRestaurant);
@@ -160,10 +176,17 @@ export const fetchVisitedList = async (uid) => {
 export const followSelectedUser = async (otherUser) => {
     const currentUserID = auth.currentUser?.uid;
     const userDocRef = doc(db, "userDB", currentUserID);
+    const otherUserDocRef = doc(db, "userDB", otherUser);
     try {
         await setDoc(
             userDocRef,
             { following: arrayUnion(otherUser) },
+            { merge: true },
+        );
+
+        await setDoc(
+            otherUserDocRef,
+            { followers: arrayUnion(currentUserID) },
             { merge: true },
         );
     } catch (error) {
@@ -175,10 +198,17 @@ export const followSelectedUser = async (otherUser) => {
 export const unfollowSelectedUser = async (otherUser) => {
     const currentUserID = auth.currentUser?.uid;
     const userDocRef = doc(db, "userDB", currentUserID);
+    const otherUserDocRef = doc(db, "userDB", otherUser);
     try {
         await setDoc(
             userDocRef,
             { following: arrayRemove(otherUser) },
+            { merge: true },
+        );
+
+        await setDoc(
+            otherUserDocRef,
+            { followers: arrayRemove(currentUserID) },
             { merge: true },
         );
     } catch (error) {

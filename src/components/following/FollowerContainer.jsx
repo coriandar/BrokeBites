@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import FollowCard from "./FollowCard";
-import { fetchFollowingList } from "@/database/firebase/firestore/userDB";
+import { fetchFollowerList } from "@/database/firebase/firestore/userDB";
 import { auth } from "@/database/firebase/firebaseApp";
 
-export default function FollowingContainer() {
+export default function FollowerContainer() {
     const [following, setFollowing] = useState(null);
 
     useEffect(() => {
         (async () => {
-            setFollowing(await fetchFollowingList(auth.currentUser?.uid));
+            setFollowing(await fetchFollowerList(auth.currentUser?.uid));
         })();
     }, []);
 
     return (
         <div className="m-8 flex h-full w-full flex-col items-center justify-center rounded-lg">
-            <h3 className="text-lg font-bold">Following List</h3>
+            <h3 className="text-lg font-bold">Follower List</h3>
             <ul>
                 {following ? (
                     following.map((follow) => (
