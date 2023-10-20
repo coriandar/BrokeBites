@@ -1,6 +1,6 @@
 import React from "react";
 import { getCurrentDayString } from "@/util/dateFunctions";
-import { getDayInfo } from "@/components/profileRestaurant/components/getDayInfo";
+import { getDayInfo } from "@/components/restaurant/components/getDayInfo";
 
 export const CurrentDayHours = ({ selected }) => {
     const openHourArray = selected?.openingHours;

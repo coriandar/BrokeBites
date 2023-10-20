@@ -9,8 +9,11 @@ import { OrderButton } from "./OrderButton";
 import { ShareContainer } from "./ShareContainer";
 import VisitedButton from "@/components/savedBites/VisitedButton";
 import { CurrentDayHours } from "./CurrentDayHours";
+import { RestaurantOccupancy } from "./RestaurantOccupancy";
 
 export default function MarkerDetails({ selected, userGeo }) {
+    const [premium, setPremium] = React.useState(true);
+
     if (!selected) {
         return <div id="SelectedMarkerDetails"></div>;
     }
@@ -31,6 +34,7 @@ export default function MarkerDetails({ selected, userGeo }) {
             </div>
 
             <h3>Address: {selected?.address}</h3>
+            {premium && <RestaurantOccupancy restaurant={selected} />}
             <CurrentDayHours selected={selected} />
             <h3>Filling Factor: {selected?.fillingFactor}</h3>
             <h3>Price rating: {selected?.priceRating}</h3>

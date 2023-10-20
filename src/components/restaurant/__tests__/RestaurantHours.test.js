@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { RestaurantHours } from "../components/RestaurantHours";
+import { RestaurantHours } from "../../restaurant/components/RestaurantHours";
 
 describe("RestaurantHours", () => {
     test("should render day as Monday: Closed", () => {
