@@ -42,6 +42,7 @@ export default function UserProfile() {
             fetchProfile();
             fetchProfileFavorites();
             fetchProfileReviews();
+            console.log("Fetching from user profile");
         }
     }, [uid]);
 

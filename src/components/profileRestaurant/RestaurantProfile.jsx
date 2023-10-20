@@ -31,20 +31,29 @@ export default function RestaurantProfile() {
     useEffect(() => {
         const fetchProfile = async () => {
             setRestaurant(await fetchRestaurant(pid));
-
-            setCenter({
-                lat: restaurant?.latitude,
-                lng: restaurant?.longitude,
-            });
         };
+
         const fetchReviews = async () => {
             setReviews(await fetchRestaurantReviews(pid));
         };
+
         if (pid) {
             fetchProfile();
             fetchReviews();
+            console.log("Fetching from restaurant profile");
         }
-    }, [pid, center, restaurant]);
+    }, [pid]);
+
+    useEffect(() => {
+        // Update the center when the restaurant state changes
+        if (restaurant) {
+            setCenter({
+                lat: restaurant.latitude,
+                lng: restaurant.longitude,
+            });
+            console.log("Fetching from restaurant profile");
+        }
+    }, [restaurant]);
 
     return (
         <div className="m-8">
