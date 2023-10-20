@@ -15,8 +15,7 @@ export default function Navbar() {
     }
 
     return (
-        // <nav className="fixed top-8 z-50 flex h-12 items-center justify-between rounded-full bg-slate-300 p-4">
-        <nav className="border-input bg-background text-accent-foreground fixed top-8 z-50 flex h-12 items-center justify-between rounded-full border p-4">
+        <nav className="fixed right-8 top-8 z-50 flex h-12 items-center justify-between rounded-full border border-input bg-background p-4 text-accent-foreground">
             {user ? <MapSelectSet /> : <NavImage />}
             {user ? <LoggedInBtnSet /> : <LoggedOutBtnSet />}
             <ThemeToggle />
