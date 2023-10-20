@@ -18,28 +18,28 @@ export default function MapSelectSet() {
                 <TabsTrigger
                     value="all"
                     className="rounded-full"
-                    onClick={() => changeMap(0)}
+                    onClick={() => changeMap(0)} // set to all bites
                 >
                     All Bites
                 </TabsTrigger>
                 <TabsTrigger
                     value="favourite"
                     className="rounded-full"
-                    onClick={() => changeMap(1)}
+                    onClick={() => changeMap(1)} // set to favourite bites
                 >
                     Favourite Bites
                 </TabsTrigger>
                 <TabsTrigger
                     value="tovisit"
                     className="rounded-full"
-                    onClick={() => changeMap(2)}
+                    onClick={() => changeMap(2)} // set to toVisit bites
                 >
                     ToVisit Bites
                 </TabsTrigger>
                 <TabsTrigger
                     value="visited"
                     className="rounded-full"
-                    onClick={() => changeMap(3)}
+                    onClick={() => changeMap(3)} // set to visited bites
                 >
                     Visited Bites
                 </TabsTrigger>

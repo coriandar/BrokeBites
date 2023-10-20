@@ -16,21 +16,21 @@ export default function AuthenticationContainer() {
                         <TabsTrigger
                             value="login"
                             className="rounded-full"
-                            onClick={() => setValue(0)}
+                            onClick={() => setValue(0)} // sets to login
                         >
                             Login
                         </TabsTrigger>
                         <TabsTrigger
                             value="signup"
                             className="rounded-full"
-                            onClick={() => setValue(1)}
+                            onClick={() => setValue(1)} // sets to signup
                         >
                             Signup
                         </TabsTrigger>
                         <TabsTrigger
                             value="about"
                             className="rounded-full"
-                            onClick={() => setValue(2)}
+                            onClick={() => setValue(2)} // sets to about
                         >
                             About
                         </TabsTrigger>
