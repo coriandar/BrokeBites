@@ -18,7 +18,7 @@ export default function FollowingContainer() {
             <ul>
                 {following ? (
                     following.map((follow) => (
-                        <li key={follow.id}>
+                        <li key={`${follow.id}following`}>
                             <FollowCard follow={follow} />
                         </li>
                     ))
