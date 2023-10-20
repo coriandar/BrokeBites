@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonSmall from "@/components/__shared__/ui/ButtonSmall";
+import { Button } from "@/components/ui/shadcn-ui/button";
 
 export const OrderButton = ({ selected }) => {
     const openOrder = () => {
@@ -12,7 +12,13 @@ export const OrderButton = ({ selected }) => {
     return (
         <>
             {selected?.order[0] && (
-                <ButtonSmall label={"Order"} action={openOrder} />
+                <Button
+                    variant={"secondary"}
+                    className={"mr-1 h-6 rounded-full"}
+                    onClick={openOrder}
+                >
+                    Order
+                </Button>
             )}
         </>
     );

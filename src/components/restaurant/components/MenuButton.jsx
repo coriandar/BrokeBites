@@ -1,9 +1,17 @@
 import React from "react";
-import ButtonSmall from "@/components/__shared__/ui/ButtonSmall";
+import { Button } from "@/components/ui/shadcn-ui/button";
 
 export const MenuButton = ({ selected }) => {
     const openMenu = () => {
         window.open(selected?.website);
     };
-    return <ButtonSmall label={"Menu"} action={openMenu} />;
+    return (
+        <Button
+            variant={"secondary"}
+            className={"mr-1 h-6 rounded-full"}
+            onClick={openMenu}
+        >
+            Menu
+        </Button>
+    );
 };

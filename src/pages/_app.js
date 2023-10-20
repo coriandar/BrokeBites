@@ -1,40 +1,30 @@
-import Layout from "@/components/__shared__/layout/Layout";
+import RootLayout from "@/components/ui/layout/RootLayout";
 import "@/styles/globals.css";
 import { auth } from "@/database/firebase/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
-import AboutPage from "@/components/about/AboutPage";
-import Login from "@/components/account/login/Login";
-import Signup from "@/components/account/login/Signup";
-import { useRouter } from "next/router";
+import AuthenticationContainer from "@/components/authentication/AuthenticationContainer";
+import Loading from "@/components/__shared__/layout/Loading";
 
 export default function App({ Component, pageProps }) {
-    const router = useRouter();
-    const [user] = useAuthState(auth);
-    const path = router.pathname;
+    const [user, loading] = useAuthState(auth);
 
-    if (!user && path.includes("about")) {
+    if (loading) {
         return (
-            <Layout>
-                <AboutPage />
-            </Layout>
-        );
-    } else if (!user && path.includes("signup")) {
-        return (
-            <Layout>
-                <Signup />
-            </Layout>
+            <RootLayout>
+                <Loading />;
+            </RootLayout>
         );
     } else if (!user) {
         return (
-            <Layout>
-                <Login />
-            </Layout>
+            <RootLayout>
+                <AuthenticationContainer />
+            </RootLayout>
         );
     } else if (user) {
         return (
-            <Layout>
+            <RootLayout>
                 <Component {...pageProps} />
-            </Layout>
+            </RootLayout>
         );
     }
 }

@@ -1,17 +1,11 @@
 import React from "react";
-import Image from "next/image";
-import cog from "../../__assets__/list.png";
+import { ButtonCircleIcon } from "@/components/ui/buttons/ButtonCircleIcon";
+import { List } from "lucide-react";
 
 export const ListToggle = ({ showOptions, setShowOptions }) => {
     return (
-        <Image
-            className="opacity-30 hover:opacity-70"
-            src={cog}
-            alt="cog"
-            width={20}
-            height={20}
-            priority
-            onClick={() => setShowOptions(!showOptions)}
-        />
+        <ButtonCircleIcon action={() => setShowOptions(!showOptions)}>
+            <List className="h-[1.2rem] w-[1.2rem]" />
+        </ButtonCircleIcon>
     );
 };

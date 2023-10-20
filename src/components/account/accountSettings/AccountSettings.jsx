@@ -10,6 +10,7 @@ import UpdatePassword from "./components/UpdatePassword";
 import SubmitFeedback from "./components/SubmitFeedback";
 import SubmitBug from "./components/SubmitBug";
 import FollowingContainer from "@/components/following/FollowingContainer";
+import FollowerContainer from "@/components/following/FollowerContainer";
 
 export default function AccountSettings() {
     const [user, loading] = useAuthState(auth);
@@ -22,8 +23,8 @@ export default function AccountSettings() {
         return null;
     } else if (user) {
         return (
-            <div className="flex h-full w-full items-center justify-center bg-slate-100">
-                <div className="flex h-90% flex-col items-center rounded-xl bg-slate-300 shadow-2xl">
+            <div className="flex h-full w-full items-center justify-center ">
+                <div className="h-90% flex flex-col items-center rounded-xl shadow-2xl">
                     <Avatar maxW={"w-50%"} photoURL={photoURL} />
                     <UpdatePicture />
                     <UpdateEmail />
@@ -33,6 +34,9 @@ export default function AccountSettings() {
                 </div>
                 <div>
                     <FollowingContainer />
+                </div>
+                <div>
+                    <FollowerContainer />
                 </div>
             </div>
         );

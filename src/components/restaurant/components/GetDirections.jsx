@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonSmall from "@/components/__shared__/ui/ButtonSmall";
+import { Button } from "@/components/ui/shadcn-ui/button";
 
 export default function GetDirections({ selected, userGeo }) {
     const googleMapDirection = "https://www.google.com/maps/dir/";
@@ -11,5 +11,13 @@ export default function GetDirections({ selected, userGeo }) {
         window.open(googleMapDirection + origin + name + destination);
     };
 
-    return <ButtonSmall label={"Directions"} action={openDirections} />;
+    return (
+        <Button
+            variant={"secondary"}
+            className={"mr-1 h-6 rounded-full"}
+            onClick={openDirections}
+        >
+            Directions
+        </Button>
+    );
 }

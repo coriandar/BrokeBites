@@ -3,10 +3,10 @@ import { submitReview } from "@/database/firebase/firestore/reviewDB";
 import Modal from "../__shared__/layout/Modal";
 import ReviewContainer from "./ReviewContainer";
 import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
-import ButtonSmall from "../__shared__/ui/ButtonSmall";
 import ReviewCardRestaurant from "./ReviewCardRestaurant";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/database/firebase/firebaseApp";
+import { Button } from "../ui/shadcn-ui/button";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -33,7 +33,13 @@ export default function ReviewModal({ selectedRestaurant }) {
 
     return (
         <div className="flex">
-            <ButtonSmall label={"Reviews"} action={() => setOpen(true)} />
+            <Button
+                variant={"secondary"}
+                className={"mr-1 h-6 rounded-full"}
+                onClick={() => setOpen(true)}
+            >
+                Reviews
+            </Button>
 
             <Modal
                 open={open}
@@ -41,7 +47,7 @@ export default function ReviewModal({ selectedRestaurant }) {
                 maxH={"h-70%"}
                 onClose={() => setOpen(false)}
             >
-                <div className="flex h-full w-full flex-col rounded-lg bg-slate-300 p-2">
+                <div className="flex h-full w-full flex-col rounded-lg p-2 dark:bg-black">
                     <h3 className="text-lg font-bold">
                         {selectedRestaurant.name}'s Reviews
                     </h3>
@@ -65,7 +71,7 @@ export default function ReviewModal({ selectedRestaurant }) {
                                 }}
                             >
                                 <textarea
-                                    className="h-24 w-full rounded-lg bg-slate-100 p-2 shadow-lg"
+                                    className="h-24 w-full rounded-lg bg-slate-200 p-2 shadow-lg"
                                     ref={reviewInputRef}
                                     style={{ resize: "none" }}
                                     placeholder="Write review..."
