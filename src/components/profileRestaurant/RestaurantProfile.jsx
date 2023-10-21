@@ -16,6 +16,11 @@ import { ShareContainer } from "../restaurant/components/ShareContainer";
 import GetDirections from "../restaurant/components/GetDirections";
 import CenterToUserButton from "../map/components/CenterButton";
 import Layer from "../__shared__/layout/Layer";
+import { RestaurantHours } from "../restaurant/components/RestaurantHours";
+import { RestaurantOccupancy } from "../restaurant/components/RestaurantOccupancy";
+
+import { auth } from "@/database/firebase/firebaseApp";
+import { fetchUser } from "@/database/firebase/firestore/userDB";
 
 export default function RestaurantProfile() {
     const router = useRouter();
@@ -28,23 +33,39 @@ export default function RestaurantProfile() {
     const [userGeo, setUserGeo] = useState(defaultCenter);
     const [userLocation, setUserLocation] = useState(true);
 
+    const [premium, setPremium] = useState(true);
+
     useEffect(() => {
+        // const checkPremium = async () => {
+        //     const isPremium = await fetchUser(auth?.currentUser?.uid);
+        //     setPremium(isPremium?.premium);
+        // };
+
         const fetchProfile = async () => {
             setRestaurant(await fetchRestaurant(pid));
-
-            setCenter({
-                lat: restaurant?.latitude,
-                lng: restaurant?.longitude,
-            });
         };
+
         const fetchReviews = async () => {
             setReviews(await fetchRestaurantReviews(pid));
         };
+
         if (pid) {
             fetchProfile();
             fetchReviews();
+            // checkPremium();
         }
-    }, [pid, center, restaurant]);
+    }, [pid]);
+
+    useEffect(() => {
+        // Update the center when the restaurant state changes
+        if (restaurant) {
+            setCenter({
+                lat: restaurant.latitude,
+                lng: restaurant.longitude,
+            });
+            console.log("Fetching from restaurant profile");
+        }
+    }, [restaurant]);
 
     return (
         <div className="m-8">
@@ -70,6 +91,10 @@ export default function RestaurantProfile() {
                             userGeo={userGeo}
                         />
                         <h3 className="m-4">Address: {restaurant?.address}</h3>
+                        {premium && (
+                            <RestaurantOccupancy restaurant={restaurant} />
+                        )}
+                        <RestaurantHours restaurant={restaurant} />
                         <h3>Filling Factor: {restaurant?.fillingFactor}</h3>
                         <h3>Price rating: {restaurant?.priceRating}</h3>
                         <h3>Star rating: {restaurant?.starRating}</h3>
