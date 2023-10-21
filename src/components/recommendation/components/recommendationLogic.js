@@ -45,23 +45,24 @@ const shuffleArray = (array) => {
     return array;
 };
 
-export const fetchRecommendedList = (mergedList, masterList) => {
+export const fetchRecommendedList = (mergedList, masterList, nearby) => {
     const diet = getRand(mergedList)?.dietary;
     const cuisine = getRand(mergedList)?.cuisine;
     const { lowerBound, upperBound } = getParamPostCode(mergedList);
-    console.log(diet);
-    console.log(cuisine);
-    console.log(lowerBound);
 
-    const filtered = masterList
+    let filtered = masterList
         .filter((entry) => entry?.dietary === diet)
-        .filter((entry) => entry?.cuisine === cuisine)
-        .filter((entry) => {
+        .filter((entry) => entry?.cuisine === cuisine);
+
+    // evaluates to boolean value
+    if (!!nearby) {
+        filtered = filtered.filter((entry) => {
             const postCode = parseInt(entry?.postalCode);
             if (lowerBound > 0) {
                 return lowerBound <= postCode && postCode <= upperBound;
             } else return true;
         });
+    }
 
     const filterID = mergedList
         .map((entry) => entry?.id)
