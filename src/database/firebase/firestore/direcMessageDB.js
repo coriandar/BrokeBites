@@ -1,6 +1,7 @@
 import {
     addDoc,
     collection,
+    getDoc,
     getDocs,
     orderBy,
     query,
@@ -9,12 +10,21 @@ import {
 import { db } from "../firebaseApp";
 
 export const createNewChat = async (newChatData, dispatch) => {
-    const docRef = await addDoc(collection(db, "directMessageDB"), newChatData);
+    try {
+        const docRef = await addDoc(
+            collection(db, "directMessageDB"),
+            newChatData,
+        );
+        const docSnapshot = await getDoc(docRef);
+        const newChat = { ...docSnapshot.data() };
 
-    dispatch({
-        type: "SET_SELECTED_CHAT",
-        payload: { ...docRef.data() },
-    });
+        dispatch({
+            type: "SET_SELECTED_CHAT",
+            payload: newChat,
+        });
+    } catch (error) {
+        console.error("Error creating new chat:", error);
+    }
 };
 
 export const getAllChats = async () => {

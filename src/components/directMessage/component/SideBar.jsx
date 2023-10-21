@@ -39,8 +39,11 @@ export default function SideBar() {
             );
         };
 
+        console.log("Data in SideBar: ", data);
+
         fetchData();
-    }, [currentUser]);
+        chatList();
+    }, [data]);
 
     const handleSelect = (chat) => {
         dispatch({ type: "SET_SELECTED_CHAT", payload: chat });

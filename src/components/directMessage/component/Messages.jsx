@@ -13,7 +13,7 @@ export default function Messages() {
     }, [data]);
 
     const displayMessages = async () => {
-        if (data && data.selectedChat) {
+        if (data && data.selectedChat && data.selectedChat.id) {
             const messages = await getMessages(data.selectedChat.id);
             setMessages(messages);
         }
