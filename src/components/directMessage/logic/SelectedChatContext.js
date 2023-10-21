@@ -4,7 +4,7 @@ export const SelectedChat = createContext();
 
 export const SelectedChatProvider = ({ children }) => {
     const INITIAL_STATE = {
-        selectedChat: null,
+        selectedChat: "",
     };
 
     const selectedChatReducer = (state, action) => {

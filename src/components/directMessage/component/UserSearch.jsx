@@ -1,31 +1,47 @@
 import { createNewChat } from "@/database/firebase/firestore/direcMessageDB";
-import { useEffect, useRef, useState } from "react";
-import { userExists } from "../logic/DMLogic";
+import { useContext, useEffect, useRef, useState } from "react";
+import { chatExists, userExists } from "../logic/DMLogic";
 import { WarningModal } from "./WarningModal";
+import { SelectedChat } from "../logic/SelectedChatContext";
+import { auth } from "@/database/firebase/firebaseApp";
 
 export default function UserSearch({ chatMasterList, userMasterList }) {
     const [query, setQuery] = useState("");
     const [showWarning, setShowWarning] = useState(false);
     const [searchBoxClicked, setSearchBoxClicked] = useState(false);
-    const [selectedUser, setSelectedUser] = useState(null);
     const inputRef = useRef(null);
+    const { dispatch } = useContext(SelectedChat);
+    const currentUser = auth.currentUser;
 
     const handleSearch = async () => {
         console.log("Users in handleSearch", userMasterList);
         console.log("query: ", query);
-        setSelectedUser(userExists(query, userMasterList));
+        const selectedUser = userExists(query, userMasterList);
 
         if (selectedUser) {
             console.log("Selected user: ", selectedUser);
-            createNewChat(query, chatMasterList);
+            searchForChat();
         } else {
             setShowWarning(true);
         }
     };
 
+    const searchForChat = async () => {
+        const chat = chatExists(query, chatMasterList, currentUser);
+
+        if (!chat && displayName !== currentUser.displayName) {
+            const newChatData = {
+                users: [currentUser.displayName, displayName],
+            };
+
+            createNewChat(newChatData, dispatch);
+        } else {
+            dispatch({ type: "SET_SELECTED_CHAT", payload: chat.id });
+        }
+    };
+
     const handleKeyDown = (event) => {
         if (event.key === "Enter" || event.keyCode === 13) {
-            console.log("Selected user in handleKeyDown: ", selectedUser);
             handleSearch();
         }
     };

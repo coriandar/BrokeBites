@@ -2,35 +2,28 @@ import {
     addDoc,
     collection,
     getDocs,
+    orderBy,
+    query,
     serverTimestamp,
 } from "firebase/firestore";
-import { auth, db } from "../firebaseApp";
-import { chatExists } from "@/components/directMessage/logic/DMLogic";
+import { db } from "../firebaseApp";
 
-export const createNewChat = async (displayName, chats) => {
-    const currentUser = auth.currentUser;
+export const createNewChat = async (newChatData, dispatch) => {
+    const docRef = await addDoc(collection(db, "directMessageDB"), newChatData);
 
-    console.log("Display name in createNewChat: ", displayName);
-    console.log("Chats in createNewChat: ", chats);
-    console.log(
-        "Current user's display name in createNewChat: ",
-        currentUser.displayName,
-    );
-
-    if (
-        !chatExists(displayName, chats, currentUser) &&
-        displayName != currentUser.displayName
-    ) {
-        await addDoc(collection(db, "directMessageDB"), {
-            users: [currentUser.displayName, displayName],
-        });
-    }
+    dispatch({
+        type: "SET_SELECTED_CHAT",
+        payload: { id: docRef.id },
+    });
 };
 
 export const getAllChats = async () => {
     const querySnapshot = await getDocs(collection(db, "directMessageDB"));
 
-    return querySnapshot?.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    return querySnapshot?.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
 };
 
 export const getAllUsers = async () => {
@@ -45,7 +38,21 @@ export const getAllUsers = async () => {
 export const sendMessage = async (messageText, sender, id) => {
     await addDoc(collection(db, "directMessageDB", id, "messages"), {
         messageText: messageText,
-        sender: sender.displayName,
+        sender: sender,
         timestamp: serverTimestamp(),
     });
+};
+
+export const getMessages = async (id) => {
+    const querySnapshot = await getDocs(
+        query(
+            collection(db, "directMessageDB", id, "messages"),
+            orderBy("timestamp"),
+        ),
+    );
+
+    return querySnapshot?.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
 };

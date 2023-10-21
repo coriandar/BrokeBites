@@ -5,23 +5,19 @@ import { useContext } from "react";
 import { getOtherDisplayName } from "../logic/DMLogic";
 import { SelectedChat } from "../logic/SelectedChatContext";
 
-export default function SideBar({
-    chatMasterList,
-    userMasterList,
-    currentUserChatList,
-}) {
+export default function SideBar({ chatMasterList, userMasterList }) {
     const currentUser = auth.currentUser;
     const { dispatch } = useContext(SelectedChat);
 
     const handleSelect = (chat) => {
-        dispatch({ type: "SET_SELECTED_CHAT", payload: chat });
+        dispatch({ type: "SET_SELECTED_CHAT", payload: chat.id });
     };
 
-    const messageList = () => {
+    const chatList = () => {
         return chatMasterList
             ?.filter((chat) => chat.users.includes(currentUser.displayName))
             .map((chat) => (
-                <li>
+                <li key={chat.id}>
                     <button onClick={() => handleSelect(chat)}>
                         {getOtherDisplayName(chat.users, currentUser)}
                     </button>
@@ -37,7 +33,7 @@ export default function SideBar({
                 chatMasterList={chatMasterList}
                 userMasterList={userMasterList}
             />
-            <p>{messageList()}</p>
+            <p>{chatList()}</p>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import BottomBar from "./component/BottomBar";
 import Messages from "./component/Messages";
@@ -46,7 +46,6 @@ export default function DirectMessage() {
                 <SideBar
                     chatMasterList={chatMasterList}
                     userMasterList={userMasterList}
-                    currentUserChatList={currentUserChatList}
                 />
                 <TopBar />
                 <Messages />

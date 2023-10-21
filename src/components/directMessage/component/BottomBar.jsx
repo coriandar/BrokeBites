@@ -1,13 +1,21 @@
 import { auth } from "@/database/firebase/firebaseApp";
 import { sendMessage } from "@/database/firebase/firestore/direcMessageDB";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SelectedChat } from "../logic/SelectedChatContext";
 
-export default function BottomBar({ id }) {
+export default function BottomBar() {
     const [messageText, setMessageText] = useState("");
     const currentUser = auth.currentUser;
+    const { data } = useContext(SelectedChat);
+
+    console.log("Selected chat at BottomBar: ", data.selectedChat);
 
     const handleSend = async () => {
-        sendMessage(messageText, currentUser.displayName, id);
+        sendMessage(
+            messageText,
+            currentUser.displayName,
+            data.selectedChat.toString(),
+        );
     };
 
     const handleKeyDown = (event) => {
