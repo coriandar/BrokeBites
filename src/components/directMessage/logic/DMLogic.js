@@ -10,3 +10,7 @@ export const userExists = (displayName, users) =>
 
 export const getMessageList = (chats, currentUser) =>
     chats?.filter((chat) => chat.users.includes(currentUser.displayName));
+
+export const getOtherDisplayName = (users, currentUser) => {
+    return users?.filter((user) => user !== currentUser.displayName)[0];
+};

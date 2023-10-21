@@ -5,6 +5,13 @@ import { chatExists } from "@/components/directMessage/logic/DMLogic";
 export const createNewChat = async (displayName, chats) => {
     const currentUser = auth.currentUser;
 
+    console.log("Display name in createNewChat: ", displayName);
+    console.log("Chats in createNewChat: ", chats);
+    console.log(
+        "Current user's display name in createNewChat: ",
+        currentUser.displayName,
+    );
+
     if (
         !chatExists(displayName, chats, currentUser) &&
         displayName != currentUser.displayName
