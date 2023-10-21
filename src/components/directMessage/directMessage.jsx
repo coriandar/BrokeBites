@@ -1,9 +1,5 @@
-import React, { useContext } from "react";
 import { useEffect, useState } from "react";
-import BottomBar from "./component/BottomBar";
-import Messages from "./component/Messages";
 import SideBar from "./component/SideBar";
-import TopBar from "./component/TopBar";
 import {
     getAllChats,
     getAllUsers,
@@ -47,9 +43,6 @@ export default function DirectMessage() {
                     chatMasterList={chatMasterList}
                     userMasterList={userMasterList}
                 />
-                <TopBar />
-                <Messages />
-                <BottomBar />
             </SelectedChatProvider>
         </div>
     );

@@ -4,13 +4,19 @@ import UserSearch from "./UserSearch";
 import { useContext } from "react";
 import { getOtherDisplayName } from "../logic/DMLogic";
 import { SelectedChat } from "../logic/SelectedChatContext";
+import Messages from "./Messages";
+import BottomBar from "./BottomBar";
+import TopBar from "./TopBar";
 
 export default function SideBar({ chatMasterList, userMasterList }) {
     const currentUser = auth.currentUser;
     const { dispatch } = useContext(SelectedChat);
+    const { data } = useContext(SelectedChat);
+
+    console.log("Data in SideBar: ", data);
 
     const handleSelect = (chat) => {
-        dispatch({ type: "SET_SELECTED_CHAT", payload: chat.id });
+        dispatch({ type: "SET_SELECTED_CHAT", payload: chat });
     };
 
     const chatList = () => {
@@ -34,6 +40,12 @@ export default function SideBar({ chatMasterList, userMasterList }) {
                 userMasterList={userMasterList}
             />
             <p>{chatList()}</p>
+            {data.selectedChat === null ? null : (
+                <>
+                    <Messages />
+                    <BottomBar />
+                </>
+            )}
         </div>
     );
 }

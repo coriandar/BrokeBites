@@ -13,7 +13,7 @@ export const createNewChat = async (newChatData, dispatch) => {
 
     dispatch({
         type: "SET_SELECTED_CHAT",
-        payload: { id: docRef.id },
+        payload: { id: docRef.id, ...doc.data() },
     });
 };
 

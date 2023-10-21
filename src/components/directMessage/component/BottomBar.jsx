@@ -8,13 +8,13 @@ export default function BottomBar() {
     const currentUser = auth.currentUser;
     const { data } = useContext(SelectedChat);
 
-    console.log("Selected chat at BottomBar: ", data.selectedChat);
+    console.log("Selected chat at BottomBar: ", data?.selectedChat?.id);
 
     const handleSend = async () => {
         sendMessage(
             messageText,
             currentUser.displayName,
-            data.selectedChat.toString(),
+            data.selectedChat.id.toString(),
         );
     };
 

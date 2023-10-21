@@ -14,3 +14,7 @@ export const getMessageList = (chats, currentUser) =>
 export const getOtherDisplayName = (users, currentUser) => {
     return users?.filter((user) => user !== currentUser.displayName)[0];
 };
+
+export const getUserName = (users, currentUser) => {
+    users?.filter((user) => user !== currentUser.displayName);
+};

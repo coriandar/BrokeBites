@@ -6,12 +6,12 @@ export default function Messages() {
     const { data } = useContext(SelectedChat);
     const [messages, setMessages] = useState([]);
 
-    console.log("SelectedChat context data: ", data);
+    console.log("SelectedChat context data: ", data?.selectedChat?.id);
 
-    const displayMessages = async () => {
-        //setMessages(getMessages(data.id));
-        //console.log(messages);
+    const displayMessages = () => {
+        setMessages(getMessages(data.selectedChat.id));
+        console.log("Messages in dispayMessages: ", messages);
     };
 
-    return <div className="messageContainer"></div>;
+    return <div className="messageContainer">Messages go here</div>;
 }
