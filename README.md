@@ -1,7 +1,24 @@
 ## BrokeBites
-Are you a student on a tight budget, tired of surviving on instant noodles and microwave dinners? Say hello to BrokeBites, your ultimate go-to resource for delicious, pocket-friendly, and convenient takeaway options! We understand the struggles of being a student and how challenging it can be to find affordable yet flavourful meals. That's why we're here to help you eat well without breaking the bank, by exploring budget-friendly food choices from restaurants around you.
+We understand that cooking your own meals might not always be feasible due to time constraints or lack of cooking facilities. That's why we've curated a selection of smart and pocket-friendly takeaway options from various restaurants that cater to students on a budget. Now you can enjoy a diverse range of flavors without the hassle of cooking!
+
+Join the food-loving community and elevate your restaurant discovery experience. Download our app today and savor every moment of your culinary exploration. Your next delicious adventure is just a click away!
 
 _Team project using SCRUM methodlogies for COMP602 Software Development Practice._
+
+### Features
+- Account Signup: Create accounts with personal information and login credentials.
+- Interactive Restaurant Map: Displays nearby restaurants and their locations.
+- Search and Save: Quickly search for restaurants with various filters (e.g., cuisine, prices), and save your favourites.
+- Reviews Restaurants: Write reviews for the restaurants.
+- Social Media Features: Enhance social interaction with features like direct messaging, follow, and shares.
+- Premium-Only Features: Ad-free experience for premium subscribers.
+
+- Account Signup: Unlock a world of culinary delights with a few taps. Create your personal account and get ready to embark on a gastronomic journey.
+- Interactive Restaurant Map: Explore your city like never before. Our interactive map reveals the best restaurants in your area, putting their locations at your fingertips.
+- Search and Save: Finding the perfect dining spot is a breeze. Use our powerful search tools to filter restaurants by cuisine, price, and more. Save your favorites to make your next dining experience even more effortless.
+- Reviews Restaurants: Share your culinary adventures with the world. Write and read insightful restaurant reviews from fellow foodies. Your opinions matter!
+- Social Media Features: Connect, engage, and share your foodie experiences with the community. With direct messaging, follows, and easy sharing, your food journey becomes a social adventure.
+- Premium-Only Features: Elevate your dining experience. Upgrade to our premium subscription for an ad-free journey through the world of flavors. Enjoy a seamless, distraction-free exploration of restaurants and cuisines.
 
 --------------------------------------------------
 
@@ -33,16 +50,17 @@ NEXT_PUBLIC_FB_STORAGE_BUCKET=""
 NEXT_PUBLIC_FB_MESSAGING_SENDER_ID=""
 NEXT_PUBLIC_FB_APP_ID=""
 NEXT_PUBLIC_FB_MEASUREMENT_ID=""
-// stripe API
+NEXT_PUBLIC_STRIPE_PUBLIC_KEY=""
 ```
 
 ### Firestore Databases
 ```js
-bugDB
-feedbackDB
+directMessageDB
+reportDB
 restaurantDB
 reviewDB
 userDB
+userFeedDB
 ```
 
 ### Firestore Storage
