@@ -29,9 +29,9 @@ export default function UserSearch({ chatMasterList, userMasterList }) {
     const searchForChat = async () => {
         const chat = chatExists(query, chatMasterList, currentUser);
 
-        if (!chat && displayName !== currentUser.displayName) {
+        if (!chat && query !== currentUser.displayName) {
             const newChatData = {
-                users: [currentUser.displayName, displayName],
+                users: [currentUser.displayName, query],
             };
 
             createNewChat(newChatData, dispatch);

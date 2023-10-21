@@ -1,11 +1,12 @@
 import { auth } from "@/database/firebase/firebaseApp";
 import { sendMessage } from "@/database/firebase/firestore/direcMessageDB";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { SelectedChat } from "../logic/SelectedChatContext";
 
 export default function BottomBar() {
     const [messageText, setMessageText] = useState("");
     const currentUser = auth.currentUser;
+    const { dispatch } = useContext(SelectedChat);
     const { data } = useContext(SelectedChat);
 
     const handleSend = async () => {
@@ -14,10 +15,11 @@ export default function BottomBar() {
             currentUser.displayName,
             data.selectedChat.id.toString(),
         );
+
+        dispatch({ type: "SET_MESSAGE", payload: messageText });
+
         setMessageText("");
     };
-
-    useEffect(() => {}, [messageText]);
 
     const handleKeyDown = (event) => {
         if (event.key === "Enter" || event.keyCode === 13) {

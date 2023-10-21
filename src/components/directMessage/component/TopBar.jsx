@@ -9,6 +9,8 @@ export default function TopBar() {
     const { data } = useContext(SelectedChat);
     const [otherUser, setOtherUser] = useState("");
 
+    console.log("data in TopBar: ", data);
+
     useEffect(() => {
         const userName = getUserName(data.selectedChat.users, currentUser);
         setOtherUser(userName);
