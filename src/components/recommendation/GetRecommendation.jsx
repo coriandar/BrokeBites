@@ -1,23 +1,65 @@
 import React from "react";
+import { auth } from "@/database/firebase/firebaseApp";
+import { fetchAllRestaurants } from "@/database/firebase/firestore/restaurantDB";
+import {
+    mergeLists,
+    fetchRecommendedList,
+} from "./components/recommendationLogic";
+import {
+    fetchFavouritesList,
+    fetchToVisitList,
+    fetchVisitedList,
+} from "@/database/firebase/firestore/userDB";
 import { Button } from "../ui/shadcn-ui/button";
-import { fetchRecommendedList } from "./components/recommendationLogic";
 import RecommendContainer from "./components/RecommendContainer";
 
 export default function GetRecommendation() {
+    const uid = auth?.currentUser?.uid;
+    const [mergedList, setMergedList] = React.useState([]);
+    const [masterList, setMasterList] = React.useState([]);
     const [recommendedList, setRecommendedList] = React.useState([]);
 
-    // const createNewList = () => {
-    //     setRecommendedList(fetchRecommendedList());
-    // };
+    React.useEffect(() => {
+        // add loading wheel, disable button
+        if (mergedList.length > 0 && masterList.length > 0) {
+            setRecommendedList(fetchRecommendedList(mergedList, masterList));
+            console.log("useeffect");
+        }
+    }, [mergedList, masterList]);
+
+    const getRecommendations = async () => {
+        if (mergedList.length === 0) {
+            console.log("loading merged");
+            setMergedList(
+                mergeLists(
+                    await fetchFavouritesList(uid),
+                    await fetchToVisitList(uid),
+                    await fetchVisitedList(uid),
+                ),
+            );
+        }
+
+        if (masterList.length === 0) {
+            console.log("loading master");
+            setMasterList(await fetchAllRestaurants());
+        }
+
+        if (mergedList.length > 0 && masterList.length > 0) {
+            setRecommendedList(
+                await fetchRecommendedList(mergedList, masterList),
+            );
+            console.log("using previous fetch");
+        }
+    };
 
     return (
         <div className="flex flex-col items-center justify-center">
-            {/* <Button onClick={createNewList}>Get Recommendations</Button>
+            <Button onClick={getRecommendations}>Get Recommendations</Button>
             {recommendedList.length > 0 ? (
                 <RecommendContainer restaurants={recommendedList} />
             ) : (
                 <p>No recommendations found, please try again.</p>
-            )} */}
+            )}
         </div>
     );
 }

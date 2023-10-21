@@ -15,6 +15,7 @@ import GetRecommendation from "@/components/recommendation/GetRecommendation";
 
 export default function AccountSettings() {
     const [user, loading] = useAuthState(auth);
+    const [isPremium, setIsPremium] = React.useState(true);
     const router = useRouter();
     const photoURL = user?.photoURL;
 
@@ -33,9 +34,7 @@ export default function AccountSettings() {
                     <SubmitFeedback />
                     <SubmitBug />
                 </div>
-                <div>
-                    <GetRecommendation />
-                </div>
+                <div>{isPremium && <GetRecommendation />}</div>
                 <div>
                     <FollowingContainer />
                 </div>
