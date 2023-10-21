@@ -15,6 +15,7 @@ import RecommendContainer from "./components/RecommendContainer";
 
 export default function GetRecommendation() {
     const uid = auth?.currentUser?.uid;
+    const [nearby, setNearby] = React.useState(false);
     const [mergedList, setMergedList] = React.useState([]);
     const [masterList, setMasterList] = React.useState([]);
     const [recommendedList, setRecommendedList] = React.useState([]);
@@ -22,7 +23,9 @@ export default function GetRecommendation() {
     React.useEffect(() => {
         // add loading wheel, disable button
         if (mergedList.length > 0 && masterList.length > 0) {
-            setRecommendedList(fetchRecommendedList(mergedList, masterList));
+            setRecommendedList(
+                fetchRecommendedList(mergedList, masterList, nearby),
+            );
             console.log("useeffect");
         }
     }, [mergedList, masterList]);
@@ -46,15 +49,18 @@ export default function GetRecommendation() {
 
         if (mergedList.length > 0 && masterList.length > 0) {
             setRecommendedList(
-                await fetchRecommendedList(mergedList, masterList),
+                await fetchRecommendedList(mergedList, masterList, nearby),
             );
             console.log("using previous fetch");
         }
     };
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex h-[400px] flex-col items-center justify-center">
             <Button onClick={getRecommendations}>Get Recommendations</Button>
+            <Button variant={"secondary"} onClick={() => setNearby(!nearby)}>
+                Nearby: {nearby ? "Enabled" : "Disabled"}
+            </Button>
             {recommendedList.length > 0 ? (
                 <RecommendContainer restaurants={recommendedList} />
             ) : (
