@@ -27,8 +27,13 @@ export const getParamPostCode = (mergedList) => {
 export const mergeLists = (...lists) => {
     const mergedList = [];
     for (const list of lists) mergedList.push(...list);
-    const setMergedList = [...new Set(mergedList.map((item) => item.id))];
-    return setMergedList;
+
+    return Object.values(
+        mergedList.reduce((acc, entry) => {
+            acc[entry.id] = entry;
+            return acc;
+        }, {}),
+    );
 };
 
 export const fetchRecommendedList = (mergedList, masterList) => {
@@ -50,7 +55,7 @@ export const fetchRecommendedList = (mergedList, masterList) => {
         .map((entry) => entry?.id)
         .filter((id) => id !== undefined);
 
-    if (filterID > 0) {
+    if (filterID.length > 0) {
         const setFiltered = filtered.filter(
             (entry) => !filterID?.includes(entry.id),
         );
