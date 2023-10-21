@@ -1,53 +1,59 @@
 import { auth } from "@/database/firebase/firebaseApp";
 import {
-    createConversation,
-    fetchAllUsers,
-    searchUser,
+    createNewChat,
+    getAllChats as getAllChats,
+    getAllUsers,
 } from "@/database/firebase/firestore/direcMessageDB";
 import { useEffect, useRef, useState } from "react";
-import Message from "./Message";
+import { getMessageList, userExists } from "../logic/DMLogic";
+import { WarningModal } from "../WarningModal";
 
 export default function UserSearch() {
     const [query, setQuery] = useState("");
-    const [userList, setUserList] = useState([]);
-    const [searchResult, setSearchResult] = useState([]);
+    const [chats, setChats] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [chatList, setChatList] = useState([]);
+    const [showWarning, setShowWarning] = useState(false);
     const [searchBoxClicked, setSearchBoxClicked] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
     const inputRef = useRef(null);
 
     const currentUser = auth.currentUser;
 
+    const handleSearch = async () => {
+        console.log("Users in handleSearch", users);
+        console.log("query: ", query);
+        setSelectedUser(userExists(query, users));
+
+        if (selectedUser) {
+            console.log("Selected user: ", selectedUser);
+            createNewChat(query, chats);
+        } else {
+            setShowWarning(true);
+        }
+    };
+
+    const handleKeyDown = (event) => {
+        console.log("Selected user in handleKeyDown: ", selectedUser);
+        if (event.key === "Enter" || event.keyCode === 13) {
+            handleSearch();
+        }
+    };
+
     useEffect(() => {
-        const getUsers = async () => {
-            setUserList(await fetchAllUsers());
+        const fetchData = async () => {
+            const messages = await getAllChats();
+            setChats(messages);
+
+            const users = await getAllUsers();
+            setUsers(users);
+
+            const messageList = await getMessageList(messages, currentUser);
+            setChatList(messageList);
         };
 
-        getUsers();
+        fetchData();
     }, []);
-
-    useEffect(() => {
-        if (query) {
-            setSearchResult(searchUser(query.toLowerCase()));
-            console.log("searchResult: ", searchResult);
-        } else {
-            setSearchResult(userList);
-        }
-    }, [query, userList]);
-
-    useEffect(() => {
-        if (selectedUser) {
-            setSearchBoxClicked(false);
-
-            console.log("Selected user after setting: ", selectedUser);
-
-            const conversationID =
-                currentUser.uid < selectedUser.id
-                    ? currentUser.uid + selectedUser.id
-                    : selectedUser.id + currentUser.uid;
-
-            createConversation(conversationID);
-        }
-    }, [selectedUser]);
 
     const handleClickOutside = (e) => {
         if (inputRef.current && !inputRef.current.contains(e.target)) {
@@ -56,7 +62,7 @@ export default function UserSearch() {
     };
 
     const handleEscapeKey = (e) => {
-        if (e.key === "Escape") {
+        if (searchBoxClicked && e.key === "Escape") {
             setSearchBoxClicked(false);
         }
     };
@@ -84,14 +90,10 @@ export default function UserSearch() {
                 placeholder="Find a BiteMate"
                 onClick={() => setSearchBoxClicked(true)}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => handleKeyDown(e)}
             />
-            {searchBoxClicked
-                ? searchResult.map((user) => (
-                      <div key={user.id} onClick={() => setSelectedUser(user)}>
-                          {user.displayName}
-                      </div>
-                  ))
-                : selectedUser && <Message selectedUser={selectedUser} />}
+            <button onClick={() => handleSearch()}>Search</button>
+            {showWarning && <WarningModal setShowWarning={setShowWarning} />}
         </div>
     );
 }

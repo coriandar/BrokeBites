@@ -1,119 +1,35 @@
-import {
-    updateDoc,
-    collection,
-    doc,
-    getDocs,
-    getDoc,
-    serverTimestamp,
-    addDoc,
-    orderBy,
-    setDoc,
-} from "firebase/firestore";
-import { db } from "../firebaseApp";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { auth, db } from "../firebaseApp";
+import { chatExists } from "@/components/directMessage/logic/DMLogic";
 
-export const fetchAllUsers = async () => {
-    try {
-        const userCollectionRef = collection(db, "userDB");
-        const data = await getDocs(userCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-        }));
+export const createNewChat = async (displayName, chats) => {
+    const currentUser = auth.currentUser;
 
-        return filteredData;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const searchUser = async (userDisplayName) => {
-    const userMasterList = await fetchAllUsers();
-
-    if (!userDisplayName) {
-        return userMasterList;
-    }
-
-    return userMasterList.filter((user) =>
-        user.displayName.toLowerCase().includes(userDisplayName.toLowerCase()),
-    );
-};
-
-export const createConversation = async (conversationID) => {
-    const docRef = doc(db, "directMessageDB", conversationID);
-
-    try {
-        const conversationDoc = await getDoc(docRef);
-
-        if (!conversationDoc.exists()) {
-            await setDoc(docRef, { latestMessage: "" });
-            console.log("Document added");
-        }
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const sendMessage = async (conversationID, messageText, senderID) => {
-    const conversationDocRef = doc(db, "directMessageDB", conversationID);
-
-    try {
-        const collectionRef = collection(conversationDocRef, "messages");
-        await addDoc(collectionRef, {
-            messageText: messageText,
-            senderID: senderID,
-            timestamp: serverTimestamp(),
+    if (
+        !chatExists(displayName, chats, currentUser) &&
+        displayName != currentUser.displayName
+    ) {
+        await addDoc(collection(db, "directMessageDB"), {
+            users: [currentUser.displayName, displayName],
         });
-
-        await updateDoc(conversationDocRef, { latestMessage: messageText });
-    } catch (error) {
-        console.error("Error sending the message:", error);
     }
 };
 
-export const getMessages = async (conversationID) => {
-    const messageRef = collection(
-        doc(db, "directMessageDB", conversationID, "messages"),
-    );
+export const getAllChats = async () => {
+    const querySnapshot = await getDocs(collection(db, "directMessageDB"));
 
-    try {
-        const querySnapshot = await getDocs(
-            orderBy(messageRef, "timestamp", "asc"),
-        );
-
-        const messages = [];
-        querySnapshot.forEach((doc) => {
-            const messageData = doc.data();
-            messages.push({
-                id: doc.id,
-                messageText: messageData.messageText,
-                timestamp: messageData.timestamp,
-                senderID: messageData.senderID,
-            });
-        });
-
-        return messages;
-    } catch (error) {
-        console.error("Error fetching messages:", error);
-        return [];
-    }
+    return querySnapshot?.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
-export const getMessageList = async (currentUserID) => {
-    const directMessageRef = collection(db, "directMessageDB");
-    const query = query(
-        directMessageRef,
-        where("senderID", "===", currentUserID),
-    );
+export const getAllUsers = async () => {
+    const querySnapshot = await getDocs(collection(db, "userDB"));
 
-    try {
-        const querySnapshot = await getDocs(query);
-        const messageList = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
+    return querySnapshot?.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+};
 
-        return messageList;
-    } catch (error) {
-        console.log("Error fetching message list: ", error);
-    }
+export const sendMessage = async (messageText, senderName) => {
+    const DMCollectionRef = collection(db, "directMessageDB");
 };

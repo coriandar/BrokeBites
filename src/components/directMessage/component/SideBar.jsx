@@ -1,5 +1,6 @@
 import Avatar from "@/components/account/Avatar";
 import { auth } from "@/database/firebase/firebaseApp";
+import UserSearch from "./UserSearch";
 
 export default function SideBar() {
     const currentUser = auth.currentUser;
@@ -12,7 +13,7 @@ export default function SideBar() {
         <div className="sidebarContainer">
             <p>{currentUser.displayName}</p>
             <Avatar maxW={"w-[50px]"} photoURL={currentUser.photoURL} />
-            <button className="button">Search</button>
+            <UserSearch />
             <div>{messageList()}</div>
         </div>
     );
