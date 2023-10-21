@@ -10,13 +10,25 @@ export const RestaurantOccupancy = ({ restaurant }) => {
 
     const occupancy = getOccupancyInfo(occupancyArray, currentDay, currentHour);
 
+    const convertOccupancy = () => {
+        if (occupancy <= 45) {
+            return "Not busy";
+        } else if (45 < occupancy && occupancy <= 60) {
+            return "Moderately busy";
+        } else if (60 < occupancy && occupancy <= 75) {
+            return "Busy";
+        } else {
+            return "Very busy";
+        }
+    };
+
     return (
         <div>
-            {occupancy ? (
-                <p>{`Current Occupancy: ${occupancy}%`}</p>
-            ) : (
-                <p>Current Occupancy: Not available</p>
-            )}
+            <p>
+                <p>{`Service Time: ${
+                    occupancy ? convertOccupancy() : "Not Available"
+                }`}</p>
+            </p>
         </div>
     );
 };
