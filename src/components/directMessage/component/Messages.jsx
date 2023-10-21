@@ -8,8 +8,6 @@ export default function Messages() {
     const [messages, setMessages] = useState([]);
     const currentUser = auth.currentUser.displayName;
 
-    console.log("CurrentUser in Messages: ", currentUser);
-
     useEffect(() => {
         displayMessages();
     }, [data]);
@@ -38,7 +36,6 @@ export default function Messages() {
             <ul className="messageList">
                 {messages.map((message) => (
                     <li key={message.id} className="messageItem">
-                        {console.log(message.sender)}
                         {message.sender === currentUser ? (
                             <div className="sentMessage">
                                 {message.messageText}

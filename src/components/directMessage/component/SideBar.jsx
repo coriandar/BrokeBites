@@ -13,8 +13,6 @@ export default function SideBar({ chatMasterList, userMasterList }) {
     const { dispatch } = useContext(SelectedChat);
     const { data } = useContext(SelectedChat);
 
-    console.log("Data in SideBar: ", data);
-
     const handleSelect = (chat) => {
         dispatch({ type: "SET_SELECTED_CHAT", payload: chat });
     };
@@ -42,6 +40,7 @@ export default function SideBar({ chatMasterList, userMasterList }) {
             <p>{chatList()}</p>
             {data.selectedChat === null ? null : (
                 <>
+                    <TopBar />
                     <Messages />
                     <BottomBar />
                 </>
