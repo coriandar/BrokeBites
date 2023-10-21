@@ -12,6 +12,7 @@ import {
 } from "@/database/firebase/firestore/userDB";
 import { Button } from "../ui/shadcn-ui/button";
 import RecommendContainer from "./components/RecommendContainer";
+import { Icons } from "../ui/icons/icons";
 
 export default function GetRecommendation() {
     const uid = auth?.currentUser?.uid;
@@ -19,18 +20,23 @@ export default function GetRecommendation() {
     const [mergedList, setMergedList] = React.useState([]);
     const [masterList, setMasterList] = React.useState([]);
     const [recommendedList, setRecommendedList] = React.useState([]);
+    const [isLoading, setIsLoading] = React.useState(false);
 
-    React.useEffect(() => {
-        // add loading wheel, disable button
+    const createRecommendList = () => {
         if (mergedList.length > 0 && masterList.length > 0) {
             setRecommendedList(
                 fetchRecommendedList(mergedList, masterList, nearby),
             );
-            console.log("useeffect");
+            setIsLoading(false);
         }
+    };
+
+    React.useEffect(() => {
+        createRecommendList();
     }, [mergedList, masterList]);
 
     const getRecommendations = async () => {
+        setIsLoading(true);
         if (mergedList.length === 0) {
             console.log("loading merged");
             setMergedList(
@@ -46,25 +52,27 @@ export default function GetRecommendation() {
             console.log("loading master");
             setMasterList(await fetchAllRestaurants());
         }
-
-        if (mergedList.length > 0 && masterList.length > 0) {
-            setRecommendedList(
-                await fetchRecommendedList(mergedList, masterList, nearby),
-            );
-            console.log("using previous fetch");
-        }
+        createRecommendList();
     };
 
     return (
         <div className="flex h-[400px] flex-col items-center justify-center">
-            <Button onClick={getRecommendations}>Get Recommendations</Button>
-            <Button variant={"secondary"} onClick={() => setNearby(!nearby)}>
+            <Button disabled={isLoading} onClick={getRecommendations}>
+                {isLoading && (
+                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Get Recommendations
+            </Button>
+
+            <Button
+                disabled={isLoading}
+                variant={"secondary"}
+                onClick={() => setNearby(!nearby)}
+            >
                 Nearby: {nearby ? "Enabled" : "Disabled"}
             </Button>
-            {recommendedList.length > 0 ? (
+            {recommendedList.length > 0 && (
                 <RecommendContainer restaurants={recommendedList} />
-            ) : (
-                <p>No recommendations found, please try again.</p>
             )}
         </div>
     );
