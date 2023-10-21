@@ -6,19 +6,12 @@ Join the food-loving community and elevate your restaurant discovery experience.
 _Team project using SCRUM methodlogies for COMP602 Software Development Practice._
 
 ### Features
-- Account Signup: Create accounts with personal information and login credentials.
-- Interactive Restaurant Map: Displays nearby restaurants and their locations.
-- Search and Save: Quickly search for restaurants with various filters (e.g., cuisine, prices), and save your favourites.
-- Reviews Restaurants: Write reviews for the restaurants.
-- Social Media Features: Enhance social interaction with features like direct messaging, follow, and shares.
-- Premium-Only Features: Ad-free experience for premium subscribers.
-
-- Account Signup: Unlock a world of culinary delights with a few taps. Create your personal account and get ready to embark on a gastronomic journey.
-- Interactive Restaurant Map: Explore your city like never before. Our interactive map reveals the best restaurants in your area, putting their locations at your fingertips.
-- Search and Save: Finding the perfect dining spot is a breeze. Use our powerful search tools to filter restaurants by cuisine, price, and more. Save your favorites to make your next dining experience even more effortless.
-- Reviews Restaurants: Share your culinary adventures with the world. Write and read insightful restaurant reviews from fellow foodies. Your opinions matter!
-- Social Media Features: Connect, engage, and share your foodie experiences with the community. With direct messaging, follows, and easy sharing, your food journey becomes a social adventure.
-- Premium-Only Features: Elevate your dining experience. Upgrade to our premium subscription for an ad-free journey through the world of flavors. Enjoy a seamless, distraction-free exploration of restaurants and cuisines.
+- __Account Signup:__ Unlock a world of culinary delights with a few taps. Create your personal account and get ready to embark on a gastronomic journey.
+- __Interactive Restaurant Map:__ Explore your city like never before. Our interactive map reveals the best restaurants in your area, putting their locations at your fingertips.
+- __Search and Save:__ Finding the perfect dining spot is a breeze. Use our powerful search tools to filter restaurants by cuisine, price, and more. Save your favorites to make your next dining experience even more effortless.
+- __Reviews Restaurants:__ Share your culinary adventures with the world. Write and read insightful restaurant reviews from fellow foodies. Your opinions matter!
+- __Social Media Features:__ Connect, engage, and share your foodie experiences with the community. With direct messaging, follows, and easy sharing, your food journey becomes a social adventure.
+- __Premium-Only Features:__ Elevate your dining experience. Upgrade to our premium subscription for an ad-free journey through the world of flavors. Enjoy a seamless, distraction-free exploration of restaurants and cuisines.
 
 --------------------------------------------------
 
