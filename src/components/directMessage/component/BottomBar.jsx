@@ -10,11 +10,7 @@ export default function BottomBar() {
     const { data } = useContext(SelectedChat);
 
     const handleSend = async () => {
-        sendMessage(
-            messageText,
-            currentUser.displayName,
-            data.selectedChat.id.toString(),
-        );
+        sendMessage(messageText, currentUser.displayName, data.selectedChat.id);
 
         dispatch({ type: "SET_MESSAGE", payload: messageText });
 

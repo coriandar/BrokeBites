@@ -36,7 +36,7 @@ export default function UserSearch({ chatMasterList, userMasterList }) {
 
             createNewChat(newChatData, dispatch);
         } else {
-            dispatch({ type: "SET_SELECTED_CHAT", payload: chat.id });
+            dispatch({ type: "SET_SELECTED_CHAT", payload: chat });
         }
     };
 

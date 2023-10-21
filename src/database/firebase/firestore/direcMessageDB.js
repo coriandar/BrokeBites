@@ -16,7 +16,10 @@ export const createNewChat = async (newChatData, dispatch) => {
             newChatData,
         );
         const docSnapshot = await getDoc(docRef);
-        const newChat = { ...docSnapshot.data() };
+        const newChat = {
+            id: docSnapshot.id,
+            ...docSnapshot.data(),
+        };
 
         dispatch({
             type: "SET_SELECTED_CHAT",
