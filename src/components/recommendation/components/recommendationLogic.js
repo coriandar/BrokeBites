@@ -36,10 +36,22 @@ export const mergeLists = (...lists) => {
     );
 };
 
+const shuffleArray = (array) => {
+    // Fisher-Yates algorithm
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+};
+
 export const fetchRecommendedList = (mergedList, masterList) => {
     const diet = getRand(mergedList)?.dietary;
     const cuisine = getRand(mergedList)?.cuisine;
     const { lowerBound, upperBound } = getParamPostCode(mergedList);
+    console.log(diet);
+    console.log(cuisine);
+    console.log(lowerBound);
 
     const filtered = masterList
         .filter((entry) => entry?.dietary === diet)
@@ -56,9 +68,12 @@ export const fetchRecommendedList = (mergedList, masterList) => {
         .filter((id) => id !== undefined);
 
     if (filterID.length > 0) {
-        const setFiltered = filtered.filter(
+        const uniqueFiltered = filtered.filter(
             (entry) => !filterID?.includes(entry.id),
         );
-        return setFiltered.slice(0, 3);
-    } else return filtered.slice(0, 3);
+        // return random 3
+        return shuffleArray(uniqueFiltered).slice(0, 3);
+    } else {
+        return shuffleArray(filtered).slice(0, 3);
+    }
 };
