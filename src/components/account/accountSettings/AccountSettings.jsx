@@ -11,9 +11,11 @@ import SubmitFeedback from "./components/SubmitFeedback";
 import SubmitBug from "./components/SubmitBug";
 import FollowingContainer from "@/components/following/FollowingContainer";
 import FollowerContainer from "@/components/following/FollowerContainer";
+import GetRecommendation from "@/components/recommendation/GetRecommendation";
 
 export default function AccountSettings() {
     const [user, loading] = useAuthState(auth);
+    const [isPremium, setIsPremium] = React.useState(true);
     const router = useRouter();
     const photoURL = user?.photoURL;
 
@@ -32,6 +34,7 @@ export default function AccountSettings() {
                     <SubmitFeedback />
                     <SubmitBug />
                 </div>
+                <div>{isPremium && <GetRecommendation />}</div>
                 <div>
                     <FollowingContainer />
                 </div>
