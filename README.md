@@ -53,12 +53,6 @@ avatar/
 ### Scraping restaurant data
 - Use Apify `Google Maps Scraper`.
 - Filter and clean data as appropriate.
-- Format data with `/src/util/cleanData.js`
-
-```js
-cd src/util
-node ./formatData.js
-```
 
 --------------------------------------------------
 
