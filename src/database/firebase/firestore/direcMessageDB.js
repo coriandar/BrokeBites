@@ -1,4 +1,9 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+    addDoc,
+    collection,
+    getDocs,
+    serverTimestamp,
+} from "firebase/firestore";
 import { auth, db } from "../firebaseApp";
 import { chatExists } from "@/components/directMessage/logic/DMLogic";
 
@@ -37,6 +42,10 @@ export const getAllUsers = async () => {
     }));
 };
 
-export const sendMessage = async (messageText, senderName) => {
-    const DMCollectionRef = collection(db, "directMessageDB");
+export const sendMessage = async (messageText, sender, id) => {
+    await addDoc(collection(db, "directMessageDB", id, "messages"), {
+        messageText: messageText,
+        sender: sender.displayName,
+        timestamp: serverTimestamp(),
+    });
 };

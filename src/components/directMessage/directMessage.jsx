@@ -10,6 +10,7 @@ import {
 } from "@/database/firebase/firestore/direcMessageDB";
 import { getMessageList } from "./logic/DMLogic";
 import { auth } from "@/database/firebase/firebaseApp";
+import { SelectedChatProvider } from "./logic/SelectedChatContext";
 
 export default function DirectMessage() {
     const [chatMasterList, setChatMasterList] = useState([]);
@@ -41,14 +42,16 @@ export default function DirectMessage() {
 
     return (
         <div>
-            <SideBar
-                chatMasterList={chatMasterList}
-                userMasterList={userMasterList}
-                currentUserChatList={currentUserChatList}
-            />
-            <TopBar />
-            <Messages />
-            <BottomBar />
+            <SelectedChatProvider>
+                <SideBar
+                    chatMasterList={chatMasterList}
+                    userMasterList={userMasterList}
+                    currentUserChatList={currentUserChatList}
+                />
+                <TopBar />
+                <Messages />
+                <BottomBar />
+            </SelectedChatProvider>
         </div>
     );
 }

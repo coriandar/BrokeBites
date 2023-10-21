@@ -1,21 +1,20 @@
 import Avatar from "@/components/account/Avatar";
 import { auth } from "@/database/firebase/firebaseApp";
 import UserSearch from "./UserSearch";
-import { useState } from "react";
+import { useContext } from "react";
 import { getOtherDisplayName } from "../logic/DMLogic";
-import { useRouter } from "next/router";
+import { SelectedChat } from "../logic/SelectedChatContext";
 
 export default function SideBar({
     chatMasterList,
     userMasterList,
     currentUserChatList,
 }) {
-    const router = useRouter();
     const currentUser = auth.currentUser;
-    const [displayNames, setDisplayNames] = useState([]);
+    const { dispatch } = useContext(SelectedChat);
 
-    const redirect = (id) => {
-        router.redirect(`/chat/${id}`);
+    const handleSelect = (chat) => {
+        dispatch({ type: "SET_SELECTED_CHAT", payload: chat });
     };
 
     const messageList = () => {
@@ -23,7 +22,7 @@ export default function SideBar({
             ?.filter((chat) => chat.users.includes(currentUser.displayName))
             .map((chat) => (
                 <li>
-                    <button onClick={() => redirect(chat.id)}>
+                    <button onClick={() => handleSelect(chat)}>
                         {getOtherDisplayName(chat.users, currentUser)}
                     </button>
                 </li>

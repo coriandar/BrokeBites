@@ -1,7 +1,7 @@
 import { createNewChat } from "@/database/firebase/firestore/direcMessageDB";
 import { useEffect, useRef, useState } from "react";
 import { userExists } from "../logic/DMLogic";
-import { WarningModal } from "../WarningModal";
+import { WarningModal } from "./WarningModal";
 
 export default function UserSearch({ chatMasterList, userMasterList }) {
     const [query, setQuery] = useState("");
