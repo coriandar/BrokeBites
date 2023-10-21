@@ -11,6 +11,7 @@ import SubmitFeedback from "./components/SubmitFeedback";
 import SubmitBug from "./components/SubmitBug";
 import FollowingContainer from "@/components/following/FollowingContainer";
 import FollowerContainer from "@/components/following/FollowerContainer";
+import GetRecommendation from "@/components/recommendation/GetRecommendation";
 
 export default function AccountSettings() {
     const [user, loading] = useAuthState(auth);
@@ -31,6 +32,9 @@ export default function AccountSettings() {
                     <UpdatePassword />
                     <SubmitFeedback />
                     <SubmitBug />
+                </div>
+                <div>
+                    <GetRecommendation />
                 </div>
                 <div>
                     <FollowingContainer />
