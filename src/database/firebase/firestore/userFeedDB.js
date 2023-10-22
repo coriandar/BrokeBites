@@ -6,7 +6,7 @@ export const fetchFeed = async (userID) => {
     const userFeedCollectionRef = collection(db, "userFeedDB");
 
     // Create a query to filter documents by userID
-    const q = query(userFeedCollectionRef, where("userID", "==", userID));
+    const q = query(userFeedCollectionRef, where("user", "==", userID));
 
     try {
         // Fetch the documents that match the query
