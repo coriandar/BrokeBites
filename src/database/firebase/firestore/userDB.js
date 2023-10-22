@@ -250,3 +250,38 @@ export const removePremium = async () => {
         console.error("Error removing premium:", error);
     }
 };
+
+//check if user is premium
+export const checkPremiumStatus = async () => {
+    const currentUserID = auth.currentUser?.uid;
+
+    //if not logged in, return false
+    if (!currentUserID) {
+        return false;
+    }
+
+    const userDocRef = doc(db, "userDB", currentUserID);
+
+    try {
+        const userDocSnapshot = await getDoc(userDocRef);
+
+        //get userDocSnapshot data from firebase
+        if (userDocSnapshot.exists()) {
+            const userData = userDocSnapshot.data();
+            console.log(userData.premium);
+            if (userData.premium === true) {
+                return true; // return true if premium is true
+            } else if (userData.premium === false) {
+                return false; // return false if premium is false
+            } else {
+                return false; // return false if premium is not defined
+            }
+        } else {
+            console.error("User document not found.");
+            return false; // User document doesn't exist
+        }
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+};
