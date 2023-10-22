@@ -1,23 +1,29 @@
 import { db } from "../firebaseApp";
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, query, where } from "firebase/firestore";
 
 export const fetchFeed = async (userID) => {
-    // Create a reference to the restaurant document in Firestore
-    const userFeedDocRef = doc(db, "userFeedDB", userID);
+    // Reference the userFeedDB collection
+    const userFeedCollectionRef = collection(db, "userFeedDB");
 
-    console.log(userID);
-    // Fetch the restaurants data
-    const userFeedDocSnapshot = await getDoc(userFeedDocRef);
+    // Create a query to filter documents by userID
+    const q = query(userFeedCollectionRef, where("userID", "==", userID));
 
-    if (!userFeedDocSnapshot.exists()) return null;
+    try {
+        // Fetch the documents that match the query
+        const userFeedQuerySnapshot = await getDocs(q);
 
-    console.log("in userFeedDB");
-    const userFeedData = {
-        ...userFeedDocSnapshot.data(),
-        id: userID,
-    };
+        const userFeedData = [];
 
-    console.log("in userFeedDB: " + userFeedData);
+        userFeedQuerySnapshot.forEach((docSnapshot) => {
+            userFeedData.push({
+                ...docSnapshot.data(),
+                id: docSnapshot.id,
+            });
+        });
 
-    return userFeedData;
+        return userFeedData;
+    } catch (error) {
+        console.error("Error fetching user feed data:", error);
+        return null;
+    }
 };
