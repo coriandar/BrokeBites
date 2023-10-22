@@ -20,6 +20,19 @@ import FilterSearch from "./components/FilterSearch";
 import FilterSlider from "./components/FilterSlider";
 import FilterType from "./components/FilterType";
 import { FilterButton } from "./components/FilterButton";
+import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
+import {
+    CircleDollarSign,
+    Compass,
+    Fuel,
+    Globe2,
+    Mailbox,
+    Salad,
+    Search,
+    Star,
+    Utensils,
+} from "lucide-react";
+import { Button } from "../ui/shadcn-ui/button";
 
 export default function FilterSelector({
     activeFilter,
@@ -31,6 +44,7 @@ export default function FilterSelector({
 
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
+        changeColour(buttonName);
     };
 
     const changeColour = (buttonName) => {
@@ -134,33 +148,24 @@ export default function FilterSelector({
                         id="filter1"
                         className="-mb-2 flex items-center justify-start"
                     >
-                        <li className="cursor-pointer p-2">
-                            <button
-                                className={`rounded-s-md px-4 py-1 text-xs ${changeColour(
-                                    "search",
-                                )}`}
-                                onClick={() => handleClick("search")}
+                        <li className="cursor-pointer space-x-2 p-2">
+                            <ButtonCircleIcon
+                                action={() => handleClick("search")}
                             >
-                                Search
-                            </button>
+                                <Search />
+                            </ButtonCircleIcon>
 
-                            <button
-                                className={`px-4 py-1 text-xs ${changeColour(
-                                    "priceRange",
-                                )}`}
-                                onClick={() => handleClick("priceRange")}
+                            <ButtonCircleIcon
+                                action={() => handleClick("priceRange")}
                             >
-                                Filter by Price Range
-                            </button>
+                                <CircleDollarSign />
+                            </ButtonCircleIcon>
 
-                            <button
-                                className={`rounded-e-md px-4 py-1 text-xs ${changeColour(
-                                    "fillingFactor",
-                                )}`}
-                                onClick={() => handleClick("fillingFactor")}
+                            <ButtonCircleIcon
+                                action={() => handleClick("fillingFactor")}
                             >
-                                Filter by Filling Factor
-                            </button>
+                                <Fuel />
+                            </ButtonCircleIcon>
                         </li>
                     </ul>
 
@@ -168,62 +173,48 @@ export default function FilterSelector({
                         id="filter2"
                         className="flex items-center justify-start"
                     >
-                        <li className="cursor-pointer p-2">
-                            <button
-                                className={`rounded-s-md px-4 py-1 text-xs ${changeColour(
-                                    "cuisine",
-                                )}`}
-                                onClick={() => handleClick("cuisine")}
+                        <li className="cursor-pointer space-x-2 p-2">
+                            <ButtonCircleIcon
+                                action={() => handleClick("cuisine")}
                             >
-                                Filter by Cuisine
-                            </button>
-                            <button
-                                className={`px-4 py-1 text-xs ${changeColour(
-                                    "dietary",
-                                )}`}
-                                onClick={() => handleClick("dietary")}
+                                <Globe2 />
+                            </ButtonCircleIcon>
+
+                            <ButtonCircleIcon
+                                action={() => handleClick("dietary")}
                             >
-                                Filter by Dietary
-                            </button>
-                            <button
-                                className={`rounded-e-md px-4 py-1 text-xs ${changeColour(
-                                    "starRating",
-                                )}`}
-                                onClick={() => handleClick("starRating")}
+                                <Salad />
+                            </ButtonCircleIcon>
+
+                            <ButtonCircleIcon
+                                action={() => handleClick("starRating")}
                             >
-                                Filter by Stars
-                            </button>
+                                <Star />
+                            </ButtonCircleIcon>
                         </li>
                     </ul>
                     <ul
                         id="filter3"
                         className="flex items-center justify-start"
                     >
-                        <li className="cursor-pointer p-2">
-                            <button
-                                className={`rounded-s-md px-4 py-1 text-xs ${changeColour(
-                                    "post",
-                                )}`}
-                                onClick={() => handleClick("post")}
+                        <li className="cursor-pointer space-x-2 p-2">
+                            <ButtonCircleIcon
+                                action={() => handleClick("post")}
                             >
-                                Filter by Postcode
-                            </button>
-                            <button
-                                className={`px-4 py-1 text-xs ${changeColour(
-                                    "place",
-                                )}`}
-                                onClick={() => handleClick("place")}
+                                <Mailbox />
+                            </ButtonCircleIcon>
+
+                            <ButtonCircleIcon
+                                action={() => handleClick("place")}
                             >
-                                Filter by Place
-                            </button>
-                            <button
-                                className={`px-4 py-1 text-xs ${changeColour(
-                                    "cardinal",
-                                )}`}
-                                onClick={() => handleClick("cardinal")}
+                                <Utensils />
+                            </ButtonCircleIcon>
+
+                            <ButtonCircleIcon
+                                action={() => handleClick("cardinal")}
                             >
-                                Filter by Cardinality
-                            </button>
+                                <Compass />
+                            </ButtonCircleIcon>
                         </li>
                     </ul>
                     <div>{changeFilter(activeFilter)}</div>
