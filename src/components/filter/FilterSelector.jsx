@@ -33,6 +33,7 @@ import {
     Utensils,
 } from "lucide-react";
 import { Button } from "../ui/shadcn-ui/button";
+import Tooltip from "../ui/tooltip/Tooltip";
 
 export default function FilterSelector({
     activeFilter,
@@ -148,74 +149,101 @@ export default function FilterSelector({
                         id="filter1"
                         className="-mb-2 flex items-center justify-start"
                     >
-                        <li className="cursor-pointer space-x-2 p-2">
-                            <ButtonCircleIcon
-                                action={() => handleClick("search")}
-                            >
-                                <Search />
-                            </ButtonCircleIcon>
+                        <div className="-ml-1 flex space-x-2">
+                            <div className="group relative cursor-pointer py-2">
+                                <Tooltip text={"Search"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("search")}
+                                >
+                                    <Search />
+                                </ButtonCircleIcon>
+                            </div>
 
-                            <ButtonCircleIcon
-                                action={() => handleClick("priceRange")}
-                            >
-                                <CircleDollarSign />
-                            </ButtonCircleIcon>
+                            <div className="group relative cursor-pointer py-2">
+                                <Tooltip text={"Price Range"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("priceRange")}
+                                >
+                                    <CircleDollarSign />
+                                </ButtonCircleIcon>
+                            </div>
 
-                            <ButtonCircleIcon
-                                action={() => handleClick("fillingFactor")}
-                            >
-                                <Fuel />
-                            </ButtonCircleIcon>
-                        </li>
+                            <div className="group relative cursor-pointer py-2">
+                                <Tooltip text={"Filling Factor"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("fillingFactor")}
+                                >
+                                    <Fuel />
+                                </ButtonCircleIcon>
+                            </div>
+                        </div>
                     </ul>
 
                     <ul
                         id="filter2"
                         className="flex items-center justify-start"
                     >
-                        <li className="cursor-pointer space-x-2 p-2">
-                            <ButtonCircleIcon
-                                action={() => handleClick("cuisine")}
-                            >
-                                <Globe2 />
-                            </ButtonCircleIcon>
+                        <div className="-ml-1 flex space-x-2">
+                            <div className="group relative cursor-pointer py-2">
+                                <Tooltip text={"Cuisine"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("cuisine")}
+                                >
+                                    <Globe2 />
+                                </ButtonCircleIcon>
+                            </div>
 
-                            <ButtonCircleIcon
-                                action={() => handleClick("dietary")}
-                            >
-                                <Salad />
-                            </ButtonCircleIcon>
+                            <div className="group relative cursor-pointer py-2">
+                                <Tooltip text={"Dietary"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("dietary")}
+                                >
+                                    <Salad />
+                                </ButtonCircleIcon>
+                            </div>
 
-                            <ButtonCircleIcon
-                                action={() => handleClick("starRating")}
-                            >
-                                <Star />
-                            </ButtonCircleIcon>
-                        </li>
+                            <div className="group relative cursor-pointer py-2">
+                                <Tooltip text={"Star Rating"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("starRating")}
+                                >
+                                    <Star />
+                                </ButtonCircleIcon>
+                            </div>
+                        </div>
                     </ul>
                     <ul
                         id="filter3"
                         className="flex items-center justify-start"
                     >
-                        <li className="cursor-pointer space-x-2 p-2">
-                            <ButtonCircleIcon
-                                action={() => handleClick("post")}
-                            >
-                                <Mailbox />
-                            </ButtonCircleIcon>
+                        <div className="-ml-1 flex space-x-2">
+                            <div className="group relative cursor-pointer py-2">
+                                <Tooltip text={"Post Code"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("post")}
+                                >
+                                    <Mailbox />
+                                </ButtonCircleIcon>
+                            </div>
 
-                            <ButtonCircleIcon
-                                action={() => handleClick("place")}
-                            >
-                                <Utensils />
-                            </ButtonCircleIcon>
+                            <div className="group relative cursor-pointer py-2">
+                                <Tooltip text={"Place Type"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("place")}
+                                >
+                                    <Utensils />
+                                </ButtonCircleIcon>
+                            </div>
 
-                            <ButtonCircleIcon
-                                action={() => handleClick("cardinal")}
-                            >
-                                <Compass />
-                            </ButtonCircleIcon>
-                        </li>
+                            <div className="group relative cursor-pointer py-2">
+                                <Tooltip text={"Cardinal"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("cardinal")}
+                                >
+                                    <Compass />
+                                </ButtonCircleIcon>
+                            </div>
+                        </div>
                     </ul>
                     <div>{changeFilter(activeFilter)}</div>
                 </div>

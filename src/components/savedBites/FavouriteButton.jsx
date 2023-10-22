@@ -7,11 +7,11 @@ import {
 } from "@/database/firebase/firestore/userDB";
 import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { Heart, HeartOff } from "lucide-react";
+import Tooltip from "../ui/tooltip/Tooltip";
 
 export default function FavouriteButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
     const [isFavourite, setIsFavourite] = useState(false);
-    const [isTooltipVisible, setTooltipVisible] = useState(false);
 
     // Update isFavourite when selectedRestaurant changes
     useEffect(() => {
@@ -33,23 +33,18 @@ export default function FavouriteButton({ selectedRestaurant }) {
         setIsFavourite(false);
     };
 
-    const showTooltip = () => {
-        setTooltipVisible(true);
-    };
-
-    const hideTooltip = () => {
-        setTooltipVisible(false);
-    };
-
     return (
-        <ButtonCircleIcon
-            action={() => {
-                isFavourite ? removeFavourite() : addFavourite();
-            }}
-            onMouseEnter={showTooltip}
-            onMouseLeave={hideTooltip}
-        >
-            {isFavourite ? <Heart /> : <HeartOff />}
-        </ButtonCircleIcon>
+        <div className="group relative cursor-pointer py-2">
+            <Tooltip
+                text={isFavourite ? "Remove Favourite" : "Add Favourite"}
+            />
+            <ButtonCircleIcon
+                action={() => {
+                    isFavourite ? removeFavourite() : addFavourite();
+                }}
+            >
+                {isFavourite ? <Heart /> : <HeartOff />}
+            </ButtonCircleIcon>
+        </div>
     );
 }

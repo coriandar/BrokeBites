@@ -1,15 +1,18 @@
 import React from "react";
-import { Button } from "@/components/ui/shadcn-ui/button";
 import { ButtonCircleIcon } from "@/components/ui/buttons/ButtonCircleIcon";
 import { BookOpenText } from "lucide-react";
+import Tooltip from "@/components/ui/tooltip/Tooltip";
 
 export const MenuButton = ({ selected }) => {
     const openMenu = () => {
         window.open(selected?.website);
     };
     return (
-        <ButtonCircleIcon action={() => openMenu()}>
-            <BookOpenText />
-        </ButtonCircleIcon>
+        <div className="group relative cursor-pointer py-2">
+            <Tooltip text={"Menu"} />
+            <ButtonCircleIcon action={() => openMenu()}>
+                <BookOpenText />
+            </ButtonCircleIcon>
+        </div>
     );
 };
