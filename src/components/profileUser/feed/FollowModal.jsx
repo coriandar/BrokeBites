@@ -1,8 +1,10 @@
-export default function FollowContainer({ followData }) {
+import React from "react";
+
+export default function FollowContainer({ followData, displayName }) {
     return (
         <div>
             <ul key={followData.id} className="w-full">
-                user followed{followData.recipient}
+                {displayName} followed {followData.recipient}
             </ul>
         </div>
     );
