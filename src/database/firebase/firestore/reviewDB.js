@@ -1,9 +1,14 @@
 import { auth, db } from "../firebaseApp";
 import {
+    doc,
+    setDoc,
+    updateDoc,
     addDoc,
     getDocs,
     collection,
     serverTimestamp,
+    arrayUnion,
+    deleteField,
 } from "firebase/firestore";
 import { appendUserAvatar } from "./userDB";
 
@@ -63,5 +68,30 @@ export const submitReview = async ({ selectedRestaurant, reviewText }) => {
         });
     } catch (error) {
         console.error("Error adding review:", error);
+    }
+};
+
+export const flagReview = async (review) => {
+    const currentUserID = auth.currentUser?.uid;
+    const reviewDocRef = doc(db, "reviewDB", review.id);
+    try {
+        await updateDoc(reviewDocRef, { reported: true });
+        await setDoc(
+            reviewDocRef,
+            { reporter: arrayUnion(currentUserID) },
+            { merge: true }, // update fields in the document or create it if it doesn't exists
+        );
+    } catch (error) {
+        console.error("Error flagging:", error);
+    }
+};
+
+export const unflagReview = async (review) => {
+    const reviewDocRef = doc(db, "reviewDB", review.id);
+    try {
+        await updateDoc(reviewDocRef, { reported: false });
+        await updateDoc(reviewDocRef, { reporter: deleteField() });
+    } catch (error) {
+        console.error("Error unflagging:", error);
     }
 };

@@ -2,6 +2,8 @@ import React from "react";
 import ReviewCard from "./ReviewCard";
 import { formatTimestamp } from "../../util/dateFunctions";
 import Link from "next/link";
+import FlagButton from "../moderation/FlagButton";
+import UnflagButton from "../moderation/UnflagButton";
 
 export default function ReviewCardProfile({ review }) {
     return (
@@ -18,6 +20,7 @@ export default function ReviewCardProfile({ review }) {
                 </div>
                 <p>{review.reviewText}</p>
             </div>
+            <FlagButton review={review} />
         </ReviewCard>
     );
 }

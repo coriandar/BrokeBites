@@ -3,6 +3,7 @@ import ReviewCard from "./ReviewCard";
 import Link from "next/link";
 import { formatTimestamp } from "../../util/dateFunctions";
 import Avatar from "../account/Avatar";
+import FlagButton from "../moderation/FlagButton";
 
 export default function ReviewCardRestaurant({ review }) {
     return (
@@ -21,6 +22,7 @@ export default function ReviewCardRestaurant({ review }) {
                 </div>
                 <p>{review.reviewText}</p>
             </div>
+            <FlagButton review={review} />
         </ReviewCard>
     );
 }
