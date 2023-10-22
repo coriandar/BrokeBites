@@ -1,5 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/shadcn-ui/button";
+import { ButtonCircleIcon } from "@/components/ui/buttons/ButtonCircleIcon";
+import { Navigation2 } from "lucide-react";
 
 export default function GetDirections({ selected, userGeo }) {
     const googleMapDirection = "https://www.google.com/maps/dir/";
@@ -12,12 +14,8 @@ export default function GetDirections({ selected, userGeo }) {
     };
 
     return (
-        <Button
-            variant={"secondary"}
-            className={"mr-1 h-6 rounded-full"}
-            onClick={openDirections}
-        >
-            Directions
-        </Button>
+        <ButtonCircleIcon action={() => openDirections()}>
+            <Navigation2 />
+        </ButtonCircleIcon>
     );
 }

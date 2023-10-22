@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import ButtonSmall from "../__shared__/ui/ButtonSmall";
 import { auth } from "@/database/firebase/firebaseApp";
 import {
     addRestaurantFavourite,
     removeRestaurantFavourite,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
-import { Button } from "../ui/shadcn-ui/button";
+import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
+import { Heart, HeartOff } from "lucide-react";
 
 export default function FavouriteButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
     const [isFavourite, setIsFavourite] = useState(false);
+    const [isTooltipVisible, setTooltipVisible] = useState(false);
 
     // Update isFavourite when selectedRestaurant changes
     useEffect(() => {
@@ -20,7 +21,7 @@ export default function FavouriteButton({ selectedRestaurant }) {
         };
 
         if (currentUserID && selectedRestaurant) checkIsFavourite();
-    }, [currentUserID, selectedRestaurant]);
+    }, [currentUserID, selectedRestaurant, isFavourite]);
 
     const addFavourite = async () => {
         await addRestaurantFavourite(selectedRestaurant);
@@ -32,13 +33,23 @@ export default function FavouriteButton({ selectedRestaurant }) {
         setIsFavourite(false);
     };
 
+    const showTooltip = () => {
+        setTooltipVisible(true);
+    };
+
+    const hideTooltip = () => {
+        setTooltipVisible(false);
+    };
+
     return (
-        <Button
-            variant={"secondary"}
-            className={"mr-1 h-6 rounded-full"}
-            onClick={isFavourite ? removeFavourite : addFavourite}
+        <ButtonCircleIcon
+            action={() => {
+                isFavourite ? removeFavourite() : addFavourite();
+            }}
+            onMouseEnter={showTooltip}
+            onMouseLeave={hideTooltip}
         >
-            {isFavourite ? "Remove favourite" : "Favourite"}
-        </Button>
+            {isFavourite ? <Heart /> : <HeartOff />}
+        </ButtonCircleIcon>
     );
 }
