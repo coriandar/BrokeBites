@@ -53,6 +53,30 @@ export const fetchRestaurantReviews = async (selectedRestaurantID) => {
     }
 };
 
+export const fetchFlaggedReviews = async () => {
+    try {
+        const restaurantReviewCollectionRef = collection(db, "reviewDB");
+        const data = await getDocs(restaurantReviewCollectionRef);
+
+        const reviewData = data.docs
+            .map((doc) => {
+                const reporterArray = doc.data()?.reporter;
+                return {
+                    ...doc.data(),
+                    reportCount: reporterArray?.length || 0,
+                    id: doc.id,
+                };
+            })
+            .filter((review) => review?.flagged === true);
+
+        reviewData.sort((a, b) => b.reportCount - a.reportCount);
+        // // appends user photoURl
+        return await appendUserAvatar(reviewData);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
 export const submitReview = async ({ selectedRestaurant, reviewText }) => {
     const currentUserId = auth.currentUser.uid;
     const currentDisplayName = auth.currentUser.displayName;
@@ -76,7 +100,7 @@ export const flagReview = async (review) => {
     const currentUserID = auth.currentUser?.uid;
     const reviewDocRef = doc(db, "reviewDB", review.id);
     try {
-        await updateDoc(reviewDocRef, { reported: true });
+        await updateDoc(reviewDocRef, { flagged: true });
         await setDoc(
             reviewDocRef,
             { reporter: arrayUnion(currentUserID) },
@@ -90,7 +114,7 @@ export const flagReview = async (review) => {
 export const unflagReview = async (review) => {
     const reviewDocRef = doc(db, "reviewDB", review.id);
     try {
-        await updateDoc(reviewDocRef, { reported: false });
+        await updateDoc(reviewDocRef, { flagged: false });
         await updateDoc(reviewDocRef, { reporter: deleteField() });
     } catch (error) {
         console.error("Error unflagging:", error);

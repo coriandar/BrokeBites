@@ -5,7 +5,7 @@ export default function Modal({ open, onClose, children, maxW, maxH }) {
     return (
         <div
             onClick={onClose}
-            className={`transition-colours fixed inset-0 flex h-screen w-screen items-center justify-center ${
+            className={`transition-colours fixed inset-0 z-50 flex h-screen w-screen items-center justify-center ${
                 open ? "visible bg-black/50" : "invisible"
             }`}
         >
