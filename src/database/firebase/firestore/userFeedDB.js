@@ -5,6 +5,7 @@ import {
     query,
     where,
     serverTimestamp,
+    orderBy,
     addDoc,
 } from "firebase/firestore";
 
@@ -12,8 +13,12 @@ export const fetchFeed = async (userID) => {
     // Reference the userFeedDB collection
     const userFeedCollectionRef = collection(db, "userFeedDB");
 
-    // Create a query to filter documents by userID
-    const q = query(userFeedCollectionRef, where("user", "==", userID));
+    // Create a query to filter documents by userID and order them by time
+    const q = query(
+        userFeedCollectionRef,
+        where("user", "==", userID),
+        orderBy("time", "desc"), // Sort by time in descending order (most recent first)
+    );
 
     try {
         // Fetch the documents that match the query

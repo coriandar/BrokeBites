@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchRestaurant } from "@/database/firebase/firestore/userDB";
+import { fetchRestaurant } from "@/database/firebase/firestore/restaurantDB";
 
 export default function ReviewContainer({ postData, displayName }) {
     const [reviewedRestaurantName, setReviewedRestaurantName] = useState(null);
