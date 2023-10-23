@@ -6,7 +6,9 @@ import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
 import ReviewCardRestaurant from "./ReviewCardRestaurant";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/database/firebase/firebaseApp";
-import { Button } from "../ui/shadcn-ui/button";
+import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
+import { MessageSquare } from "lucide-react";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -32,14 +34,13 @@ export default function ReviewModal({ selectedRestaurant }) {
     };
 
     return (
-        <div className="fixed z-50 flex">
-            <Button
-                variant={"secondary"}
-                className={"mr-1 h-6 rounded-full"}
-                onClick={() => setOpen(true)}
-            >
-                Reviews
-            </Button>
+        <div className="flex">
+            <div className="group relative cursor-pointer py-2">
+                <TopTooltip text={"Review"} />
+                <ButtonCircleIcon action={() => setOpen(true)}>
+                    <MessageSquare />
+                </ButtonCircleIcon>
+            </div>
 
             <Modal
                 open={open}
