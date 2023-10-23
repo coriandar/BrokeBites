@@ -1,6 +1,6 @@
 import React from "react";
-import DirectMessage from "@/components/directMessage/DirectMessage";
+import DirectMessages from "@/components/directMessage/DirectMessages";
 
 export default function DirectMessagePage() {
-    return <DirectMessage />;
+    return <DirectMessages />;
 }
