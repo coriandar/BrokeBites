@@ -1,14 +1,10 @@
 import { db } from "@/database/firebase/firebaseApp";
 import {
     doc,
-    setDoc,
-    updateDoc,
     addDoc,
     getDocs,
     collection,
     serverTimestamp,
-    arrayUnion,
-    deleteField,
     deleteDoc,
 } from "firebase/firestore";
 import { appendUserAvatar } from "./userDB";
@@ -52,5 +48,14 @@ export const fetchReports = async () => {
         return await appendUserAvatar(reportData);
     } catch (err) {
         console.error(err);
+    }
+};
+
+export const deleteReport = async (report) => {
+    const reportDocRef = doc(db, "reportDB", report.id);
+    try {
+        await deleteDoc(reportDocRef);
+    } catch (error) {
+        console.error("Error deleting:", error);
     }
 };

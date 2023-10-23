@@ -4,7 +4,7 @@ import Link from "next/link";
 import { formatTimestamp } from "../../util/dateFunctions";
 import Avatar from "../account/Avatar";
 import FlagButton from "../moderation/FlagButton";
-import AdminButton from "../moderation/AdminButton";
+import AdminButton from "../moderation/components/AdminButton";
 import { checkAdmin } from "@/database/firebase/firestore/userDB";
 
 export default function ReviewCardRestaurant({ review }) {

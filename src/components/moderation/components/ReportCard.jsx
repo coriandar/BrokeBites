@@ -3,8 +3,7 @@ import Link from "next/link";
 import { formatTimestamp } from "@/util/dateFunctions";
 import ReviewCard from "@/components/review/ReviewCard";
 import Avatar from "@/components/account/Avatar";
-// import FlagButton from "../moderation/FlagButton";
-// import AdminButton from "../moderation/AdminButton";
+import DeleteReportButton from "./DeleteReportButton";
 
 export default function ReportCard({ review }) {
     return (
@@ -23,8 +22,7 @@ export default function ReportCard({ review }) {
                 </div>
                 <p>{review.report}</p>
             </div>
-            {/* <FlagButton review={review} />
-            {isAdmin && <AdminButton review={review} />} */}
+            <DeleteReportButton review={review} />
         </ReviewCard>
     );
 }

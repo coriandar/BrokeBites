@@ -27,16 +27,9 @@ export default function AdminDashboard() {
         const fetchData = async () => {
             const reviewCollection = await fetchFlaggedReviews();
             setFlaggedReviews(reviewCollection);
-            console.log("Fetching review from admin dash");
+
             const reportCollection = await fetchReports();
             setReports(reportCollection);
-            console.log("Fetching report from admin dash");
-
-            const bug = reports.filter((doc) => doc.type[0] === "b");
-            setBugReport(bug);
-
-            const feedback = reports.filter((doc) => doc.type[0] === "f");
-            setFeedbackReport(feedback);
         };
 
         fetchData();
@@ -56,6 +49,7 @@ export default function AdminDashboard() {
                 <ReviewContainer
                     reviewsData={flaggedReviews}
                     reviewCardType={ReviewCardRestaurant}
+                    emptyText={"No reviews"}
                 />
             </div>
             <div className="m-4 h-full w-1/3">
@@ -63,6 +57,7 @@ export default function AdminDashboard() {
                 <ReviewContainer
                     reviewsData={bugReport}
                     reviewCardType={ReportCard}
+                    emptyText={"No bugs reported"}
                 />
             </div>
             <div className="m-4 h-full w-1/3">
@@ -70,6 +65,7 @@ export default function AdminDashboard() {
                 <ReviewContainer
                     reviewsData={feedbackReport}
                     reviewCardType={ReportCard}
+                    emptyText={"No feedback reported"}
                 />
             </div>
         </div>
