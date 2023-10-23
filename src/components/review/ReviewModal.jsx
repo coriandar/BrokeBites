@@ -3,13 +3,13 @@ import { submitReview } from "@/database/firebase/firestore/reviewDB";
 import Modal from "../__shared__/layout/Modal";
 import ReviewContainer from "./ReviewContainer";
 import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
-import ReviewCardRestaurant from "./ReviewCardRestaurant";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/database/firebase/firebaseApp";
 import { addReviewPost } from "@/database/firebase/firestore/userFeedDB";
 import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { MessageSquare } from "lucide-react";
 import { TopTooltip } from "../ui/tooltip/Tooltip";
+import ReviewCardModal from "./ReviewCardModal";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -31,7 +31,7 @@ export default function ReviewModal({ selectedRestaurant }) {
         await submitReview({ selectedRestaurant, reviewText });
         await addReviewPost(auth.currentUser.uid, selectedRestaurant.id);
         reviewInputRef.current.value = ""; // Clear the input field
-        loadReviews();
+        await loadReviews();
         alert("Review submitted");
     };
 
@@ -57,7 +57,7 @@ export default function ReviewModal({ selectedRestaurant }) {
 
                     <ReviewContainer
                         reviewsData={reviewsData}
-                        reviewCardType={ReviewCardRestaurant}
+                        reviewCardType={ReviewCardModal}
                     />
 
                     {user && (

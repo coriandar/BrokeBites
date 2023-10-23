@@ -1,5 +1,5 @@
 export const formatTimestamp = (timestamp) => {
-    const date = timestamp.toDate();
+    const date = timestamp?.toDate();
     const options = {
         year: "numeric",
         month: "short",
@@ -8,7 +8,7 @@ export const formatTimestamp = (timestamp) => {
         minute: "2-digit",
         hour12: false, // sets 24hr
     };
-    return date.toLocaleString(undefined, options);
+    return date?.toLocaleString("en-NZ", options);
 };
 
 export const getCurrentDayString = () => {
