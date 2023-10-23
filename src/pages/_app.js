@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
 import Head from "next/head";
-import Script from "next/script";
 
 export default function App({ Component, pageProps }) {
     const router = useRouter();
@@ -61,12 +60,6 @@ export default function App({ Component, pageProps }) {
     } else if (user) {
         return (
             <>
-                <script
-                    async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2060929608189026"
-                    crossorigin="anonymous"
-                ></script>
-
                 <Layout>
                     {isPremium ? (
                         <Component {...pageProps} />
@@ -79,6 +72,7 @@ export default function App({ Component, pageProps }) {
                                     crossOrigin="anonymous"
                                 ></script>
                             </Head>
+                            <h1>Ads showing</h1>
                             <Component {...pageProps} />
                         </>
                     )}
