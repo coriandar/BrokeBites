@@ -7,7 +7,7 @@ import {
 } from "@/database/firebase/firestore/userDB";
 import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { Heart, HeartOff } from "lucide-react";
-import Tooltip from "../ui/tooltip/Tooltip";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
 
 export default function FavouriteButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
@@ -35,7 +35,7 @@ export default function FavouriteButton({ selectedRestaurant }) {
 
     return (
         <div className="group relative cursor-pointer py-2">
-            <Tooltip
+            <TopTooltip
                 text={isFavourite ? "Remove Favourite" : "Add Favourite"}
             />
             <ButtonCircleIcon

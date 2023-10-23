@@ -7,7 +7,7 @@ import {
 import { useEffect, useState } from "react";
 import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { LayoutList, ListChecks } from "lucide-react";
-import Tooltip from "../ui/tooltip/Tooltip";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
 
 export default function VisitedButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
@@ -36,7 +36,7 @@ export default function VisitedButton({ selectedRestaurant }) {
 
     return (
         <div className="group relative cursor-pointer py-2">
-            <Tooltip text={isVisited ? "Remove Visited" : "Add Visited"} />
+            <TopTooltip text={isVisited ? "Remove Visited" : "Add Visited"} />
             <ButtonCircleIcon
                 action={() => {
                     isVisited ? removeVisited() : addVisited();

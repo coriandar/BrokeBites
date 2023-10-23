@@ -32,8 +32,7 @@ import {
     Star,
     Utensils,
 } from "lucide-react";
-import { Button } from "../ui/shadcn-ui/button";
-import Tooltip from "../ui/tooltip/Tooltip";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
 
 export default function FilterSelector({
     activeFilter,
@@ -151,7 +150,7 @@ export default function FilterSelector({
                     >
                         <div className="-ml-1 flex space-x-2">
                             <div className="group relative cursor-pointer py-2">
-                                <Tooltip text={"Search"} />
+                                <TopTooltip text={"Search"} />
                                 <ButtonCircleIcon
                                     action={() => handleClick("search")}
                                 >
@@ -160,7 +159,7 @@ export default function FilterSelector({
                             </div>
 
                             <div className="group relative cursor-pointer py-2">
-                                <Tooltip text={"Price Range"} />
+                                <TopTooltip text={"Price Range"} />
                                 <ButtonCircleIcon
                                     action={() => handleClick("priceRange")}
                                 >
@@ -169,7 +168,7 @@ export default function FilterSelector({
                             </div>
 
                             <div className="group relative cursor-pointer py-2">
-                                <Tooltip text={"Filling Factor"} />
+                                <TopTooltip text={"Filling Factor"} />
                                 <ButtonCircleIcon
                                     action={() => handleClick("fillingFactor")}
                                 >
@@ -185,7 +184,7 @@ export default function FilterSelector({
                     >
                         <div className="-ml-1 flex space-x-2">
                             <div className="group relative cursor-pointer py-2">
-                                <Tooltip text={"Cuisine"} />
+                                <TopTooltip text={"Cuisine"} />
                                 <ButtonCircleIcon
                                     action={() => handleClick("cuisine")}
                                 >
@@ -194,7 +193,7 @@ export default function FilterSelector({
                             </div>
 
                             <div className="group relative cursor-pointer py-2">
-                                <Tooltip text={"Dietary"} />
+                                <TopTooltip text={"Dietary"} />
                                 <ButtonCircleIcon
                                     action={() => handleClick("dietary")}
                                 >
@@ -203,7 +202,7 @@ export default function FilterSelector({
                             </div>
 
                             <div className="group relative cursor-pointer py-2">
-                                <Tooltip text={"Star Rating"} />
+                                <TopTooltip text={"Star Rating"} />
                                 <ButtonCircleIcon
                                     action={() => handleClick("starRating")}
                                 >
@@ -218,7 +217,7 @@ export default function FilterSelector({
                     >
                         <div className="-ml-1 flex space-x-2">
                             <div className="group relative cursor-pointer py-2">
-                                <Tooltip text={"Post Code"} />
+                                <TopTooltip text={"Post Code"} />
                                 <ButtonCircleIcon
                                     action={() => handleClick("post")}
                                 >
@@ -227,7 +226,7 @@ export default function FilterSelector({
                             </div>
 
                             <div className="group relative cursor-pointer py-2">
-                                <Tooltip text={"Place Type"} />
+                                <TopTooltip text={"Place Type"} />
                                 <ButtonCircleIcon
                                     action={() => handleClick("place")}
                                 >
@@ -236,7 +235,7 @@ export default function FilterSelector({
                             </div>
 
                             <div className="group relative cursor-pointer py-2">
-                                <Tooltip text={"Cardinal"} />
+                                <TopTooltip text={"Cardinal"} />
                                 <ButtonCircleIcon
                                     action={() => handleClick("cardinal")}
                                 >

@@ -28,7 +28,7 @@ export default function SortBy({
     };
 
     return (
-        <div className="flex h-14 w-full items-center justify-center rounded-lg bg-slate-300 pl-2 shadow-lg">
+        <div className="flex h-14 w-11/12 items-center justify-center rounded-lg bg-slate-300 pl-2 shadow-lg">
             <button
                 className={`m-1 rounded-md px-4 py-1 text-xs ${changeColour(
                     "default",

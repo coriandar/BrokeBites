@@ -1,7 +1,7 @@
 import React from "react";
 import { ButtonCircleIcon } from "@/components/ui/buttons/ButtonCircleIcon";
 import { BookOpenText } from "lucide-react";
-import Tooltip from "@/components/ui/tooltip/Tooltip";
+import { TopTooltip } from "@/components/ui/tooltip/Tooltip";
 
 export const MenuButton = ({ selected }) => {
     const openMenu = () => {
@@ -9,7 +9,7 @@ export const MenuButton = ({ selected }) => {
     };
     return (
         <div className="group relative cursor-pointer py-2">
-            <Tooltip text={"Menu"} />
+            <TopTooltip text={"Menu"} />
             <ButtonCircleIcon action={() => openMenu()}>
                 <BookOpenText />
             </ButtonCircleIcon>

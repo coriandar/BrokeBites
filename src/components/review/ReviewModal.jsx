@@ -8,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/database/firebase/firebaseApp";
 import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { MessageSquare } from "lucide-react";
-import Tooltip from "../ui/tooltip/Tooltip";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function ReviewModal({ selectedRestaurant }) {
     return (
         <div className="flex">
             <div className="group relative cursor-pointer py-2">
-                <Tooltip text={"Review"} />
+                <TopTooltip text={"Review"} />
                 <ButtonCircleIcon action={() => setOpen(true)}>
                     <MessageSquare />
                 </ButtonCircleIcon>
