@@ -1,4 +1,4 @@
-const { getDietary } = require("../logic/db_FormatData.logic");
+const { getDietary } = require("../logic/db_formatData.logic");
 
 describe("getDietary", () => {
     test("if all true, should return Vegan", () => {

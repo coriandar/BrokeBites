@@ -91,7 +91,7 @@ export default function Dashboard({
                     />
                 </Layer>
 
-                <Layer position={"bottom-8 left-8 p-6"}>
+                <Layer position={"bottom-8 left-8 p-6"} transparent={false}>
                     <RestaurantInfo
                         handleDeselect={handleDeselect}
                         restaurantList={restaurantList}

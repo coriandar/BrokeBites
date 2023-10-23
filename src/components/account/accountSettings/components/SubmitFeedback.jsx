@@ -4,6 +4,7 @@ import { auth } from "../../../../database/firebase/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { submitFeedback } from "@/database/firebase/firestore/reportDB";
 import Loading from "../../../__shared__/layout/Loading";
+import { Button } from "@/components/ui/shadcn-ui/button";
 
 export default function SubmitFeedback() {
     const [open, setOpen] = useState(false);
@@ -20,12 +21,9 @@ export default function SubmitFeedback() {
 
     return (
         <div className="flex">
-            <button
-                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
-                onClick={() => setOpen(true)}
-            >
+            <Button variant={"secondary"} onClick={() => setOpen(true)}>
                 Submit feedback
-            </button>
+            </Button>
 
             <Modal
                 open={open}

@@ -20,6 +20,19 @@ import FilterSearch from "./components/FilterSearch";
 import FilterSlider from "./components/FilterSlider";
 import FilterType from "./components/FilterType";
 import { FilterButton } from "./components/FilterButton";
+import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
+import {
+    CircleDollarSign,
+    Compass,
+    Fuel,
+    Globe2,
+    Mailbox,
+    Salad,
+    Search,
+    Star,
+    Utensils,
+} from "lucide-react";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
 
 export default function FilterSelector({
     activeFilter,
@@ -31,6 +44,7 @@ export default function FilterSelector({
 
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
+        changeColour(buttonName);
     };
 
     const changeColour = (buttonName) => {
@@ -134,97 +148,101 @@ export default function FilterSelector({
                         id="filter1"
                         className="-mb-2 flex items-center justify-start"
                     >
-                        <li className="cursor-pointer p-2">
-                            <button
-                                className={`rounded-s-md px-4 py-1 text-xs ${changeColour(
-                                    "search",
-                                )}`}
-                                onClick={() => handleClick("search")}
-                            >
-                                Search
-                            </button>
+                        <div className="-ml-1 flex space-x-2">
+                            <div className="group relative cursor-pointer py-2">
+                                <TopTooltip text={"Search"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("search")}
+                                >
+                                    <Search />
+                                </ButtonCircleIcon>
+                            </div>
 
-                            <button
-                                className={`px-4 py-1 text-xs ${changeColour(
-                                    "priceRange",
-                                )}`}
-                                onClick={() => handleClick("priceRange")}
-                            >
-                                Filter by Price Range
-                            </button>
+                            <div className="group relative cursor-pointer py-2">
+                                <TopTooltip text={"Price Range"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("priceRange")}
+                                >
+                                    <CircleDollarSign />
+                                </ButtonCircleIcon>
+                            </div>
 
-                            <button
-                                className={`rounded-e-md px-4 py-1 text-xs ${changeColour(
-                                    "fillingFactor",
-                                )}`}
-                                onClick={() => handleClick("fillingFactor")}
-                            >
-                                Filter by Filling Factor
-                            </button>
-                        </li>
+                            <div className="group relative cursor-pointer py-2">
+                                <TopTooltip text={"Filling Factor"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("fillingFactor")}
+                                >
+                                    <Fuel />
+                                </ButtonCircleIcon>
+                            </div>
+                        </div>
                     </ul>
 
                     <ul
                         id="filter2"
                         className="flex items-center justify-start"
                     >
-                        <li className="cursor-pointer p-2">
-                            <button
-                                className={`rounded-s-md px-4 py-1 text-xs ${changeColour(
-                                    "cuisine",
-                                )}`}
-                                onClick={() => handleClick("cuisine")}
-                            >
-                                Filter by Cuisine
-                            </button>
-                            <button
-                                className={`px-4 py-1 text-xs ${changeColour(
-                                    "dietary",
-                                )}`}
-                                onClick={() => handleClick("dietary")}
-                            >
-                                Filter by Dietary
-                            </button>
-                            <button
-                                className={`rounded-e-md px-4 py-1 text-xs ${changeColour(
-                                    "starRating",
-                                )}`}
-                                onClick={() => handleClick("starRating")}
-                            >
-                                Filter by Stars
-                            </button>
-                        </li>
+                        <div className="-ml-1 flex space-x-2">
+                            <div className="group relative cursor-pointer py-2">
+                                <TopTooltip text={"Cuisine"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("cuisine")}
+                                >
+                                    <Globe2 />
+                                </ButtonCircleIcon>
+                            </div>
+
+                            <div className="group relative cursor-pointer py-2">
+                                <TopTooltip text={"Dietary"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("dietary")}
+                                >
+                                    <Salad />
+                                </ButtonCircleIcon>
+                            </div>
+
+                            <div className="group relative cursor-pointer py-2">
+                                <TopTooltip text={"Star Rating"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("starRating")}
+                                >
+                                    <Star />
+                                </ButtonCircleIcon>
+                            </div>
+                        </div>
                     </ul>
                     <ul
                         id="filter3"
                         className="flex items-center justify-start"
                     >
-                        <li className="cursor-pointer p-2">
-                            <button
-                                className={`rounded-s-md px-4 py-1 text-xs ${changeColour(
-                                    "post",
-                                )}`}
-                                onClick={() => handleClick("post")}
-                            >
-                                Filter by Postcode
-                            </button>
-                            <button
-                                className={`px-4 py-1 text-xs ${changeColour(
-                                    "place",
-                                )}`}
-                                onClick={() => handleClick("place")}
-                            >
-                                Filter by Place
-                            </button>
-                            <button
-                                className={`px-4 py-1 text-xs ${changeColour(
-                                    "cardinal",
-                                )}`}
-                                onClick={() => handleClick("cardinal")}
-                            >
-                                Filter by Cardinality
-                            </button>
-                        </li>
+                        <div className="-ml-1 flex space-x-2">
+                            <div className="group relative cursor-pointer py-2">
+                                <TopTooltip text={"Post Code"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("post")}
+                                >
+                                    <Mailbox />
+                                </ButtonCircleIcon>
+                            </div>
+
+                            <div className="group relative cursor-pointer py-2">
+                                <TopTooltip text={"Place Type"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("place")}
+                                >
+                                    <Utensils />
+                                </ButtonCircleIcon>
+                            </div>
+
+                            <div className="group relative cursor-pointer py-2">
+                                <TopTooltip text={"Cardinal"} />
+                                <ButtonCircleIcon
+                                    action={() => handleClick("cardinal")}
+                                >
+                                    <Compass />
+                                </ButtonCircleIcon>
+                            </div>
+                        </div>
                     </ul>
                     <div>{changeFilter(activeFilter)}</div>
                 </div>

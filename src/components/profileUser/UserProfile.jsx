@@ -10,7 +10,11 @@ import { fetchUserReviews } from "@/database/firebase/firestore/reviewDB";
 import Avatar from "../account/Avatar";
 import ReviewCardProfile from "../review/ReviewCardProfile";
 import { useRouter } from "next/router";
+<<<<<<< HEAD
 import { ProfileFeed } from "../profileUser/ProfileFeed";
+=======
+import UserProfileStatistics from "./UserProfileStatistics";
+>>>>>>> b3fa0256ddf9ecada93a24b93bcc0da3432a3919
 
 export default function UserProfile() {
     const router = useRouter();
@@ -42,13 +46,14 @@ export default function UserProfile() {
             fetchProfile();
             fetchProfileFavorites();
             fetchProfileReviews();
+            console.log("Fetching from user profile");
         }
     }, [uid]);
 
     return (
         <div className="m-8">
             {userProfile ? (
-                <div className="sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                <div className="w-screen sm:h-[300px] md:h-[600px] lg:h-[800px]">
                     <div className="flex items-center justify-center">
                         <Avatar
                             maxW={"w-[50px]"}
@@ -57,6 +62,10 @@ export default function UserProfile() {
                         <h2 className="text-xl font-bold">
                             {userProfile.displayName}'s Profile
                         </h2>
+                        <UserProfileStatistics
+                            userProfile={userProfile}
+                            userReviews={userReviews}
+                        />
 
                         <FollowButton otherUser={uid} />
                     </div>

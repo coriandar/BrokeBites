@@ -10,3 +10,14 @@ export const formatTimestamp = (timestamp) => {
     };
     return date.toLocaleString(undefined, options);
 };
+
+export const getCurrentDayString = () => {
+    const date = new Date();
+    const options = { weekday: "long" };
+    return date.toLocaleDateString("en-US", options);
+};
+
+export const getCurrentDayHour = () => {
+    const date = new Date();
+    return date.getHours();
+};

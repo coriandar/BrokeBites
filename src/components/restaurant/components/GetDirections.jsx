@@ -1,5 +1,7 @@
 import React from "react";
-import ButtonSmall from "@/components/__shared__/ui/ButtonSmall";
+import { ButtonCircleIcon } from "@/components/ui/buttons/ButtonCircleIcon";
+import { Navigation2 } from "lucide-react";
+import { TopTooltip } from "@/components/ui/tooltip/Tooltip";
 
 export default function GetDirections({ selected, userGeo }) {
     const googleMapDirection = "https://www.google.com/maps/dir/";
@@ -11,5 +13,12 @@ export default function GetDirections({ selected, userGeo }) {
         window.open(googleMapDirection + origin + name + destination);
     };
 
-    return <ButtonSmall label={"Directions"} action={openDirections} />;
+    return (
+        <div className="group relative cursor-pointer py-2">
+            <TopTooltip text={"Get Directions"} />
+            <ButtonCircleIcon action={() => openDirections()}>
+                <Navigation2 />
+            </ButtonCircleIcon>
+        </div>
+    );
 }

@@ -6,6 +6,7 @@ import Modal from "../../../__shared__/layout/Modal";
 import Image from "next/image";
 import placeholder from "../../../__assets__/placeholderAvatar.png";
 import { Icons } from "@/components/ui/icons/icons";
+import { Button } from "@/components/ui/shadcn-ui/button";
 
 export default function UpdatePicture() {
     const [open, setOpen] = useState(false);
@@ -31,12 +32,9 @@ export default function UpdatePicture() {
 
     return (
         <div className="flex">
-            <button
-                className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
-                onClick={() => setOpen(true)}
-            >
+            <Button variant={"secondary"} onClick={() => setOpen(true)}>
                 Update picture
-            </button>
+            </Button>
 
             <Modal
                 open={open}
@@ -64,13 +62,6 @@ export default function UpdatePicture() {
                     {loading ? (
                         <Icons.spinner className="h-7 w-7 animate-spin" />
                     ) : (
-                        // <Image
-                        //     src={spinner}
-                        //     alt="Loading..."
-                        //     width={50}
-                        //     height={50}
-                        //     priority
-                        // />
                         <button
                             className="m-4 w-40 rounded-md bg-slate-200 px-4 py-1"
                             disabled={loading || !photo}

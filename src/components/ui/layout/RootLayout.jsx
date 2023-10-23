@@ -7,6 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "../theme/ThemeProvider";
+import { Toaster } from "../shadcn-ui/toaster";
 
 export const fontSans = FontSans({
     subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
                     {user && <Navbar />}
                     {children}
                 </main>
+                <Toaster />
             </ThemeProvider>
         </>
     );
