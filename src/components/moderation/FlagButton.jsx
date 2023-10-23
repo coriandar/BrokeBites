@@ -2,7 +2,7 @@ import React from "react";
 import { useToast } from "../ui/shadcn-ui/use-toast";
 import { Button } from "../ui/shadcn-ui/button";
 import { Flag } from "lucide-react";
-import { reportFlag } from "./components/reportLogic";
+import { reviewFlag } from "./components/reportLogic";
 
 export default function FlagButton({ review }) {
     const [isReported, setIsReported] = React.useState(false);
@@ -11,7 +11,7 @@ export default function FlagButton({ review }) {
     return (
         <div title={isReported ? "Flagged review" : "Flag review"}>
             <Button
-                onClick={() => reportFlag({ review, setIsReported, toast })}
+                onClick={() => reviewFlag({ review, setIsReported, toast })}
                 disabled={isReported}
                 variant={"outline"}
                 size={"icon"}

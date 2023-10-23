@@ -3,7 +3,7 @@ import ReviewCard from "./ReviewCard";
 import { formatTimestamp } from "../../util/dateFunctions";
 import Link from "next/link";
 import FlagButton from "../moderation/FlagButton";
-import AdminButton from "../moderation/AdminButton";
+import AdminButton from "../moderation/components/AdminButton";
 import { checkAdmin } from "@/database/firebase/firestore/userDB";
 
 export default function ReviewCardProfile({ review }) {
@@ -34,7 +34,7 @@ export default function ReviewCardProfile({ review }) {
                 </div>
                 <p>{review.reviewText}</p>
             </div>
-            {!isAdmin && <FlagButton review={review} />}
+            <FlagButton review={review} />
             {isAdmin && <AdminButton review={review} />}
         </ReviewCard>
     );
