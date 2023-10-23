@@ -6,7 +6,7 @@ export const WarningModal = ({ setShowWarning }) => {
         <Modal
             open={open}
             maxW={"w-1/3"}
-            maxH={"h-20%"}
+            maxH={"h-[20%]"}
             onClose={() => setShowWarning(false)}
         >
             <div className="flex h-full flex-col items-center justify-center">
