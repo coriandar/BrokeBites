@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link"; // Import Link from Next.js
 import { fetchUser } from "@/database/firebase/firestore/userDB";
 
 export default function FollowContainer({ postData, displayName }) {
@@ -28,7 +29,14 @@ export default function FollowContainer({ postData, displayName }) {
     return (
         <div>
             <ul key={postData.id} className="w-full">
-                {displayName} followed {recipientDisplayName}
+                {displayName} followed{" "}
+                {recipientDisplayName ? (
+                    <Link href={`/profile/${postData.recipient}`}>
+                        {recipientDisplayName}
+                    </Link>
+                ) : (
+                    "a user"
+                )}
             </ul>
         </div>
     );
