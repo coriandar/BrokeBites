@@ -3,7 +3,6 @@ import { SelectedChat } from "../logic/SelectedChatContext";
 import { getMessages } from "@/database/firebase/firestore/direcMessageDB";
 import { auth } from "@/database/firebase/firebaseApp";
 import { MessageBubble } from "./MessageBubble";
-import { Card } from "@/components/ui/shadcn-ui/card";
 
 export default function Messages() {
     const { data } = useContext(SelectedChat);
@@ -18,20 +17,6 @@ export default function Messages() {
         if (data && data.selectedChat && data.selectedChat.id) {
             const messages = await getMessages(data.selectedChat.id);
             setMessages(messages);
-        }
-    };
-
-    const formatTimestamp = (timestamp) => {
-        if (timestamp && timestamp.seconds) {
-            const date = new Date(timestamp.seconds * 1000);
-            const options = {
-                day: "numeric",
-                month: "numeric",
-                year: "numeric",
-                hour: "numeric",
-                minute: "numeric",
-            };
-            return date.toLocaleString("en-NZ", options);
         }
     };
 

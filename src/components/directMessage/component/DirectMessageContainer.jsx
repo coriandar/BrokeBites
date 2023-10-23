@@ -18,7 +18,6 @@ export default function DirectMessageContainer() {
     const currentUser = auth.currentUser;
     const { dispatch } = useContext(SelectedChat);
     const { data } = useContext(SelectedChat);
-    const [selectedChat, setSelectedChat] = React.useState(null);
 
     const [chatMasterList, setChatMasterList] = useState([]);
     const [userMasterList, setUserMasterList] = useState([]);

@@ -5,21 +5,7 @@ import {
     CardDescription,
     CardHeader,
 } from "@/components/ui/shadcn-ui/card";
-import { Button } from "@/components/ui/shadcn-ui/button";
-
-const formatTimestamp = (timestamp) => {
-    if (timestamp && timestamp.seconds) {
-        const date = new Date(timestamp.seconds * 1000);
-        const options = {
-            day: "numeric",
-            month: "numeric",
-            year: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-        };
-        return date.toLocaleString("en-NZ", options);
-    }
-};
+import { formatTimestamp } from "@/util/dateFunctions";
 
 export const MessageBubble = ({ message, sender }) => {
     return (
