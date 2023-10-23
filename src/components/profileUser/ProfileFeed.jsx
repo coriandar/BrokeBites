@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { fetchFeed } from "../../database/firebase/firestore/userFeedDB";
 import FollowContainer from "./feed/FollowModal";
-import FavoriteContainer from "./feed/FavouriteModal"; // Import the component for "favorite"
+import FavoriteContainer from "./feed/FavouriteModal";
+import ReviewContainer from "./feed/ReviewModal";
 
 export const ProfileFeed = ({ uid, displayName }) => {
     const [feed, setFeed] = useState([]);
@@ -44,14 +45,14 @@ export const ProfileFeed = ({ uid, displayName }) => {
                     );
                 } else if (post.postType === "review") {
                     return (
-                        <ToVisitContainer
+                        <ReviewContainer
                             key={post.id}
-                            toVisitData={post}
+                            postData={post}
                             displayName={displayName}
                         />
                     );
                 } else {
-                    return <p key={post.id}>No Feed</p>;
+                    return <p key={post.id}>No Post Type</p>;
                 }
             })}
         </div>

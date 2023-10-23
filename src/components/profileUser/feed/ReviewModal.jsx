@@ -1,34 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { fetchRestaurant } from "@/database/firebase/firestore/userDB";
 
-export default function FavouriteContainer({ post, displayName }) {
-    const [recipientDisplayName, setRecipientDisplayName] = useState(null);
+export default function ReviewContainer({ postData, displayName }) {
+    const [reviewedRestaurantName, setReviewedRestaurantName] = useState(null);
 
     useEffect(() => {
-        const fetchRecipientDisplayName = async () => {
+        async function fetchFavouriteRestaurant() {
             try {
-                const restaurant = await fetchRestaurant(post.recipient);
+                const restaurant = await fetchRestaurant(postData.recipient);
                 if (restaurant) {
-                    setRecipientDisplayName(restaurant.name);
+                    setReviewedRestaurantName(restaurant.name);
                 } else {
-                    setRecipientDisplayName("Display Name Not Found");
+                    setReviewedRestaurantName("Restaurant Not Found");
                 }
             } catch (error) {
-                console.error(
-                    "Error fetching recipient's display name:",
-                    error,
-                );
-                setRecipientDisplayName("Display Name Error");
+                console.error("Error fetching restaurant data:", error);
+                setReviewedRestaurantName("Restaurant Error");
             }
-        };
+        }
 
-        fetchRecipientDisplayName();
-    }, [post.recipient]);
+        fetchFavouriteRestaurant(); // Call the async function within useEffect
+    }, [postData.recipient]);
 
     return (
         <div>
-            <ul key={post.id} className="w-full">
-                {displayName} reviewed {recipientDisplayName}
+            <ul key={postData.id} className="w-full">
+                {displayName} reviewed {reviewedRestaurantName}
             </ul>
         </div>
     );

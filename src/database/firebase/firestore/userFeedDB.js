@@ -62,3 +62,18 @@ export const addFavouritePost = async (userID, recipient) => {
         console.error("Error adding to favorites:", error);
     }
 };
+
+export const addReviewPost = async (userID, recipient) => {
+    try {
+        const feedCollectionRef = collection(db, "userFeedDB");
+        await addDoc(feedCollectionRef, {
+            contentID: "placeholder",
+            postType: "review",
+            user: userID,
+            recipient: recipient,
+            time: serverTimestamp(),
+        });
+    } catch (error) {
+        console.error("Error adding to favorites:", error);
+    }
+};
