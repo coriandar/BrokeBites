@@ -26,6 +26,14 @@ export default function App({ Component, pageProps }) {
     const [user] = useAuthState(auth);
     const path = router.pathname;
 
+    //verify premium
+    const [isPremium, setIsPremium] = useState(false); //hook for premium status
+    useEffect(() => {
+        checkPremiumStatus().then((premium) => {
+            setIsPremium(premium);
+        });
+    }, []);
+
     if (!user && path.includes("about")) {
         return (
             <>
@@ -53,33 +61,27 @@ export default function App({ Component, pageProps }) {
     } else if (user) {
         return (
             <>
-                <Head>
-                    <script
-                        async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2060929608189026"
-                        crossorigin="anonymous"
-                    ></script>
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
+                <script
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2060929608189026"
+                    crossorigin="anonymous"
+                ></script>
 
-              gtag('config', '${gtag.GA_TRACKING_ID}', {
-                page_path: window.location.pathname,
-              });
-            `,
-                        }}
-                    />
-                </Head>
-                {/* Global Site Tag (gtag.js) - Google Analytics */}
-                <Script
-                    strategy="afterInteractive"
-                    src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-                />
                 <Layout>
-                    <Component {...pageProps} />
+                    {isPremium ? (
+                        <Component {...pageProps} />
+                    ) : (
+                        <>
+                            <Head>
+                                <script
+                                    async
+                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2060929608189026"
+                                    crossOrigin="anonymous"
+                                ></script>
+                            </Head>
+                            <Component {...pageProps} />
+                        </>
+                    )}
                 </Layout>
             </>
         );
