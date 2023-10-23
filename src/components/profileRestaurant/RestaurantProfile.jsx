@@ -84,12 +84,14 @@ export default function RestaurantProfile() {
                         <h2 className="text-xl font-bold">
                             Restaurant Details
                         </h2>
-                        <MenuButton selected={restaurant} />
-                        <OrderButton selected={restaurant} />
-                        <GetDirections
-                            selected={restaurant}
-                            userGeo={userGeo}
-                        />
+                        <div className="flex">
+                            <MenuButton selected={restaurant} />
+                            <OrderButton selected={restaurant} />
+                            <GetDirections
+                                selected={restaurant}
+                                userGeo={userGeo}
+                            />
+                        </div>
                         <h3 className="m-4">Address: {restaurant?.address}</h3>
                         {premium && (
                             <RestaurantOccupancy restaurant={restaurant} />
