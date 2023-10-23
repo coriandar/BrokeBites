@@ -5,7 +5,9 @@ import {
     removeRestaurantVisited,
 } from "@/database/firebase/firestore/userDB";
 import { useEffect, useState } from "react";
-import { Button } from "../ui/shadcn-ui/button";
+import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
+import { LayoutList, ListChecks } from "lucide-react";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
 
 export default function VisitedButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
@@ -33,12 +35,15 @@ export default function VisitedButton({ selectedRestaurant }) {
     };
 
     return (
-        <Button
-            variant={"secondary"}
-            className={"mr-1 h-6 rounded-full"}
-            onClick={isVisited ? removeVisited : addVisited}
-        >
-            {isVisited ? "Remove Visited" : "Visited"}
-        </Button>
+        <div className="group relative cursor-pointer py-2">
+            <TopTooltip text={isVisited ? "Remove Visited" : "Add Visited"} />
+            <ButtonCircleIcon
+                action={() => {
+                    isVisited ? removeVisited() : addVisited();
+                }}
+            >
+                {isVisited ? <ListChecks /> : <LayoutList />}
+            </ButtonCircleIcon>
+        </div>
     );
 }
