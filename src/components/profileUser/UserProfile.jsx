@@ -10,11 +10,9 @@ import { fetchUserReviews } from "@/database/firebase/firestore/reviewDB";
 import Avatar from "../account/Avatar";
 import ReviewCardProfile from "../review/ReviewCardProfile";
 import { useRouter } from "next/router";
-<<<<<<< HEAD
 import { ProfileFeed } from "../profileUser/ProfileFeed";
-=======
 import UserProfileStatistics from "./UserProfileStatistics";
->>>>>>> b3fa0256ddf9ecada93a24b93bcc0da3432a3919
+
 
 export default function UserProfile() {
     const router = useRouter();

@@ -6,13 +6,10 @@ import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
 import ReviewCardRestaurant from "./ReviewCardRestaurant";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/database/firebase/firebaseApp";
-<<<<<<< HEAD
 import { addReviewPost } from "@/database/firebase/firestore/userFeedDB";
-=======
 import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { MessageSquare } from "lucide-react";
 import { TopTooltip } from "../ui/tooltip/Tooltip";
->>>>>>> b3fa0256ddf9ecada93a24b93bcc0da3432a3919
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);

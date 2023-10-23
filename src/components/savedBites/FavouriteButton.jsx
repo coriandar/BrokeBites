@@ -5,13 +5,10 @@ import {
     removeRestaurantFavourite,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
-<<<<<<< HEAD
 import { addFavouritePost } from "@/database/firebase/firestore/userFeedDB";
-=======
 import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { Heart, HeartOff } from "lucide-react";
 import { TopTooltip } from "../ui/tooltip/Tooltip";
->>>>>>> b3fa0256ddf9ecada93a24b93bcc0da3432a3919
 
 export default function FavouriteButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
