@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import { SelectedChat } from "../logic/SelectedChatContext";
 import { auth } from "@/database/firebase/firebaseApp";
 import { getUserName } from "../logic/DMLogic";
-import styles from "./DirectMessage.module.css";
 
 export default function TopBar() {
     const currentUser = auth.currentUser;
@@ -13,14 +12,14 @@ export default function TopBar() {
     console.log("data in TopBar: ", data);
 
     useEffect(() => {
-        const userName = getUserName(data.selectedChat.users, currentUser);
+        const userName = getUserName(data?.selectedChat?.users, currentUser);
         setOtherUser(userName);
     }, [data]);
 
     return (
-        <div className={styles.topbarContainer}>
-            <p>{otherUser}</p>
+        <div className="flex">
             {/* <Avatar maxW={"w-[50px]"} photoURL={user.photoURL} /> */}
+            <p>{otherUser}</p>
         </div>
     );
 }

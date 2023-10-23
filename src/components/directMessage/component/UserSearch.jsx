@@ -4,6 +4,10 @@ import { chatExists, userExists } from "../logic/DMLogic";
 import { WarningModal } from "./WarningModal";
 import { SelectedChat } from "../logic/SelectedChatContext";
 import { auth } from "@/database/firebase/firebaseApp";
+import { Input } from "@/components/ui/shadcn-ui/input";
+import { Button } from "@/components/ui/shadcn-ui/button";
+import { MessageSquarePlus } from "lucide-react";
+import { TopTooltip } from "@/components/ui/tooltip/Tooltip";
 
 export default function UserSearch({ chatMasterList, userMasterList }) {
     const [query, setQuery] = useState("");
@@ -14,15 +18,17 @@ export default function UserSearch({ chatMasterList, userMasterList }) {
     const currentUser = auth.currentUser;
 
     const handleSearch = async () => {
-        console.log("Users in handleSearch", userMasterList);
-        console.log("query: ", query);
-        const selectedUser = userExists(query, userMasterList);
+        if (query.length > 0) {
+            console.log("Users in handleSearch", userMasterList);
+            console.log("query: ", query);
+            const selectedUser = userExists(query, userMasterList);
 
-        if (selectedUser) {
-            console.log("Selected user: ", selectedUser);
-            searchForChat();
-        } else {
-            setShowWarning(true);
+            if (selectedUser) {
+                console.log("Selected user: ", selectedUser);
+                searchForChat();
+            } else {
+                setShowWarning(true);
+            }
         }
     };
 
@@ -74,16 +80,27 @@ export default function UserSearch({ chatMasterList, userMasterList }) {
     }, [searchBoxClicked]);
 
     return (
-        <div className="search">
-            <div className="searchForm"></div>
-            <input
+        <div className="flex w-full items-center">
+            <Input
                 type="text"
                 placeholder="Find a BiteMate"
                 onClick={() => setSearchBoxClicked(true)}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => handleKeyDown(e)}
+                className="mr-2"
             />
-            <button onClick={() => handleSearch()}>Search</button>
+
+            <div className="group relative cursor-pointer py-2">
+                <TopTooltip text={"New chat"} />
+                <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => handleSearch()}
+                >
+                    <MessageSquarePlus className="h-[1.2rem] w-[1.2rem] " />
+                </Button>
+            </div>
+
             {showWarning && <WarningModal setShowWarning={setShowWarning} />}
         </div>
     );

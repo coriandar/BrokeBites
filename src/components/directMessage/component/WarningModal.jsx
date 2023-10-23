@@ -1,18 +1,18 @@
 import React from "react";
-import styles from "./WarningModal.module.css";
+import Modal from "@/components/__shared__/layout/Modal";
 
 export const WarningModal = ({ setShowWarning }) => {
-    const handleClose = () => {
-        setShowWarning(false);
-    };
-
     return (
-        <div className={styles.warningModal}>
-            <div className={styles.warningContent}>
+        <Modal
+            open={open}
+            maxW={"w-1/3"}
+            maxH={"h-20%"}
+            onClose={() => setShowWarning(false)}
+        >
+            <div className="flex h-full flex-col items-center justify-center">
                 <h2>User Not Found</h2>
                 <p>The user you are looking for could not be found.</p>
-                <button onClick={handleClose}>Close</button>
             </div>
-        </div>
+        </Modal>
     );
 };

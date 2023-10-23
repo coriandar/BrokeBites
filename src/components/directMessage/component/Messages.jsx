@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { SelectedChat } from "../logic/SelectedChatContext";
 import { getMessages } from "@/database/firebase/firestore/direcMessageDB";
 import { auth } from "@/database/firebase/firebaseApp";
-import styles from "./DirectMessage.module.css";
 
 export default function Messages() {
     const { data } = useContext(SelectedChat);
@@ -35,14 +34,12 @@ export default function Messages() {
     };
 
     return (
-        <div className={styles.messageContainer}>
+        <div className="styles.messageContainer">
             <ul className="messageList">
                 {messages.map((message) => (
                     <li key={message.id} className="messageItem">
                         {message.sender === currentUser ? (
-                            <div className={styles.sentMessage}>
-                                {message.messageText}
-                            </div>
+                            <div>{message.messageText}</div>
                         ) : (
                             <div className="recievedMessage">
                                 {message.messageText}

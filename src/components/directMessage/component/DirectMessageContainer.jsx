@@ -9,7 +9,9 @@ import {
     getAllChats,
     getAllUsers,
 } from "@/database/firebase/firestore/direcMessageDB";
-import styles from "./DirectMessage.module.css";
+import { ScrollArea } from "@/components/ui/shadcn-ui/scroll-area";
+import { Card } from "@/components/ui/shadcn-ui/card";
+import TopBar from "./TopBar";
 
 export default function DirectMessageContainer() {
     const currentUser = auth.currentUser;
@@ -61,31 +63,35 @@ export default function DirectMessageContainer() {
     };
 
     return (
-        // <div className="flex h-[700px] w-screen bg-slate-500">
-        //     <UserSearch
-        //         chatMasterList={chatMasterList}
-        //         userMasterList={userMasterList}
-        //     />
-        //     <div>
-        //         <p>{chatList()}</p>
-        //     </div>
-        //     <div>
-        //         {data.selectedChat === null ? null : (
-        //             <>
-        //                 <TopBar />
-        //                 <Messages />
-        //                 <SendMessage />
-        //             </>
-        //         )}
-        //     </div>
-        // </div>
-        <div className="m-12 flex h-[700px] w-screen items-center justify-between">
-            <div className="m-4 h-full w-1/3">
-                <h3 className="text-lg font-bold">Flagged Reviews</h3>
-            </div>
-            <div className="m-4 h-full w-2/3">
-                <h3 className="text-lg font-bold">Bug Reports</h3>
-                <SendMessage />
+        <div className="flex h-[700px] w-screen items-center justify-center">
+            <div className="w-60% flex h-full items-center justify-center">
+                <div className="m-2 flex h-full w-1/3 flex-col">
+                    <h3 className="text-lg font-bold">Chats</h3>
+                    <Card className="flex h-full flex-col justify-between p-4">
+                        <UserSearch
+                            chatMasterList={chatMasterList}
+                            userMasterList={userMasterList}
+                        />
+                        <ScrollArea className="h-full rounded-md border">
+                            <ul>{chatList()}</ul>
+                        </ScrollArea>
+                    </Card>
+                </div>
+
+                <div className="m-2 flex h-full w-2/3 flex-col">
+                    <h3 className="text-lg font-bold">Messages</h3>
+                    <Card className="flex h-full flex-col justify-between p-4">
+                        <TopBar />
+                        <ScrollArea className="h-full rounded-md border">
+                            <div>
+                                {data.selectedChat === null ? null : (
+                                    <Messages />
+                                )}
+                            </div>
+                        </ScrollArea>
+                        <SendMessage />
+                    </Card>
+                </div>
             </div>
         </div>
     );

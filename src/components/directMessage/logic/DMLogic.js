@@ -16,6 +16,6 @@ export const getOtherDisplayName = (users, currentUser) => {
 };
 
 export const getUserName = (users, currentUser) => {
-    const otherUser = users.find((user) => user !== currentUser.displayName);
-    return otherUser || "Unknown User";
+    const otherUser = users?.find((user) => user !== currentUser.displayName);
+    return otherUser || "...";
 };

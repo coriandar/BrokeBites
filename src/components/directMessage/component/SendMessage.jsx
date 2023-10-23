@@ -5,6 +5,7 @@ import { SelectedChat } from "../logic/SelectedChatContext";
 import { Input } from "@/components/ui/shadcn-ui/input";
 import { Button } from "@/components/ui/shadcn-ui/button";
 import { Send } from "lucide-react";
+import { TopTooltip } from "@/components/ui/tooltip/Tooltip";
 
 export default function SendMessage() {
     const [messageText, setMessageText] = useState("");
@@ -13,9 +14,15 @@ export default function SendMessage() {
     const { data } = useContext(SelectedChat);
 
     const handleSend = async () => {
-        sendMessage(messageText, currentUser.displayName, data.selectedChat.id);
-        dispatch({ type: "SET_MESSAGE", payload: messageText });
-        setMessageText("");
+        if (data?.selectedChat?.id && messageText.length > 0) {
+            sendMessage(
+                messageText,
+                currentUser.displayName,
+                data?.selectedChat?.id,
+            );
+            dispatch({ type: "SET_MESSAGE", payload: messageText });
+            setMessageText("");
+        }
     };
 
     const handleKeyDown = (event) => {
@@ -26,16 +33,19 @@ export default function SendMessage() {
     };
 
     return (
-        <>
-            <div className="flex w-full max-w-sm items-center space-x-2">
-                <Input
-                    type="text"
-                    autoComplete="off"
-                    placeholder="Type a message"
-                    onChange={(e) => setMessageText(e.target.value)}
-                    onKeyDown={(e) => handleKeyDown(e)}
-                    value={messageText}
-                />
+        <div className="flex items-center">
+            <Input
+                type="text"
+                autoComplete="off"
+                placeholder="Type a message"
+                onChange={(e) => setMessageText(e.target.value)}
+                onKeyDown={(e) => handleKeyDown(e)}
+                value={messageText}
+                className="mr-2"
+            />
+
+            <div className="group relative cursor-pointer py-2">
+                <TopTooltip text={"Send"} />
                 <Button
                     onClick={() => {
                         handleSend();
@@ -45,6 +55,6 @@ export default function SendMessage() {
                     <Send className="h-[1.2rem] w-[1.2rem] " />
                 </Button>
             </div>
-        </>
+        </div>
     );
 }
