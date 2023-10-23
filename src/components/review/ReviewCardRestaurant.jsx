@@ -4,8 +4,23 @@ import Link from "next/link";
 import { formatTimestamp } from "../../util/dateFunctions";
 import Avatar from "../account/Avatar";
 import FlagButton from "../moderation/FlagButton";
+import AdminButton from "../moderation/AdminButton";
+import { checkAdmin } from "@/database/firebase/firestore/userDB";
 
 export default function ReviewCardRestaurant({ review }) {
+    const [isAdmin, setIsAdmin] = React.useState(false);
+
+    React.useEffect(() => {
+        const fetchAdminStatus = async () => {
+            try {
+                setIsAdmin(await checkAdmin());
+            } catch (error) {
+                console.error("Error checking admin status:", error);
+            }
+        };
+        fetchAdminStatus();
+    }, []);
+
     return (
         <ReviewCard>
             <Link href={`/profile/${review.userID}`}>
@@ -23,6 +38,7 @@ export default function ReviewCardRestaurant({ review }) {
                 <p>{review.reviewText}</p>
             </div>
             <FlagButton review={review} />
+            {isAdmin && <AdminButton review={review} />}
         </ReviewCard>
     );
 }

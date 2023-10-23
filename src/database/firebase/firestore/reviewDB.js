@@ -9,6 +9,7 @@ import {
     serverTimestamp,
     arrayUnion,
     deleteField,
+    deleteDoc,
 } from "firebase/firestore";
 import { appendUserAvatar } from "./userDB";
 
@@ -93,5 +94,14 @@ export const unflagReview = async (review) => {
         await updateDoc(reviewDocRef, { reporter: deleteField() });
     } catch (error) {
         console.error("Error unflagging:", error);
+    }
+};
+
+export const deleteReview = async (review) => {
+    const reviewDocRef = doc(db, "reviewDB", review.id);
+    try {
+        await deleteDoc(reviewDocRef);
+    } catch (error) {
+        console.error("Error deleting:", error);
     }
 };

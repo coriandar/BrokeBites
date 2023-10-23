@@ -22,7 +22,7 @@ export default function ReviewModal({ selectedRestaurant }) {
     useEffect(() => {
         if (open) loadReviews();
         else setReviewsData([]);
-    }, [open, selectedRestaurant.id]);
+    }, [open, selectedRestaurant?.id]);
 
     const handleReviewSubmit = async (reviewText) => {
         await submitReview({ selectedRestaurant, reviewText });
@@ -32,7 +32,7 @@ export default function ReviewModal({ selectedRestaurant }) {
     };
 
     return (
-        <div className="flex">
+        <div className="fixed z-50 flex">
             <Button
                 variant={"secondary"}
                 className={"mr-1 h-6 rounded-full"}
@@ -49,7 +49,7 @@ export default function ReviewModal({ selectedRestaurant }) {
             >
                 <div className="flex h-full w-full flex-col rounded-lg p-2 dark:bg-black">
                     <h3 className="text-lg font-bold">
-                        {selectedRestaurant.name}'s Reviews
+                        {selectedRestaurant?.name}'s Reviews
                     </h3>
 
                     <ReviewContainer
@@ -58,7 +58,7 @@ export default function ReviewModal({ selectedRestaurant }) {
                     />
 
                     {user && (
-                        <div className="mt-2 flex h-25% w-full pl-4 pr-4">
+                        <div className="h-25% mt-2 flex w-full pl-4 pr-4">
                             <form
                                 className="w-full"
                                 onSubmit={(e) => {

@@ -96,8 +96,8 @@ export const fetchUser = async (userID) => {
 };
 
 export const checkAdmin = async () => {
-    const user = fetchUser(auth?.currentUser?.uid);
-    return user;
+    const user = await fetchUser(auth?.currentUser?.uid);
+    return !!user?.isAdmin;
 };
 
 // fetch a specific list from users data
