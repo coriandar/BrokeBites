@@ -34,6 +34,11 @@ export default function ReviewCardRestaurant({ review }) {
                     <p className="text-xs font-light">
                         {formatTimestamp(review.timestamp)}
                     </p>
+                    {isAdmin && (
+                        <p className="text-xs font-light">
+                            {review?.reportCount}
+                        </p>
+                    )}
                 </div>
                 <p>{review.reviewText}</p>
             </div>

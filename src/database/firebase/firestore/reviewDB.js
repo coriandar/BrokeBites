@@ -59,11 +59,14 @@ export const fetchFlaggedReviews = async () => {
         const data = await getDocs(restaurantReviewCollectionRef);
 
         const reviewData = data.docs
-            .map((doc) => ({
-                ...doc.data(),
-                reportCount: doc.reporters?.length,
-                id: doc.id,
-            }))
+            .map((doc) => {
+                const reporterArray = doc.data()?.reporter;
+                return {
+                    ...doc.data(),
+                    reportCount: reporterArray?.length || 0,
+                    id: doc.id,
+                };
+            })
             .filter((review) => review?.flagged === true);
 
         reviewData.sort((a, b) => b.reportCount - a.reportCount);
