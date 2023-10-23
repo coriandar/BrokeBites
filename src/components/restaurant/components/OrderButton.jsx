@@ -13,11 +13,13 @@ export const OrderButton = ({ selected }) => {
 
     return (
         <div className="group relative cursor-pointer py-2">
-            <TopTooltip text={"Order"} />
             {selected?.order[0] && (
-                <ButtonCircleIcon action={() => openOrder()}>
-                    <ShoppingCart />
-                </ButtonCircleIcon>
+                <>
+                    <TopTooltip text={"Order"} />
+                    <ButtonCircleIcon action={() => openOrder()}>
+                        <ShoppingCart />
+                    </ButtonCircleIcon>
+                </>
             )}
         </div>
     );

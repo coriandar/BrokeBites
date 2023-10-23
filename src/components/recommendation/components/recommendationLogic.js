@@ -28,6 +28,11 @@ export const mergeLists = (...lists) => {
     const mergedList = [];
     for (const list of lists) mergedList.push(...list);
 
+    if (mergedList.length <= 0) {
+        console.log("No saved bites!");
+        return [{ dietary: "None", cuisine: "Other", postalCode: "1010" }];
+    }
+
     return Object.values(
         mergedList.reduce((acc, entry) => {
             acc[entry.id] = entry;
