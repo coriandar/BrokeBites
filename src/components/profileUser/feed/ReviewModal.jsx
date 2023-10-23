@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link"; // Correct import
 import { fetchRestaurant } from "@/database/firebase/firestore/restaurantDB";
 
 export default function ReviewContainer({ postData, displayName }) {
@@ -25,7 +26,14 @@ export default function ReviewContainer({ postData, displayName }) {
     return (
         <div>
             <ul key={postData.id} className="w-full">
-                {displayName} reviewed {reviewedRestaurantName}
+                {displayName} reviewed{" "}
+                {reviewedRestaurantName ? (
+                    <Link href={`/restaurant/${postData.recipient}`}>
+                        {reviewedRestaurantName}
+                    </Link>
+                ) : (
+                    "a restaurant"
+                )}{" "}
             </ul>
         </div>
     );
