@@ -24,13 +24,17 @@ export const ProfileFeed = ({ uid, displayName }) => {
 
     return (
         <div>
-            {feed.map((followData) => (
-                <FollowContainer
-                    key={followData.id}
-                    followData={followData}
-                    displayName={displayName}
-                />
-            ))}
+            {feed.map((followData) =>
+                followData.postType === "follow" ? (
+                    <FollowContainer
+                        key={followData.id}
+                        followData={followData}
+                        displayName={displayName}
+                    />
+                ) : (
+                    <p key={followData.id}>No Feed</p>
+                ),
+            )}
         </div>
     );
 };
