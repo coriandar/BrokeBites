@@ -34,7 +34,7 @@ export default function ReviewCardProfile({ review }) {
                 </div>
                 <p>{review.reviewText}</p>
             </div>
-            {!isAdmin && <FlagButton review={review} />}
+            <FlagButton review={review} />
             {isAdmin && <AdminButton review={review} />}
         </ReviewCard>
     );

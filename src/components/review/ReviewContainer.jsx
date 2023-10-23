@@ -1,8 +1,13 @@
 import React from "react";
+import { ScrollArea } from "../ui/shadcn-ui/scroll-area";
 
 export default function ReviewContainer({ reviewsData, reviewCardType }) {
     return (
-        <div className="no-scrollbar mb-2 mt-2 flex h-75% overflow-y-auto">
+        // <ScrollArea className="h-[500px] w-[350px] rounded-md border p-4">
+        <ScrollArea className="h-full rounded-md border p-4">
+            {/* <div 
+            className="h-75% mb-2 mt-2 flex overflow-y-auto">
+             */}
             {reviewsData.length > 0 ? (
                 <div
                     id="review"
@@ -17,6 +22,7 @@ export default function ReviewContainer({ reviewsData, reviewCardType }) {
             ) : (
                 <div>No reviews</div>
             )}
-        </div>
+            {/* </div> */}
+        </ScrollArea>
     );
 }
