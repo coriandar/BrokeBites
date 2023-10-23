@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchFeed } from "../../database/firebase/firestore/userFeedDB";
 import FollowContainer from "./feed/FollowModal";
-import FavoriteContainer from "./feed/FavoriteModal"; // Import the component for "favorite"
-import ToVisitContainer from "./feed/ToVisitModal"; // Import the component for "toVisit"
+import FavoriteContainer from "./feed/FavouriteModal"; // Import the component for "favorite"
 
 export const ProfileFeed = ({ uid, displayName }) => {
     const [feed, setFeed] = useState([]);
@@ -26,36 +25,33 @@ export const ProfileFeed = ({ uid, displayName }) => {
 
     return (
         <div>
-            {feed.map((followData) => {
-                if (followData.postType === "follow") {
+            {feed.map((post) => {
+                if (post.postType === "follow") {
                     return (
                         <FollowContainer
-                            key={followData.id}
-                            followData={followData}
+                            key={post.id}
+                            postData={post}
                             displayName={displayName}
                         />
                     );
-                } else if (
-                    followData.postType === "favorite" ||
-                    followData.postType === "toVisit"
-                ) {
+                } else if (post.postType === "favourite") {
                     return (
                         <FavoriteContainer
-                            key={followData.id}
-                            favoriteData={followData}
+                            key={post.id}
+                            postData={post}
                             displayName={displayName}
                         />
                     );
-                } else if (followData.postType === "review") {
+                } else if (post.postType === "review") {
                     return (
                         <ToVisitContainer
-                            key={followData.id}
-                            toVisitData={followData}
+                            key={post.id}
+                            toVisitData={post}
                             displayName={displayName}
                         />
                     );
                 } else {
-                    return <p key={followData.id}>No Feed</p>;
+                    return <p key={post.id}>No Feed</p>;
                 }
             })}
         </div>

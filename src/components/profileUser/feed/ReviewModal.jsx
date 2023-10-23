@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { fetchRestaurant } from "@/database/firebase/firestore/userDB";
 
-export default function FavouriteContainer({ followData, displayName }) {
+export default function FavouriteContainer({ post, displayName }) {
     const [recipientDisplayName, setRecipientDisplayName] = useState(null);
 
     useEffect(() => {
         const fetchRecipientDisplayName = async () => {
             try {
-                const restaurant = await fetchRestaurant(followData.recipient);
+                const restaurant = await fetchRestaurant(post.recipient);
                 if (restaurant) {
                     setRecipientDisplayName(restaurant.name);
                 } else {
@@ -23,11 +23,11 @@ export default function FavouriteContainer({ followData, displayName }) {
         };
 
         fetchRecipientDisplayName();
-    }, [followData.recipient]);
+    }, [post.recipient]);
 
     return (
         <div>
-            <ul key={followData.id} className="w-full">
+            <ul key={post.id} className="w-full">
                 {displayName} reviewed {recipientDisplayName}
             </ul>
         </div>

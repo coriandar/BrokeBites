@@ -1,33 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { fetchRestaurant } from "@/database/firebase/firestore/userDB";
+import { fetchRestaurant } from "@/database/firebase/firestore/restaurantDB"; // Updated import
 
-export default function FavouriteContainer({ followData, displayName }) {
-    const [favouriteRestaurant, setfavouriteRestaurant] = useState(null);
+export default function FavouriteContainer({ postData, displayName }) {
+    const [favouriteRestaurant, setFavouriteRestaurant] = useState(null);
 
     useEffect(() => {
-        const fetchRestaurant = async () => {
+        async function fetchFavouriteRestaurant() {
             try {
-                const restaurant = await fetchRestaurant(followData.recipient);
+                const restaurant = await fetchRestaurant(postData.recipient);
                 if (restaurant) {
-                    setfavouriteRestaurant(restaurant.name);
+                    setFavouriteRestaurant(restaurant.name);
                 } else {
-                    setfavouriteRestaurant("Display Name Not Found");
+                    setFavouriteRestaurant("Restaurant Not Found");
                 }
             } catch (error) {
-                console.error(
-                    "Error fetching recipient's display name:",
-                    error,
-                );
-                setfavouriteRestaurant("Display Name Error");
+                console.error("Error fetching restaurant data:", error);
+                setFavouriteRestaurant("Restaurant Error");
             }
-        };
-    }, [followData.recipient]);
+        }
+
+        fetchFavouriteRestaurant(); // Call the async function within useEffect
+    }, [postData.recipient]);
 
     return (
         <div>
-            <ul key={followData.id} className="w-full">
-                {displayName} added {favouriteRestaurant.name} to their
-                favourites list
+            <ul key={postData.id} className="w-full">
+                {displayName} added {favouriteRestaurant} to their favorites
+                list
             </ul>
         </div>
     );

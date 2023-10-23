@@ -6,6 +6,7 @@ import {
     removeRestaurantFavourite,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
+import { addFavouritePost } from "@/database/firebase/firestore/userFeedDB";
 
 export default function FavouriteButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
@@ -23,6 +24,7 @@ export default function FavouriteButton({ selectedRestaurant }) {
 
     const addFavourite = async () => {
         await addRestaurantFavourite(selectedRestaurant);
+        await addFavouritePost(currentUserID, selectedRestaurant.id);
         setIsFavourite(true);
     };
 

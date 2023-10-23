@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { fetchUser } from "@/database/firebase/firestore/userDB";
 
-export default function FollowContainer({ followData, displayName }) {
+export default function FollowContainer({ postData, displayName }) {
     const [recipientDisplayName, setRecipientDisplayName] = useState(null);
 
     useEffect(() => {
         const fetchRecipientDisplayName = async () => {
             try {
-                const user = await fetchUser(followData.recipient);
+                const user = await fetchUser(postData.recipient);
                 if (user) {
                     setRecipientDisplayName(user.displayName);
                 } else {
@@ -23,11 +23,11 @@ export default function FollowContainer({ followData, displayName }) {
         };
 
         fetchRecipientDisplayName();
-    }, [followData.recipient]);
+    }, [postData.recipient]);
 
     return (
         <div>
-            <ul key={followData.id} className="w-full">
+            <ul key={postData.id} className="w-full">
                 {displayName} followed {recipientDisplayName}
             </ul>
         </div>

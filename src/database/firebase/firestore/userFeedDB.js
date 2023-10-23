@@ -5,6 +5,7 @@ import {
     query,
     where,
     serverTimestamp,
+    addDoc,
 } from "firebase/firestore";
 
 export const fetchFeed = async (userID) => {
@@ -37,8 +38,22 @@ export const fetchFeed = async (userID) => {
 export const addFollow = async (userID, recipient) => {
     try {
         const feedCollectionRef = collection(db, "userFeedDB");
-        await addDoc(reviewsCollectionRef, {
+        await addDoc(feedCollectionRef, {
             postType: "follow",
+            user: userID,
+            recipient: recipient,
+            time: serverTimestamp(),
+        });
+    } catch (error) {
+        console.error("Error adding to favorites:", error);
+    }
+};
+
+export const addFavouritePost = async (userID, recipient) => {
+    try {
+        const feedCollectionRef = collection(db, "userFeedDB");
+        await addDoc(feedCollectionRef, {
+            postType: "favourite",
             user: userID,
             recipient: recipient,
             time: serverTimestamp(),
