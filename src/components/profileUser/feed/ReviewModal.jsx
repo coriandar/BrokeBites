@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchRestaurant } from "@/database/firebase/firestore/userDB";
 
-export default function FavouriteContainer({ followData, displayName }) {
+export default function ReviewContainer({ followData, displayName }) {
     const [recipientDisplayName, setRecipientDisplayName] = useState(null);
 
     useEffect(() => {
