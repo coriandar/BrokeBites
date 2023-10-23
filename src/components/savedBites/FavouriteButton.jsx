@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ButtonSmall from "../__shared__/ui/ButtonSmall";
 import { auth } from "@/database/firebase/firebaseApp";
 import {
     addRestaurantFavourite,
     removeRestaurantFavourite,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
-import { Button } from "../ui/shadcn-ui/button";
+import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
+import { Heart, HeartOff } from "lucide-react";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
 
 export default function FavouriteButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
@@ -20,7 +21,7 @@ export default function FavouriteButton({ selectedRestaurant }) {
         };
 
         if (currentUserID && selectedRestaurant) checkIsFavourite();
-    }, [currentUserID, selectedRestaurant]);
+    }, [currentUserID, selectedRestaurant, isFavourite]);
 
     const addFavourite = async () => {
         await addRestaurantFavourite(selectedRestaurant);
@@ -33,12 +34,17 @@ export default function FavouriteButton({ selectedRestaurant }) {
     };
 
     return (
-        <Button
-            variant={"secondary"}
-            className={"mr-1 h-6 rounded-full"}
-            onClick={isFavourite ? removeFavourite : addFavourite}
-        >
-            {isFavourite ? "Remove favourite" : "Favourite"}
-        </Button>
+        <div className="group relative cursor-pointer py-2">
+            <TopTooltip
+                text={isFavourite ? "Remove Favourite" : "Add Favourite"}
+            />
+            <ButtonCircleIcon
+                action={() => {
+                    isFavourite ? removeFavourite() : addFavourite();
+                }}
+            >
+                {isFavourite ? <Heart /> : <HeartOff />}
+            </ButtonCircleIcon>
+        </div>
     );
 }

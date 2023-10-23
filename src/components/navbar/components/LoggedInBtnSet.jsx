@@ -28,15 +28,9 @@ export default function LoggedInBtnSet() {
                 <li className="cursor-pointer p-2">
                     <Link href="/directMessage">Direct Message</Link>
                 </li>
-                {/* <li className="cursor-pointer p-2">
-                    <button
-                        className="justify-end rounded-md bg-slate-200 px-4 py-1"
-                        onClick={signoutHandler}
-                    >
-                        Logout
-                    </button>
+                <li className="cursor-pointer p-2">
                     <AuthSignout />
-                </li> */}
+                </li>
             </ul>
         </>
     );

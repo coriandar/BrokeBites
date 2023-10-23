@@ -1,8 +1,8 @@
-export const chatExists = (displayName, chats, currentUser) =>
+export const chatExists = (otherUser, chats, currentUser) =>
     chats?.find(
         (chat) =>
             chat.users.includes(currentUser.displayName) &&
-            chat.users.includes(displayName),
+            chat.users.includes(otherUser),
     );
 
 export const userExists = (displayName, users) =>

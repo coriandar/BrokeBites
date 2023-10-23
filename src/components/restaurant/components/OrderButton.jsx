@@ -1,5 +1,7 @@
 import React from "react";
-import { Button } from "@/components/ui/shadcn-ui/button";
+import { ButtonCircleIcon } from "@/components/ui/buttons/ButtonCircleIcon";
+import { ShoppingCart } from "lucide-react";
+import { TopTooltip } from "@/components/ui/tooltip/Tooltip";
 
 export const OrderButton = ({ selected }) => {
     const openOrder = () => {
@@ -10,16 +12,15 @@ export const OrderButton = ({ selected }) => {
     };
 
     return (
-        <>
+        <div className="group relative cursor-pointer py-2">
             {selected?.order[0] && (
-                <Button
-                    variant={"secondary"}
-                    className={"mr-1 h-6 rounded-full"}
-                    onClick={openOrder}
-                >
-                    Order
-                </Button>
+                <>
+                    <TopTooltip text={"Order"} />
+                    <ButtonCircleIcon action={() => openOrder()}>
+                        <ShoppingCart />
+                    </ButtonCircleIcon>
+                </>
             )}
-        </>
+        </div>
     );
 };

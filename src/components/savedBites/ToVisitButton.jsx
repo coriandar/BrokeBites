@@ -5,7 +5,9 @@ import {
     removeRestaurantToVisit,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
-import { Button } from "../ui/shadcn-ui/button";
+import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
+import { Bookmark, BookmarkCheck } from "lucide-react";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
 
 export default function ToVisitButton({ selectedRestaurant }) {
     const currentUserID = auth.currentUser?.uid;
@@ -19,7 +21,7 @@ export default function ToVisitButton({ selectedRestaurant }) {
         };
 
         if (currentUserID && selectedRestaurant) checkIsToVisit();
-    }, [currentUserID, selectedRestaurant]);
+    }, [currentUserID, selectedRestaurant, isToVisit]);
 
     const addToVisit = async () => {
         await addRestaurantToVisit(selectedRestaurant);
@@ -32,12 +34,15 @@ export default function ToVisitButton({ selectedRestaurant }) {
     };
 
     return (
-        <Button
-            variant={"secondary"}
-            className={"mr-1 h-6 rounded-full"}
-            onClick={isToVisit ? removeToVisit : addToVisit}
-        >
-            {isToVisit ? "Remove To-Visit" : "To-Visit"}
-        </Button>
+        <div className="group relative cursor-pointer py-2">
+            <TopTooltip text={isToVisit ? "Remove To-Visit" : "Add To-Visit"} />
+            <ButtonCircleIcon
+                action={() => {
+                    isToVisit ? removeToVisit() : addToVisit();
+                }}
+            >
+                {isToVisit ? <BookmarkCheck /> : <Bookmark />}
+            </ButtonCircleIcon>
+        </div>
     );
 }

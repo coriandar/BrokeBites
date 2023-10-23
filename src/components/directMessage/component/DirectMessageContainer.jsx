@@ -85,6 +85,7 @@ export default function DirectMessageContainer() {
             </div>
             <div className="m-4 h-full w-2/3">
                 <h3 className="text-lg font-bold">Bug Reports</h3>
+                <SendMessage />
             </div>
         </div>
     );

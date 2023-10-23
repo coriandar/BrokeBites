@@ -95,6 +95,11 @@ export const fetchUser = async (userID) => {
     return userData;
 };
 
+export const checkAdmin = async () => {
+    const user = await fetchUser(auth?.currentUser?.uid);
+    return !!user?.isAdmin;
+};
+
 // fetch a specific list from users data
 export const fetchUserList = async (currentUserId, listName) => {
     // Create a reference to the user's document in Firestore
