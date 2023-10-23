@@ -2,8 +2,11 @@
 import React from "react";
 import { checkout } from "../stripe/checkout";
 //testing premium methods
-// import { setPremium } from "../database/firebase/firestore/userDB";
-// import { removePremium } from "../database/firebase/firestore/userDB";
+// import {
+//     checkPremiumStatus,
+//     setPremium,
+//     removePremium,
+// } from "../database/firebase/firestore/userDB";
 
 function paymentPage() {
     //return a payment button
@@ -25,7 +28,6 @@ function paymentPage() {
             >
                 BUY!
             </button>
-            {/* Testing premium for users */}
             {/* <button
                 className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
                 onClick={setPremium}
