@@ -2,33 +2,32 @@ import React, { useState, useEffect } from "react";
 import { fetchRestaurant } from "@/database/firebase/firestore/userDB";
 
 export default function FavouriteContainer({ followData, displayName }) {
-    const [recipientDisplayName, setRecipientDisplayName] = useState(null);
+    const [favouriteRestaurant, setfavouriteRestaurant] = useState(null);
 
     useEffect(() => {
-        const fetchRecipientDisplayName = async () => {
+        const fetchRestaurant = async () => {
             try {
                 const restaurant = await fetchRestaurant(followData.recipient);
                 if (restaurant) {
-                    setRecipientDisplayName(restaurant.name);
+                    setfavouriteRestaurant(restaurant.name);
                 } else {
-                    setRecipientDisplayName("Display Name Not Found");
+                    setfavouriteRestaurant("Display Name Not Found");
                 }
             } catch (error) {
                 console.error(
                     "Error fetching recipient's display name:",
                     error,
                 );
-                setRecipientDisplayName("Display Name Error");
+                setfavouriteRestaurant("Display Name Error");
             }
         };
-
-        fetchRecipientDisplayName();
     }, [followData.recipient]);
 
     return (
         <div>
             <ul key={followData.id} className="w-full">
-                {displayName} favourited {recipientDisplayName}
+                {displayName} added {favouriteRestaurant.name} to their
+                favourites list
             </ul>
         </div>
     );

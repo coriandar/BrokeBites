@@ -6,6 +6,7 @@ import {
     unfollowSelectedUser,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
+import { addFollow } from "@/database/firebase/firestore/userFeedDB";
 
 export default function FollowButton({ otherUser }) {
     const currentUserID = auth.currentUser.uid;
@@ -25,6 +26,7 @@ export default function FollowButton({ otherUser }) {
 
     const follow = async () => {
         await followSelectedUser(otherUser);
+        await addFollow(currentUserID, otherUser);
         setIsFollowing(true);
     };
 

@@ -1,5 +1,11 @@
 import { db } from "../firebaseApp";
-import { getDocs, collection, query, where } from "firebase/firestore";
+import {
+    getDocs,
+    collection,
+    query,
+    where,
+    serverTimestamp,
+} from "firebase/firestore";
 
 export const fetchFeed = async (userID) => {
     // Reference the userFeedDB collection
@@ -25,5 +31,19 @@ export const fetchFeed = async (userID) => {
     } catch (error) {
         console.error("Error fetching user feed data:", error);
         return null;
+    }
+};
+
+export const addFollow = async (userID, recipient) => {
+    try {
+        const feedCollectionRef = collection(db, "userFeedDB");
+        await addDoc(reviewsCollectionRef, {
+            postType: "follow",
+            user: userID,
+            recipient: recipient,
+            time: serverTimestamp(),
+        });
+    } catch (error) {
+        console.error("Error adding to favorites:", error);
     }
 };

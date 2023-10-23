@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchRestaurant } from "@/database/firebase/firestore/userDB";
 
-export default function ReviewContainer({ followData, displayName }) {
+export default function FavouriteContainer({ followData, displayName }) {
     const [recipientDisplayName, setRecipientDisplayName] = useState(null);
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export default function ReviewContainer({ followData, displayName }) {
     return (
         <div>
             <ul key={followData.id} className="w-full">
-                {displayName} favourited {recipientDisplayName}
+                {displayName} reviewed {recipientDisplayName}
             </ul>
         </div>
     );
