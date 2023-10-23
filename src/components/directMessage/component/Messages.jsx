@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { SelectedChat } from "../logic/SelectedChatContext";
 import { getMessages } from "@/database/firebase/firestore/direcMessageDB";
 import { auth } from "@/database/firebase/firebaseApp";
+import styles from "./DirectMessage.module.css";
 
 export default function Messages() {
     const { data } = useContext(SelectedChat);
@@ -17,27 +18,6 @@ export default function Messages() {
             const messages = await getMessages(data.selectedChat.id);
             setMessages(messages);
         }
-
-        <div className="messageContainer">
-            <ul className="messageList">
-                {messages.map((message) => (
-                    <li key={message.id} className="messageItem">
-                        {message.sender === currentUser ? (
-                            <div className="sentMessage">
-                                {message.messageText}
-                            </div>
-                        ) : (
-                            <div className="recievedMessage">
-                                {message.messageText}
-                            </div>
-                        )}
-                        <div className="timestamp">
-                            {formatTimestamp(message.timestamp)}
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </div>;
     };
 
     const formatTimestamp = (timestamp) => {
@@ -55,12 +35,12 @@ export default function Messages() {
     };
 
     return (
-        <div className="messageContainer">
+        <div className={styles.messageContainer}>
             <ul className="messageList">
                 {messages.map((message) => (
                     <li key={message.id} className="messageItem">
                         {message.sender === currentUser ? (
-                            <div className="sentMessage">
+                            <div className={styles.sentMessage}>
                                 {message.messageText}
                             </div>
                         ) : (

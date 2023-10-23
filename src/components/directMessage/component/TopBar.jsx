@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { SelectedChat } from "../logic/SelectedChatContext";
 import { auth } from "@/database/firebase/firebaseApp";
 import { getUserName } from "../logic/DMLogic";
+import styles from "./DirectMessage.module.css";
 
 export default function TopBar() {
     const currentUser = auth.currentUser;
@@ -17,7 +18,7 @@ export default function TopBar() {
     }, [data]);
 
     return (
-        <div className="topbarContainer">
+        <div className={styles.topbarContainer}>
             <p>{otherUser}</p>
             {/* <Avatar maxW={"w-[50px]"} photoURL={user.photoURL} /> */}
         </div>

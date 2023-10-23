@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./WarningModal.module.css";
 
 export const WarningModal = ({ setShowWarning }) => {
     const handleClose = () => {
@@ -6,8 +7,8 @@ export const WarningModal = ({ setShowWarning }) => {
     };
 
     return (
-        <div className="warning-modal">
-            <div className="warning-content">
+        <div className={styles.warningModal}>
+            <div className={styles.warningContent}>
                 <h2>User Not Found</h2>
                 <p>The user you are looking for could not be found.</p>
                 <button onClick={handleClose}>Close</button>

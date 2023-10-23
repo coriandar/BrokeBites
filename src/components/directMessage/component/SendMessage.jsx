@@ -2,8 +2,11 @@ import { auth } from "@/database/firebase/firebaseApp";
 import { sendMessage } from "@/database/firebase/firestore/direcMessageDB";
 import { useContext, useState } from "react";
 import { SelectedChat } from "../logic/SelectedChatContext";
+import { Input } from "@/components/ui/shadcn-ui/input";
+import { Button } from "@/components/ui/shadcn-ui/button";
+import { Send } from "lucide-react";
 
-export default function BottomBar() {
+export default function SendMessage() {
     const [messageText, setMessageText] = useState("");
     const currentUser = auth.currentUser;
     const { dispatch } = useContext(SelectedChat);
@@ -11,9 +14,7 @@ export default function BottomBar() {
 
     const handleSend = async () => {
         sendMessage(messageText, currentUser.displayName, data.selectedChat.id);
-
         dispatch({ type: "SET_MESSAGE", payload: messageText });
-
         setMessageText("");
     };
 
@@ -25,22 +26,25 @@ export default function BottomBar() {
     };
 
     return (
-        <div className="form">
-            <div className="bottombarContainer">
-                <input
-                    placeholder="Type a message"
+        <>
+            <div className="flex w-full max-w-sm items-center space-x-2">
+                <Input
+                    type="text"
                     autoComplete="off"
+                    placeholder="Type a message"
                     onChange={(e) => setMessageText(e.target.value)}
                     onKeyDown={(e) => handleKeyDown(e)}
-                ></input>
-                <button
+                    value={messageText}
+                />
+                <Button
                     onClick={() => {
                         handleSend();
                     }}
+                    size="icon"
                 >
-                    Send
-                </button>
+                    <Send className="h-[1.2rem] w-[1.2rem] " />
+                </Button>
             </div>
-        </div>
+        </>
     );
 }

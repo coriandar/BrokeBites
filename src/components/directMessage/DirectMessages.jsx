@@ -1,13 +1,12 @@
-import SideBar from "./component/SideBar";
-
+import DirectMessageContainer from "./component/DirectMessageContainer";
 import { SelectedChatProvider } from "./logic/SelectedChatContext";
 
 export default function DirectMessages() {
     return (
         <div>
-            {/* <SelectedChatProvider>
-                <SideBar />
-            </SelectedChatProvider> */}
+            <SelectedChatProvider>
+                <DirectMessageContainer />
+            </SelectedChatProvider>
         </div>
     );
 }
