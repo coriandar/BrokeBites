@@ -5,6 +5,7 @@ import ReviewContainer from "./ReviewContainer";
 import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/database/firebase/firebaseApp";
+import { addReviewPost } from "@/database/firebase/firestore/userFeedDB";
 import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { MessageSquare } from "lucide-react";
 import { TopTooltip } from "../ui/tooltip/Tooltip";
@@ -28,6 +29,7 @@ export default function ReviewModal({ selectedRestaurant }) {
 
     const handleReviewSubmit = async (reviewText) => {
         await submitReview({ selectedRestaurant, reviewText });
+        await addReviewPost(auth.currentUser.uid, selectedRestaurant.id);
         reviewInputRef.current.value = ""; // Clear the input field
         await loadReviews();
         alert("Review submitted");

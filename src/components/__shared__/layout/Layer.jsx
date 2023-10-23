@@ -6,7 +6,7 @@ export default function Layer({ children, position, transparent }) {
 
     return (
         <div
-            className={`absolute rounded-2xl bg-slate-300 dark:bg-black ${background} ${position}`}
+            className={`absolute rounded-2xl bg-white dark:bg-black ${background} ${position}`}
         >
             {children}
         </div>

@@ -5,6 +5,7 @@ import {
     removeRestaurantFavourite,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
+import { addFavouritePost } from "@/database/firebase/firestore/userFeedDB";
 import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { Heart, HeartOff } from "lucide-react";
 import { TopTooltip } from "../ui/tooltip/Tooltip";
@@ -25,6 +26,7 @@ export default function FavouriteButton({ selectedRestaurant }) {
 
     const addFavourite = async () => {
         await addRestaurantFavourite(selectedRestaurant);
+        await addFavouritePost(currentUserID, selectedRestaurant.id);
         setIsFavourite(true);
     };
 
@@ -43,7 +45,7 @@ export default function FavouriteButton({ selectedRestaurant }) {
                     isFavourite ? removeFavourite() : addFavourite();
                 }}
             >
-                {isFavourite ? <Heart /> : <HeartOff />}
+                {isFavourite ? <HeartOff /> : <Heart />}
             </ButtonCircleIcon>
         </div>
     );
