@@ -23,7 +23,10 @@ export default function FavouriteContainer({ postData, displayName }) {
             <ul key={postData.id} className="w-full">
                 {displayName} added{" "}
                 {postRestaurant ? (
-                    <Link href={`/restaurant/${postRestaurant.id}`}>
+                    <Link
+                        href={`/restaurant/${postRestaurant.id}`}
+                        className="text-primary"
+                    >
                         {postRestaurant.name}
                     </Link>
                 ) : (

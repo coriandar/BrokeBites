@@ -31,7 +31,10 @@ export default function FollowContainer({ postData, displayName }) {
             <ul key={postData.id} className="w-full">
                 {displayName} followed{" "}
                 {recipientDisplayName ? (
-                    <Link href={`/profile/${postData.recipient}`}>
+                    <Link
+                        href={`/profile/${postData.recipient}`}
+                        className="text-primary"
+                    >
                         {recipientDisplayName}
                     </Link>
                 ) : (

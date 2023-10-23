@@ -7,9 +7,9 @@ export default function UserProfileStatistics({ userProfile, userReviews }) {
 
     return (
         <div className="flex items-center justify-between">
-            <div>Following:{countFollowing()}</div>
-            <div>Followers:{countFollowers()}</div>
-            <div>Reviews:{countReviews()}</div>
+            <div className="m-2">Following: {countFollowing()}</div>
+            <div className="m-2">Followers: {countFollowers()}</div>
+            <div className="m-2">Reviews: {countReviews()}</div>
         </div>
     );
 }

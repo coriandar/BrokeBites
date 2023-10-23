@@ -45,7 +45,7 @@ export default function FavouriteButton({ selectedRestaurant }) {
                     isFavourite ? removeFavourite() : addFavourite();
                 }}
             >
-                {isFavourite ? <Heart /> : <HeartOff />}
+                {isFavourite ? <HeartOff /> : <Heart />}
             </ButtonCircleIcon>
         </div>
     );

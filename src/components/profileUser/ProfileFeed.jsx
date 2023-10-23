@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchFeed } from "../../database/firebase/firestore/userFeedDB";
-import FollowContainer from "./feed/FollowModal";
-import FavoriteContainer from "./feed/FavouriteModal";
-import ReviewContainer from "./feed/ReviewModal";
+import FollowContainer from "./feed/FeedCardFollow";
+import FavoriteContainer from "./feed/FeedCardFavourite";
+import ReviewContainer from "./feed/FeedCardReview";
+import { ScrollArea } from "../ui/shadcn-ui/scroll-area";
 
 export const ProfileFeed = ({ uid, displayName }) => {
     const [feed, setFeed] = useState([]);
@@ -25,7 +26,7 @@ export const ProfileFeed = ({ uid, displayName }) => {
     }, [uid]);
 
     return (
-        <div>
+        <ScrollArea className="h-full rounded-md border p-4">
             {feed.map((post) => {
                 if (post.postType === "follow") {
                     return (
@@ -55,6 +56,6 @@ export const ProfileFeed = ({ uid, displayName }) => {
                     return <p key={post.id}>No Post Type</p>;
                 }
             })}
-        </div>
+        </ScrollArea>
     );
 };

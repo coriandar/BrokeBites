@@ -28,7 +28,10 @@ export default function ReviewContainer({ postData, displayName }) {
             <ul key={postData.id} className="w-full">
                 {displayName} reviewed{" "}
                 {reviewedRestaurantName ? (
-                    <Link href={`/restaurant/${postData.recipient}`}>
+                    <Link
+                        href={`/restaurant/${postData.recipient}`}
+                        className="text-primary"
+                    >
                         {reviewedRestaurantName}
                     </Link>
                 ) : (

@@ -12,7 +12,7 @@ import ReviewCardProfile from "../review/ReviewCardProfile";
 import { useRouter } from "next/router";
 import { ProfileFeed } from "../profileUser/ProfileFeed";
 import UserProfileStatistics from "./UserProfileStatistics";
-
+import { Card } from "../ui/shadcn-ui/card";
 
 export default function UserProfile() {
     const router = useRouter();
@@ -78,20 +78,25 @@ export default function UserProfile() {
                                 setMapTheme={setMapTheme}
                             />
                         </div>
-                        <div className="m-4 w-1/4 sm:h-[300px] md:h-[600px] lg:h-[800px]">
-                            <h2 className="text-xl font-bold">Review List</h2>
-                            <ReviewContainer
-                                reviewsData={userReviews}
-                                reviewCardType={ReviewCardProfile}
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <h2 className="text-xl font-bold">User Feed</h2>
-                        <ProfileFeed
-                            uid={uid}
-                            displayName={userProfile.displayName}
-                        />
+
+                        <Card className="ml-4 mr-4 flex w-1/4 flex-col sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                            <div className="flex h-1/4 flex-col">
+                                <h2 className="text-xl font-bold">User Feed</h2>
+                                <ProfileFeed
+                                    uid={uid}
+                                    displayName={userProfile.displayName}
+                                />
+                            </div>
+                            <div className="flex h-3/4 flex-col">
+                                <h2 className="text-xl font-bold">
+                                    Review List
+                                </h2>
+                                <ReviewContainer
+                                    reviewsData={userReviews}
+                                    reviewCardType={ReviewCardProfile}
+                                />
+                            </div>
+                        </Card>
                     </div>
                 </div>
             ) : (
