@@ -3,10 +3,13 @@ import { submitReview } from "@/database/firebase/firestore/reviewDB";
 import Modal from "../__shared__/layout/Modal";
 import ReviewContainer from "./ReviewContainer";
 import { fetchRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
-import ButtonSmall from "../__shared__/ui/ButtonSmall";
-import ReviewCardRestaurant from "./ReviewCardRestaurant";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/database/firebase/firebaseApp";
+import { addReviewPost } from "@/database/firebase/firestore/userFeedDB";
+import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
+import { MessageSquare } from "lucide-react";
+import { TopTooltip } from "../ui/tooltip/Tooltip";
+import ReviewCardModal from "./ReviewCardModal";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -22,18 +25,24 @@ export default function ReviewModal({ selectedRestaurant }) {
     useEffect(() => {
         if (open) loadReviews();
         else setReviewsData([]);
-    }, [open, selectedRestaurant.id]);
+    }, [open, selectedRestaurant?.id]);
 
     const handleReviewSubmit = async (reviewText) => {
         await submitReview({ selectedRestaurant, reviewText });
+        await addReviewPost(auth.currentUser.uid, selectedRestaurant.id);
         reviewInputRef.current.value = ""; // Clear the input field
-        loadReviews();
+        await loadReviews();
         alert("Review submitted");
     };
 
     return (
         <div className="flex">
-            <ButtonSmall label={"Reviews"} action={() => setOpen(true)} />
+            <div className="group relative cursor-pointer py-2">
+                <TopTooltip text={"Review"} />
+                <ButtonCircleIcon action={() => setOpen(true)}>
+                    <MessageSquare />
+                </ButtonCircleIcon>
+            </div>
 
             <Modal
                 open={open}
@@ -41,18 +50,18 @@ export default function ReviewModal({ selectedRestaurant }) {
                 maxH={"h-70%"}
                 onClose={() => setOpen(false)}
             >
-                <div className="flex h-full w-full flex-col rounded-lg bg-slate-300 p-2">
+                <div className="flex h-full w-full flex-col rounded-lg p-2 dark:bg-black">
                     <h3 className="text-lg font-bold">
-                        {selectedRestaurant.name}'s Reviews
+                        {selectedRestaurant?.name}'s Reviews
                     </h3>
 
                     <ReviewContainer
                         reviewsData={reviewsData}
-                        reviewCardType={ReviewCardRestaurant}
+                        reviewCardType={ReviewCardModal}
                     />
 
                     {user && (
-                        <div className="mt-2 flex h-25% w-full pl-4 pr-4">
+                        <div className="h-25% mt-2 flex w-full pl-4 pr-4">
                             <form
                                 className="w-full"
                                 onSubmit={(e) => {
@@ -65,7 +74,7 @@ export default function ReviewModal({ selectedRestaurant }) {
                                 }}
                             >
                                 <textarea
-                                    className="h-24 w-full rounded-lg bg-slate-100 p-2 shadow-lg"
+                                    className="h-24 w-full rounded-lg bg-slate-200 p-2 shadow-lg"
                                     ref={reviewInputRef}
                                     style={{ resize: "none" }}
                                     placeholder="Write review..."

@@ -1,57 +1,49 @@
-import React, { useState } from "react";
-import Link from "next/link";
+import React from "react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/shadcn-ui/tabs";
+import { useRouter } from "next/router";
 
 export default function MapSelectSet() {
-    const [activeButton, setActiveButton] = useState("All");
+    const router = useRouter();
 
-    const handleClick = (buttonName) => {
-        setActiveButton(buttonName);
-    };
-
-    const changeColour = (buttonName) => {
-        return activeButton == buttonName ? "bg-slate-400" : "bg-slate-200";
+    const changeMap = (value) => {
+        if (value === 0) router.push("/");
+        else if (value === 1) router.push("/favouriteBites");
+        else if (value === 2) router.push("/toVisitBites");
+        else if (value === 3) router.push("/visitedBites");
     };
 
     return (
-        <ul className="flex items-center justify-start">
-            <li className="cursor-pointer p-2">
-                <Link href="/">
-                    <button
-                        className={`rounded-s-md px-4 py-1 ${changeColour(
-                            "All",
-                        )}`}
-                        onClick={() => handleClick("All")}
-                    >
-                        All Bites
-                    </button>
-                </Link>
-                <Link href="/favouriteBites">
-                    <button
-                        className={`px-4 py-1 ${changeColour("Favourite")}`}
-                        onClick={() => handleClick("Favourite")}
-                    >
-                        Favourite Bites
-                    </button>
-                </Link>
-                <Link href="/toVisitBites">
-                    <button
-                        className={`px-4 py-1 ${changeColour("Visit")}`}
-                        onClick={() => handleClick("Visit")}
-                    >
-                        ToVisit Bites
-                    </button>
-                </Link>
-                <Link href="/visitedBites">
-                    <button
-                        className={`rounded-e-md px-4 py-1 ${changeColour(
-                            "Visited",
-                        )}`}
-                        onClick={() => handleClick("Visited")}
-                    >
-                        Visited Bites
-                    </button>
-                </Link>
-            </li>
-        </ul>
+        <Tabs defaultValue="all" className="pr-2">
+            <TabsList className="rounded-full">
+                <TabsTrigger
+                    value="all"
+                    className="rounded-full"
+                    onClick={() => changeMap(0)} // set to all bites
+                >
+                    All Bites
+                </TabsTrigger>
+                <TabsTrigger
+                    value="favourite"
+                    className="rounded-full"
+                    onClick={() => changeMap(1)} // set to favourite bites
+                >
+                    Favourite Bites
+                </TabsTrigger>
+                <TabsTrigger
+                    value="tovisit"
+                    className="rounded-full"
+                    onClick={() => changeMap(2)} // set to toVisit bites
+                >
+                    ToVisit Bites
+                </TabsTrigger>
+                <TabsTrigger
+                    value="visited"
+                    className="rounded-full"
+                    onClick={() => changeMap(3)} // set to visited bites
+                >
+                    Visited Bites
+                </TabsTrigger>
+            </TabsList>
+        </Tabs>
     );
 }

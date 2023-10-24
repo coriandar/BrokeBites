@@ -1,4 +1,4 @@
-import defaultCenter from "@/components/__shared__/defaultCenter";
+import defaultCenter from "@/components/__shared__/util/defaultCenter";
 
 // Calculate euclidean distance between user and restaurant
 const calculateEuclideanDistance = (lat1, lon1, lat2, lon2) => {
@@ -44,13 +44,13 @@ export const getSortedDistance = (items, order, userGeo) => {
                 defaultPos.lat,
                 defaultPos.lng,
                 a.latitude,
-                a.longitude
+                a.longitude,
             );
             const distanceB = calculateEuclideanDistance(
                 defaultPos.lat,
                 defaultPos.lng,
                 b.latitude,
-                b.longitude
+                b.longitude,
             );
             return distanceB - distanceA;
         });
@@ -61,13 +61,13 @@ export const getSortedDistance = (items, order, userGeo) => {
                 defaultPos.lat,
                 defaultPos.lng,
                 a.latitude,
-                a.longitude
+                a.longitude,
             );
             const distanceB = calculateEuclideanDistance(
                 defaultPos.lat,
                 defaultPos.lng,
                 b.latitude,
-                b.longitude
+                b.longitude,
             );
 
             return distanceA - distanceB;

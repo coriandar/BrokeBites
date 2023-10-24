@@ -1,9 +1,15 @@
 import { auth, db } from "../firebaseApp";
 import {
+    doc,
+    setDoc,
+    updateDoc,
     addDoc,
     getDocs,
     collection,
     serverTimestamp,
+    arrayUnion,
+    deleteField,
+    deleteDoc,
 } from "firebase/firestore";
 import { appendUserAvatar } from "./userDB";
 
@@ -47,6 +53,30 @@ export const fetchRestaurantReviews = async (selectedRestaurantID) => {
     }
 };
 
+export const fetchFlaggedReviews = async () => {
+    try {
+        const restaurantReviewCollectionRef = collection(db, "reviewDB");
+        const data = await getDocs(restaurantReviewCollectionRef);
+
+        const reviewData = data.docs
+            .map((doc) => {
+                const reporterArray = doc.data()?.reporter;
+                return {
+                    ...doc.data(),
+                    reportCount: reporterArray?.length || 0,
+                    id: doc.id,
+                };
+            })
+            .filter((review) => review?.flagged === true);
+
+        reviewData.sort((a, b) => b.reportCount - a.reportCount);
+        // // appends user photoURl
+        return await appendUserAvatar(reviewData);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
 export const submitReview = async ({ selectedRestaurant, reviewText }) => {
     const currentUserId = auth.currentUser.uid;
     const currentDisplayName = auth.currentUser.displayName;
@@ -63,5 +93,39 @@ export const submitReview = async ({ selectedRestaurant, reviewText }) => {
         });
     } catch (error) {
         console.error("Error adding review:", error);
+    }
+};
+
+export const flagReview = async (review) => {
+    const currentUserID = auth.currentUser?.uid;
+    const reviewDocRef = doc(db, "reviewDB", review.id);
+    try {
+        await updateDoc(reviewDocRef, { flagged: true });
+        await setDoc(
+            reviewDocRef,
+            { reporter: arrayUnion(currentUserID) },
+            { merge: true }, // update fields in the document or create it if it doesn't exists
+        );
+    } catch (error) {
+        console.error("Error flagging:", error);
+    }
+};
+
+export const unflagReview = async (review) => {
+    const reviewDocRef = doc(db, "reviewDB", review.id);
+    try {
+        await updateDoc(reviewDocRef, { flagged: false });
+        await updateDoc(reviewDocRef, { reporter: deleteField() });
+    } catch (error) {
+        console.error("Error unflagging:", error);
+    }
+};
+
+export const deleteReview = async (review) => {
+    const reviewDocRef = doc(db, "reviewDB", review.id);
+    try {
+        await deleteDoc(reviewDocRef);
+    } catch (error) {
+        console.error("Error deleting:", error);
     }
 };

@@ -1,4 +1,4 @@
-const { getCategoryName } = require("../logic/db_FormatData.logic");
+const { getCategoryName } = require("../logic/db_formatData.logic");
 
 describe("getCategoryName", () => {
     test("should return restaurant if category is null", () => {

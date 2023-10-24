@@ -10,6 +10,9 @@ import { fetchUserReviews } from "@/database/firebase/firestore/reviewDB";
 import Avatar from "../account/Avatar";
 import ReviewCardProfile from "../review/ReviewCardProfile";
 import { useRouter } from "next/router";
+import { ProfileFeed } from "../profileUser/ProfileFeed";
+import UserProfileStatistics from "./UserProfileStatistics";
+import { Card } from "../ui/shadcn-ui/card";
 
 export default function UserProfile() {
     const router = useRouter();
@@ -41,13 +44,14 @@ export default function UserProfile() {
             fetchProfile();
             fetchProfileFavorites();
             fetchProfileReviews();
+            console.log("Fetching from user profile");
         }
     }, [uid]);
 
     return (
         <div className="m-8">
             {userProfile ? (
-                <div className="sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                <div className="w-screen sm:h-[300px] md:h-[600px] lg:h-[800px]">
                     <div className="flex items-center justify-center">
                         <Avatar
                             maxW={"w-[50px]"}
@@ -56,6 +60,10 @@ export default function UserProfile() {
                         <h2 className="text-xl font-bold">
                             {userProfile.displayName}'s Profile
                         </h2>
+                        <UserProfileStatistics
+                            userProfile={userProfile}
+                            userReviews={userReviews}
+                        />
 
                         <FollowButton otherUser={uid} />
                     </div>
@@ -70,13 +78,25 @@ export default function UserProfile() {
                                 setMapTheme={setMapTheme}
                             />
                         </div>
-                        <div className="m-4 w-1/4 sm:h-[300px] md:h-[600px] lg:h-[800px]">
-                            <h2 className="text-xl font-bold">Review List</h2>
-                            <ReviewContainer
-                                reviewsData={userReviews}
-                                reviewCardType={ReviewCardProfile}
-                            />
-                        </div>
+
+                        <Card className="ml-4 mr-4 flex w-1/4 flex-col sm:h-[300px] md:h-[600px] lg:h-[800px]">
+                            <div className="flex h-1/4 flex-col">
+                                <h2 className="text-xl font-bold">User Feed</h2>
+                                <ProfileFeed
+                                    uid={uid}
+                                    displayName={userProfile.displayName}
+                                />
+                            </div>
+                            <div className="flex h-3/4 flex-col">
+                                <h2 className="text-xl font-bold">
+                                    Review List
+                                </h2>
+                                <ReviewContainer
+                                    reviewsData={userReviews}
+                                    reviewCardType={ReviewCardProfile}
+                                />
+                            </div>
+                        </Card>
                     </div>
                 </div>
             ) : (

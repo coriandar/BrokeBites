@@ -1,4 +1,4 @@
-const { getCuisine } = require("../logic/db_FormatData.logic");
+const { getCuisine } = require("../logic/db_formatData.logic");
 
 describe("getCuisine", () => {
     test("should return Japansese", () => {

@@ -1,5 +1,6 @@
 import React from "react";
 import ButtonLarge from "../__shared__/ui/ButtonLarge";
+import { Button } from "../ui/shadcn-ui/button";
 
 const RandomRestaurant = ({
     restaurantList,
@@ -21,10 +22,9 @@ const RandomRestaurant = ({
         setMapZoom(20);
     };
     return (
-        <ButtonLarge
-            label={"I'm feeling hungry"}
-            action={handleRandomRestaurantClick}
-        />
+        <Button onClick={handleRandomRestaurantClick}>
+            I'm feeling hungry
+        </Button>
     );
 };
 

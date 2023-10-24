@@ -8,7 +8,79 @@ import {
     updateDoc,
 } from "firebase/firestore";
 import { fetchRestaurant } from "./restaurantDB";
-import { useReducer } from "react";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    updateProfile,
+} from "firebase/auth";
+
+export const createAccount = async (username, email, password) => {
+    try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(auth.currentUser, { displayName: username });
+        checkUserDB();
+        return true;
+    } catch (error) {
+        console.log(error.meessage);
+        return false;
+    }
+};
+
+export const login = async (email, password) => {
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        checkUserDB();
+        return true;
+    } catch (error) {
+        const errorCode = error.code;
+        console.log(error.meessage);
+        return false;
+    }
+};
+
+export const logout = async () => {
+    try {
+        await signOut(auth);
+        return true;
+    } catch (error) {
+        console.log(error.meessage);
+        return false;
+    }
+};
+
+async function checkUserDB() {
+    const user = auth.currentUser;
+    if (user) {
+        console.log("User is signed in.");
+        // User is signed in, proceed with Firestore operations
+
+        const userRef = doc(db, "userDB", user.uid);
+
+        try {
+            console.log("Before Firestore operation");
+            const userSnapshot = await getDoc(userRef);
+            console.log("After Firestore operation");
+
+            if (!userSnapshot.exists()) {
+                // If the user document doesn't exist, add them to the userDB
+                await setDoc(userRef, {
+                    displayName: user.displayName,
+                    email: user.email,
+                    favourite: [], // Initialise favourite, and toVisit with empty array
+                    toVisit: [],
+                    visited: [],
+                });
+                console.log("User added to userDB successfully.");
+            }
+        } catch (error) {
+            console.error("Error adding user to userDB:", error);
+            // Handle the error as needed
+        }
+    } else {
+        console.log("User is not signed in.");
+    }
+}
 
 // fetch a users data
 export const fetchUser = async (userID) => {
@@ -21,6 +93,11 @@ export const fetchUser = async (userID) => {
         id: userID,
     };
     return userData;
+};
+
+export const checkAdmin = async () => {
+    const user = await fetchUser(auth?.currentUser?.uid);
+    return !!user?.isAdmin;
 };
 
 // fetch a specific list from users data
@@ -70,6 +147,22 @@ export const fetchFollowingList = async (uid) => {
     }
 };
 
+export const fetchFollowerList = async (uid) => {
+    try {
+        const list = await fetchUserListData(uid, "followers", fetchUser);
+        // parse to only contain display name and id
+        const followerList = list.map((doc) => ({
+            displayName: doc.displayName,
+            id: doc.id,
+            photoURL: doc.photoURL,
+        }));
+        followerList.sort((a, b) => a.displayName - b.displayName);
+        return followerList;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 // fetch users favourites list data
 export const fetchFavouritesList = async (uid) => {
     return await fetchUserListData(uid, "favourite", fetchRestaurant);
@@ -88,10 +181,17 @@ export const fetchVisitedList = async (uid) => {
 export const followSelectedUser = async (otherUser) => {
     const currentUserID = auth.currentUser?.uid;
     const userDocRef = doc(db, "userDB", currentUserID);
+    const otherUserDocRef = doc(db, "userDB", otherUser);
     try {
         await setDoc(
             userDocRef,
             { following: arrayUnion(otherUser) },
+            { merge: true },
+        );
+
+        await setDoc(
+            otherUserDocRef,
+            { followers: arrayUnion(currentUserID) },
             { merge: true },
         );
     } catch (error) {
@@ -103,10 +203,17 @@ export const followSelectedUser = async (otherUser) => {
 export const unfollowSelectedUser = async (otherUser) => {
     const currentUserID = auth.currentUser?.uid;
     const userDocRef = doc(db, "userDB", currentUserID);
+    const otherUserDocRef = doc(db, "userDB", otherUser);
     try {
         await setDoc(
             userDocRef,
             { following: arrayRemove(otherUser) },
+            { merge: true },
+        );
+
+        await setDoc(
+            otherUserDocRef,
+            { followers: arrayRemove(currentUserID) },
             { merge: true },
         );
     } catch (error) {
