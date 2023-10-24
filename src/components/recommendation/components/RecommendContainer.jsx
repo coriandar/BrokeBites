@@ -8,12 +8,13 @@ export default function RecommendContainer({ restaurants }) {
         <ul>
             {restaurants.length > 0 ? (
                 restaurants.map((restaurant) => (
-                    <Card className="m-4 mt-4 h-20 shadow-lg">
+                    <Card
+                        key={restaurant.id}
+                        className="m-4 mt-4 h-20 shadow-lg"
+                    >
                         <Link href={`/restaurant/${restaurant?.id}`}>
                             <Button variant="outline" className="h-full w-full">
-                                <li key={`${restaurant.id}`}>
-                                    {restaurant?.name}
-                                </li>
+                                {restaurant?.name}
                             </Button>
                         </Link>
                     </Card>
