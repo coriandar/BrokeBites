@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Card } from "@/components/ui/shadcn-ui/card";
 
 export default function FilterType({
     setRestaurantList,
@@ -15,9 +16,8 @@ export default function FilterType({
     }, [selected, filterLogic, restaurantMasterList, setRestaurantList]);
 
     return (
-        <div className="flex h-5% w-full items-center justify-center rounded-lg bg-slate-300 pl-2 shadow-lg">
+        <Card className="flex h-5% w-full items-center justify-center rounded-lg pl-2 shadow-lg">
             <label for="cuisine">Type:</label>
-
             <select
                 id="cuisine"
                 name="cusine"
@@ -31,6 +31,6 @@ export default function FilterType({
                     </option>
                 ))}
             </select>
-        </div>
+        </Card>
     );
 }

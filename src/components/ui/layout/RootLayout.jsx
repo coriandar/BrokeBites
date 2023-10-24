@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Navbar from "@/components/navbar/Navbar";
-
-import { auth } from "@/database/firebase/firebaseApp";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "../theme/ThemeProvider";
 import { Toaster } from "../shadcn-ui/toaster";
+import { auth } from "@/database/firebase/firebaseApp";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export const fontSans = FontSans({
     subsets: ["latin"],
