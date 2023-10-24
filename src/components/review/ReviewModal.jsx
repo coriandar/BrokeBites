@@ -10,8 +10,9 @@ import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { MessageSquare } from "lucide-react";
 import { TopTooltip } from "../ui/tooltip/Tooltip";
 import ReviewCardModal from "./ReviewCardModal";
-import { checkDuplicate } from "./reviewLimitLogic";
 import { fetchUserRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
+import { Button } from "../ui/shadcn-ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -86,17 +87,14 @@ export default function ReviewModal({ selectedRestaurant }) {
                                     }
                                 }}
                             >
-                                <textarea
-                                    className="h-24 w-full rounded-lg bg-slate-200 p-2 shadow-lg"
+                                <Textarea
+                                    className="m-2 h-24 w-full rounded-lg"
                                     ref={reviewInputRef}
                                     style={{ resize: "none" }}
                                     placeholder="Write review..."
-                                />
-
+                                ></Textarea>
                                 <div className="flex justify-end">
-                                    <button className="m-1 rounded-md bg-slate-400 p-1 shadow-lg">
-                                        Submit Review
-                                    </button>
+                                    <Button>Submit Review</Button>
                                 </div>
                             </form>
                         </div>
