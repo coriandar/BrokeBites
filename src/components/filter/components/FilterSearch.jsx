@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Search } from "lucide-react";
+import { Input } from "@/components/ui/shadcn-ui/input";
+import { Card } from "@/components/ui/shadcn-ui/card";
 
 export default function FilterSearch({
     setRestaurantList,
@@ -13,14 +16,16 @@ export default function FilterSearch({
     }, [query, filterLogic, restaurantMasterList, setRestaurantList]);
 
     return (
-        <div className="flex h-5% w-full items-center rounded-lg bg-slate-300 pl-2 shadow-lg">
-            <label htmlFor="search">Search:</label>
-            <input
+        <Card className="flex h-[3rem] w-full items-center rounded-full pl-2 shadow-lg">
+            <label htmlFor="search">
+                <Search className="h-[1.2rem] w-[1.2rem]" />
+            </label>
+            <Input
                 id="search"
-                className="m-4 w-full rounded-sm"
+                className="m-4 h-[2rem] w-full rounded-full"
                 type="text "
                 onChange={(e) => setQuery(e.target.value)}
             />
-        </div>
+        </Card>
     );
 }
