@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { setPremium } from "@/database/firebase/firestore/userDB";
+import Link from "next/link";
+import { Button } from "../ui/shadcn-ui/button";
 
 export default function PaymentSuccess() {
     const [paymentStatus, setPaymentStatus] = useState(null); //hook for payment status
@@ -41,7 +43,14 @@ export default function PaymentSuccess() {
     //render payment status
     return (
         <div>
-            {paymentStatus === "success" && <p>Payment was successful!</p>}
+            {paymentStatus === "success" && (
+                <div className="flex flex-col items-center justify-center">
+                    <p>Payment was successful!</p>
+                    <Link href="/profile">
+                        <Button>Go to Profile</Button>
+                    </Link>
+                </div>
+            )}
             {paymentStatus === "failed" && <p>Payment was not successful.</p>}
             {paymentStatus === "error" && (
                 <p>There was an error verifying the payment status.</p>
