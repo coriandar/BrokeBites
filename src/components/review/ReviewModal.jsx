@@ -10,6 +10,9 @@ import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { MessageSquare } from "lucide-react";
 import { TopTooltip } from "../ui/tooltip/Tooltip";
 import ReviewCardModal from "./ReviewCardModal";
+import { fetchUserRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
+import { Button } from "../ui/shadcn-ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -28,11 +31,22 @@ export default function ReviewModal({ selectedRestaurant }) {
     }, [open, selectedRestaurant?.id]);
 
     const handleReviewSubmit = async (reviewText) => {
-        await submitReview({ selectedRestaurant, reviewText });
-        await addReviewPost(auth.currentUser.uid, selectedRestaurant.id);
-        reviewInputRef.current.value = ""; // Clear the input field
-        await loadReviews();
-        alert("Review submitted");
+        const userRestaurantReviews = await fetchUserRestaurantReviews(
+            auth.currentUser.uid,
+            selectedRestaurant.id,
+        );
+
+        if (userRestaurantReviews.length > 0) {
+            alert(
+                "User is only allowed to review restaurants once. Please report your review to request deletion.",
+            );
+        } else {
+            await submitReview({ selectedRestaurant, reviewText });
+            await addReviewPost(auth.currentUser.uid, selectedRestaurant.id);
+            reviewInputRef.current.value = ""; // Clear the input field
+            await loadReviews();
+            alert("Review submitted");
+        }
     };
 
     return (
@@ -61,7 +75,7 @@ export default function ReviewModal({ selectedRestaurant }) {
                     />
 
                     {user && (
-                        <div className="h-25% mt-2 flex w-full pl-4 pr-4">
+                        <div className="mt-2 flex h-25% w-full pl-4 pr-4">
                             <form
                                 className="w-full"
                                 onSubmit={(e) => {
@@ -73,17 +87,14 @@ export default function ReviewModal({ selectedRestaurant }) {
                                     }
                                 }}
                             >
-                                <textarea
-                                    className="h-24 w-full rounded-lg bg-slate-200 p-2 shadow-lg"
+                                <Textarea
+                                    className="m-2 h-24 w-full rounded-lg"
                                     ref={reviewInputRef}
                                     style={{ resize: "none" }}
                                     placeholder="Write review..."
-                                />
-
+                                ></Textarea>
                                 <div className="flex justify-end">
-                                    <button className="m-1 rounded-md bg-slate-400 p-1 shadow-lg">
-                                        Submit Review
-                                    </button>
+                                    <Button>Submit Review</Button>
                                 </div>
                             </form>
                         </div>

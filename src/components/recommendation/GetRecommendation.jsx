@@ -13,6 +13,8 @@ import {
 import { Button } from "../ui/shadcn-ui/button";
 import RecommendContainer from "./components/RecommendContainer";
 import { Icons } from "../ui/icons/icons";
+import { Card } from "../ui/shadcn-ui/card";
+import { ScrollArea } from "../ui/shadcn-ui/scroll-area";
 
 export default function GetRecommendation() {
     const uid = auth?.currentUser?.uid;
@@ -56,24 +58,30 @@ export default function GetRecommendation() {
     };
 
     return (
-        <div className="flex h-[400px] flex-col items-center justify-center">
-            <Button disabled={isLoading} onClick={getRecommendations}>
-                {isLoading && (
-                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                )}
-                Get Recommendations
-            </Button>
+        <Card className="flex h-full w-full flex-col items-center rounded-lg">
+            <h3 className="text-lg font-bold">Recommendations</h3>
+            <ScrollArea className="h-full w-full rounded-md border">
+                <div className="flex flex-col">
+                    <Button disabled={isLoading} onClick={getRecommendations}>
+                        {isLoading && (
+                            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                        )}
+                        Get Recommendations
+                    </Button>
 
-            <Button
-                disabled={isLoading}
-                variant={"secondary"}
-                onClick={() => setNearby(!nearby)}
-            >
-                Nearby: {nearby ? "Enabled" : "Disabled"}
-            </Button>
-            {recommendedList.length > 0 && (
-                <RecommendContainer restaurants={recommendedList} />
-            )}
-        </div>
+                    <Button
+                        disabled={isLoading}
+                        variant={"secondary"}
+                        onClick={() => setNearby(!nearby)}
+                    >
+                        Nearby: {nearby ? "Enabled" : "Disabled"}
+                    </Button>
+
+                    {recommendedList.length > 0 && (
+                        <RecommendContainer restaurants={recommendedList} />
+                    )}
+                </div>
+            </ScrollArea>
+        </Card>
     );
 }

@@ -27,9 +27,9 @@ const InitList = ({
                         onClick={() => handleListItemClick(restaurant)}
                     >
                         <div
-                            className={`m-2 flex justify-between rounded-lg p-4 shadow-lg hover:bg-slate-200 ${
+                            className={`m-2 flex justify-between rounded-lg p-4 shadow-lg hover:bg-slate-300 dark:hover:bg-slate-400 ${
                                 restaurantSelected?.id === restaurant?.id
-                                    ? "bg-slate-300 font-bold"
+                                    ? "bg-primary font-bold"
                                     : "bg-white dark:bg-slate-500"
                             }`}
                         >

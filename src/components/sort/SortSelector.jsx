@@ -15,6 +15,7 @@ export default function SortSelector({
 }) {
     const handleClick = (buttonName) => {
         setActiveFilter(buttonName);
+        changeColour(buttonName);
     };
 
     const changeColour = (buttonName) => {
@@ -71,15 +72,6 @@ export default function SortSelector({
                             <Star />
                         </ButtonCircleIcon>
                     </div>
-
-                    {/* <button
-                        className={`rounded-md px-4 py-1 text-xs ${changeColour(
-                            "nearestSort",
-                        )}`}
-                        onClick={() => handleClick("nearestSort")}
-                    >
-                        Sort by Nearest
-                    </button> */}
 
                     <div className="group relative cursor-pointer py-2">
                         <BottomTooltip text={"Sort by Nearest"} />
