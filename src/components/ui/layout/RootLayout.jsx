@@ -21,6 +21,11 @@ export default function RootLayout({ children }) {
         <>
             <Head>
                 <title>BrokeBites</title>
+                <script
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2060929608189026"
+                    crossorigin="anonymous"
+                ></script>
             </Head>
             <ThemeProvider
                 attribute="class"
