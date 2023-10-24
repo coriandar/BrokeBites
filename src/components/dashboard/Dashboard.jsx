@@ -9,6 +9,7 @@ import RestaurantInfo from "../restaurant/RestaurantInfo";
 import defaultCenter from "../__shared__/util/defaultCenter";
 import Layer from "../__shared__/layout/Layer";
 import { ListToggle } from "../restaurant/components/ListToggle";
+import { checkPremiumStatus } from "@/database/firebase/firestore/userDB";
 
 export default function Dashboard({
     restaurantList,
@@ -27,6 +28,7 @@ export default function Dashboard({
     const [userGeo, setUserGeo] = useState(defaultCenter);
     const [center, setCenter] = useState(defaultCenter);
     const [showList, setShowList] = useState(true);
+    const isPremium = checkPremiumStatus();
 
     //map markers
     const handleDeselect = () => {
@@ -37,7 +39,7 @@ export default function Dashboard({
     return (
         <div className="flex h-full w-full">
             {showList && (
-                <div className="border-input bg-background text-accent-foreground m-4 flex w-1/4 flex-col justify-start">
+                <div className="m-4 flex w-1/4 flex-col justify-start border-input bg-background text-accent-foreground">
                     <SortSelector
                         restaurantMasterList={restaurantMasterList}
                         setRestaurantList={setRestaurantList}
@@ -91,6 +93,7 @@ export default function Dashboard({
                     />
                 </Layer>
 
+                {/* if premium, display ads here */}
                 <Layer position={"bottom-8 left-8 p-6"} transparent={false}>
                     <RestaurantInfo
                         handleDeselect={handleDeselect}
