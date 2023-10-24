@@ -1,4 +1,5 @@
 import ChatBot from 'react-simple-chatbot'; // npm install react-simple-chatbot
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 const steps = [
@@ -11,31 +12,10 @@ const steps = [
 		id: '1',
 		options: [  // option list
 			{ value: 1, label: 'View Frequently Asked Questions', trigger: 'faqStep' },
-            { value: 2, label: 'Ask A Question', trigger: 'askQuestion'},
+            { value: 2, label: 'Ask A Question', trigger: 'userInput'},
             { value: 3, label: 'End Conversation', trigger: 'end' },
 		],
 	},
-    {
-        id: 'askQuestion',
-        message: 'What is your question?',
-        trigger: 'userQuestion',
-    },
-    {
-        id: 'userQuestion',
-        user: true,
-        trigger: 'answerQuestion',
-    },
-    {
-        id: 'answerQuestion',
-        message: 'You asked: {previousValue}',
-        trigger: 'searchForAnswer',
-    },
-    {
-        id: 'searchForAnswer',
-        component: <YourAnswerComponent />,
-        asMessage: true,
-        waitAction: true,
-    },
     {
         id: 'returnToMainMenu',
         message: "Is there anything else you would like to do?",
@@ -125,7 +105,18 @@ const steps = [
     },
     {
         id: 'userInput',
+        message: 'Please type your question:',
+        trigger: 'generateResponse',
+    },
+    {
+        id: 'generateResponse',
         user: true,
+        trigger: 'displayResponse',
+    },
+    {
+        id: 'displayResponse',
+        message: ({previousValue}) => generateResponse({previousValue}),
+        trigger: 'returnToMainMenu',
     },
     {
         id: 'end',
@@ -152,31 +143,34 @@ const config = {
 	floating: true,
 };
 
-function YourAnswerComponent ({ previousValue }) {
-    console.log('User Question: ', previousValue);
-    const generateResponse = (userQuestion) => {
-    // response logic here.
+function generateResponse(userQuestion) {
+    console.log("Response: ", userQuestion);
+    const userInput = userQuestion.previousValue;
 
-    if (userQuestion.toLowerCase().includes('how to use the map')) {
-      return 'You can use the map by panning around with your mouse, scroll in and out for better coverage, and use the filter options on the left.';
-    } else if (userQuestion.toLowerCase().includes('create an account')) {
+    if (typeof userInput !== 'string') {
+        return "I'm sorry, I don't have a specific answer to that question. Please ask something else.";
+      }
+
+      
+    if (userInput.toLowerCase().includes('how to use the map')) {
+      return 'You can use the map by panning around with your mouse, scrolling in and out for better coverage, and using the filter options on the left.';
+    } else if (userInput.toLowerCase().includes('create an account')) {
       return 'You can create an account by visiting the signup page from the navbar.';
     } else {
       return "I'm sorry, I don't have a specific answer to that question. Please ask something else.";
     }
-  };
-
-  // Get the user's question from the previous step.
-  const userQuestion = {previousValue};
-
-  // Generate a response based on the user's input.
-  const botResponse = generateResponse(userQuestion);
-
-  return <p>{botResponse}</p>;
-}
+  }
 
 function Chat() {
     console.log('Chatbot component rendering')
+    const [userQuestion, setUserQuestion] = useState('');
+    const [botResponse, setBotResponse] = useState('');
+
+    const handleUserInput = (value) => {
+        setUserQuestion(value);
+    };
+
+    //let userQuestion = '';
 	return (
 		<div className="Chat">
 			<ThemeProvider theme={theme}>
