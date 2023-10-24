@@ -2,6 +2,7 @@ import React from "react";
 import LoggedInBtnSet from "./components/LoggedInBtnSet";
 import MapSelectSet from "./components/MapSelectSet";
 import ThemeToggle from "../ui/theme/ThemeToggle";
+import Chat from "@/components/chatbot/Chatbot2";
 
 export default function Navbar() {
     return (
@@ -9,6 +10,7 @@ export default function Navbar() {
             <MapSelectSet />
             <LoggedInBtnSet />
             <ThemeToggle />
+            <Chat />
         </nav>
     );
 }
