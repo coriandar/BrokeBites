@@ -1,4 +1,4 @@
-import ChatBot from 'react-simple-chatbot'; // npm install react-simple-chatbot
+import ChatBot, { ReactSimpleChatbot } from 'react-simple-chatbot'; // npm install react-simple-chatbot
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
@@ -141,6 +141,10 @@ const theme = {
 const config = {
 	//botAvatar: "img.png", // chatbot avater image
 	floating: true,
+    floatingStyle: {
+        right: '60px', // Adjust the right position
+        bottom: '25px', // Adjust the bottom position
+      },
 };
 
 function generateResponse(userQuestion) {
@@ -156,31 +160,28 @@ function generateResponse(userQuestion) {
       return 'You can use the map by panning around with your mouse, scrolling in and out for better coverage, and using the filter options on the left.';
     } else if (userInput.toLowerCase().includes('create an account')) {
       return 'You can create an account by visiting the signup page from the navbar.';
+    } else if (userInput.toLowerCase().includes('search for restaurant')){
+        return 'From the main page utilise the search bar located just below the filter options.';
+    } else if (userInput.toLowerCase().includes('view restaurant menu')){
+        return 'Click on your restaurant of choice and select the menu option from the window that pops up.';
     } else {
-      return "I'm sorry, I don't have a specific answer to that question. Please ask something else.";
-    }
+        return "I'm sorry, I don't have a specific answer to that question. Please ask something else.";
+      }
   }
 
 function Chat() {
     console.log('Chatbot component rendering')
-    const [userQuestion, setUserQuestion] = useState('');
-    const [botResponse, setBotResponse] = useState('');
 
-    const handleUserInput = (value) => {
-        setUserQuestion(value);
-    };
-
-    //let userQuestion = '';
 	return (
 		<div className="Chat">
 			<ThemeProvider theme={theme}>
-				<ChatBot
+                <ChatBot
                     // chatbot header
-					headerTitle="BrokeBot"
-					steps={steps}
-					{...config}
+                    headerTitle="BrokeBot"
+                    steps={steps}
+                    {...config}
 
-				/>
+                />
 			</ThemeProvider>
 		</div>
 	);
