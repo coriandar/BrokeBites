@@ -28,7 +28,6 @@ export default function Dashboard({
     const [userGeo, setUserGeo] = useState(defaultCenter);
     const [center, setCenter] = useState(defaultCenter);
     const [showList, setShowList] = useState(true);
-    const isPremium = checkPremiumStatus();
 
     //map markers
     const handleDeselect = () => {
@@ -93,7 +92,7 @@ export default function Dashboard({
                     />
                 </Layer>
 
-                {/* if premium, display ads here */}
+                
                 <Layer position={"bottom-8 left-8 p-6"} transparent={false}>
                     <RestaurantInfo
                         handleDeselect={handleDeselect}
