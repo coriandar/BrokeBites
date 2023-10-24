@@ -6,6 +6,7 @@ import {
     unfollowSelectedUser,
     fetchUserList,
 } from "@/database/firebase/firestore/userDB";
+import { addFollow } from "@/database/firebase/firestore/userFeedDB";
 
 export default function FollowButton({ otherUser }) {
     const currentUserID = auth.currentUser.uid;
@@ -15,9 +16,9 @@ export default function FollowButton({ otherUser }) {
         const checkIsFollowing = async () => {
             const followingList = await fetchUserList(
                 currentUserID,
-                "following"
+                "following",
             );
-            setIsFollowing(followingList.includes(otherUser));
+            setIsFollowing(followingList?.includes(otherUser));
         };
 
         if (otherUser && currentUserID) checkIsFollowing();
@@ -25,6 +26,7 @@ export default function FollowButton({ otherUser }) {
 
     const follow = async () => {
         await followSelectedUser(otherUser);
+        await addFollow(currentUserID, otherUser);
         setIsFollowing(true);
     };
 
@@ -34,9 +36,15 @@ export default function FollowButton({ otherUser }) {
     };
 
     return (
-        <ButtonSmall
-            label={isFollowing ? "Unfollow" : "Follow"}
-            action={isFollowing ? unfollow : follow}
-        />
+        <>
+            {currentUserID != otherUser ? (
+                <ButtonSmall
+                    label={isFollowing ? "Unfollow" : "Follow"}
+                    action={isFollowing ? unfollow : follow}
+                />
+            ) : (
+                <></>
+            )}
+        </>
     );
 }

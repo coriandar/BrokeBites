@@ -1,9 +1,6 @@
 import React from "react";
+import { Card } from "../ui/shadcn-ui/card";
 
 export default function ReviewCard({ children }) {
-    return (
-        <li className="m-4 flex w-95% rounded-lg bg-slate-50 p-4 shadow-lg">
-            {children}
-        </li>
-    );
+    return <Card className="m-4 flex w-full p-4 shadow-lg">{children}</Card>;
 }

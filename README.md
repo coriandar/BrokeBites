@@ -1,7 +1,58 @@
 ## BrokeBites
-Are you a student on a tight budget, tired of surviving on instant noodles and microwave dinners? Say hello to BrokeBites, your ultimate go-to resource for delicious, pocket-friendly, and convenient takeaway options! We understand the struggles of being a student and how challenging it can be to find affordable yet flavourful meals. That's why we're here to help you eat well without breaking the bank, by exploring budget-friendly food choices from restaurants around you.
+We understand that cooking your own meals might not always be feasible due to time constraints or lack of cooking facilities. That's why we've curated a selection of smart and pocket-friendly takeaway options from various restaurants that cater to students on a budget. Now you can enjoy a diverse range of flavors without the hassle of cooking!
+
+Join the food-loving community and elevate your restaurant discovery experience. Download our app today and savor every moment of your culinary exploration. Your next delicious adventure is just a click away!
 
 _Team project using SCRUM methodlogies for COMP602 Software Development Practice._
+
+### Features
+- __Account Signup:__ Unlock a world of culinary delights with a few taps. Create your personal account and get ready to embark on a gastronomic journey.
+- __Interactive Restaurant Map:__ Explore your city like never before. Our interactive map reveals the best restaurants in your area, putting their locations at your fingertips.
+- __Search and Save:__ Finding the perfect dining spot is a breeze. Use our powerful search tools to filter restaurants by cuisine, price, and more. Save your favorites to make your next dining experience even more effortless.
+- __Reviews Restaurants:__ Share your culinary adventures with the world. Write and read insightful restaurant reviews from fellow foodies. Your opinions matter!
+- __Social Media Features:__ Connect, engage, and share your foodie experiences with the community. With direct messaging, follows, and easy sharing, your food journey becomes a social adventure.
+- __Premium-Only Features:__ Elevate your dining experience. Upgrade to our premium subscription for an ad-free journey through the world of flavors. Enjoy a seamless, distraction-free exploration of restaurants and cuisines.
+
+--------------------------------------------------
+
+## Contents
+- [About][c.1]
+- [Getting Started][c.2]
+    - [Required][c.2.1]
+    - [Required accounts][c.2.2]
+    - [API keys][c.2.3]
+    - [Firestore Database][c.2.4]
+    - [Firestore Storage][c.2.5]
+    - [Scraping Data][c.2.6]
+- [Usage][c.3]
+    - [Installation][c.3.1]
+    - [Development Server][c.3.2]
+    - [Production Server][c.3.3]
+    - [Tests][c.3.4]
+    - [Access][c.3.5]
+- [Contributing][c.4]
+    - [VSCode Setup][c.4.1]
+- [Team][c.5]
+- [License][c.6]
+
+[c.1]: <https://github.com/coriandar/brokebites#brokebites>
+[c.2]: <https://github.com/coriandar/brokebites#getting-started>
+[c.2.1]: <https://github.com/coriandar/brokebites#required>
+[c.2.2]: <https://github.com/coriandar/brokebites#required-accounts>
+[c.2.3]: <https://github.com/coriandar/brokebites#api-keys>
+[c.2.4]: <https://github.com/coriandar/brokebites#firestore-database>
+[c.2.5]: <https://github.com/coriandar/brokebites#firestore-storage>
+[c.2.6]: <https://github.com/coriandar/brokebites#scraping-restaurant-data>
+[c.3]: <https://github.com/coriandar/brokebites#usage>
+[c.3.1]: <https://github.com/coriandar/brokebites#installation>
+[c.3.2]: <https://github.com/coriandar/brokebites#run-devevlopment-server>
+[c.3.3]: <https://github.com/coriandar/brokebites#run-production-server>
+[c.3.4]: <https://github.com/coriandar/brokebites#run-tests>
+[c.3.5]: <https://github.com/coriandar/brokebites#access>
+[c.4]: <https://github.com/coriandar/brokebites#contributing-current-devs-only>
+[c.4.1]: <https://github.com/coriandar/brokebites#vscode-setup>
+[c.5]: <https://github.com/coriandar/brokebites#team>
+[c.6]: <https://github.com/coriandar/brokebites#license>
 
 --------------------------------------------------
 
@@ -22,7 +73,7 @@ _Team project using SCRUM methodlogies for COMP602 Software Development Practice
 [1.4]: <https://stripe.com>
 [1.5]: <https://apify.com>
 
-### API Key
+### API Keys
 - Place API keys into `.env.local` file
 
 ```js
@@ -33,16 +84,18 @@ NEXT_PUBLIC_FB_STORAGE_BUCKET=""
 NEXT_PUBLIC_FB_MESSAGING_SENDER_ID=""
 NEXT_PUBLIC_FB_APP_ID=""
 NEXT_PUBLIC_FB_MEASUREMENT_ID=""
-// stripe API
+NEXT_PUBLIC_STRIPE_PUBLIC_KEY=""
+NEXT_PUBLIC_STRIPE_SECRET_KEY=""
 ```
 
-### Firestore Databases
+### Firestore Database
 ```js
-bugDB
-feedbackDB
+directMessageDB
+reportDB
 restaurantDB
 reviewDB
 userDB
+userFeedDB
 ```
 
 ### Firestore Storage
@@ -53,12 +106,6 @@ avatar/
 ### Scraping restaurant data
 - Use Apify `Google Maps Scraper`.
 - Filter and clean data as appropriate.
-- Format data with `/src/util/cleanData.js`
-
-```js
-cd src/util
-node ./formatData.js
-```
 
 --------------------------------------------------
 

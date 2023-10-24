@@ -1,9 +1,18 @@
 import React from "react";
-import ButtonSmall from "@/components/__shared__/ui/ButtonSmall";
+import { ButtonCircleIcon } from "@/components/ui/buttons/ButtonCircleIcon";
+import { BookOpenText } from "lucide-react";
+import { TopTooltip } from "@/components/ui/tooltip/Tooltip";
 
 export const MenuButton = ({ selected }) => {
     const openMenu = () => {
         window.open(selected?.website);
     };
-    return <ButtonSmall label={"Menu"} action={openMenu} />;
+    return (
+        <div className="group relative cursor-pointer py-2">
+            <TopTooltip text={"Menu"} />
+            <ButtonCircleIcon action={() => openMenu()}>
+                <BookOpenText />
+            </ButtonCircleIcon>
+        </div>
+    );
 };

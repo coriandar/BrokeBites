@@ -17,7 +17,6 @@ export default function DashboardLoader({ dashboardType }) {
     const restaurants = useRef(null);
 
     // let restaurants = null;
-
     useEffect(() => {
         const fetchData = async () => {
             if (dashboardType === "all") {

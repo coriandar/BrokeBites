@@ -2,6 +2,9 @@ import React from "react";
 import { getSortedPriceRating, getSortedStarRating } from "./logic/sortedLogic";
 import { getSortedDistance } from "./logic/getSortedDistance";
 import SortBy from "./components/SortBy";
+import { BottomTooltip } from "../ui/tooltip/Tooltip";
+import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
+import { CircleDollarSign, LandPlot, Star } from "lucide-react";
 
 export default function SortSelector({
     activeFilter,
@@ -48,34 +51,45 @@ export default function SortSelector({
     };
 
     return (
-        <div className="-m-2 -mt-3">
-            <ul id="sort1" className="flex items-center justify-start">
-                <li className="cursor-pointer p-2">
-                    <button
-                        className={`px-4 py-1 text-xs ${changeColour(
-                            "sortPrice",
-                        )}`}
-                        onClick={() => handleClick("sortPrice")}
-                    >
-                        Sort by Price
-                    </button>
-                    <button
-                        className={`px-4 py-1 text-xs ${changeColour(
-                            "starRatingSort",
-                        )}`}
-                        onClick={() => handleClick("starRatingSort")}
-                    >
-                        Sort by Stars
-                    </button>
-                    <button
+        <div className="-m-2 -mt-3 space-x-8">
+            <ul id="sort1" className="flex items-center">
+                <div className="flex items-center space-x-3 px-10">
+                    <div className="group relative cursor-pointer py-2">
+                        <BottomTooltip text={"Sort by Price"} />
+                        <ButtonCircleIcon
+                            action={() => handleClick("sortPrice")}
+                        >
+                            <CircleDollarSign />
+                        </ButtonCircleIcon>
+                    </div>
+
+                    <div className="group relative cursor-pointer py-2">
+                        <BottomTooltip text={"Sort by Stars"} />
+                        <ButtonCircleIcon
+                            action={() => handleClick("starRatingSort")}
+                        >
+                            <Star />
+                        </ButtonCircleIcon>
+                    </div>
+
+                    {/* <button
                         className={`rounded-md px-4 py-1 text-xs ${changeColour(
                             "nearestSort",
                         )}`}
                         onClick={() => handleClick("nearestSort")}
                     >
                         Sort by Nearest
-                    </button>
-                </li>
+                    </button> */}
+
+                    <div className="group relative cursor-pointer py-2">
+                        <BottomTooltip text={"Sort by Nearest"} />
+                        <ButtonCircleIcon
+                            action={() => handleClick("nearestSort")}
+                        >
+                            <LandPlot />
+                        </ButtonCircleIcon>
+                    </div>
+                </div>
             </ul>
             <div>{changeFilter(activeFilter)}</div>
         </div>

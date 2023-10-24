@@ -1,4 +1,4 @@
-const { getMenu } = require("../logic/db_FormatData.logic");
+const { getMenu } = require("../logic/db_formatData.logic");
 
 describe("getMenuTest", () => {
     test("should return websiteURL if menuURL is null", () => {

@@ -1,4 +1,4 @@
-const { getPriceRating } = require("../logic/db_FormatData.logic");
+const { getPriceRating } = require("../logic/db_formatData.logic");
 
 describe("getPriceRating", () => {
     test("should return rand number (1-5) if price is null ", () => {
