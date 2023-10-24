@@ -36,8 +36,8 @@ export default function AccountSettings() {
         return null;
     } else if (user) {
         return (
-            <div className="flex h-full w-full items-center justify-center ">
-                <div className="flex h-90% flex-col items-center rounded-xl shadow-2xl">
+            <div className="m-12 flex h-[700px] w-screen">
+                <div className="m-4 flex h-full w-1/4 flex-col items-center justify-center bg-slate-500">
                     <Avatar maxW={"w-50%"} photoURL={photoURL} />
                     <img></img>
                     <UpdatePicture />
@@ -47,11 +47,13 @@ export default function AccountSettings() {
                     <SubmitBug />
                     {isPremium ? <UnsubscribeButton /> : <SubscribeButton />}
                 </div>
-                <div>{isPremium && <GetRecommendation />}</div>
-                <div>
+                <div className="m-4 flex h-full w-1/4">
+                    {isPremium && <GetRecommendation />}
+                </div>
+                <div className="m-4 flex h-full w-1/4">
                     <FollowingContainer />
                 </div>
-                <div>
+                <div className="m-4 flex h-full w-1/4">
                     <FollowerContainer />
                 </div>
             </div>

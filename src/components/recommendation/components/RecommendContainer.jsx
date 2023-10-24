@@ -1,21 +1,26 @@
 import React from "react";
-import RecommendCard from "./RecommendCard";
+import { Card } from "@/components/ui/shadcn-ui/card";
+import { Button } from "@/components/ui/shadcn-ui/button";
+import Link from "next/link";
 
 export default function RecommendContainer({ restaurants }) {
     return (
-        <div className="m-8 flex h-full w-full flex-col items-center justify-center rounded-lg">
-            <h3 className="text-lg font-bold">Recommendations</h3>
-            <ul>
-                {restaurants.length > 0 ? (
-                    restaurants.map((restaurant) => (
-                        <li key={`${restaurant.id}`}>
-                            <RecommendCard restaurant={restaurant} />
-                        </li>
-                    ))
-                ) : (
-                    <p>Loading...</p>
-                )}
-            </ul>
-        </div>
+        <ul>
+            {restaurants.length > 0 ? (
+                restaurants.map((restaurant) => (
+                    <Card className="m-4 mt-4 h-20 shadow-lg">
+                        <Link href={`/restaurant/${restaurant?.id}`}>
+                            <Button variant="outline" className="h-full w-full">
+                                <li key={`${restaurant.id}`}>
+                                    {restaurant?.name}
+                                </li>
+                            </Button>
+                        </Link>
+                    </Card>
+                ))
+            ) : (
+                <p>Loading...</p>
+            )}
+        </ul>
     );
 }
