@@ -1,5 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { Button } from "../ui/shadcn-ui/button";
+import { XCircle } from "lucide-react";
+import { Card } from "../ui/shadcn-ui/card";
 
 const BannerAd = ({ isPremium }) => {
     const [isBannerVisible, setIsBannerVisible] = useState(true);
@@ -12,15 +15,14 @@ const BannerAd = ({ isPremium }) => {
         ? null
         : isBannerVisible && (
               <Link href={"/paymentPage"}>
-                  <div className="fixed right-8 top-20 z-50 flex h-[100px] w-[1000px] items-center justify-between rounded-2xl bg-background p-4 text-accent-foreground">
-                      <span className="text-xl text-gray-600">Ad Banner</span>
-                      <button
-                          onClick={hideBanner}
-                          className="cursor-pointer rounded-md border border-gray-600 p-2 text-xl text-gray-600"
-                      >
-                          X
-                      </button>
-                  </div>
+                  <Card className="fixed right-8 top-20 z-50 flex h-[100px] w-[840px] items-center justify-between rounded-2xl p-4 text-accent-foreground shadow-2xl">
+                      <Button className="flex items-center justify-center">
+                          <span className="text-xl">Subscribe to premium</span>
+                      </Button>
+                      <Button onClick={hideBanner} size="icon" variant="ghost">
+                          <XCircle className="h-[1.2rem] w-[1.2rem]" />
+                      </Button>
+                  </Card>
               </Link>
           );
 };
