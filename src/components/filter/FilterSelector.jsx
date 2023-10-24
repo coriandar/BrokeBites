@@ -52,15 +52,16 @@ export default function FilterSelector({
     };
 
     const changeFilter = (activeFilter) => {
-        if (activeFilter === "search") {
-            return (
-                <FilterSearch
-                    restaurantMasterList={restaurantMasterList}
-                    setRestaurantList={setRestaurantList}
-                    filterLogic={getFilteredSearch}
-                />
-            );
-        } else if (activeFilter === "priceRange") {
+        // if (activeFilter === "search") {
+        //     return (
+        //         <FilterSearch
+        //             restaurantMasterList={restaurantMasterList}
+        //             setRestaurantList={setRestaurantList}
+        //             filterLogic={getFilteredSearch}
+        //         />
+        //     );
+        // }
+        if (activeFilter === "priceRange") {
             return (
                 <FilterSlider
                     sliderLabel="Price Range:"
@@ -138,8 +139,16 @@ export default function FilterSelector({
 
     return (
         <>
+            <div className=" group relative flex cursor-pointer items-center py-2">
+                <TopTooltip text={"Search"} />
+                <FilterSearch
+                    restaurantMasterList={restaurantMasterList}
+                    setRestaurantList={setRestaurantList}
+                    filterLogic={getFilteredSearch}
+                />
+            </div>
             {showOptions ? (
-                <div className="-m-2 -mt-3">
+                <div>
                     <FilterButton
                         showOptions={showOptions}
                         setShowOptions={setShowOptions}
@@ -149,15 +158,6 @@ export default function FilterSelector({
                         className="-mb-2 flex items-center justify-start"
                     >
                         <div className="-ml-1 flex space-x-2">
-                            <div className="group relative cursor-pointer py-2">
-                                <TopTooltip text={"Search"} />
-                                <ButtonCircleIcon
-                                    action={() => handleClick("search")}
-                                >
-                                    <Search />
-                                </ButtonCircleIcon>
-                            </div>
-
                             <div className="group relative cursor-pointer py-2">
                                 <TopTooltip text={"Price Range"} />
                                 <ButtonCircleIcon

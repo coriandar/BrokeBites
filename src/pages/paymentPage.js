@@ -1,12 +1,13 @@
 //page for payments containing the stripe payment container
 import React from "react";
 import { checkout } from "../stripe/checkout";
+import { Button } from "@/components/ui/shadcn-ui/button";
 
 function paymentPage() {
     //return a payment button
     return (
-        <button
-            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+        <Button
+            className="h-[50%] w-[50%] rounded-2xl"
             onClick={() => {
                 console.log("clicked");
                 checkout({
@@ -19,8 +20,8 @@ function paymentPage() {
                 });
             }}
         >
-            BUY!
-        </button>
+            <span className="text-9xl">BUY!</span>
+        </Button>
     );
 }
 
