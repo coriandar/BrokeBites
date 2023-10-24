@@ -129,3 +129,29 @@ export const deleteReview = async (review) => {
         console.error("Error deleting:", error);
     }
 };
+
+export const fetchUserRestaurantReviews = async (
+    selectedUserID,
+    selectedRestaurantID,
+) => {
+    try {
+        const reviewCollectionRef = collection(db, "reviewDB");
+        const data = await getDocs(reviewCollectionRef);
+
+        const reviewData = data.docs
+            .map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }))
+            .filter(
+                (review) =>
+                    review.userID === selectedUserID &&
+                    review.restaurantID === selectedRestaurantID,
+            );
+
+        // Append user photo URL if needed
+        return reviewData;
+    } catch (err) {
+        console.error(err);
+    }
+};
