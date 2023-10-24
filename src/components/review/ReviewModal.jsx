@@ -10,6 +10,8 @@ import { ButtonCircleIcon } from "../ui/buttons/ButtonCircleIcon";
 import { MessageSquare } from "lucide-react";
 import { TopTooltip } from "../ui/tooltip/Tooltip";
 import ReviewCardModal from "./ReviewCardModal";
+import { checkDuplicate } from "./reviewLimitLogic";
+import { fetchUserRestaurantReviews } from "@/database/firebase/firestore/reviewDB";
 
 export default function ReviewModal({ selectedRestaurant }) {
     const [open, setOpen] = useState(false);
@@ -28,11 +30,22 @@ export default function ReviewModal({ selectedRestaurant }) {
     }, [open, selectedRestaurant?.id]);
 
     const handleReviewSubmit = async (reviewText) => {
-        await submitReview({ selectedRestaurant, reviewText });
-        await addReviewPost(auth.currentUser.uid, selectedRestaurant.id);
-        reviewInputRef.current.value = ""; // Clear the input field
-        await loadReviews();
-        alert("Review submitted");
+        const userRestaurantReviews = await fetchUserRestaurantReviews(
+            auth.currentUser.uid,
+            selectedRestaurant.id,
+        );
+
+        if (userRestaurantReviews.length > 0) {
+            alert(
+                "User is only allowed to review restaurants once. Please report your review to request deletion.",
+            );
+        } else {
+            await submitReview({ selectedRestaurant, reviewText });
+            await addReviewPost(auth.currentUser.uid, selectedRestaurant.id);
+            reviewInputRef.current.value = ""; // Clear the input field
+            await loadReviews();
+            alert("Review submitted");
+        }
     };
 
     return (
@@ -61,7 +74,7 @@ export default function ReviewModal({ selectedRestaurant }) {
                     />
 
                     {user && (
-                        <div className="h-25% mt-2 flex w-full pl-4 pr-4">
+                        <div className="mt-2 flex h-25% w-full pl-4 pr-4">
                             <form
                                 className="w-full"
                                 onSubmit={(e) => {
